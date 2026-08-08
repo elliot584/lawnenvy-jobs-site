@@ -82,6 +82,22 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 
 .note{font-size:.8rem;color:var(--ink-soft);margin-top:16px;text-align:center}
 
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.price-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 4px 14px rgba(18,61,20,.06);display:flex;flex-direction:column}
+.price-card.featured{border-color:var(--green-600);box-shadow:0 10px 26px rgba(43,128,44,.18);position:relative}
+.price-card .price-badge{position:absolute;top:-12px;left:24px;background:var(--green-600);color:#fff;font-weight:800;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
+.price-card h3{font-size:1.1rem;font-weight:900;margin-bottom:4px}
+.price-card .price-tag{font-size:2.1rem;font-weight:900;color:var(--green-700);margin:8px 0 2px}
+.price-card .price-tag span{font-size:1rem;font-weight:700;color:var(--ink-soft)}
+.price-card .price-sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:4px}
+.price-card .price-trial{font-size:.82rem;font-weight:700;color:var(--green-600);margin-bottom:14px}
+.price-card ul{list-style:none;margin:6px 0 20px;flex-grow:1}
+.price-card li{font-size:.88rem;color:var(--ink-soft);padding:6px 0 6px 22px;position:relative;border-bottom:1px solid var(--line)}
+.price-card li:last-child{border-bottom:0}
+.price-card li::before{content:"✓";position:absolute;left:0;color:var(--green-600);font-weight:900}
+.btn-block{display:block;text-align:center}
+@media(max-width:900px){.price-grid{grid-template-columns:1fr}}
+
 .cta-final{background:linear-gradient(135deg,var(--green-700),var(--green-900));color:#fff;text-align:center;border-radius:24px;margin:0 20px;padding:60px 30px}
 .cta-final h2{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:10px;font-weight:900}
 .cta-final p{color:rgba(255,255,255,.85);margin-bottom:24px}
@@ -106,8 +122,9 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <li><a href="#compare">Compare</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <a class="btn btn-sm" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the demo</a>
+    <a class="btn btn-sm" href="https://jobs.lawnenvyaustralia.com/">Get started free</a>
   </div>
 </header>
 
@@ -117,8 +134,8 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     <h1>Run your mowing round like a business, <em>not a filing cabinet.</em></h1>
     <p class="lede">Quotes, jobs, scheduling, invoicing and tax — all in one app, built specifically for lawn care and garden operators. Not another generic trades tool with GST bolted on as an afterthought.</p>
     <div class="hero-ctas">
-      <a class="btn" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the live demo →</a>
-      <a class="btn btn-ghost" href="#features">See what's included</a>
+      <a class="btn" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
+      <a class="btn btn-ghost" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the live demo</a>
     </div>
     <div class="demo-box" id="demo">
       <span class="lbl">Live demo — one click, no typing</span>
@@ -138,7 +155,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     <div class="tablewrap">
     <table>
       <tr><th>Software</th><th>Starting price</th><th>Pricing model</th><th>Built for lawn care?</th></tr>
-      <tr class="us"><td>Lawn Envy Jobs</td><td class="price">TBA</td><td>Flat, per business</td><td>Yes — soil calc, route optimisation, weather blockout</td></tr>
+      <tr class="us"><td>Lawn Envy Jobs</td><td class="price">$55–229/mo</td><td>Flat, per business</td><td>Yes — soil calc, route optimisation, weather blockout</td></tr>
       <tr><td>Yardbook</td><td class="price">$0–60/mo</td><td>Free tier + paid add-ons</td><td>Yes, but limited beyond solo/basic use</td></tr>
       <tr><td>ServiceM8</td><td class="price">$0–349/mo</td><td>Flat, bundles jobs+SMS</td><td>No — general trades</td></tr>
       <tr><td>Fergus</td><td class="price">$48–53+/mo</td><td>Flat, per business</td><td>No — general trades (AU/NZ)</td></tr>
@@ -147,7 +164,57 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <tr><td>LMN</td><td class="price">$297–697/mo</td><td>Flat, unlimited users</td><td>Commercial landscaping, not solo/small</td></tr>
     </table>
     </div>
-    <p class="note">Competitor pricing researched July 2026 from public pricing pages — figures change, worth re-checking before quoting anyone directly. Our own pricing isn't set yet.</p>
+    <p class="note">Competitor pricing researched July 2026 from public pricing pages — figures change, worth re-checking before quoting anyone directly.</p>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Simple, flat pricing</div>
+      <h2 class="title">One flat price per business — not per seat.</h2>
+      <p>No per-user penalty for growing your crew. Pick the tier that matches your team size and upgrade whenever you actually need to — nothing locks you in.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Solo</h3>
+        <div class="price-tag">$55<span>/mo</span></div>
+        <div class="price-sub">or $550/yr — 2 months free</div>
+        <div class="price-trial">3 months free to start, no card required</div>
+        <ul>
+          <li>Up to 2 staff</li>
+          <li>Quotes, jobs, scheduling, invoicing</li>
+          <li>AU-native GST/BAS &amp; mileage tools</li>
+          <li>Route optimisation &amp; weather blockout</li>
+        </ul>
+        <a class="btn btn-block" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
+      </div>
+      <div class="price-card featured">
+        <span class="price-badge">Most popular</span>
+        <h3>Crew</h3>
+        <div class="price-tag">$119<span>/mo</span></div>
+        <div class="price-sub">or $1,190/yr — 2 months free</div>
+        <ul>
+          <li>Up to 10 staff</li>
+          <li>Everything in Solo</li>
+          <li>Staff &amp; payroll, role-gated access</li>
+          <li>Client &amp; lead CRM</li>
+        </ul>
+        <a class="btn btn-block" href="https://jobs.lawnenvyaustralia.com/">Get started →</a>
+      </div>
+      <div class="price-card">
+        <h3>Operation</h3>
+        <div class="price-tag">$229<span>/mo</span></div>
+        <div class="price-sub">or $2,290/yr — 2 months free</div>
+        <ul>
+          <li>Unlimited staff</li>
+          <li>Everything in Crew</li>
+          <li>Multi-task projects &amp; progress billing</li>
+        </ul>
+        <a class="btn btn-block btn-ghost" href="mailto:elliot@lawn-envy.net?subject=Lawn%20Envy%20Jobs%20-%20Operation%20plan">Contact us</a>
+      </div>
+    </div>
+    <p class="note">Solo operators get 3 months free to try it with real jobs and real data, no credit card needed. After that, switch to monthly or save with annual billing whenever you're ready — no lock-in either way.</p>
   </div>
 </section>
 
@@ -191,16 +258,19 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     </details>
     <details>
       <summary>What will it cost?</summary>
-      <p>Pricing isn't finalised yet — we're still in early access with businesses trying it out. If you're interested, try the demo and get in touch.</p>
+      <p>From $55/mo flat for a solo operator with up to 2 staff, up to $229/mo for unlimited staff — see the <a href="#pricing" style="color:var(--green-700);font-weight:700">full pricing</a>. Solo operators get 3 months free to try it with real data before paying anything, no card required.</p>
     </details>
   </div>
 </section>
 
 <section>
   <div class="cta-final">
-    <h2>Try it before you decide anything.</h2>
-    <p>The live demo above has real sample data already loaded — clients, jobs, invoices, quotes, the lot.</p>
-    <a class="btn" href="https://jobs.lawnenvyaustralia.com/?demo=1">Go to the demo →</a>
+    <h2>3 months free for solo operators. No card required.</h2>
+    <p>Set up your business in a couple of minutes, or try the live demo first with real sample data already loaded.</p>
+    <div class="hero-ctas" style="justify-content:center">
+      <a class="btn" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
+      <a class="btn btn-ghost" style="box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);color:#fff" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the demo</a>
+    </div>
   </div>
 </section>
 
