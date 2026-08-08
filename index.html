@@ -82,6 +82,16 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 
 .note{font-size:.8rem;color:var(--ink-soft);margin-top:16px;text-align:center}
 
+.form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);max-width:520px;margin:0 auto}
+.form-grid{display:grid;gap:14px}
+.form-grid label{font-size:.8rem;font-weight:700;color:var(--ink-soft);margin-bottom:2px;display:block}
+.form-grid input,.form-grid textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:.95rem;background:var(--paper);color:var(--ink)}
+.form-grid textarea{resize:vertical;min-height:70px}
+.form-status{font-size:.85rem;margin-top:10px;min-height:1.2em}
+.form-status.ok{color:var(--green-600);font-weight:700}
+.form-status.err{color:#C24E2E;font-weight:700}
+.hp-field{position:absolute;left:-9999px;opacity:0}
+
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
 .price-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 4px 14px rgba(18,61,20,.06);display:flex;flex-direction:column}
 .price-card.featured{border-color:var(--green-600);box-shadow:0 10px 26px rgba(43,128,44,.18);position:relative}
@@ -123,6 +133,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <li><a href="#features">Features</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#get-in-touch">Get in touch</a></li>
     </ul>
     <a class="btn btn-sm" href="https://jobs.lawnenvyaustralia.com/">Get started free</a>
   </div>
@@ -263,6 +274,46 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   </div>
 </section>
 
+<section id="get-in-touch">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center">
+      <div class="kicker">Not ready yet?</div>
+      <h2 class="title">Leave your details and I'll send you more info.</h2>
+      <p>No pressure — I'll follow up with pricing, a walkthrough, or just answer questions. Straight from the person who built it.</p>
+    </div>
+    <form id="leadForm" class="form-card" novalidate>
+      <div class="form-grid">
+        <div>
+          <label for="leadName">Name</label>
+          <input type="text" id="leadName" name="name" required>
+        </div>
+        <div>
+          <label for="leadEmail">Email</label>
+          <input type="email" id="leadEmail" name="email" required>
+        </div>
+        <div>
+          <label for="leadBiz">Business name</label>
+          <input type="text" id="leadBiz" name="businessName">
+        </div>
+        <div>
+          <label for="leadPhone">Phone (optional)</label>
+          <input type="tel" id="leadPhone" name="phone">
+        </div>
+        <div>
+          <label for="leadMsg">Anything specific you want to know? (optional)</label>
+          <textarea id="leadMsg" name="message"></textarea>
+        </div>
+        <div class="hp-field" aria-hidden="true">
+          <label for="leadWebsite">Website</label>
+          <input type="text" id="leadWebsite" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn" id="leadSubmit">Send</button>
+        <div class="form-status" id="leadStatus"></div>
+      </div>
+    </form>
+  </div>
+</section>
+
 <section>
   <div class="cta-final">
     <h2>3 months free for solo operators. No card required.</h2>
@@ -279,6 +330,41 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     Lawn Envy Jobs — software built by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for working lawn care operators.
   </div>
 </footer>
+
+<script>
+document.getElementById('leadForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('leadSubmit');
+  const status = document.getElementById('leadStatus');
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  status.className = 'form-status';
+  status.textContent = '';
+  btn.disabled = true;
+  const orig = btn.textContent;
+  btn.textContent = 'Sending…';
+
+  try {
+    const resp = await fetch('https://jobs.lawnenvyaustralia.com/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await resp.json().catch(() => ({ ok: false }));
+    if (!resp.ok || !result.ok) throw new Error(result.error || 'Something went wrong — try again shortly.');
+    status.className = 'form-status ok';
+    status.textContent = "Thanks — I'll be in touch soon.";
+    form.reset();
+  } catch (err) {
+    status.className = 'form-status err';
+    status.textContent = err.message || 'Could not send — try again shortly.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = orig;
+  }
+});
+</script>
 
 </body>
 </html>
