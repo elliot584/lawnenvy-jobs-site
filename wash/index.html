@@ -3,29 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lawn Envy Jobs — software for lawn & garden businesses</title>
-<meta name="description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built specifically for lawn care and garden operators.">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta property="og:title" content="Lawn Envy Jobs — software for lawn & garden businesses">
-<meta property="og:description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built specifically for lawn care and garden operators.">
-<meta property="og:image" content="icons/icon-512.png">
+<title>Prime Wash Jobs — software for pressure washing & exterior cleaning businesses</title>
+<meta name="description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built specifically for pressure washing and exterior cleaning operators.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231478B0' d='M12 2C12 2 5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-7-13-7-13z'/%3E%3C/svg%3E">
+<meta property="og:title" content="Prime Wash Jobs — software for pressure washing & exterior cleaning businesses">
+<meta property="og:description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built specifically for pressure washing and exterior cleaning operators.">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://software.lawnenvyaustralia.com/">
+<link rel="canonical" href="https://software.lawnenvyaustralia.com/wash/">
 <style>
 :root{
-  --green-900:#123D14;
-  --green-700:#1E5C22;
-  --green-600:#2B802C;
-  --green-500:#3B9A3C;
-  --lime:#9BE15D;
-  --paper:#F7FAF4;
-  --ink:#132015;
-  --ink-soft:#3E4F41;
+  --blue-900:#0B3350;
+  --blue-700:#0F5C8A;
+  --blue-600:#1478B0;
+  --blue-500:#2C93CE;
+  --aqua:#6FE0D9;
+  --paper:#F4FAFC;
+  --ink:#0E1F27;
+  --ink-soft:#3E5561;
   --white:#ffffff;
-  --line:#DCE6D8;
+  --line:#D7E7EC;
   --radius:14px;
-  --shadow:0 10px 30px rgba(18,61,20,.14);
+  --shadow:0 10px 30px rgba(11,51,80,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Archivo',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}
@@ -33,48 +31,48 @@ img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 @media (prefers-color-scheme: dark){
-  :root{--paper:#0F1A10;--ink:#EAF3E7;--ink-soft:#AEC2AA;--white:#16241A;--line:#25391F;--shadow:0 10px 30px rgba(0,0,0,.4)}
+  :root{--paper:#0A1620;--ink:#E8F3FA;--ink-soft:#A9C4D6;--white:#122534;--line:#1D3A4C;--shadow:0 10px 30px rgba(0,0,0,.4)}
 }
 
 header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.05rem;color:var(--green-700)}
-.brand .logo-mark{height:44px;width:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.05rem;color:var(--blue-700)}
+.logo-mark-text{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--blue-600);color:#fff;font-weight:900;font-size:.85rem;letter-spacing:-.02em;flex-shrink:0}
 .nav-links{display:flex;gap:26px;list-style:none;font-weight:600;font-size:.92rem}
 .nav-links a{text-decoration:none;color:var(--ink-soft)}
-.nav-links a:hover{color:var(--green-600)}
+.nav-links a:hover{color:var(--blue-600)}
 @media(max-width:760px){.nav-links{display:none}}
-.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;font-weight:800;font-size:1rem;padding:13px 24px;border-radius:999px;background:var(--green-600);color:#fff;box-shadow:0 6px 18px rgba(43,128,44,.3);transition:transform .15s,background .15s}
-.btn:hover{background:var(--green-700);transform:translateY(-1px)}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;font-weight:800;font-size:1rem;padding:13px 24px;border-radius:999px;background:var(--blue-600);color:#fff;box-shadow:0 6px 18px rgba(20,120,176,.3);transition:transform .15s,background .15s}
+.btn:hover{background:var(--blue-700);transform:translateY(-1px)}
 .btn-sm{padding:9px 18px;font-size:.88rem}
-.btn-ghost{background:transparent;color:var(--green-700);box-shadow:inset 0 0 0 2px var(--green-600)}
+.btn-ghost{background:transparent;color:var(--blue-700);box-shadow:inset 0 0 0 2px var(--blue-600)}
 
 .hero{padding:64px 0 40px}
-.eyebrow{display:inline-block;font-weight:800;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;background:var(--green-600);color:#fff;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.eyebrow{display:inline-block;font-weight:800;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;background:var(--blue-600);color:#fff;padding:6px 14px;border-radius:999px;margin-bottom:18px}
 .hero h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.08;letter-spacing:-.01em;margin-bottom:16px;font-weight:900}
-.hero h1 em{font-style:normal;color:var(--green-600)}
+.hero h1 em{font-style:normal;color:var(--blue-600)}
 .hero p.lede{font-size:1.1rem;max-width:56ch;color:var(--ink-soft);margin-bottom:24px}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 .demo-box{margin-top:26px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;display:inline-flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);font-size:.86rem}
-.demo-box .lbl{font-weight:800;color:var(--green-700);text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}
+.demo-box .lbl{font-weight:800;color:var(--blue-700);text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}
 .demo-box code{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-family:'SF Mono',Consolas,monospace}
 
 section{padding:60px 0}
 .section-head{max-width:640px;margin-bottom:36px}
-.kicker{font-weight:800;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-600);margin-bottom:10px}
+.kicker{font-weight:800;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-600);margin-bottom:10px}
 h2.title{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.14;letter-spacing:-.01em;font-weight:900}
 .section-head p{margin-top:12px;color:var(--ink-soft)}
 
 .tablewrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);background:var(--white)}
 table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:640px}
 th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
-th{background:var(--paper);font-weight:800;color:var(--green-700)}
+th{background:var(--paper);font-weight:800;color:var(--blue-700)}
 tr:last-child td{border-bottom:0}
-tr.us td{background:color-mix(in srgb, var(--lime) 14%, transparent);font-weight:700}
+tr.us td{background:color-mix(in srgb, var(--aqua) 16%, transparent);font-weight:700}
 td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.feat{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 4px 14px rgba(18,61,20,.06)}
+.feat{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 4px 14px rgba(11,51,80,.06)}
 .feat h3{font-size:1rem;margin-bottom:6px;font-weight:800}
 .feat p{font-size:.9rem;color:var(--ink-soft)}
 @media(max-width:900px){.feat-grid{grid-template-columns:1fr 1fr}}
@@ -88,37 +86,37 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .form-grid input,.form-grid textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:.95rem;background:var(--paper);color:var(--ink)}
 .form-grid textarea{resize:vertical;min-height:70px}
 .form-status{font-size:.85rem;margin-top:10px;min-height:1.2em}
-.form-status.ok{color:var(--green-600);font-weight:700}
+.form-status.ok{color:var(--blue-600);font-weight:700}
 .form-status.err{color:#C24E2E;font-weight:700}
 .hp-field{position:absolute;left:-9999px;opacity:0}
 
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
-.price-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 4px 14px rgba(18,61,20,.06);display:flex;flex-direction:column}
-.price-card.featured{border-color:var(--green-600);box-shadow:0 10px 26px rgba(43,128,44,.18);position:relative}
-.price-card .price-badge{position:absolute;top:-12px;left:24px;background:var(--green-600);color:#fff;font-weight:800;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
+.price-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 4px 14px rgba(11,51,80,.06);display:flex;flex-direction:column}
+.price-card.featured{border-color:var(--blue-600);box-shadow:0 10px 26px rgba(20,120,176,.18);position:relative}
+.price-card .price-badge{position:absolute;top:-12px;left:24px;background:var(--blue-600);color:#fff;font-weight:800;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
 .price-card h3{font-size:1.1rem;font-weight:900;margin-bottom:4px}
-.price-card .price-tag{font-size:2.1rem;font-weight:900;color:var(--green-700);margin:8px 0 2px}
+.price-card .price-tag{font-size:2.1rem;font-weight:900;color:var(--blue-700);margin:8px 0 2px}
 .price-card .price-tag span{font-size:1rem;font-weight:700;color:var(--ink-soft)}
 .price-card .price-sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:4px}
-.price-card .price-trial{font-size:.82rem;font-weight:700;color:var(--green-600);margin-bottom:14px}
+.price-card .price-trial{font-size:.82rem;font-weight:700;color:var(--blue-600);margin-bottom:14px}
 .price-card ul{list-style:none;margin:6px 0 20px;flex-grow:1}
 .price-card li{font-size:.88rem;color:var(--ink-soft);padding:6px 0 6px 22px;position:relative;border-bottom:1px solid var(--line)}
 .price-card li:last-child{border-bottom:0}
-.price-card li::before{content:"✓";position:absolute;left:0;color:var(--green-600);font-weight:900}
+.price-card li::before{content:"✓";position:absolute;left:0;color:var(--blue-600);font-weight:900}
 .btn-block{display:block;text-align:center}
 @media(max-width:900px){.price-grid{grid-template-columns:1fr}}
 
-.cta-final{background:linear-gradient(135deg,var(--green-700),var(--green-900));color:#fff;text-align:center;border-radius:24px;margin:0 20px;padding:60px 30px}
+.cta-final{background:linear-gradient(135deg,var(--blue-700),var(--blue-900));color:#fff;text-align:center;border-radius:24px;margin:0 20px;padding:60px 30px}
 .cta-final h2{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:10px;font-weight:900}
 .cta-final p{color:rgba(255,255,255,.85);margin-bottom:24px}
-.cta-final .btn{background:var(--lime);color:var(--green-900)}
+.cta-final .btn{background:var(--aqua);color:var(--blue-900)}
 .cta-final .btn:hover{background:#fff}
 
 footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;border-top:1px solid var(--line);margin-top:20px}
 
 details{border:1px solid var(--line);border-radius:12px;background:var(--white);padding:16px 18px;margin-bottom:10px}
 details summary{cursor:pointer;font-weight:700;font-size:.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
-details summary::after{content:"+";color:var(--green-600);font-weight:900;font-size:1.2rem}
+details summary::after{content:"+";color:var(--blue-600);font-weight:900;font-size:1.2rem}
 details[open] summary::after{content:"–"}
 details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 </style>
@@ -127,7 +125,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 
 <header>
   <div class="wrap nav">
-    <div class="brand"><img class="logo-mark" src="icons/logo_trim.png" alt="Lawn Envy"> Lawn Envy Jobs</div>
+    <div class="brand"><span class="logo-mark-text">PW</span> Prime Wash Jobs</div>
     <ul class="nav-links">
       <li><a href="#compare">Compare</a></li>
       <li><a href="#features">Features</a></li>
@@ -135,22 +133,22 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#get-in-touch">Get in touch</a></li>
     </ul>
-    <a class="btn btn-sm" href="https://jobs.lawnenvyaustralia.com/">Get started free</a>
+    <a class="btn btn-sm" href="https://jobs.lawnenvyaustralia.com/?industry=pressure_washing">Get started free</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">Built for lawn &amp; garden businesses</span>
-    <h1>Run your mowing round like a business, <em>not a filing cabinet.</em></h1>
-    <p class="lede">Quotes, jobs, scheduling, invoicing and tax — all in one app, built specifically for lawn care and garden operators. Not another generic trades tool with GST bolted on as an afterthought.</p>
+    <span class="eyebrow">Built for pressure washing &amp; exterior cleaning businesses</span>
+    <h1>Run your wash business like a business, <em>not a filing cabinet.</em></h1>
+    <p class="lede">Quotes, jobs, scheduling, invoicing and tax — all in one app, built specifically for pressure washing and exterior cleaning operators. Not another generic trades tool with GST bolted on as an afterthought.</p>
     <div class="hero-ctas">
-      <a class="btn" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
-      <a class="btn btn-ghost" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the live demo</a>
+      <a class="btn" href="https://jobs.lawnenvyaustralia.com/?industry=pressure_washing">Get started free →</a>
+      <a class="btn btn-ghost" href="https://jobs.lawnenvyaustralia.com/?demo=1&industry=pressure_washing">Try the live demo</a>
     </div>
     <div class="demo-box" id="demo">
       <span class="lbl">Live demo — one click, no typing</span>
-      <div>The button above logs you straight into your own private sandbox, pre-loaded with sample jobs, clients and invoices.</div>
+      <div>The button above logs you straight into your own private sandbox, pre-loaded with sample wash jobs, clients and invoices.</div>
       <div style="margin-top:4px">It's yours alone — nothing you do affects any other visitor, and it's cleared automatically after 24 hours.</div>
     </div>
   </div>
@@ -160,22 +158,19 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">How we stack up</div>
-      <h2 class="title">Most job-management software wasn't built for lawn care.</h2>
-      <p>It was built for plumbers and electricians, then stretched to cover everyone else. Here's what solo-to-small lawn &amp; garden operators are actually choosing between right now.</p>
+      <h2 class="title">Most job-management software wasn't built for pressure washing.</h2>
+      <p>It was built for plumbers and electricians, then stretched to cover everyone else. Here's what solo-to-small wash operators are actually choosing between right now.</p>
     </div>
     <div class="tablewrap">
     <table>
-      <tr><th>Software</th><th>Starting price</th><th>Pricing model</th><th>Built for lawn care?</th></tr>
-      <tr class="us"><td>Lawn Envy Jobs</td><td class="price">$55–229/mo</td><td>Flat, per business</td><td>Yes — soil calc, route optimisation, weather blockout</td></tr>
-      <tr><td>Yardbook</td><td class="price">$0–60/mo</td><td>Free tier + paid add-ons</td><td>Yes, but limited beyond solo/basic use</td></tr>
-      <tr><td>ServiceM8</td><td class="price">$0–349/mo</td><td>Flat, bundles jobs+SMS</td><td>No — general trades</td></tr>
-      <tr><td>Fergus</td><td class="price">$48–53+/mo</td><td>Flat, per business</td><td>No — general trades (AU/NZ)</td></tr>
-      <tr><td>Jobber</td><td class="price">$39–599+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
-      <tr><td>Tradify</td><td class="price">$47–61/user/mo</td><td>Per user</td><td>No — general trades</td></tr>
-      <tr><td>LMN</td><td class="price">$297–697/mo</td><td>Flat, unlimited users</td><td>Commercial landscaping, not solo/small</td></tr>
+      <tr><th>Software</th><th>Starting price</th><th>Pricing model</th><th>Built for pressure washing?</th></tr>
+      <tr class="us"><td>Prime Wash Jobs</td><td class="price">$55–229/mo</td><td>Flat, per business</td><td>Yes — house/surface wash &amp; gutter calculators, route optimisation, weather blockout</td></tr>
+      <tr><td>ServiceM8</td><td class="price">$0–349/mo</td><td>Free tier (15 jobs) + per-user paid plans</td><td>No — general trades</td></tr>
+      <tr><td>Jobber</td><td class="price">$21–280+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
+      <tr><td>QuoteIQ</td><td class="price">$29.99–699/mo</td><td>Flat, tiered (no per-user fees at top tier)</td><td>Partially — broad exterior-service quoting tool, not wash-specific</td></tr>
     </table>
     </div>
-    <p class="note">Competitor pricing researched July 2026 from public pricing pages — figures change, worth re-checking before quoting anyone directly.</p>
+    <p class="note">Competitor pricing researched August 2026 from public pricing pages — figures change, worth re-checking before quoting anyone directly.</p>
   </div>
 </section>
 
@@ -198,7 +193,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
           <li>AU-native GST/BAS &amp; mileage tools</li>
           <li>Route optimisation &amp; weather blockout</li>
         </ul>
-        <a class="btn btn-block" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
+        <a class="btn btn-block" href="https://jobs.lawnenvyaustralia.com/?industry=pressure_washing">Get started free →</a>
       </div>
       <div class="price-card featured">
         <span class="price-badge">Most popular</span>
@@ -211,7 +206,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
           <li>Staff &amp; payroll, role-gated access</li>
           <li>Client &amp; lead CRM</li>
         </ul>
-        <a class="btn btn-block" href="https://jobs.lawnenvyaustralia.com/">Get started →</a>
+        <a class="btn btn-block" href="https://jobs.lawnenvyaustralia.com/?industry=pressure_washing">Get started →</a>
       </div>
       <div class="price-card">
         <h3>Operation</h3>
@@ -222,7 +217,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
           <li>Everything in Crew</li>
           <li>Multi-task projects &amp; progress billing</li>
         </ul>
-        <a class="btn btn-block btn-ghost" href="mailto:elliot@lawn-envy.net?subject=Lawn%20Envy%20Jobs%20-%20Operation%20plan">Contact us</a>
+        <a class="btn btn-block btn-ghost" href="mailto:elliot@lawn-envy.net?subject=Prime%20Wash%20Jobs%20-%20Operation%20plan">Contact us</a>
       </div>
     </div>
     <p class="note">Solo operators get 3 months free to try it with real jobs and real data, no credit card needed. After that, switch to monthly or save with annual billing whenever you're ready — no lock-in either way.</p>
@@ -233,7 +228,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">What's actually in it</div>
-      <h2 class="title">Everything a lawn business runs on, already built.</h2>
+      <h2 class="title">Everything a wash business runs on, already built.</h2>
     </div>
     <div class="feat-grid">
       <div class="feat"><h3>Quotes → jobs → invoices</h3><p>One record flows into the next — no retyping the same job three times.</p></div>
@@ -241,12 +236,12 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>Multi-day projects</h3><p>Break a big job into dated task cards spread across days, then bill it all as one invoice — or bill it in stages as it progresses.</p></div>
       <div class="feat"><h3>Route optimisation</h3><p>A day's stops reordered automatically for the shortest run, not just entry order.</p></div>
       <div class="feat"><h3>Weather blockout</h3><p>Flags likely-rain days and suggests the next clear one, one tap to move a day's jobs.</p></div>
-      <div class="feat"><h3>Turf/reno soil calculator</h3><p>Live m³ soil volume as you build a renovation quote — no separate spreadsheet.</p></div>
+      <div class="feat"><h3>House wash &amp; gutter calculators</h3><p>Live pricing for house washes, driveways and gutter cleans as you build a quote — no separate spreadsheet.</p></div>
       <div class="feat"><h3>GST/BAS built in, AU-native</h3><p>Tax-free threshold and BAS position estimates worked out for you — not bolted on for a US-first tool.</p></div>
       <div class="feat"><h3>Mileage &amp; vehicle log</h3><p>GPS-tracked trips or manual entry, turned straight into a cents-per-km tax deduction.</p></div>
       <div class="feat"><h3>Bank reconciliation</h3><p>Import a bank statement CSV and match transactions against paid invoices in a couple of clicks.</p></div>
       <div class="feat"><h3>One-click accountant report</h3><p>A clean P&amp;L, GST position and mileage summary, ready to print or email off at tax time.</p></div>
-      <div class="feat"><h3>Equipment maintenance log</h3><p>Service-interval tracking for mowers and gear, with overdue alerts.</p></div>
+      <div class="feat"><h3>Equipment maintenance log</h3><p>Service-interval tracking for pressure washers and gear, with overdue alerts.</p></div>
       <div class="feat"><h3>Client &amp; lead CRM</h3><p>Referral tracking, site requirements, full job history per client.</p></div>
       <div class="feat"><h3>Staff &amp; payroll</h3><p>Log hours, run pay runs with tax and super estimates, and get a payroll summary ready for tax time — including what super still needs to be paid.</p></div>
       <div class="feat"><h3>Custom staff roles</h3><p>Decide exactly what each login can see — crew gets their jobs, not your financials or client list.</p></div>
@@ -265,8 +260,8 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <h2 class="title">Good to know.</h2>
     </div>
     <details>
-      <summary>Is this only for lawn mowing?</summary>
-      <p>No — it covers lawn care, garden maintenance, hedging, pressure washing and turf/lawn renovation work. If your business quotes and schedules outdoor jobs, it fits.</p>
+      <summary>Is this only for house washing?</summary>
+      <p>No — it covers pressure washing, soft washing, driveway and path cleaning, gutter cleaning and general exterior maintenance work. If your business quotes and schedules outdoor cleaning jobs, it fits.</p>
     </details>
     <details>
       <summary>Do I need to migrate my existing clients?</summary>
@@ -278,7 +273,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     </details>
     <details>
       <summary>What will it cost?</summary>
-      <p>From $55/mo flat for a solo operator with up to 2 staff, up to $229/mo for unlimited staff — see the <a href="#pricing" style="color:var(--green-700);font-weight:700">full pricing</a>. Solo operators get 3 months free to try it with real data before paying anything, no card required.</p>
+      <p>From $55/mo flat for a solo operator with up to 2 staff, up to $229/mo for unlimited staff — see the <a href="#pricing" style="color:var(--blue-700);font-weight:700">full pricing</a>. Solo operators get 3 months free to try it with real data before paying anything, no card required.</p>
     </details>
   </div>
 </section>
@@ -287,8 +282,8 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   <div class="wrap">
     <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center">
       <div class="kicker">Not ready yet?</div>
-      <h2 class="title">Leave your details and I'll send you more info.</h2>
-      <p>No pressure — I'll follow up with pricing, a walkthrough, or just answer questions. Straight from the person who built it.</p>
+      <h2 class="title">Leave your details and we'll send you more info.</h2>
+      <p>No pressure — we'll follow up with pricing, a walkthrough, or just answer questions.</p>
     </div>
     <form id="leadForm" class="form-card" novalidate>
       <div class="form-grid">
@@ -312,6 +307,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
           <label for="leadMsg">Anything specific you want to know? (optional)</label>
           <textarea id="leadMsg" name="message"></textarea>
         </div>
+        <input type="hidden" name="industry" value="pressure_washing">
         <div class="hp-field" aria-hidden="true">
           <label for="leadWebsite">Website</label>
           <input type="text" id="leadWebsite" name="website" tabindex="-1" autocomplete="off">
@@ -328,17 +324,16 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     <h2>3 months free for solo operators. No card required.</h2>
     <p>Set up your business in a couple of minutes, or try the live demo first with real sample data already loaded.</p>
     <div class="hero-ctas" style="justify-content:center">
-      <a class="btn" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
-      <a class="btn btn-ghost" style="box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);color:#fff" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the demo</a>
+      <a class="btn" href="https://jobs.lawnenvyaustralia.com/?industry=pressure_washing">Get started free →</a>
+      <a class="btn btn-ghost" style="box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);color:#fff" href="https://jobs.lawnenvyaustralia.com/?demo=1&industry=pressure_washing">Try the demo</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    Lawn Envy Jobs — software built by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for working lawn care operators.
-    <div style="margin-top:8px;font-size:.82rem">Also built for: <a href="/wash/">Prime Wash Jobs</a> (pressure washing) · <a href="/clean/">Prime Clean Jobs</a> (cleaning)</div>
-    <div style="margin-top:8px;font-size:.82rem"><a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a></div>
+    Prime Wash Jobs — a sibling product from the team behind <a href="https://software.lawnenvyaustralia.com" style="color:var(--blue-700);font-weight:700">Lawn Envy Jobs</a>, built for pressure washing and exterior cleaning operators.
+    <div style="margin-top:8px;font-size:.82rem"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></div>
   </div>
 </footer>
 
@@ -365,7 +360,7 @@ document.getElementById('leadForm').addEventListener('submit', async (e) => {
     const result = await resp.json().catch(() => ({ ok: false }));
     if (!resp.ok || !result.ok) throw new Error(result.error || 'Something went wrong — try again shortly.');
     status.className = 'form-status ok';
-    status.textContent = "Thanks — I'll be in touch soon.";
+    status.textContent = "Thanks — we'll be in touch soon.";
     form.reset();
   } catch (err) {
     status.className = 'form-status err';
