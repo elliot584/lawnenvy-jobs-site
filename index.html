@@ -105,6 +105,15 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .price-card li{font-size:.88rem;color:var(--ink-soft);padding:6px 0 6px 22px;position:relative;border-bottom:1px solid var(--line)}
 .price-card li:last-child{border-bottom:0}
 .price-card li::before{content:"✓";position:absolute;left:0;color:var(--green-600);font-weight:900}
+.founder-banner{background:var(--green-900);color:#fff;border-radius:var(--radius);padding:22px 26px;margin-bottom:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.founder-banner .fb-kicker{font-weight:800;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-bottom:6px}
+.founder-banner h3{font-size:1.15rem;font-weight:900;margin-bottom:6px}
+.founder-banner p{font-size:.88rem;color:rgba(255,255,255,.82);max-width:56ch}
+.founder-tiers{display:flex;gap:10px;flex-wrap:wrap;margin-left:auto}
+.founder-tier{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 16px;text-align:center;min-width:90px}
+.founder-tier .ft-pct{font-size:1.3rem;font-weight:900;color:var(--lime)}
+.founder-tier .ft-label{font-size:.68rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+@media (max-width:720px){.founder-tiers{margin-left:0}}
 .btn-block{display:block;text-align:center}
 @media(max-width:900px){.price-grid{grid-template-columns:1fr}}
 
@@ -190,6 +199,18 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="kicker">Simple, flat pricing</div>
       <h2 class="title">One flat price per business — not per seat.</h2>
       <p>No per-user penalty for growing your crew. Pick the tier that matches your team size and upgrade whenever you actually need to — nothing locks you in.</p>
+    </div>
+    <div class="founder-banner">
+      <div>
+        <div class="fb-kicker">Founding-member pricing</div>
+        <h3>The first 100 businesses lock in a permanent discount.</h3>
+        <p>Sign up now and your rate is discounted for 24 months, on whichever plan you choose — the earlier you join, the bigger the saving.</p>
+      </div>
+      <div class="founder-tiers">
+        <div class="founder-tier"><div class="ft-pct">50%</div><div class="ft-label">First 20</div></div>
+        <div class="founder-tier"><div class="ft-pct">40%</div><div class="ft-label">Next 40</div></div>
+        <div class="founder-tier"><div class="ft-pct">35%</div><div class="ft-label">Next 40</div></div>
+      </div>
     </div>
     <div class="price-grid">
       <div class="price-card">
