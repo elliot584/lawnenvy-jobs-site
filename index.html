@@ -80,6 +80,13 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 @media(max-width:900px){.feat-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.feat-grid{grid-template-columns:1fr}}
 
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.why-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 4px 14px rgba(18,61,20,.06)}
+.why-card .why-tag{display:inline-block;font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-600);margin-bottom:10px}
+.why-card h3{font-size:1.2rem;font-weight:900;margin-bottom:8px;line-height:1.25}
+.why-card p{color:var(--ink-soft);font-size:.94rem}
+@media(max-width:760px){.why-grid{grid-template-columns:1fr}}
+
 .note{font-size:.8rem;color:var(--ink-soft);margin-top:16px;text-align:center}
 
 .form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);max-width:520px;margin:0 auto}
@@ -143,6 +150,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   <div class="wrap nav">
     <div class="brand"><img class="logo-mark" src="icons/logo_trim.png" alt="Lawn Envy"> Lawn Envy Jobs</div>
     <ul class="nav-links">
+      <li><a href="#why">Why us</a></li>
       <li><a href="#compare">Compare</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -166,6 +174,38 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <span class="lbl">Live demo — one click, no typing</span>
       <div>The button above logs you straight into your own private sandbox, pre-loaded with sample jobs, clients and invoices.</div>
       <div style="margin-top:4px">It's yours alone — nothing you do affects any other visitor, and it's cleared automatically after 24 hours.</div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Why operators switch</div>
+      <h2 class="title">Not just cheaper. Built differently.</h2>
+      <p>Four things you won't find bundled together anywhere else in this category.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-tag">Privacy by design</span>
+        <h3>Your data is encrypted before it ever leaves your phone.</h3>
+        <p>Most software in this category stores your clients, jobs and invoices in a shared cloud database the vendor can read any time. Lawn Envy Jobs encrypts your business data on your own device first — we genuinely can't read your client list or your numbers, even if we wanted to. Download a full backup whenever you like, so you're never stuck relying on us to keep it.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-tag">Built-in growth</span>
+        <h3>New customer leads, already in the app.</h3>
+        <p>The Marketplace matches real job requests from real customers to your trade and service area — you quote, they choose. It's not a directory you pay extra to be listed in, and it's not a lead you're bidding against ten other apps for — it's part of the plan you're already on.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-tag">No-signal reliability</span>
+        <h3>Works on the job site, not just in the office.</h3>
+        <p>Quote, schedule and photograph a job with zero bars, and it catches up the moment you're back in range — across every device you use. Most competitors need a live connection just to open.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-tag">Real job costing</span>
+        <h3>Know what a job actually cost, not just how long it took.</h3>
+        <p>Log the materials a job used — turf, soil, fertiliser, or whatever your trade runs on — against quantity, not just labour hours. Most job-management tools stop at time tracking and leave the rest to a spreadsheet.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -262,6 +302,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <h2 class="title">Everything a lawn business runs on, already built.</h2>
     </div>
     <div class="feat-grid">
+      <div class="feat"><h3>Marketplace job leads</h3><p>Real customer job requests matched to your trade and service area — quote and win work without spending a cent on ads.</p></div>
       <div class="feat"><h3>Quotes → jobs → invoices</h3><p>One record flows into the next — no retyping the same job three times.</p></div>
       <div class="feat"><h3>Recurring jobs</h3><p>Weekly, fortnightly or monthly, repeating forever until you cancel the series.</p></div>
       <div class="feat"><h3>Multi-day projects</h3><p>Break a big job into dated task cards spread across days, then bill it all as one invoice — or bill it in stages as it progresses.</p></div>
@@ -273,6 +314,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>Bank reconciliation</h3><p>Import a bank statement CSV and match transactions against paid invoices in a couple of clicks.</p></div>
       <div class="feat"><h3>One-click accountant report</h3><p>A clean P&amp;L, GST position and mileage summary, ready to print or email off at tax time.</p></div>
       <div class="feat"><h3>Equipment maintenance log</h3><p>Service-interval tracking for mowers and gear, with overdue alerts.</p></div>
+      <div class="feat"><h3>Materials tracking</h3><p>Log what a job actually used — turf, soil, fertiliser and beyond — against quantity, so job costing means more than just hours.</p></div>
       <div class="feat"><h3>Client &amp; lead CRM</h3><p>Referral tracking, site requirements, full job history per client.</p></div>
       <div class="feat"><h3>Staff &amp; payroll</h3><p>Log hours, run pay runs with tax and super estimates, and get a payroll summary ready for tax time — including what super still needs to be paid.</p></div>
       <div class="feat"><h3>Custom staff roles</h3><p>Decide exactly what each login can see — crew gets their jobs, not your financials or client list.</p></div>
