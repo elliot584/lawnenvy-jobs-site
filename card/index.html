@@ -43,7 +43,7 @@ a{color:inherit}
 body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 16px}
 .card{width:100%;max-width:380px;background:var(--white);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
 .wordmark{font-weight:300;font-size:1.6rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink);display:flex;align-items:baseline;justify-content:center;gap:6px}
-.wordmark .dot{width:8px;height:8px;border-radius:2px;background:var(--green-500);display:inline-block;transform:translateY(-9px)}
+.wordmark .dot{width:12px;height:12px;display:inline-block;transform:translateY(-9px);object-fit:contain}
 .tagline{font-size:.85rem;color:var(--ink-soft);margin-top:8px}
 .who{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 .name{font-weight:700;font-size:1.15rem}
@@ -58,7 +58,7 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 </head>
 <body>
 <div class="card">
-  <div class="wordmark">kept<span class="dot"></span></div>
+  <div class="wordmark">kept<img class="dot" src="../icons/logo_trim.png" alt=""></div>
   <div class="tagline">Software for service &amp; trade businesses</div>
 
   <div class="who">
