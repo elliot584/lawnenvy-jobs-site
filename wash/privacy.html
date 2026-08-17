@@ -9,29 +9,29 @@
 <link rel="canonical" href="https://software.lawnenvyaustralia.com/wash/privacy.html">
 <style>
 :root{
-  --blue-900:#0B3350;--blue-700:#0F5C8A;--blue-600:#1478B0;
-  --paper:#F4FAFC;--ink:#0E1F27;--ink-soft:#3E5561;--white:#ffffff;--line:#D7E7EC;
-  --radius:14px;--shadow:0 10px 30px rgba(11,51,80,.14);
+  --blue-900:#1B2333;--blue-700:#2E4165;--blue-600:#3E5C8A;
+  --paper:#F4F3EE;--ink:#20242E;--ink-soft:#525B6B;--white:#ffffff;--line:#DCDFE6;
+  --radius:14px;--shadow:0 10px 30px rgba(27,35,51,.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Archivo',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
 @media (prefers-color-scheme: dark){
-  :root{--paper:#0A1620;--ink:#E8F3FA;--ink-soft:#A9C4D6;--white:#122534;--line:#1D3A4C;--shadow:0 10px 30px rgba(0,0,0,.4)}
+  :root{--paper:#10151F;--ink:#E8ECF3;--ink-soft:#A9B4C8;--white:#161C2A;--line:#232B3D;--shadow:0 10px 30px rgba(0,0,0,.4)}
 }
 a{color:var(--blue-700)}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px}
 header{padding:22px 0;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.05rem;color:var(--blue-700);text-decoration:none}
-.brand img{height:32px;width:auto}
+.brand{display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.2rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink);text-decoration:none}
+.brand .dot{width:6px;height:6px;border-radius:2px;background:var(--blue-600);display:inline-block;transform:translateY(-7px);flex:none}
 main{padding:44px 0 80px}
-h1{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:900;letter-spacing:-.01em;margin-bottom:6px}
+h1{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
 .updated{color:var(--ink-soft);font-size:.85rem;margin-bottom:32px}
-h2{font-size:1.15rem;font-weight:800;margin:34px 0 10px;color:var(--blue-700)}
+h2{font-size:1.15rem;font-weight:600;margin:34px 0 10px;color:var(--blue-700)}
 p,li{color:var(--ink-soft);font-size:.96rem;margin-bottom:12px}
 li{margin-bottom:6px}
 ul,ol{padding-left:22px;margin-bottom:16px}
 strong{color:var(--ink)}
-.callout{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:20px 0;box-shadow:0 4px 14px rgba(11,51,80,.06)}
+.callout{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:20px 0;box-shadow:0 4px 14px rgba(27,35,51,.05)}
 .callout p:last-child{margin-bottom:0}
 footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;border-top:1px solid var(--line)}
 </style>
@@ -40,7 +40,7 @@ footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;b
 
 <header>
   <div class="wrap">
-    <a class="brand" href="./"><img src="../icons/logo_trim.png" alt="Kept"> Kept</a>
+    <a class="brand" href="./">kept<span class="dot"></span></a>
   </div>
 </header>
 

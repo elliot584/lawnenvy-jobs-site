@@ -4,50 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elliot Langham — Kept</title>
-<meta name="description" content="Elliot Langham, Founder of Kept — software for lawn & garden businesses. Save my contact, try the live demo, or visit the site.">
+<meta name="description" content="Elliot Langham, Founder of Kept — software for service & trade businesses. Save my contact, try the live demo, or visit the site.">
 <link rel="icon" href="../icons/icon-192.png">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
 <meta property="og:title" content="Elliot Langham — Kept">
-<meta property="og:description" content="Software for lawn & garden businesses — quoting, scheduling and invoicing in one app.">
+<meta property="og:description" content="Software for service & trade businesses — quoting, scheduling and invoicing in one app.">
 <meta property="og:image" content="../icons/icon-512.png">
 <meta property="og:type" content="profile">
 <link rel="canonical" href="https://software.lawnenvyaustralia.com/card/">
 <style>
 :root{
-  --green-900:#123D14;
-  --green-700:#1E5C22;
-  --green-600:#2B802C;
-  --green-500:#3B9A3C;
-  --lime:#9BE15D;
-  --paper:#F7FAF4;
-  --ink:#132015;
-  --ink-soft:#3E4F41;
+  --green-900:#1B2333;
+  --green-700:#2E4165;
+  --green-600:#3E5C8A;
+  --green-500:#7C9CC4;
+  --lime:#C7A76B;
+  --paper:#F4F3EE;
+  --ink:#20242E;
+  --ink-soft:#525B6B;
   --white:#ffffff;
-  --line:#DCE6D8;
+  --line:#DCDFE6;
   --radius:14px;
-  --shadow:0 10px 30px rgba(18,61,20,.14);
+  --shadow:0 10px 30px rgba(27,35,51,.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Archivo',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
 img{max-width:100%;display:block}
 a{color:inherit}
 @media (prefers-color-scheme: dark){
-  :root{--paper:#0F1A10;--ink:#EAF3E7;--ink-soft:#AEC2AA;--white:#16241A;--line:#25391F;--shadow:0 10px 30px rgba(0,0,0,.4)}
+  :root{--paper:#10151F;--ink:#E8ECF3;--ink-soft:#A9B4C8;--white:#161C2A;--line:#232B3D;--shadow:0 10px 30px rgba(0,0,0,.4)}
 }
 
-.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;font-weight:800;font-size:1rem;padding:13px 24px;border-radius:999px;background:var(--green-600);color:#fff;box-shadow:0 6px 18px rgba(43,128,44,.3);transition:transform .15s,background .15s}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;font-weight:600;font-size:1rem;padding:13px 24px;border-radius:999px;background:var(--green-600);color:#fff;box-shadow:0 6px 18px rgba(27,35,51,.18);transition:transform .15s,background .15s}
 .btn:hover{background:var(--green-700);transform:translateY(-1px)}
-.btn-ghost{background:transparent;color:var(--green-700);box-shadow:inset 0 0 0 2px var(--green-600)}
+.btn-ghost{background:transparent;color:var(--green-700);box-shadow:inset 0 0 0 1.5px var(--line)}
 .btn-block{display:block;text-align:center}
 
 body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 16px}
 .card{width:100%;max-width:380px;background:var(--white);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
-.mark{width:76px;height:76px;margin:0 auto 18px;border-radius:18px;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
-.mark img{width:100%;height:100%;object-fit:contain}
-.wordmark{font-weight:900;font-size:1.3rem;color:var(--green-700);letter-spacing:-.01em}
-.tagline{font-size:.85rem;color:var(--ink-soft);margin-top:4px}
+.wordmark{font-weight:300;font-size:1.6rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink);display:flex;align-items:baseline;justify-content:center;gap:6px}
+.wordmark .dot{width:8px;height:8px;border-radius:2px;background:var(--green-500);display:inline-block;transform:translateY(-9px)}
+.tagline{font-size:.85rem;color:var(--ink-soft);margin-top:8px}
 .who{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
-.name{font-weight:800;font-size:1.15rem}
+.name{font-weight:700;font-size:1.15rem}
 .role{font-size:.88rem;color:var(--ink-soft);margin-top:2px}
 .actions{margin-top:22px;display:grid;gap:10px}
 .actions .btn{display:flex;align-items:center;justify-content:center;gap:8px}
@@ -59,8 +58,7 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 </head>
 <body>
 <div class="card">
-  <div class="mark"><img src="../icons/logo_trim.png" alt="Kept"></div>
-  <div class="wordmark">Kept</div>
+  <div class="wordmark">kept<span class="dot"></span></div>
   <div class="tagline">Software for service &amp; trade businesses</div>
 
   <div class="who">
