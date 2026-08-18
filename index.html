@@ -92,6 +92,45 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 
 .note{font-size:.8rem;color:var(--ink-soft);margin-top:16px;text-align:center}
 
+.how{padding:8px 0 56px}
+.how .section-head{text-align:center;margin-left:auto;margin-right:auto}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;margin-top:8px}
+.steps3::before{content:"";position:absolute;top:34px;left:16.5%;right:16.5%;height:1px;background:var(--line)}
+.step3{position:relative;text-align:center;padding:0 20px}
+.step3 .ghostnum{font-size:3.6rem;font-weight:700;color:var(--green-600);opacity:.14;line-height:1;margin-bottom:-14px}
+.step3 h3{font-size:1.05rem;font-weight:700;margin:14px 0 8px;position:relative;background:var(--paper);display:inline-block;padding:0 6px}
+.step3 p{font-size:.88rem;color:var(--ink-soft);margin:0;max-width:26ch;margin-inline:auto}
+@media(max-width:760px){.steps3{grid-template-columns:1fr;gap:28px}.steps3::before{display:none}}
+
+/* "Get your evenings back" — deliberate warm accent (reuses --lime) against the
+   navy/cream palette used everywhere else, since this section makes an emotional
+   point rather than a functional one and earns a different register. */
+.evenings{padding:72px 0;background:linear-gradient(155deg,var(--green-900) 0%,#4A3A42 55%,var(--lime) 100%);color:#fff;position:relative;overflow:hidden}
+.evenings::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(199,167,107,.35),transparent 70%);top:-140px;right:-100px;pointer-events:none}
+.ev-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.ev-kicker{font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
+.evenings h2{font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:700;letter-spacing:-.01em;line-height:1.16;margin:0 0 16px}
+.evenings .lede{font-size:1rem;color:rgba(255,255,255,.78);max-width:44ch;margin:0}
+.thenvow{display:flex;flex-direction:column;gap:12px}
+.tv-card{border-radius:12px;padding:15px 18px;display:flex;align-items:center;gap:14px}
+.tv-card.then{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.tv-card.now{background:rgba(199,167,107,.18);border:1px solid rgba(199,167,107,.4)}
+.tv-time{font-size:.76rem;font-weight:700;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.5);flex:none;width:54px}
+.tv-card.now .tv-time{color:var(--lime)}
+.tv-txt{font-size:.9rem;font-weight:600}
+.tv-card.then .tv-txt{color:rgba(255,255,255,.6);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.3)}
+.tv-card.now .tv-txt{color:#fff}
+@media(max-width:820px){.ev-grid{grid-template-columns:1fr}}
+
+/* Free-tier objection: flagged on the price itself, then answered directly right
+   after the table rather than hiding the competitors that show $0. */
+.free-badge{display:inline-block;font-size:.66rem;font-weight:700;color:var(--lime);background:color-mix(in srgb, var(--lime) 16%, transparent);border:1px solid color-mix(in srgb, var(--lime) 40%, transparent);padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle;font-family:system-ui,sans-serif}
+.explainer{background:var(--white);border:1.5px solid var(--green-600);border-radius:var(--radius);padding:22px 26px;margin-top:20px}
+.explainer h3{font-size:1rem;font-weight:700;margin:0 0 10px}
+.explainer p{margin:0 0 10px;font-size:.9rem;color:var(--ink-soft)}
+.explainer p:last-child{margin-bottom:0}
+.explainer b{color:var(--ink)}
+
 .form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);max-width:520px;margin:0 auto}
 .form-grid{display:grid;gap:14px}
 .form-grid label{font-size:.8rem;font-weight:600;color:var(--ink-soft);margin-bottom:2px;display:block}
@@ -182,6 +221,47 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   </div>
 </section>
 
+<section id="how" class="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">How it actually works</div>
+      <h2 class="title">Three steps. That's the whole system.</h2>
+    </div>
+    <div class="steps3">
+      <div class="step3">
+        <div class="ghostnum">01</div>
+        <h3>Pick your trade</h3>
+        <p>Catalog and pricing calculators load already set up — nothing to configure first.</p>
+      </div>
+      <div class="step3">
+        <div class="ghostnum">02</div>
+        <h3>Build the quote</h3>
+        <p>Live pricing as you tap. Done before you'd normally finish typing the client's name.</p>
+      </div>
+      <div class="step3">
+        <div class="ghostnum">03</div>
+        <h3>Send it, done</h3>
+        <p>Email or SMS from the job. It tracks itself from there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="evenings">
+  <div class="wrap ev-grid">
+    <div>
+      <div class="ev-kicker">The feature you'll notice least</div>
+      <h2>Get your evenings back.</h2>
+      <p class="lede">Every quote, follow-up and invoice you used to do at the kitchen table after dinner now happens on-site, between jobs — while you're still in the truck, not after the kids are in bed.</p>
+    </div>
+    <div class="thenvow">
+      <div class="tv-card then"><span class="tv-time">8:47pm</span><span class="tv-txt">Still doing invoices at the kitchen table</span></div>
+      <div class="tv-card then"><span class="tv-time">9:15pm</span><span class="tv-txt">Chasing a quote you forgot to send</span></div>
+      <div class="tv-card now"><span class="tv-time">5:12pm</span><span class="tv-txt">Already sent. Already home.</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="why">
   <div class="wrap">
     <div class="section-head">
@@ -225,15 +305,20 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     <table>
       <tr><th>Software</th><th>Starting price</th><th>Pricing model</th><th>Trade-specific tools?</th></tr>
       <tr class="us"><td>Kept</td><td class="price">$55–229/mo</td><td>Flat, per business</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, route optimisation, weather blockout</td></tr>
-      <tr><td>Yardbook</td><td class="price">$0–60/mo</td><td>Free tier + paid add-ons</td><td>Lawn care only, limited beyond solo/basic use</td></tr>
+      <tr><td>Yardbook</td><td class="price">$0–60/mo<span class="free-badge">Free tier</span></td><td>Free tier + paid add-ons</td><td>Lawn care only, limited beyond solo/basic use</td></tr>
       <tr><td>ZenMaid</td><td class="price">$19–109+/mo</td><td>Flat + per-seat on Pro tier</td><td>Cleaning only</td></tr>
-      <tr><td>ServiceM8</td><td class="price">$0–349/mo</td><td>Flat, bundles jobs+SMS</td><td>No — general trades</td></tr>
+      <tr><td>ServiceM8</td><td class="price">$0–349/mo<span class="free-badge">Free tier</span></td><td>Flat, bundles jobs+SMS</td><td>No — general trades</td></tr>
       <tr><td>Fergus</td><td class="price">$48–53+/mo</td><td>Flat, per business</td><td>No — general trades (AU/NZ)</td></tr>
       <tr><td>Jobber</td><td class="price">$39–599+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
       <tr><td>Tradify</td><td class="price">$47–61/user/mo</td><td>Per user</td><td>No — general trades</td></tr>
     </table>
     </div>
     <p class="note">Competitor pricing researched July 2026 from public pricing pages — figures change, worth re-checking before quoting anyone directly.</p>
+    <div class="explainer">
+      <h3>Why not just use the free one?</h3>
+      <p>Because free isn't free — it's a funnel. Those tiers cap out on clients, jobs or trades right when your business is actually growing, and the ones that stay free long-term make it back some other way: ads, upsells, or your data being the product.</p>
+      <p><b>Kept already gives you the free version — 3 months, full product, no card.</b> The difference is what happens after: you get 3 months to decide if it's worth $55/mo, not a permanently crippled tool you'll outgrow in six weeks.</p>
+    </div>
   </div>
 </section>
 
