@@ -52,13 +52,29 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 .btn-sm{padding:9px 18px;font-size:.88rem}
 .btn-ghost{background:transparent;color:var(--green-700);box-shadow:inset 0 0 0 1.5px var(--line)}
 
-.hero{padding:64px 0 40px}
-.eyebrow{display:inline-block;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-600);margin-bottom:18px}
-.hero h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:16px;font-weight:600}
-.hero h1 em{font-style:normal;color:var(--green-600)}
-.hero p.lede{font-size:1.1rem;max-width:56ch;color:var(--ink-soft);margin-bottom:24px}
+/* Gradient hero — same dusk/gold family as .evenings further down, so the page
+   opens on colour instead of flat cream. CTAs deliberately live further down the
+   page (see .start-cta) rather than here, so a visitor scrolls through the case
+   for the product before hitting the "get started" moment. */
+.hero{
+  padding:88px 0 72px;color:#fff;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 720px 520px at 88% -12%, rgba(199,167,107,.3), transparent 60%),
+    radial-gradient(ellipse 820px 600px at 2% 105%, rgba(124,156,196,.22), transparent 55%),
+    linear-gradient(165deg, var(--green-900) 0%, #4A3A42 48%, var(--green-700) 100%);
+}
+.eyebrow{display:inline-block;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:16px;font-weight:600;color:#fff}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p.lede{font-size:1.1rem;max-width:56ch;color:rgba(255,255,255,.78);margin-bottom:0}
+.scrollcue{display:inline-flex;align-items:center;gap:8px;margin-top:32px;color:var(--lime);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.scrollcue svg{width:16px;height:16px;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+.start-cta{text-align:center}
+.start-cta .hero-ctas{justify-content:center}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
-.demo-box{margin-top:26px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;display:inline-flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);font-size:.86rem}
+.demo-box{margin-top:26px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;display:inline-flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);font-size:.86rem;text-align:left}
 .demo-box .lbl{font-weight:600;color:var(--green-700);text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}
 .demo-box code{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-family:'SF Mono',Consolas,monospace}
 
@@ -209,15 +225,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     <span class="eyebrow">Built for service &amp; trade businesses</span>
     <h1>Run your service business like a business, <em>not a filing cabinet.</em></h1>
     <p class="lede">Quotes, jobs, scheduling, invoicing and tax — all in one app. Built for lawn care, cleaning, pressure washing and the trades that keep this country running, with AU-native GST and BAS tools, not bolted on as an afterthought.</p>
-    <div class="hero-ctas">
-      <a class="btn" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
-      <a class="btn btn-ghost" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the live demo</a>
-    </div>
-    <div class="demo-box" id="demo">
-      <span class="lbl">Live demo — one click, no typing</span>
-      <div>The button above logs you straight into your own private sandbox, pre-loaded with sample jobs, clients and invoices.</div>
-      <div style="margin-top:4px">It's yours alone — nothing you do affects any other visitor, and it's cleared automatically after 24 hours.</div>
-    </div>
+    <div class="scrollcue">Keep scrolling <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
   </div>
 </section>
 
@@ -258,6 +266,20 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="tv-card then"><span class="tv-time">8:47pm</span><span class="tv-txt">Still doing invoices at the kitchen table</span></div>
       <div class="tv-card then"><span class="tv-time">9:15pm</span><span class="tv-txt">Chasing a quote you forgot to send</span></div>
       <div class="tv-card now"><span class="tv-time">5:12pm</span><span class="tv-txt">Already sent. Already home.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="start-cta">
+  <div class="wrap">
+    <div class="hero-ctas">
+      <a class="btn" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
+      <a class="btn btn-ghost" href="https://jobs.lawnenvyaustralia.com/?demo=1">Try the live demo</a>
+    </div>
+    <div class="demo-box" id="demo">
+      <span class="lbl">Live demo — one click, no typing</span>
+      <div>The button above logs you straight into your own private sandbox, pre-loaded with sample jobs, clients and invoices.</div>
+      <div style="margin-top:4px">It's yours alone — nothing you do affects any other visitor, and it's cleared automatically after 24 hours.</div>
     </div>
   </div>
 </section>
