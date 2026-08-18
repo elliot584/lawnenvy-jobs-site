@@ -147,6 +147,41 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .explainer p:last-child{margin-bottom:0}
 .explainer b{color:var(--ink)}
 
+/* Earnings calculator — honest alternative to inflated demo pricing: the price
+   per job defaults to a realistic figure but is fully editable, so the totals
+   are always the visitor's own numbers, not a claim we're making for them. */
+.calc-section{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(26px,4vw,44px);box-shadow:var(--shadow);position:relative}
+.calc-section::before{content:"";position:absolute;inset:-2px;border-radius:calc(var(--radius) + 2px);z-index:-1;background:linear-gradient(135deg,var(--lime),var(--green-500),var(--green-600));opacity:.55;filter:blur(1px)}
+.ctitle{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:600;letter-spacing:-.01em;text-align:center;margin:0 0 8px}
+.csub{text-align:center;color:var(--ink-soft);font-size:.94rem;margin:0 0 32px}
+.trade-picker{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.trade-btn{font-size:.88rem;font-weight:600;padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-soft);cursor:pointer;transition:all .16s}
+.trade-btn.active{background:var(--green-600);border-color:var(--green-600);color:#fff}
+.trade-btn:hover:not(.active){border-color:var(--green-600)}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:8px}
+@media(max-width:640px){.controls{grid-template-columns:1fr}}
+.ctrl-label{font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+.ctrl-label .val{color:var(--green-600);font-size:.95rem;font-weight:700;font-variant-numeric:tabular-nums}
+.job-select{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font-size:.92rem;font-family:inherit;margin-bottom:10px}
+.price-row{display:flex;align-items:center;gap:10px;background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:4px 14px}
+.price-row span{color:var(--ink-soft);font-size:.95rem}
+.price-row input[type="number"]{border:0;background:transparent;font-size:1.1rem;font-weight:700;color:var(--ink);width:100%;padding:8px 0;font-family:inherit;font-variant-numeric:tabular-nums}
+.price-row input[type="number"]:focus{outline:none}
+.price-hint{font-size:.76rem;color:var(--ink-soft);margin-top:6px}
+.calc-section input[type="range"]{width:100%;accent-color:var(--green-600);height:6px;margin-top:6px}
+.slider-scale{display:flex;justify-content:space-between;font-size:.72rem;color:var(--ink-soft);margin-top:4px}
+.results{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:640px){.results{grid-template-columns:1fr}}
+.rcard{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+.rcard.rhero{background:linear-gradient(155deg,var(--green-600),var(--green-700));border-color:var(--green-600)}
+.rcard .rlbl{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.rcard.rhero .rlbl{color:rgba(255,255,255,.7)}
+.rcard .ramt{font-size:1.7rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.rcard.rhero .ramt{color:#fff;font-size:1.9rem}
+.calc-caveat{margin-top:28px;background:var(--paper);border-left:3px solid var(--lime);border-radius:8px;padding:14px 18px;font-size:.84rem;color:var(--ink-soft)}
+.calc-caveat b{color:var(--ink)}
+.wcta{display:flex;justify-content:center;margin-top:28px}
+
 .form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);max-width:520px;margin:0 auto}
 .form-grid{display:grid;gap:14px}
 .form-grid label{font-size:.8rem;font-weight:600;color:var(--ink-soft);margin-bottom:2px;display:block}
@@ -316,6 +351,64 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   </div>
 </section>
 
+<section id="calculator">
+  <div class="wrap">
+    <div class="calc-section">
+      <div class="kicker" style="text-align:center">Try it yourself</div>
+      <h2 class="ctitle">What could a week like this add up to?</h2>
+      <p class="csub">Real prices, your own numbers — pick your trade, set your own price, drag the slider to a realistic week.</p>
+
+      <div class="trade-picker" id="calcTradePicker">
+        <button class="trade-btn active" data-trade="lawn" type="button">Lawn care</button>
+        <button class="trade-btn" data-trade="clean" type="button">Cleaning</button>
+        <button class="trade-btn" data-trade="wash" type="button">Pressure washing</button>
+      </div>
+
+      <div class="controls">
+        <div>
+          <div class="ctrl-label">Job type</div>
+          <select class="job-select" id="calcJobSelect"></select>
+          <div class="price-row">
+            <span>$</span>
+            <input type="number" id="calcPriceInput" value="65" min="1" max="2000">
+            <span>/ job</span>
+          </div>
+          <div class="price-hint">Defaults to a typical price — change it to what you actually charge.</div>
+        </div>
+        <div>
+          <div class="ctrl-label">Jobs like this per week <span class="val" id="calcJobsVal">8</span></div>
+          <input type="range" id="calcJobsSlider" min="1" max="25" value="8">
+          <div class="slider-scale"><span>1</span><span>25</span></div>
+          <p class="price-hint" style="margin-top:18px">Solo-to-small-crew range — not a "fleet of 40 trucks" number.</p>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="rcard">
+          <div class="rlbl">Per week</div>
+          <div class="ramt" id="calcWeek">$0</div>
+        </div>
+        <div class="rcard rhero">
+          <div class="rlbl">Per month</div>
+          <div class="ramt" id="calcMonth">$0</div>
+        </div>
+        <div class="rcard">
+          <div class="rlbl">Per year</div>
+          <div class="ramt" id="calcYear">$0</div>
+        </div>
+      </div>
+
+      <div class="calc-caveat">
+        <b>This is just multiplication, not a promise.</b> It's your price and your pace — change either number and the result changes with it. What Kept actually changes is how much of that time gets eaten by quoting and invoicing instead of the job itself.
+      </div>
+
+      <div class="wcta">
+        <a class="btn" href="https://jobs.lawnenvyaustralia.com/">Get started free →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="compare">
   <div class="wrap">
     <div class="section-head">
@@ -326,13 +419,13 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     <div class="tablewrap">
     <table>
       <tr><th>Software</th><th>Starting price</th><th>Pricing model</th><th>Trade-specific tools?</th></tr>
-      <tr class="us"><td>Kept</td><td class="price">$55–229/mo</td><td>Flat, per business</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, route optimisation, weather blockout</td></tr>
       <tr><td>Yardbook</td><td class="price">$0–60/mo<span class="free-badge">Free tier</span></td><td>Free tier + paid add-ons</td><td>Lawn care only, limited beyond solo/basic use</td></tr>
       <tr><td>ZenMaid</td><td class="price">$19–109+/mo</td><td>Flat + per-seat on Pro tier</td><td>Cleaning only</td></tr>
       <tr><td>ServiceM8</td><td class="price">$0–349/mo<span class="free-badge">Free tier</span></td><td>Flat, bundles jobs+SMS</td><td>No — general trades</td></tr>
       <tr><td>Fergus</td><td class="price">$48–53+/mo</td><td>Flat, per business</td><td>No — general trades (AU/NZ)</td></tr>
       <tr><td>Jobber</td><td class="price">$39–599+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
       <tr><td>Tradify</td><td class="price">$47–61/user/mo</td><td>Per user</td><td>No — general trades</td></tr>
+      <tr class="us"><td>Kept</td><td class="price">$55–229/mo</td><td>Flat, per business</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, route optimisation, weather blockout</td></tr>
     </table>
     </div>
     <p class="note">Competitor pricing researched July 2026 from public pricing pages — figures change, worth re-checking before quoting anyone directly.</p>
@@ -565,6 +658,66 @@ document.getElementById('leadForm').addEventListener('submit', async (e) => {
     btn.textContent = orig;
   }
 });
+
+// Earnings calculator — job prices below are realistic, defensible per-job
+// figures for each trade (same numbers a visitor could price-check), never
+// inflated to imply more than the maths actually supports.
+const CALC_DEFAULTS = {
+  lawn: [
+    { name: 'Standard mow &amp; edge', price: 65 },
+    { name: 'Garden clean-up', price: 145 },
+    { name: 'Hedge trim', price: 45 },
+    { name: 'Turf/reno job', price: 850 },
+  ],
+  clean: [
+    { name: 'Regular clean (2br)', price: 120 },
+    { name: 'Bond clean', price: 340 },
+    { name: 'Deep clean', price: 180 },
+    { name: 'Commercial office (small)', price: 220 },
+  ],
+  wash: [
+    { name: 'House wash (single storey)', price: 280 },
+    { name: 'Driveway &amp; paths', price: 150 },
+    { name: 'Gutter clean', price: 120 },
+    { name: 'Roof treatment', price: 340 },
+  ],
+};
+let calcTrade = 'lawn';
+
+function calcPopulateJobSelect() {
+  const sel = document.getElementById('calcJobSelect');
+  sel.innerHTML = CALC_DEFAULTS[calcTrade].map((j, i) => `<option value="${i}">${j.name}</option>`).join('');
+  sel.selectedIndex = 0;
+  document.getElementById('calcPriceInput').value = CALC_DEFAULTS[calcTrade][0].price;
+}
+
+function calcRun() {
+  const price = parseFloat(document.getElementById('calcPriceInput').value) || 0;
+  const jobs = parseInt(document.getElementById('calcJobsSlider').value, 10);
+  document.getElementById('calcJobsVal').textContent = jobs;
+  const week = price * jobs;
+  document.getElementById('calcWeek').textContent = '$' + Math.round(week).toLocaleString();
+  document.getElementById('calcMonth').textContent = '$' + Math.round(week * 4.33).toLocaleString();
+  document.getElementById('calcYear').textContent = '$' + Math.round(week * 52).toLocaleString();
+}
+
+document.getElementById('calcTradePicker').addEventListener('click', (e) => {
+  const btn = e.target.closest('.trade-btn');
+  if (!btn) return;
+  document.querySelectorAll('#calcTradePicker .trade-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  calcTrade = btn.dataset.trade;
+  calcPopulateJobSelect();
+  calcRun();
+});
+document.getElementById('calcJobSelect').addEventListener('change', (e) => {
+  document.getElementById('calcPriceInput').value = CALC_DEFAULTS[calcTrade][e.target.value].price;
+  calcRun();
+});
+document.getElementById('calcPriceInput').addEventListener('input', calcRun);
+document.getElementById('calcJobsSlider').addEventListener('input', calcRun);
+calcPopulateJobSelect();
+calcRun();
 </script>
 
 </body>
