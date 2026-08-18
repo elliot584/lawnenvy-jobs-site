@@ -141,6 +141,7 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 /* Free-tier objection: flagged on the price itself, then answered directly right
    after the table rather than hiding the competitors that show $0. */
 .free-badge{display:inline-block;font-size:.66rem;font-weight:700;color:var(--lime);background:color-mix(in srgb, var(--lime) 16%, transparent);border:1px solid color-mix(in srgb, var(--lime) 40%, transparent);padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle;font-family:system-ui,sans-serif}
+.free-badge.enterprise{color:var(--ink-soft);background:color-mix(in srgb, var(--ink-soft) 14%, transparent);border-color:color-mix(in srgb, var(--ink-soft) 35%, transparent)}
 .explainer{background:var(--white);border:1.5px solid var(--green-600);border-radius:var(--radius);padding:22px 26px;margin-top:20px}
 .explainer h3{font-size:1rem;font-weight:700;margin:0 0 10px}
 .explainer p{margin:0 0 10px;font-size:.9rem;color:var(--ink-soft)}
@@ -423,12 +424,13 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <tr><td>ZenMaid</td><td class="price">$19–109+/mo</td><td>Flat + per-seat on Pro tier</td><td>Cleaning only</td></tr>
       <tr><td>ServiceM8</td><td class="price">$0–349/mo<span class="free-badge">Free tier</span></td><td>Flat, bundles jobs+SMS</td><td>No — general trades</td></tr>
       <tr><td>Fergus</td><td class="price">$48–53+/mo</td><td>Flat, per business</td><td>No — general trades (AU/NZ)</td></tr>
-      <tr><td>Jobber</td><td class="price">$39–599+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
+      <tr><td>Jobber</td><td class="price">US$39–599+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
       <tr><td>Tradify</td><td class="price">$47–61/user/mo</td><td>Per user</td><td>No — general trades</td></tr>
+      <tr><td>simPRO</td><td class="price">Custom quote<span class="free-badge enterprise">Enterprise</span></td><td>Per-user, contract-locked</td><td>No — multi-site/enterprise trades, not solo-small</td></tr>
       <tr class="us"><td>Kept</td><td class="price">$55–229/mo</td><td>Flat, per business</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, route optimisation, weather blockout</td></tr>
     </table>
     </div>
-    <p class="note">Competitor pricing researched July 2026 from public pricing pages — figures change, worth re-checking before quoting anyone directly.</p>
+    <p class="note">Competitor pricing researched July 2026, re-verified August 2026, from public pricing pages — figures change, worth re-checking before quoting anyone directly. Jobber's Australian pricing page is billed in US dollars, not AUD. simPRO is listed for completeness but isn't really a peer for this list — it's enterprise/multi-site software, with reviewers commonly reporting five-figure setup costs and 12-month contracts.</p>
     <div class="explainer">
       <h3>Why not just use the free one?</h3>
       <p>Because free isn't free — it's a funnel. Those tiers cap out on clients, jobs or trades right when your business is actually growing, and the ones that stay free long-term make it back some other way: ads, upsells, or your data being the product.</p>
