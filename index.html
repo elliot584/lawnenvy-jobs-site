@@ -183,6 +183,9 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .calc-caveat b{color:var(--ink)}
 .wcta{display:flex;justify-content:center;margin-top:28px}
 
+.demo-video{max-width:860px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:10px;box-shadow:var(--shadow)}
+.demo-video video{display:block;width:100%;border-radius:calc(var(--radius) - 6px);background:#000}
+
 .form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);max-width:520px;margin:0 auto}
 .form-grid{display:grid;gap:14px}
 .form-grid label{font-size:.8rem;font-weight:600;color:var(--ink-soft);margin-bottom:2px;display:block}
@@ -288,6 +291,20 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
         <h3>Send it, done</h3>
         <p>Email or SMS from the job. It tracks itself from there.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo-video-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">See it, don't just read about it</div>
+      <h2 class="title">A real walkthrough of the actual app.</h2>
+    </div>
+    <div class="demo-video">
+      <video controls preload="metadata" poster="videos/kept-walkthrough-poster.jpg">
+        <source src="videos/kept-walkthrough.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
