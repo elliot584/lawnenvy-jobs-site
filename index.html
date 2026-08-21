@@ -72,6 +72,8 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 .start-cta{text-align:center}
+.cta-loop{width:360px;max-width:80%;margin:0 auto 28px;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.cta-loop video{display:block;width:100%}
 .start-cta .hero-ctas{justify-content:center}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 .demo-box{margin-top:26px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;display:inline-flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);font-size:.86rem;text-align:left}
@@ -302,10 +304,11 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <h2 class="title">A real walkthrough of the actual app.</h2>
     </div>
     <div class="demo-video">
-      <video controls preload="metadata" poster="videos/kept-walkthrough-poster.jpg">
-        <source src="videos/kept-walkthrough.mp4" type="video/mp4">
+      <video controls preload="metadata" poster="videos/kept-sizzle-poster.jpg">
+        <source src="videos/kept-sizzle.mp4" type="video/mp4">
       </video>
     </div>
+    <p style="text-align:center;margin-top:14px;font-size:.86rem"><a href="videos/kept-walkthrough.mp4">Or watch the full 20-part walkthrough (2:44) →</a></p>
   </div>
 </section>
 
@@ -326,6 +329,11 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 
 <section class="start-cta">
   <div class="wrap">
+    <div class="cta-loop">
+      <video autoplay muted loop playsinline>
+        <source src="videos/kept-hero-loop.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-ctas">
       <a class="btn" href="https://app.keptsoftware.com.au/">Get started free →</a>
       <a class="btn btn-ghost" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
