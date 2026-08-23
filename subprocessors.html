@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sub-processors — Kept</title>
+<meta name="description" content="Every third-party service Kept uses, what it does, and what it can actually see.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="canonical" href="https://www.keptsoftware.com.au/subprocessors">
+<style>
+:root{
+  --green-900:#1B2333;--green-700:#2E4165;--green-600:#3E5C8A;
+  --paper:#F4F3EE;--ink:#20242E;--ink-soft:#525B6B;--white:#ffffff;--line:#DCDFE6;
+  --radius:14px;--shadow:0 10px 30px rgba(27,35,51,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+@media (prefers-color-scheme: dark){
+  :root{--paper:#10151F;--ink:#E8ECF3;--ink-soft:#A9B4C8;--white:#161C2A;--line:#232B3D;--shadow:0 10px 30px rgba(0,0,0,.4)}
+}
+a{color:var(--green-700)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding:22px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.2rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink);text-decoration:none}
+.brand .dot{width:10px;height:10px;display:inline-block;transform:translateY(-7px);flex:none;object-fit:contain}
+main{padding:44px 0 80px}
+h1{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+.updated{color:var(--ink-soft);font-size:.85rem;margin-bottom:32px}
+h2{font-size:1.15rem;font-weight:600;margin:34px 0 10px;color:var(--green-700)}
+p,li{color:var(--ink-soft);font-size:.96rem;margin-bottom:12px}
+li{margin-bottom:6px}
+ul,ol{padding-left:22px;margin-bottom:16px}
+strong{color:var(--ink)}
+.callout{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:20px 0;box-shadow:0 4px 14px rgba(27,35,51,.05)}
+.callout p:last-child{margin-bottom:0}
+footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;border-top:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.88rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--ink);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+td{color:var(--ink-soft)}
+.tablewrap{overflow-x:auto;margin:18px 0}
+.tablewrap table{margin:0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">kept<img class="dot" src="icons/logo_trim.png" alt=""></a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Sub-processors</h1>
+  <div class="updated">Last updated: 23 August 2026</div>
+
+  <p>Kept is operated by Lawn Envy Australia (ABN 19 863 392 800). Running the service means using a small number of other companies. This page lists every one of them, what they do, and what they can actually see — published because the <a href="/privacy">Privacy Policy</a> should not have to say "third-party services" and leave you guessing.</p>
+
+  <div class="callout">
+    <p><strong>Read the "what they can see" column carefully.</strong> Your jobs, clients, quotes and invoices are encrypted on your device before they leave it. Where a provider below holds that data, it holds unreadable ciphertext — not a copy of your business. The information that is readable is your account and business contact details, and, if you use the marketplace, the job requests submitted to you.</p>
+  </div>
+
+  <h2>Core infrastructure</h2>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Provider</th><th>What it does</th><th>What it can see</th><th>Where</th></tr>
+    <tr><td><strong>Supabase</strong></td><td>Database and login/authentication</td><td>Your login email, business name, ABN, phone, address, service area, plan and billing state. Marketplace job requests. Your business data, as ciphertext only.</td><td>Sydney, Australia</td></tr>
+    <tr><td><strong>Vercel</strong></td><td>Hosting for the app, this website and the client portal</td><td>Ordinary web-server information — IP address, browser, requested page. Not the contents of your account.</td><td>Global edge network; a request is served from the location nearest you</td></tr>
+  </table>
+  </div>
+
+  <h2>Payments</h2>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Provider</th><th>What it does</th><th>What it can see</th><th>Where</th></tr>
+    <tr><td><strong>Stripe</strong> (subscription)</td><td>Bills your Kept plan</td><td>Your name, email and payment card. Card details go to Stripe directly and never reach us.</td><td>United States and other countries where Stripe operates</td></tr>
+    <tr><td><strong>Stripe Connect</strong></td><td>Lets your own clients pay your invoices by card</td><td>The payment amount and description on invoices you choose to make payable online. The money goes to your own Stripe account, never through ours.</td><td>United States and other countries where Stripe operates</td></tr>
+  </table>
+  </div>
+
+  <h2>Only when you use the feature</h2>
+  <p>Nothing below receives anything unless you turn the relevant feature on or take the action described.</p>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Provider</th><th>What it does</th><th>What it can see</th><th>Where</th></tr>
+    <tr><td><strong>Google (Gmail)</strong></td><td>Sends invoice and quote emails</td><td>The email you are sending, including its PDF attachment and the recipient's address</td><td>United States</td></tr>
+    <tr><td><strong>ClickSend</strong></td><td>Sends SMS, only where a client has no email on file</td><td>The recipient's mobile number and the message text</td><td>Australian company, with international message routing</td></tr>
+    <tr><td><strong>Xero</strong></td><td>Accounting sync, if you connect it</td><td>Invoices you choose to sync — client names, amounts and line items</td><td>New Zealand and Australia</td></tr>
+    <tr><td><strong>Google Maps</strong></td><td>Route optimisation, on Crew and above</td><td>The job addresses in the route you are optimising</td><td>United States</td></tr>
+    <tr><td><strong>Open-Meteo</strong></td><td>Weather forecast on the dashboard and rain warnings</td><td>An approximate latitude and longitude. No name, address or account information.</td><td>Germany</td></tr>
+  </table>
+  </div>
+
+  <h2>Overseas disclosure</h2>
+  <p>Under Australian Privacy Principle 8 we have to tell you when personal information may go overseas, and where. Your primary datastore is in <strong>Sydney</strong>, so the bulk of what we hold about you — including marketplace job requests — stays in Australia.</p>
+  <p>The providers marked above as operating outside Australia may store or process information overseas, in the countries listed. We choose providers we consider reputable and rely on the contractual privacy commitments each of them publishes. Where the information involved is your encrypted business data, an overseas provider holds only ciphertext.</p>
+
+  <h2>Changes</h2>
+  <p>If we add or replace a sub-processor we will update this page and the date at the top. If a change materially affects how your personal information is handled, we will say so in the app rather than relying on you to check.</p>
+
+  <h2>Questions</h2>
+  <p><a href="mailto:support@keptsoftware.com.au">support@keptsoftware.com.au</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    Kept — <a href="/">back to www.keptsoftware.com.au</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a> · <a href="/subprocessors">Sub-processors</a>
+  </div>
+</footer>
+
+</body>
+</html>
