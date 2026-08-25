@@ -198,7 +198,7 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .form-status.err{color:#A2503A;font-weight:600}
 .hp-field{position:absolute;left:-9999px;opacity:0}
 
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.price-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:stretch}
 .price-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 4px 14px rgba(27,35,51,.05);display:flex;flex-direction:column}
 .price-card.featured{border-color:var(--green-600);box-shadow:0 10px 26px rgba(27,35,51,.12);position:relative}
 .price-card .price-badge{position:absolute;top:-12px;left:24px;background:var(--green-600);color:#fff;font-weight:600;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
@@ -221,7 +221,8 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .founder-tier .ft-label{font-size:.68rem;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
 @media (max-width:720px){.founder-tiers{margin-left:0}}
 .btn-block{display:block;text-align:center}
-@media(max-width:900px){.price-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.price-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.price-grid{grid-template-columns:1fr}}
 
 .cta-final{background:linear-gradient(135deg,var(--green-700),var(--green-900));color:#fff;text-align:center;border-radius:24px;margin:0 20px;padding:60px 30px}
 .cta-final h2{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:10px;font-weight:600}
@@ -453,7 +454,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <tr><td>Jobber</td><td class="price">US$39–599+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
       <tr><td>Tradify</td><td class="price">$47–61/user/mo</td><td>Per user</td><td>No — general trades</td></tr>
       <tr><td>simPRO</td><td class="price">Custom quote<span class="free-badge enterprise">Enterprise</span></td><td>Per-user, contract-locked</td><td>No — multi-site/enterprise trades, not solo-small</td></tr>
-      <tr class="us"><td>Kept</td><td class="price">$69–229/mo + GST</td><td>Flat, per business</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, route optimisation, weather blockout</td></tr>
+      <tr class="us"><td>Kept</td><td class="price">Free–$229/mo + GST<span class="free-badge">Free tier</span></td><td>Flat, per business</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, route optimisation, weather blockout</td></tr>
     </table>
     </div>
     <p class="note">Competitor pricing researched July 2026, re-verified August 2026, from public pricing pages — figures change, worth re-checking before quoting anyone directly. Jobber's Australian pricing page is billed in US dollars, not AUD. simPRO is listed for completeness but isn't really a peer for this list — it's enterprise/multi-site software, with reviewers commonly reporting five-figure setup costs and 12-month contracts.</p>
@@ -475,8 +476,8 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 
     <div class="explainer">
       <h3>Why not just use the free one?</h3>
-      <p>Because free isn't free — it's a funnel. Those tiers cap out on clients, jobs or trades right when your business is actually growing, and the ones that stay free long-term make it back some other way: ads, upsells, or your data being the product.</p>
-      <p><b>Kept already gives you the free version — 3 months, full product, nothing charged until it ends.</b> The difference is what happens after: you get 3 months to decide if it's worth $69/mo + GST, not a permanently crippled tool you'll outgrow in six weeks.</p>
+      <p>Because most "free" isn't really free — it's a funnel. Those tiers cap out on clients, jobs or trades right when your business is actually growing, and the ones that stay free long-term make it back some other way: ads, upsells, or your data being the product.</p>
+      <p><b>Kept has a real free plan — no time limit, no card, no catch.</b> It's capped at 15 clients and 15 jobs/quotes a month, which is plenty to run a genuinely small operation on for as long as you want. When you outgrow that, upgrading is one click from Settings — not a forced decision on someone else's clock.</p>
     </div>
   </div>
 </section>
@@ -485,58 +486,79 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">Simple, flat pricing</div>
-      <h2 class="title">One flat price per business — not per seat.</h2>
-      <p>No per-user penalty for growing your crew. Pick the tier that matches your team size and upgrade whenever you actually need to — nothing locks you in.</p>
+      <h2 class="title">Start free. Pay only once you've outgrown it.</h2>
+      <p>Priced by how many people are using it, not per seat on top of a base fee. Pick the tier that matches your team size and upgrade whenever you actually need to — nothing locks you in.</p>
     </div>
     <div class="founder-banner">
       <div>
         <div class="fb-kicker">Founding-member pricing</div>
-        <h3>The first 100 businesses pay $55/month.</h3>
-        <p>Be one of the first 100 to sign up and Solo is $55/mo + GST for your first 12 months, instead of $69 — then it moves to the standard rate. Applies to the Solo plan.</p>
+        <h3>The first 100 businesses pay $21/month.</h3>
+        <p>Be one of the first 100 to upgrade to Solo and pay $21/mo + GST for your first 12 months, instead of $35 — then it moves to the standard rate. Applies to the Solo plan.</p>
       </div>
       <div class="founder-tiers">
-        <div class="founder-tier"><div class="ft-pct">$55</div><div class="ft-label">First 100</div></div>
-        <div class="founder-tier"><div class="ft-pct">12mo</div><div class="ft-label">Then $69</div></div>
+        <div class="founder-tier"><div class="ft-pct">$21</div><div class="ft-label">First 100</div></div>
+        <div class="founder-tier"><div class="ft-pct">12mo</div><div class="ft-label">Then $35</div></div>
       </div>
     </div>
     <div class="price-grid">
       <div class="price-card">
-        <h3>Solo</h3>
-        <div class="price-tag">$69<span>/mo + GST</span></div>
-        <div class="price-sub">$55/mo for the first 100 businesses — 12 months</div>
-        <div class="price-trial">3 months free to start, nothing charged until it ends</div>
+        <h3>Free</h3>
+        <div class="price-tag">$0<span>/mo forever</span></div>
+        <div class="price-trial">No card, no time limit</div>
         <ul>
-          <li>Up to 2 staff</li>
+          <li>1 person</li>
+          <li>Up to 15 clients</li>
+          <li>Up to 15 jobs/quotes a month</li>
           <li>Quotes, jobs, scheduling, invoicing</li>
+        </ul>
+        <a class="btn btn-block btn-ghost" href="https://app.keptsoftware.com.au/">Get started free →</a>
+      </div>
+      <div class="price-card">
+        <h3>Solo</h3>
+        <div class="price-tag">$35<span>/mo + GST</span></div>
+        <div class="price-sub">$21/mo for the first 100 businesses — 12 months</div>
+        <ul>
+          <li>1 person</li>
+          <li>No caps on clients or jobs</li>
           <li>AU-native GST/BAS &amp; mileage tools</li>
-          <li>Route optimisation &amp; weather blockout</li>
+          <li>Weather blockout</li>
+        </ul>
+        <a class="btn btn-block" href="https://app.keptsoftware.com.au/">Get started free →</a>
+      </div>
+      <div class="price-card">
+        <h3>Crew</h3>
+        <div class="price-tag">$69<span>/mo + GST</span></div>
+        <ul>
+          <li>2–4 people</li>
+          <li>Everything in Solo</li>
+          <li>Staff &amp; payroll, role-gated access</li>
+          <li>Client &amp; lead CRM</li>
         </ul>
         <a class="btn btn-block" href="https://app.keptsoftware.com.au/">Get started free →</a>
       </div>
       <div class="price-card featured">
         <span class="price-badge">Most popular</span>
-        <h3>Crew</h3>
+        <h3>Team</h3>
         <div class="price-tag">$119<span>/mo + GST</span></div>
         <ul>
-          <li>Up to 10 staff</li>
-          <li>Everything in Solo</li>
-          <li>Staff &amp; payroll, role-gated access</li>
-          <li>Client &amp; lead CRM</li>
+          <li>5–10 people</li>
+          <li>Everything in Crew</li>
+          <li>Route optimisation</li>
         </ul>
-        <a class="btn btn-block" href="https://app.keptsoftware.com.au/">Get started →</a>
+        <a class="btn btn-block" href="https://app.keptsoftware.com.au/">Get started free →</a>
       </div>
       <div class="price-card">
         <h3>Operation</h3>
         <div class="price-tag">$229<span>/mo + GST</span></div>
         <ul>
-          <li>Unlimited staff</li>
-          <li>Everything in Crew</li>
+          <li>11+ people</li>
+          <li>Everything in Team</li>
           <li>Multi-task projects &amp; progress billing</li>
         </ul>
         <a class="btn btn-block btn-ghost" href="mailto:support@keptsoftware.com.au?subject=Kept%20-%20Operation%20plan">Contact us</a>
       </div>
     </div>
-    <p class="note">Solo operators get 3 months free to try it with real jobs and real data — a card is needed to start, but nothing's charged until the trial ends. After that it's month to month — cancel any time, no lock-in.</p>
+    <p class="note">Every business starts on Free — no card, no trial clock. Upgrade any time from Settings once you need more, and move up or down between paid tiers whenever your team size changes. Cancel any time, no lock-in.</p>
   </div>
 </section>
 
@@ -603,7 +625,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     </details>
     <details>
       <summary>What will it cost?</summary>
-      <p>From $69/mo + GST flat for a solo operator with up to 2 staff, up to $229/mo + GST for unlimited staff — see the <a href="#pricing" style="color:var(--green-700);font-weight:700">full pricing</a>. Solo operators get 3 months free to try it with real data before paying anything — it does ask for a card to start, but nothing's charged until the trial ends.</p>
+      <p>Nothing to start — every business begins on a free plan, no card required. From there it's $35/mo + GST for 1 person up to $229/mo + GST for 11+ people, priced by team size — see the <a href="#pricing" style="color:var(--green-700);font-weight:700">full pricing</a>.</p>
     </details>
   </div>
 </section>
@@ -650,7 +672,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 
 <section>
   <div class="cta-final">
-    <h2>3 months free for solo operators. Nothing charged until it ends.</h2>
+    <h2>Start free. No card, no time limit.</h2>
     <p>Set up your business in a couple of minutes, or try the live demo first with real sample data already loaded.</p>
     <div class="hero-ctas" style="justify-content:center">
       <a class="btn" href="https://app.keptsoftware.com.au/">Get started free →</a>
