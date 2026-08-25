@@ -1,0 +1,25 @@
+# Kept
+
+> Kept is business-management software for Australian service and trade businesses - quotes, jobs, scheduling, invoicing, payments and basic tax, in one app. It launches supporting lawn care, cleaning, pressure washing and handyman work in depth, with over 20 other trades selectable. AU-native GST/BAS and mileage tools are built in, not bolted on.
+
+Every business starts on a permanent Free plan (no card required, capped at 15 clients and 15 jobs/quotes a month). Paid plans are priced by team size, not per seat: Solo $35/mo (1 person), Crew $69/mo (2-4 people), Team $119/mo (5-10 people, adds route optimisation), Operation $229/mo (11+ people, adds multi-task projects). All prices in AUD + GST.
+
+Client-side encryption: most business data (clients, jobs, quotes, invoices, notes) is encrypted on the business's own device before it ever reaches Kept's servers - Kept cannot read it.
+
+## Product
+
+- [Homepage](https://www.keptsoftware.com.au/): overview, pricing, feature list, comparison against Yardbook, ZenMaid, ServiceM8, Fergus, Jobber, Tradify and simPRO.
+- [Pricing](https://www.keptsoftware.com.au/#pricing): the five tiers in detail.
+- [FAQ](https://www.keptsoftware.com.au/#faq): trades covered, data privacy, client migration, cost.
+- [Request a quote](https://www.keptsoftware.com.au/request-a-quote.html): for customers of a business using Kept, not for signing up to Kept itself.
+- [App](https://app.keptsoftware.com.au/): the product itself - sign-up starts here.
+
+## Legal
+
+- [Terms of Service](https://www.keptsoftware.com.au/terms.html)
+- [Privacy Policy](https://www.keptsoftware.com.au/privacy.html)
+- [Subprocessors](https://www.keptsoftware.com.au/subprocessors.html)
+
+## Contact
+
+- Support: support@keptsoftware.com.au

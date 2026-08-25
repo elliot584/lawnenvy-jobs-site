@@ -1,4 +1,38 @@
 User-agent: *
 Allow: /
 
+# Explicit allow for the major AI crawlers, on top of the wildcard rule above —
+# a clearer signal than relying on the default, and keeps working if a
+# stricter default rule is ever added later without someone remembering to
+# carry these over too.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
 Sitemap: https://www.keptsoftware.com.au/sitemap.xml
