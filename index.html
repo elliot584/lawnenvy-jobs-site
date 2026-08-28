@@ -402,7 +402,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     </div>
     <div class="hero-ctas">
       <a class="btn" href="https://app.keptsoftware.com.au/">Get started free →</a>
-      <a class="btn btn-ghost" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
+      <a class="btn btn-ghost" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo — no account needed</a>
     </div>
     <div class="demo-box" id="demo">
       <span class="lbl">Live demo — one click, no typing</span>
@@ -564,6 +564,10 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="founder-tiers">
         <div class="founder-tier"><div class="ft-pct">$21</div><div class="ft-label">First 100</div></div>
         <div class="founder-tier"><div class="ft-pct">12mo</div><div class="ft-label">Then $35</div></div>
+        <div class="founder-tier" id="founderSlotsTile" style="display:none">
+          <div class="ft-pct" id="founderSlotsCount">&mdash;</div>
+          <div class="ft-label">Spots left</div>
+        </div>
       </div>
     </div>
     <div class="price-grid">
@@ -582,7 +586,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="price-card">
         <h3>Solo</h3>
         <div class="price-tag">$35<span>/mo + GST</span></div>
-        <div class="price-sub">$21/mo for the first 100 businesses — 12 months</div>
+        <div class="price-sub">$21/mo + GST for the first 100 businesses — 12 months</div>
         <ul>
           <li>1 person</li>
           <li>No caps on clients or jobs</li>
@@ -660,6 +664,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>Send invoices &amp; quotes</h3><p>Email or SMS straight from the job, with status tracked automatically as sent, viewed or paid.</p></div>
       <div class="feat"><h3>Works offline, syncs everywhere</h3><p>A proper installable app, not just a bookmark — keeps working with no signal and catches up the moment you're back online, across every device.</p></div>
     </div>
+    <p class="note">Tax, GST/BAS and payroll tools are a convenience to help with reporting, not professional advice — check anything that matters with your own accountant or registered BAS agent before lodging.</p>
   </div>
 </section>
 
@@ -743,7 +748,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     <p>Set up your business in a couple of minutes, or try the live demo first with real sample data already loaded.</p>
     <div class="hero-ctas" style="justify-content:center">
       <a class="btn" href="https://app.keptsoftware.com.au/">Get started free →</a>
-      <a class="btn btn-ghost" style="box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);color:#fff" href="https://app.keptsoftware.com.au/?demo=1">Try the demo</a>
+      <a class="btn btn-ghost" style="box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);color:#fff" href="https://app.keptsoftware.com.au/?demo=1">Try the demo — no account needed</a>
     </div>
   </div>
 </section>
@@ -851,6 +856,18 @@ document.getElementById('calcPriceInput').addEventListener('input', calcRun);
 document.getElementById('calcJobsSlider').addEventListener('input', calcRun);
 calcPopulateJobSelect();
 calcRun();
+
+// Founding-member spots-left tile — stays hidden (see its default style) unless
+// this succeeds with a real number, rather than ever showing a static guess that
+// could go stale or a broken "— of 100" if the fetch fails or JS doesn't run.
+fetch('https://app.keptsoftware.com.au/api/leads')
+  .then(r => r.json())
+  .then(data => {
+    if (!data || !data.ok || data.remaining == null) return;
+    document.getElementById('founderSlotsCount').textContent = data.remaining;
+    document.getElementById('founderSlotsTile').style.display = '';
+  })
+  .catch(() => {});
 </script>
 
 </body>
