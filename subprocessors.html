@@ -70,19 +70,19 @@ td{color:var(--ink-soft)}
 
 <main class="wrap">
   <h1>Sub-processors</h1>
-  <div class="updated">Last updated: 23 August 2026</div>
+  <div class="updated">Last updated: 31 August 2026</div>
 
   <p>Kept is operated by Lawn Envy Australia (ABN 19 863 392 800). Running the service means using a small number of other companies. This page lists every one of them, what they do, and what they can actually see — published because the <a href="/privacy">Privacy Policy</a> should not have to say "third-party services" and leave you guessing.</p>
 
   <div class="callout">
-    <p><strong>Read the "what they can see" column carefully.</strong> Your jobs, clients, quotes and invoices are encrypted on your device before they leave it. Where a provider below holds that data, it holds unreadable ciphertext — not a copy of your business. The information that is readable is your account and business contact details, and, if you use the marketplace, the job requests submitted to you.</p>
+    <p><strong>Read the "what they can see" column carefully.</strong> For a Secure-mode business (chosen in Settings &rarr; Account &amp; sync), your jobs, clients, quotes and invoices are encrypted on your device before they leave it, so where a provider below holds that data, it holds unreadable ciphertext — not a copy of your business. For a Standard-mode business (the default), that same data is readable by Supabase, our database host, the same as any other business software. The information that is always readable, regardless of mode, is your account and business contact details, and, if you use the marketplace, the job requests submitted to you.</p>
   </div>
 
   <h2>Core infrastructure</h2>
   <div class="tablewrap">
   <table>
     <tr><th>Provider</th><th>What it does</th><th>What it can see</th><th>Where</th></tr>
-    <tr><td><strong>Supabase</strong></td><td>Database and login/authentication</td><td>Your login email, business name, ABN, phone, address, service area, plan and billing state. Marketplace job requests. Your business data, as ciphertext only.</td><td>Sydney, Australia</td></tr>
+    <tr><td><strong>Supabase</strong></td><td>Database and login/authentication</td><td>Your login email, business name, ABN, phone, address, service area, plan and billing state. Marketplace job requests. Your business data — as ciphertext only for a Secure-mode business; in ordinary readable form for a Standard-mode business (the default).</td><td>Sydney, Australia</td></tr>
     <tr><td><strong>Vercel</strong></td><td>Hosting for the app, this website and the client portal</td><td>Ordinary web-server information — IP address, browser, requested page. Not the contents of your account.</td><td>Global edge network; a request is served from the location nearest you</td></tr>
   </table>
   </div>
@@ -111,7 +111,7 @@ td{color:var(--ink-soft)}
 
   <h2>Overseas disclosure</h2>
   <p>Under Australian Privacy Principle 8 we have to tell you when personal information may go overseas, and where. Your primary datastore is in <strong>Sydney</strong>, so the bulk of what we hold about you — including marketplace job requests — stays in Australia.</p>
-  <p>The providers marked above as operating outside Australia may store or process information overseas, in the countries listed. We choose providers we consider reputable and rely on the contractual privacy commitments each of them publishes. Where the information involved is your encrypted business data, an overseas provider holds only ciphertext.</p>
+  <p>The providers marked above as operating outside Australia may store or process information overseas, in the countries listed. We choose providers we consider reputable and rely on the contractual privacy commitments each of them publishes. Where the information involved is a Secure-mode business's data, an overseas provider holds only ciphertext; for a Standard-mode business (the default) that protection doesn't apply — though regardless of mode, none of the overseas providers above receive a business's full data, only the specific content each feature needs (an email being sent, an SMS, a synced invoice, a route's addresses).</p>
 
   <h2>Changes</h2>
   <p>If we add or replace a sub-processor we will update this page and the date at the top. If a change materially affects how your personal information is handled, we will say so in the app rather than relying on you to check.</p>

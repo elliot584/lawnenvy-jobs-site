@@ -63,12 +63,12 @@ footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;b
 
 <main class="wrap">
   <h1>Privacy Policy</h1>
-  <div class="updated">Last updated: 28 August 2026</div>
+  <div class="updated">Last updated: 31 August 2026</div>
 
   <p>This policy explains what personal information Kept collects, why, and what we do — and don't do — with it. It covers both www.keptsoftware.com.au (this website) and app.keptsoftware.com.au (the app itself).</p>
 
   <div class="callout">
-    <p><strong>The short version:</strong> the jobs, clients and invoices you enter into the app are encrypted on your device before they ever reach our servers, using a key derived from your own login password. We physically cannot read that data — not to help with support, not if we wanted to. The one exception is Account Recovery Assistance, an optional feature you can turn on if you want a safety net against being locked out of your own account; even then, we can only use it with a private key that's kept completely offline and never touches our servers, so it can't be used casually or remotely. We can see your business name, your login email, and which parts of the app get used. We can't see your clients' details, your pricing, or anything you've typed into a job, quote or invoice.</p>
+    <p><strong>The short version:</strong> Kept offers two storage modes, chosen per business in Settings &rarr; Account &amp; sync. In <strong>Secure</strong> mode, the jobs, clients and invoices you enter are encrypted on your device before they ever reach our servers, using a key derived from your own login password — we physically cannot read that data, not to help with support, not if we wanted to. In <strong>Standard</strong> mode (the default), that same data is stored in ordinary, readable form on our servers instead — simpler, with nothing to lose if a password is forgotten. Either way we can see your business name, your login email, and which parts of the app get used. The one exception for a Secure-mode business is Account Recovery Assistance, an optional feature that provides a safety net against lockout, usable only with a private key that's kept completely offline and never touches our servers.</p>
   </div>
 
   <h2>1. Who we are</h2>
@@ -81,28 +81,28 @@ footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;b
     <li>Your business name and phone/address if you provide them at setup — these are stored in plain text, since we need them to run the admin side of the service</li>
     <li>Which features of the app you open (e.g. "Invoices", "Schedule") and when — used only to understand which parts of the product actually get used, never tied to what's inside those features</li>
   </ul>
-  <p><strong>What you enter into the app</strong> — jobs, client names and contact details, quotes, invoices, expenses, staff records, documents — is encrypted on your device before it's sent anywhere. We store only the resulting ciphertext. We cannot decrypt it, read it, search it, or hand it over in a readable form, including in response to a support request or a legal request for data we don't have the technical ability to produce in plain text — the one exception being businesses that have opted into Account Recovery Assistance (see above), where it's still only possible using a private key we hold entirely offline, never on any server.</p>
+  <p><strong>What you enter into the app</strong> — jobs, client names and contact details, quotes, invoices, expenses, staff records, documents — is stored the way your business has chosen in Settings &rarr; Account &amp; sync. In <strong>Secure</strong> mode it's encrypted on your device before it's sent anywhere, and we store only the resulting ciphertext — we cannot decrypt it, read it, search it, or hand it over in a readable form, including in response to a support request or a legal request for data we don't have the technical ability to produce in plain text, other than for businesses that have opted into Account Recovery Assistance (see above), where it's still only possible using a private key we hold entirely offline, never on any server. In <strong>Standard</strong> mode (the default), that same data is stored in ordinary, readable form, the way most business software works.</p>
   <p><strong>If you contact us</strong> — through the "get in touch" form on this site, by phone, or by email — we keep what you tell us (name, email, business name, phone if given, and the content of your message) so we can follow up.</p>
 
   <h2>3. What we don't do</h2>
   <ul>
     <li>We don't use any third-party analytics, advertising trackers, or marketing pixels inside the app itself. This website does run the Meta (Facebook/Instagram) Pixel, so we can measure how our ads perform and show them to people who've visited before — it only ever sees that a page was viewed, never anything you enter into the app.</li>
     <li>We don't sell, rent, or share your information with third parties for their own marketing purposes.</li>
-    <li>We don't read, scan, or process the encrypted content of your business data — technically, we can't.</li>
+    <li>We don't read, scan, or process your business data for our own purposes; for a Secure-mode business, we technically can't.</li>
   </ul>
 
   <h2>4. Where your data is stored</h2>
   <p>Our primary database and login system run on <strong>Supabase, in Sydney, Australia</strong>. That is where your account details, your business contact details, your billing state and any marketplace job requests are held — so the bulk of the readable personal information we hold about you stays onshore.</p>
-  <p>Everything you enter into the app — jobs, clients, quotes, invoices — is encrypted on your device before it is sent, so what actually sits in that database is ciphertext we cannot decrypt.</p>
+  <p>For a Secure-mode business, everything entered into the app — jobs, clients, quotes, invoices — is encrypted on your device before it is sent, so what sits in that database is ciphertext we cannot decrypt. For a Standard-mode business (the default), that same data sits in the database in ordinary, readable form, alongside your account details.</p>
   <p>Running the service also involves a small number of other companies. Rather than describe them vaguely here, every one of them is listed on a dedicated page, with what it does, what it can see, and where it operates:</p>
   <div class="callout">
     <p><strong><a href="/subprocessors">See the full sub-processor list &rarr;</a></strong></p>
   </div>
-  <p><strong>Overseas disclosure.</strong> Australian Privacy Principle 8 requires us to tell you if your personal information may go overseas and, where practicable, to which countries. Some of the providers on that page operate outside Australia — Stripe and Google process information in the United States, Xero in New Zealand and Australia, and Open-Meteo in Germany. Vercel serves the site from whichever of its data centres is nearest you. Where the information involved is your encrypted business data, an overseas provider holds only unreadable ciphertext. Information that is not encrypted — your login email, business contact details, and anything you send us through the enquiry form — may be handled overseas in readable form. By using this site and the app you consent to that disclosure. We choose providers we consider reputable and rely on the privacy commitments each of them publishes.</p>
+  <p><strong>Overseas disclosure.</strong> Australian Privacy Principle 8 requires us to tell you if your personal information may go overseas and, where practicable, to which countries. Some of the providers on that page operate outside Australia — Stripe and Google process information in the United States, Xero in New Zealand and Australia, and Open-Meteo in Germany. Vercel serves the site from whichever of its data centres is nearest you. Where the information involved is a Secure-mode business's data, an overseas provider holds only unreadable ciphertext. Information that is not encrypted — your login email, business contact details, anything you send us through the enquiry form, and, for a Standard-mode business (the default), its business data too — may be handled overseas in readable form. By using this site and the app you consent to that disclosure. We choose providers we consider reputable and rely on the privacy commitments each of them publishes.</p>
   <p>If you connect your own email or SMS sending accounts (a Gmail app password, a ClickSend account) to send invoices or quotes, those credentials and the messages sent through them are handled by your own account with that provider, under their terms — not ours.</p>
 
   <h2>5. Other businesses using the app</h2>
-  <p>Every business's data is fully isolated from every other business using the app, enforced both at the database level and by the encryption described above. No business using Kept can see another business's jobs, clients, invoices or numbers.</p>
+  <p>Every business's data is fully isolated from every other business using the app, enforced at the database level regardless of storage mode — and, for Secure-mode businesses, reinforced by the encryption described above. No business using Kept can see another business's jobs, clients, invoices or numbers.</p>
 
   <h2>6. The request-a-quote marketplace</h2>
   <p>If you submit a job request through our marketplace, we collect what you tell us — the type of work, your suburb and postcode, a description, and your contact details — and pass it to businesses registered in that trade whose service area covers your address, so they can quote. That is the entire purpose of collecting it, and it is stored in Sydney with everything else.</p>
@@ -112,17 +112,17 @@ footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;b
   <h2>7. How long we keep data</h2>
   <ul>
     <li>Live demo accounts (created via the "try the demo" link) are automatically and permanently deleted 24 hours after creation.</li>
-    <li>Real business accounts are kept for as long as the account exists. If a business account is deleted, its data — including the encrypted content — is permanently removed and cannot be recovered.</li>
+    <li>Real business accounts are kept for as long as the account exists. If a business account is deleted, its data is permanently removed and cannot be recovered.</li>
     <li>"Get in touch" enquiries are kept so we can follow up, and can be deleted on request.</li>
     <li>Marketplace job requests are kept while the request is live and for a reasonable period afterwards, so the businesses quoting can follow up and so we can deal with any complaint about it. They are deleted after that, or sooner on request.</li>
   </ul>
 
   <h2>8. Your rights</h2>
-  <p>You can ask us to tell you what plain-text information we hold about your business (login email, business name, contact details, feature usage), correct it, or delete your account entirely. Because the content you enter into the app is encrypted with a key only you hold, we cannot selectively access or redact individual pieces of it on request — account deletion removes everything, encrypted or not.</p>
+  <p>You can ask us to tell you what plain-text information we hold about your business (login email, business name, contact details, feature usage), correct it, or delete your account entirely. For a Secure-mode business, because the content you enter into the app is encrypted with a key only you hold, we cannot selectively access or redact individual pieces of it on request — account deletion removes everything either way. For a Standard-mode business, that content is stored in readable form, so we can access, correct or delete specific records on request the same as any other data we hold.</p>
   <p>If you're in Australia, you also have rights under the Privacy Act 1988 (Cth) and the Australian Privacy Principles. If you have a concern we haven't resolved, you can contact the Office of the Australian Information Commissioner (oaic.gov.au).</p>
 
   <h2>9. If something goes wrong</h2>
-  <p>If a data breach occurs that's likely to cause you serious harm, we'll notify you and the Office of the Australian Information Commissioner as required by the Notifiable Data Breaches scheme. Because the content you enter into the app is encrypted on your device with a key we don't hold, a breach of our servers would expose ciphertext rather than readable client, job or invoice records — which substantially limits the harm such a breach could cause. Unencrypted information, such as login emails, business contact details and enquiries sent through this site, would be assessed case by case.</p>
+  <p>If a data breach occurs that's likely to cause you serious harm, we'll notify you and the Office of the Australian Information Commissioner as required by the Notifiable Data Breaches scheme. For a Secure-mode business, because your business data is encrypted on your device with a key we don't hold, a breach of our servers would expose ciphertext rather than readable client, job or invoice records — which substantially limits the harm such a breach could cause. For a Standard-mode business (the default), business data would be exposed in readable form, the same as any other unencrypted information we hold — login emails, business contact details and enquiries sent through this site — and would be assessed case by case.</p>
 
   <h2>10. Changes to this policy</h2>
   <p>If we make a material change to how we handle personal information, we'll update the date at the top of this page. Continued use of the app after a change means you accept the updated policy.</p>
