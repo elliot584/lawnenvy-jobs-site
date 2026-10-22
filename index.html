@@ -30,6 +30,9 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://www.keptsoftware.com.au/">
 <link rel="preload" as="image" href="videos/kept-hero-loop-poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&display=swap">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -80,32 +83,37 @@
 </script>
 <style>
 :root{
-  --green-900:#1B2333;
-  --green-700:#2E4165;
-  --green-600:#3E5C8A;
-  --green-500:#7C9CC4;
-  --lime:#C7A76B;
-  --paper:#F4F3EE;
-  --ink:#20242E;
-  --ink-soft:#525B6B;
+  --green-900:#0D120F;
+  --green-700:#0B5F34;
+  --green-600:#0B7A43;
+  --green-500:#5FB58A;
+  --lime:#4CC68C;
+  --paper:#F5F7F6;
+  --ink:#0E1411;
+  --ink-soft:#55605B;
   --white:#ffffff;
-  --line:#DCDFE6;
+  --line:#E7EAE8;
   --radius:14px;
-  --shadow:0 10px 30px rgba(27,35,51,.12);
+  --shadow:0 10px 30px rgba(14,20,17,.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+body{font-family:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
 img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 @media (prefers-color-scheme: dark){
-  :root{--paper:#10151F;--ink:#E8ECF3;--ink-soft:#A9B4C8;--white:#161C2A;--line:#232B3D;--shadow:0 10px 30px rgba(0,0,0,.4)}
+  :root{--paper:#0D120F;--ink:#EEF3EF;--ink-soft:#A4AFA9;--white:#1C2520;--line:#27312C;--shadow:0 10px 30px rgba(0,0,0,.4);--green-600:#4CC68C;--green-700:#7FD9AE}
+  .btn,.btn-sm{color:#06150D}
+  .founder-banner{background:#123226}
+  .btn-ghost{color:var(--ink)}
+  .rcard.rhero,.price-card .price-badge,.trade-btn.active{color:#06150D}
+  .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#06150D}
 }
 
 header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;min-height:68px;padding:10px 0}
 .brand{display:flex;flex-direction:column;gap:2px}
-.brand-word{display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.32rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink)}
+.brand-word{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.32rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink)}
 .brand .dot{width:11px;height:11px;display:inline-block;transform:translateY(-8px);flex:none;object-fit:contain}
 .brand-tagline{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
 @media(max-width:520px){.brand-tagline{display:none}}
@@ -128,20 +136,20 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 .hero{
   padding:72px 0 64px;color:#fff;position:relative;overflow:hidden;
   background:
-    radial-gradient(ellipse 720px 520px at 88% -12%, rgba(199,167,107,.3), transparent 60%),
-    radial-gradient(ellipse 820px 600px at 2% 105%, rgba(124,156,196,.22), transparent 55%),
-    linear-gradient(165deg, var(--green-900) 0%, #4A3A42 48%, var(--green-700) 100%);
+    radial-gradient(ellipse 720px 520px at 88% -12%, rgba(76,198,140,.22), transparent 60%),
+    radial-gradient(ellipse 820px 600px at 2% 105%, rgba(95,181,138,.16), transparent 55%),
+    linear-gradient(165deg, #0D120F 0%, #123226 52%, #0B5F34 135%);
 }
 .eyebrow{display:inline-block;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
 .hero h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:16px;font-weight:600;color:#fff}
 .hero h1 em{font-style:normal;color:var(--lime)}
 .hero p.lede{font-size:1.1rem;max-width:56ch;color:rgba(255,255,255,.8);margin-bottom:26px}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center}
-.hero-copy h1{font-size:clamp(1.9rem,3.5vw,2.7rem);line-height:1.14}
+.hero-copy h1{font-size:clamp(1.9rem,3.5vw,2.7rem);line-height:1.14;text-wrap:balance}
 .hero .hero-ctas{margin-bottom:22px}
 .hero .btn{padding:14px 26px}
-.btn-gold{background:var(--lime);color:var(--green-900);box-shadow:0 8px 22px rgba(0,0,0,.28)}
-.btn-gold:hover{background:#fff;color:var(--green-900)}
+.btn-accent{background:var(--lime);color:var(--green-900);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.btn-accent:hover{background:#fff;color:var(--green-900)}
 .btn-line{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
 .btn-line:hover{background:rgba(255,255,255,.12)}
 .hero-proof{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.86rem;color:rgba(255,255,255,.84)}
@@ -182,7 +190,7 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 section{padding:60px 0}
 .section-head{max-width:640px;margin-bottom:36px}
 .kicker{font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-600);margin-bottom:10px}
-h2.title{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.16;letter-spacing:-.01em;font-weight:600}
+h2.title{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.16;letter-spacing:-.01em;font-weight:600;text-wrap:balance}
 .section-head p{margin-top:12px;color:var(--ink-soft)}
 
 .tablewrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);background:var(--white)}
@@ -222,8 +230,8 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 /* "Get your evenings back" — deliberate warm accent (reuses --lime) against the
    navy/cream palette used everywhere else, since this section makes an emotional
    point rather than a functional one and earns a different register. */
-.evenings{padding:72px 0;background:linear-gradient(155deg,var(--green-900) 0%,#4A3A42 55%,var(--lime) 100%);color:#fff;position:relative;overflow:hidden}
-.evenings::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(199,167,107,.35),transparent 70%);top:-140px;right:-100px;pointer-events:none}
+.evenings{padding:72px 0;background:linear-gradient(155deg,#0D120F 0%,#123226 55%,#0B7A43 100%);color:#fff;position:relative;overflow:hidden}
+.evenings::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(76,198,140,.30),transparent 70%);top:-140px;right:-100px;pointer-events:none}
 .ev-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
 .ev-kicker{font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
 .evenings h2{font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:700;letter-spacing:-.01em;line-height:1.16;margin:0 0 16px}
@@ -231,7 +239,7 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .thenvow{display:flex;flex-direction:column;gap:12px}
 .tv-card{border-radius:12px;padding:15px 18px;display:flex;align-items:center;gap:14px}
 .tv-card.then{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
-.tv-card.now{background:rgba(199,167,107,.18);border:1px solid rgba(199,167,107,.4)}
+.tv-card.now{background:rgba(76,198,140,.18);border:1px solid rgba(76,198,140,.4)}
 .tv-time{font-size:.76rem;font-weight:700;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.5);flex:none;width:54px}
 .tv-card.now .tv-time{color:var(--lime)}
 .tv-txt{font-size:.9rem;font-weight:600}
@@ -323,7 +331,7 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 @media(max-width:1100px){.price-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){.price-grid{grid-template-columns:1fr}}
 
-.cta-final{background:linear-gradient(135deg,var(--green-700),var(--green-900));color:#fff;text-align:center;border-radius:24px;margin:0 20px;padding:60px 30px}
+.cta-final{background:linear-gradient(135deg,#0B5F34,#0D120F);color:#fff;text-align:center;border-radius:24px;margin:0 20px;padding:60px 30px}
 .cta-final h2{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:10px;font-weight:600}
 .cta-final p{color:rgba(255,255,255,.8);margin-bottom:24px}
 .cta-final .btn{background:var(--lime);color:var(--green-900)}
@@ -369,7 +377,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <h1>Business software for <em>lawn care, cleaning, pressure washing and handyman.</em></h1>
       <p class="lede">Quote on the spot, schedule the week and invoice from the job, with AU-native GST and BAS built in. Run the business, not a filing cabinet.</p>
       <div class="hero-ctas">
-        <a class="btn btn-gold" href="https://app.keptsoftware.com.au/">Get started free →</a>
+        <a class="btn btn-accent" href="https://app.keptsoftware.com.au/">Get started free →</a>
         <a class="btn btn-line" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
       </div>
       <ul class="hero-proof">
