@@ -119,6 +119,19 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   .rcard.rhero{background:linear-gradient(155deg,#0B7A43,#0B5F34)}
   .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#fff}
 }
+/* Phones: the columns do not fit side by side, so each table row becomes a card (labels come from the column headings) */
+@media (max-width:640px){
+  .tablewrap{overflow:visible;border:0;border-radius:0;background:none}
+  .tablewrap table{display:block;width:100%;min-width:0;margin:0}
+  .tablewrap tbody{display:block}
+  .tablewrap tr{display:block;margin:0 0 12px;padding:2px 16px 8px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}
+  .tablewrap tr:first-child{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tablewrap td{display:block;padding:8px 0 0;border:0;background:none}
+  .tablewrap td:first-child{padding-top:12px;font-size:1rem;font-weight:700;color:var(--ink)}
+  .tablewrap td:not(:first-child)::before{content:attr(data-label);display:block;margin-bottom:1px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .tablewrap tr.us{background:color-mix(in srgb,var(--green-500) 14%,var(--white))}
+  .tablewrap tr.us td{background:none}
+}
 </style>
 </head>
 <body>
@@ -158,12 +171,12 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <h2 class="title">The concrete differences.</h2>
     </div>
     <div class="tablewrap">
-      <table>
-        <tr><th></th><th>Kept</th><th>Yardbook</th></tr>
-        <tr class="us"><td>Starting price</td><td>Free, then $35–$229+/mo AUD + GST</td><td>Free tier + paid add-ons, up to $60/mo</td></tr>
-        <tr><td>Trade coverage</td><td>Lawn care in depth, plus cleaning, pressure washing, handyman and 20+ others</td><td>Lawn care only, limited beyond solo/basic use</td></tr>
-        <tr><td>Soil/turf reno calculator</td><td>Built in</td><td>Not a core feature</td></tr>
-        <tr><td>Route optimisation &amp; weather blockout</td><td>Included on Team plan and above</td><td>Not core features</td></tr>
+      <table role="table">
+        <tr role="row"><th role="columnheader"></th><th role="columnheader">Kept</th><th role="columnheader">Yardbook</th></tr>
+        <tr role="row" class="us"><td role="cell" data-label="">Starting price</td><td role="cell" data-label="Kept">Free, then $35–$229+/mo AUD + GST</td><td role="cell" data-label="Yardbook">Free tier + paid add-ons, up to $60/mo</td></tr>
+        <tr role="row"><td role="cell" data-label="">Trade coverage</td><td role="cell" data-label="Kept">Lawn care in depth, plus cleaning, pressure washing, handyman and 20+ others</td><td role="cell" data-label="Yardbook">Lawn care only, limited beyond solo/basic use</td></tr>
+        <tr role="row"><td role="cell" data-label="">Soil/turf reno calculator</td><td role="cell" data-label="Kept">Built in</td><td role="cell" data-label="Yardbook">Not a core feature</td></tr>
+        <tr role="row"><td role="cell" data-label="">Route optimisation &amp; weather blockout</td><td role="cell" data-label="Kept">Included on Team plan and above</td><td role="cell" data-label="Yardbook">Not core features</td></tr>
       </table>
     </div>
     <p class="note">Competitor pricing researched July 2026, re-verified August 2026, from Yardbook's public pricing page — figures change, worth re-checking before quoting anyone directly.</p>

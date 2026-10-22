@@ -65,6 +65,19 @@ th{color:var(--ink);font-weight:600;font-size:.78rem;text-transform:uppercase;le
 td{color:var(--ink-soft)}
 .tablewrap{overflow-x:auto;margin:18px 0}
 .tablewrap table{margin:0}
+/* Phones: the columns do not fit side by side, so each table row becomes a card (labels come from the column headings) */
+@media (max-width:640px){
+  .tablewrap{overflow:visible;border:0;border-radius:0;background:none}
+  .tablewrap table{display:block;width:100%;min-width:0;margin:0}
+  .tablewrap tbody{display:block}
+  .tablewrap tr{display:block;margin:0 0 12px;padding:2px 16px 8px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}
+  .tablewrap tr:first-child{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tablewrap td{display:block;padding:8px 0 0;border:0;background:none}
+  .tablewrap td:first-child{padding-top:12px;font-size:1rem;font-weight:700;color:var(--ink)}
+  .tablewrap td:not(:first-child)::before{content:attr(data-label);display:block;margin-bottom:1px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .tablewrap tr.us{background:color-mix(in srgb,var(--green-500) 14%,var(--white))}
+  .tablewrap tr.us td{background:none}
+}
 </style>
 </head>
 <body>
@@ -87,33 +100,33 @@ td{color:var(--ink-soft)}
 
   <h2>Core infrastructure</h2>
   <div class="tablewrap">
-  <table>
-    <tr><th>Provider</th><th>What it does</th><th>What it can see</th><th>Where</th></tr>
-    <tr><td><strong>Supabase</strong></td><td>Database and login/authentication</td><td>Your login email, business name, ABN, phone, address, service area, plan and billing state. Marketplace job requests. Your business data — as ciphertext only for a Secure-mode business; in ordinary readable form for a Standard-mode business (the default).</td><td>Sydney, Australia</td></tr>
-    <tr><td><strong>Vercel</strong></td><td>Hosting for the app, this website and the client portal</td><td>Ordinary web-server information — IP address, browser, requested page. Not the contents of your account.</td><td>Global edge network; a request is served from the location nearest you</td></tr>
+  <table role="table">
+    <tr role="row"><th role="columnheader">Provider</th><th role="columnheader">What it does</th><th role="columnheader">What it can see</th><th role="columnheader">Where</th></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Supabase</strong></td><td role="cell" data-label="What it does">Database and login/authentication</td><td role="cell" data-label="What it can see">Your login email, business name, ABN, phone, address, service area, plan and billing state. Marketplace job requests. Your business data — as ciphertext only for a Secure-mode business; in ordinary readable form for a Standard-mode business (the default).</td><td role="cell" data-label="Where">Sydney, Australia</td></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Vercel</strong></td><td role="cell" data-label="What it does">Hosting for the app, this website and the client portal</td><td role="cell" data-label="What it can see">Ordinary web-server information — IP address, browser, requested page. Not the contents of your account.</td><td role="cell" data-label="Where">Global edge network; a request is served from the location nearest you</td></tr>
   </table>
   </div>
 
   <h2>Payments</h2>
   <div class="tablewrap">
-  <table>
-    <tr><th>Provider</th><th>What it does</th><th>What it can see</th><th>Where</th></tr>
-    <tr><td><strong>Stripe</strong> (subscription)</td><td>Bills your Kept plan</td><td>Your name, email and payment card. Card details go to Stripe directly and never reach us.</td><td>United States and other countries where Stripe operates</td></tr>
-    <tr><td><strong>Stripe Connect</strong></td><td>Lets your own clients pay your invoices by card</td><td>The payment amount and description on invoices you choose to make payable online. The money goes to your own Stripe account, never through ours.</td><td>United States and other countries where Stripe operates</td></tr>
+  <table role="table">
+    <tr role="row"><th role="columnheader">Provider</th><th role="columnheader">What it does</th><th role="columnheader">What it can see</th><th role="columnheader">Where</th></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Stripe</strong> (subscription)</td><td role="cell" data-label="What it does">Bills your Kept plan</td><td role="cell" data-label="What it can see">Your name, email and payment card. Card details go to Stripe directly and never reach us.</td><td role="cell" data-label="Where">United States and other countries where Stripe operates</td></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Stripe Connect</strong></td><td role="cell" data-label="What it does">Lets your own clients pay your invoices by card</td><td role="cell" data-label="What it can see">The payment amount and description on invoices you choose to make payable online. The money goes to your own Stripe account, never through ours.</td><td role="cell" data-label="Where">United States and other countries where Stripe operates</td></tr>
   </table>
   </div>
 
   <h2>Only when you use the feature</h2>
   <p>Nothing below receives anything unless you turn the relevant feature on or take the action described.</p>
   <div class="tablewrap">
-  <table>
-    <tr><th>Provider</th><th>What it does</th><th>What it can see</th><th>Where</th></tr>
-    <tr><td><strong>Google (Gmail)</strong></td><td>Sends invoice and quote emails</td><td>The email you are sending, including its PDF attachment and the recipient's address</td><td>United States</td></tr>
-    <tr><td><strong>ClickSend</strong></td><td>Sends SMS, only where a client has no email on file</td><td>The recipient's mobile number and the message text</td><td>Australian company, with international message routing</td></tr>
-    <tr><td><strong>Xero</strong></td><td>Accounting sync, if you connect it</td><td>Invoices you choose to sync — client names, amounts and line items</td><td>New Zealand and Australia</td></tr>
-    <tr><td><strong>Google Maps</strong></td><td>Route optimisation, on Team and above</td><td>The job addresses in the route you are optimising</td><td>United States</td></tr>
-    <tr><td><strong>OpenStreetMap</strong> (OpenStreetMap Foundation)</td><td>Today's Map view: finds where each job is and draws the map. It asks before it starts, and can be turned off in Settings &rarr; Appearance &rarr; Map</td><td>The addresses of today's jobs and your business address, the area of the map being shown, and your device's IP address, as with any website. No client names, account details or other business data. The addresses go in readable form, including for a Secure-mode business, because they have to be looked up.</td><td>United Kingdom, with servers and a content delivery network in other countries</td></tr>
-    <tr><td><strong>Open-Meteo</strong></td><td>Weather forecast on the dashboard and rain warnings</td><td>An approximate latitude and longitude. No name, address or account information.</td><td>Germany</td></tr>
+  <table role="table">
+    <tr role="row"><th role="columnheader">Provider</th><th role="columnheader">What it does</th><th role="columnheader">What it can see</th><th role="columnheader">Where</th></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Google (Gmail)</strong></td><td role="cell" data-label="What it does">Sends invoice and quote emails</td><td role="cell" data-label="What it can see">The email you are sending, including its PDF attachment and the recipient's address</td><td role="cell" data-label="Where">United States</td></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>ClickSend</strong></td><td role="cell" data-label="What it does">Sends SMS, only where a client has no email on file</td><td role="cell" data-label="What it can see">The recipient's mobile number and the message text</td><td role="cell" data-label="Where">Australian company, with international message routing</td></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Xero</strong></td><td role="cell" data-label="What it does">Accounting sync, if you connect it</td><td role="cell" data-label="What it can see">Invoices you choose to sync — client names, amounts and line items</td><td role="cell" data-label="Where">New Zealand and Australia</td></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Google Maps</strong></td><td role="cell" data-label="What it does">Route optimisation, on Team and above</td><td role="cell" data-label="What it can see">The job addresses in the route you are optimising</td><td role="cell" data-label="Where">United States</td></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>OpenStreetMap</strong> (OpenStreetMap Foundation)</td><td role="cell" data-label="What it does">Today's Map view: finds where each job is and draws the map. It asks before it starts, and can be turned off in Settings &rarr; Appearance &rarr; Map</td><td role="cell" data-label="What it can see">The addresses of today's jobs and your business address, the area of the map being shown, and your device's IP address, as with any website. No client names, account details or other business data. The addresses go in readable form, including for a Secure-mode business, because they have to be looked up.</td><td role="cell" data-label="Where">United Kingdom, with servers and a content delivery network in other countries</td></tr>
+    <tr role="row"><td role="cell" data-label="Provider"><strong>Open-Meteo</strong></td><td role="cell" data-label="What it does">Weather forecast on the dashboard and rain warnings</td><td role="cell" data-label="What it can see">An approximate latitude and longitude. No name, address or account information.</td><td role="cell" data-label="Where">Germany</td></tr>
   </table>
   </div>
 

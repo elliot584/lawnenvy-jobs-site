@@ -119,6 +119,19 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   .rcard.rhero{background:linear-gradient(155deg,#0B7A43,#0B5F34)}
   .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#fff}
 }
+/* Phones: the columns do not fit side by side, so each table row becomes a card (labels come from the column headings) */
+@media (max-width:640px){
+  .tablewrap{overflow:visible;border:0;border-radius:0;background:none}
+  .tablewrap table{display:block;width:100%;min-width:0;margin:0}
+  .tablewrap tbody{display:block}
+  .tablewrap tr{display:block;margin:0 0 12px;padding:2px 16px 8px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}
+  .tablewrap tr:first-child{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tablewrap td{display:block;padding:8px 0 0;border:0;background:none}
+  .tablewrap td:first-child{padding-top:12px;font-size:1rem;font-weight:700;color:var(--ink)}
+  .tablewrap td:not(:first-child)::before{content:attr(data-label);display:block;margin-bottom:1px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .tablewrap tr.us{background:color-mix(in srgb,var(--green-500) 14%,var(--white))}
+  .tablewrap tr.us td{background:none}
+}
 </style>
 </head>
 <body>
@@ -158,12 +171,12 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <h2 class="title">The concrete differences.</h2>
     </div>
     <div class="tablewrap">
-      <table>
-        <tr><th></th><th>Kept</th><th>ServiceM8</th></tr>
-        <tr class="us"><td>Starting price</td><td>Free, then $35–$229+/mo AUD + GST</td><td>Free tier, up to $349/mo</td></tr>
-        <tr><td>Pricing model</td><td>Flat, by team size</td><td>Flat, bundles jobs + SMS</td></tr>
-        <tr><td>Trade-specific tools</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, weather blockout, route optimisation (Team plan and above)</td><td>No — general trades</td></tr>
-        <tr><td>Free plan</td><td>Permanent, no card required</td><td>Free tier available</td></tr>
+      <table role="table">
+        <tr role="row"><th role="columnheader"></th><th role="columnheader">Kept</th><th role="columnheader">ServiceM8</th></tr>
+        <tr role="row" class="us"><td role="cell" data-label="">Starting price</td><td role="cell" data-label="Kept">Free, then $35–$229+/mo AUD + GST</td><td role="cell" data-label="ServiceM8">Free tier, up to $349/mo</td></tr>
+        <tr role="row"><td role="cell" data-label="">Pricing model</td><td role="cell" data-label="Kept">Flat, by team size</td><td role="cell" data-label="ServiceM8">Flat, bundles jobs + SMS</td></tr>
+        <tr role="row"><td role="cell" data-label="">Trade-specific tools</td><td role="cell" data-label="Kept">Yes — soil calc, bond-clean &amp; house-wash calculators, weather blockout, route optimisation (Team plan and above)</td><td role="cell" data-label="ServiceM8">No — general trades</td></tr>
+        <tr role="row"><td role="cell" data-label="">Free plan</td><td role="cell" data-label="Kept">Permanent, no card required</td><td role="cell" data-label="ServiceM8">Free tier available</td></tr>
       </table>
     </div>
     <p class="note">Competitor pricing researched July 2026, re-verified August 2026, from ServiceM8's public pricing page — figures change, worth re-checking before quoting anyone directly.</p>
