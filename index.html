@@ -112,6 +112,7 @@ a{color:inherit}
 
 header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;min-height:68px;padding:10px 0}
+.wrap.nav{padding:10px 20px}   /* .nav's padding:10px 0 comes later than .wrap's side padding and was cancelling it: the logo and the button touched the screen edges on a phone and sat 20px outside the page's content column on a desktop */
 .brand{display:flex;flex-direction:column;gap:2px}
 .brand-word{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.32rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink)}
 .brand .dot{width:11px;height:11px;display:inline-block;transform:translateY(-8px);flex:none;object-fit:contain}
