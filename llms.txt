@@ -4,7 +4,7 @@
 
 Every business starts on a permanent Free plan (no card required, capped at 15 clients and 15 jobs/quotes a month). Paid plans are priced by team size, not per seat: Solo $35/mo (1 person), Crew $69/mo (2-4 people), Team $119/mo (5-10 people, adds route optimisation), Operation $229/mo (11+ people, adds multi-task projects). All prices in AUD + GST.
 
-Client-side encryption: most business data (clients, jobs, quotes, invoices, notes) is encrypted on the business's own device before it ever reaches Kept's servers - Kept cannot read it.
+Storage modes: each business chooses how its data is stored (Settings > Account & sync). In Secure mode, the jobs, clients and invoices a business enters are encrypted on its own device before they reach Kept's servers, using a key derived from its own login password, so Kept cannot read them. In Standard mode (the default) that data is stored in ordinary, readable form, which is simpler and has nothing to lose if a password is forgotten. Either way Kept can see a business's name, its login email and which parts of the app are used. Details: https://www.keptsoftware.com.au/privacy.html
 
 ## Product
 
