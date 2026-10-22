@@ -29,6 +29,7 @@
 <meta property="og:image" content="icons/icon-512.png">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://www.keptsoftware.com.au/">
+<link rel="preload" as="image" href="videos/kept-hero-loop-poster.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -111,18 +112,21 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 .nav-links{display:flex;gap:26px;list-style:none;font-weight:500;font-size:.92rem}
 .nav-links a{text-decoration:none;color:var(--ink-soft)}
 .nav-links a:hover{color:var(--green-600)}
-@media(max-width:760px){.nav-links{display:none}}
+@media(max-width:840px){.nav-links{display:none}}
 .btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;font-weight:600;font-size:1rem;padding:13px 24px;border-radius:999px;background:var(--green-600);color:#fff;box-shadow:0 6px 18px rgba(27,35,51,.18);transition:transform .15s,background .15s}
 .btn:hover{background:var(--green-700);transform:translateY(-1px)}
 .btn-sm{padding:9px 18px;font-size:.88rem}
 .btn-ghost{background:transparent;color:var(--green-700);box-shadow:inset 0 0 0 1.5px var(--line)}
 
 /* Gradient hero — same dusk/gold family as .evenings further down, so the page
-   opens on colour instead of flat cream. CTAs deliberately live further down the
-   page (see .start-cta) rather than here, so a visitor scrolls through the case
-   for the product before hitting the "get started" moment. */
+   opens on colour instead of flat cream. Two columns from 900px: what Kept is and
+   the two buttons on the left, the Quote / Schedule / Invoice loop on the right.
+   (The hero used to have no buttons on purpose, so a visitor scrolled through the
+   case first. A comparison with another trade-software site showed the first
+   screen has to say what the product is, show it and offer the next step, so the
+   buttons moved up; .start-cta below keeps a second set.) */
 .hero{
-  padding:88px 0 72px;color:#fff;position:relative;overflow:hidden;
+  padding:72px 0 64px;color:#fff;position:relative;overflow:hidden;
   background:
     radial-gradient(ellipse 720px 520px at 88% -12%, rgba(199,167,107,.3), transparent 60%),
     radial-gradient(ellipse 820px 600px at 2% 105%, rgba(124,156,196,.22), transparent 55%),
@@ -131,14 +135,44 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 .eyebrow{display:inline-block;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
 .hero h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:16px;font-weight:600;color:#fff}
 .hero h1 em{font-style:normal;color:var(--lime)}
-.hero p.lede{font-size:1.1rem;max-width:56ch;color:rgba(255,255,255,.78);margin-bottom:0}
-.scrollcue{display:inline-flex;align-items:center;gap:8px;margin-top:32px;color:var(--lime);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.scrollcue svg{width:16px;height:16px;animation:bob 2.2s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.hero p.lede{font-size:1.1rem;max-width:56ch;color:rgba(255,255,255,.8);margin-bottom:26px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center}
+.hero-copy h1{font-size:clamp(1.9rem,3.5vw,2.7rem);line-height:1.14}
+.hero .hero-ctas{margin-bottom:22px}
+.hero .btn{padding:14px 26px}
+.btn-gold{background:var(--lime);color:var(--green-900);box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.btn-gold:hover{background:#fff;color:var(--green-900)}
+.btn-line{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
+.btn-line:hover{background:rgba(255,255,255,.12)}
+.hero-proof{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.86rem;color:rgba(255,255,255,.84)}
+.hero-proof li{display:flex;align-items:center;gap:7px}
+.hero-proof li::before{content:"✓";color:var(--lime);font-weight:700}
+.hero-visual{border-radius:18px;overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.14);background:#0c1220;aspect-ratio:16/9}
+.hero-visual video{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){
+  .hero{padding:44px 0 40px}
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero .hero-ctas .btn{flex:1 1 100%}
+}
+
+/* "What do you do?" — straight to the four trade pages, each of which says what is built for that trade. */
+.trades-strip{padding:48px 0 12px}
+.trades-strip .section-head{margin-bottom:22px}
+.trade-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.trade-card{display:flex;flex-direction:column;gap:6px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;text-decoration:none;color:var(--ink);box-shadow:0 4px 14px rgba(27,35,51,.05);transition:transform .15s,border-color .15s,box-shadow .15s}
+.trade-card:hover{transform:translateY(-2px);border-color:var(--green-600);box-shadow:var(--shadow)}
+.trade-card .tc-icon{width:38px;height:38px;border-radius:10px;background:color-mix(in srgb,var(--green-600) 12%,transparent);color:var(--green-600);display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.trade-card .tc-icon svg{width:20px;height:20px}
+.trade-card h3{font-size:1.02rem;font-weight:600}
+.trade-card p{font-size:.86rem;color:var(--ink-soft);flex:1}
+.trade-card .tc-go{font-size:.84rem;font-weight:600;color:var(--green-600)}
+.trades-more{margin-top:16px;font-size:.88rem;color:var(--ink-soft)}
+.trades-more a{color:var(--green-700);font-weight:600}
+.trades-strip + .how{padding-top:44px}
+@media(max-width:900px){.trade-cards{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.trade-cards{grid-template-columns:1fr 1fr;gap:10px}.trade-card{padding:14px}.trade-card p{display:none}.trade-card .tc-icon{margin-bottom:2px}}
 
 .start-cta{text-align:center}
-.cta-loop{width:360px;max-width:80%;margin:0 auto 28px;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.cta-loop video{display:block;width:100%}
 .start-cta .hero-ctas{justify-content:center}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 .demo-box{margin-top:26px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;display:inline-flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);font-size:.86rem;text-align:left}
@@ -329,11 +363,67 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 </header>
 
 <section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Built for service &amp; trade businesses</span>
+      <h1>Business software for <em>lawn care, cleaning, pressure washing and handyman.</em></h1>
+      <p class="lede">Quote on the spot, schedule the week and invoice from the job, with AU-native GST and BAS built in. Run the business, not a filing cabinet.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="https://app.keptsoftware.com.au/">Get started free →</a>
+        <a class="btn btn-line" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
+      </div>
+      <ul class="hero-proof">
+        <li>Free plan: no card, no time limit</li>
+        <li>Live demo: no account needed</li>
+        <li>GST &amp; BAS built in</li>
+        <li>Works offline</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <video id="heroLoop" autoplay muted loop playsinline preload="auto" poster="videos/kept-hero-loop-poster.jpg" aria-label="The Kept app on a phone: quote, schedule, invoice">
+        <source src="videos/kept-hero-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<script>
+// People who ask their device for less motion get the still poster, not the looping video.
+(function(){var v=document.getElementById('heroLoop');if(v&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}})();
+</script>
+
+<section class="trades-strip" id="your-trade">
   <div class="wrap">
-    <span class="eyebrow">Built for service &amp; trade businesses</span>
-    <h1>Run your service business like a business, <em>not a filing cabinet.</em></h1>
-    <p class="lede">Quotes, jobs, scheduling, invoicing and tax — all in one app. Built for lawn care, cleaning, pressure washing and handyman work — and the trades that keep this country running, with AU-native GST and BAS tools, not bolted on as an afterthought.</p>
-    <div class="scrollcue">Keep scrolling <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+    <div class="section-head">
+      <div class="kicker">What do you do?</div>
+      <h2 class="title">Pick your trade and see what's built for it.</h2>
+    </div>
+    <div class="trade-cards">
+      <a class="trade-card" href="lawn-care/">
+        <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M22 12h-6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg></span>
+        <h3>Lawn care &amp; garden</h3>
+        <p>Recurring mow rounds, a soil calculator for reno quotes and rain-day rescheduling.</p>
+        <span class="tc-go">See lawn care →</span>
+      </a>
+      <a class="trade-card" href="wash/">
+        <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span>
+        <h3>Pressure washing</h3>
+        <p>House and surface washes quoted by the square metre, gutters by the linear metre.</p>
+        <span class="tc-go">See pressure washing →</span>
+      </a>
+      <a class="trade-card" href="clean/">
+        <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h3>Cleaning</h3>
+        <p>Room and surface-based quotes for regular and bond cleans, with staff and photos kept against each job.</p>
+        <span class="tc-go">See cleaning →</span>
+      </a>
+      <a class="trade-card" href="handyman/">
+        <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m14.7 6.3 3 3L19 8a3 3 0 0 0-4-4l-1.3 1.3ZM3 21l4-1 10-10-3-3L4 17l-1 4Z"/></svg></span>
+        <h3>Handyman</h3>
+        <p>Job-linked documents, subcontractor work orders and materials tracked against every job.</p>
+        <span class="tc-go">See handyman →</span>
+      </a>
+    </div>
+    <p class="trades-more">Something else? Kept covers 25+ service trades. <a href="#request-trade">Tell us yours →</a></p>
   </div>
 </section>
 
@@ -395,11 +485,6 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 
 <section class="start-cta">
   <div class="wrap">
-    <div class="cta-loop">
-      <video autoplay muted loop playsinline>
-        <source src="videos/kept-hero-loop.mp4" type="video/mp4">
-      </video>
-    </div>
     <div class="hero-ctas">
       <a class="btn" href="https://app.keptsoftware.com.au/">Get started free →</a>
       <a class="btn btn-ghost" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo — no account needed</a>
