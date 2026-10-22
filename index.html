@@ -248,7 +248,7 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 
 /* Free-tier objection: flagged on the price itself, then answered directly right
    after the table rather than hiding the competitors that show $0. */
-.free-badge{display:inline-block;font-size:.66rem;font-weight:700;color:var(--lime);background:color-mix(in srgb, var(--lime) 16%, transparent);border:1px solid color-mix(in srgb, var(--lime) 40%, transparent);padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle;font-family:system-ui,sans-serif}
+.free-badge{display:inline-block;font-size:.66rem;font-weight:700;color:var(--green-700);background:color-mix(in srgb, var(--green-600) 12%, transparent);border:1px solid color-mix(in srgb, var(--green-600) 35%, transparent);padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle;font-family:system-ui,sans-serif}
 .free-badge.enterprise{color:var(--ink-soft);background:color-mix(in srgb, var(--ink-soft) 14%, transparent);border-color:color-mix(in srgb, var(--ink-soft) 35%, transparent)}
 .explainer{background:var(--white);border:1.5px solid var(--green-600);border-radius:var(--radius);padding:22px 26px;margin-top:20px}
 .explainer h3{font-size:1rem;font-weight:700;margin:0 0 10px}
@@ -369,6 +369,13 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   .tablewrap tr.us{background:color-mix(in srgb,var(--green-500) 14%,var(--white))}
   .tablewrap tr.us td{background:none}
 }
+/* Long lists fold away behind one tap (native <details>: keyboard and screen-reader friendly, found by Ctrl+F) */
+details.more{border:0;background:none;padding:0;margin:26px 0 0;border-radius:0}
+details.more>summary{display:flex;justify-content:center;gap:10px;width:max-content;max-width:100%;margin:0 auto;padding:11px 22px;border:1px solid var(--line);border-radius:999px;background:var(--white);color:var(--green-700);font-size:.92rem;font-weight:600;box-shadow:0 4px 14px rgba(14,20,17,.05)}
+details.more>summary:hover{border-color:var(--green-600)}
+details.more[open]>summary{margin-bottom:26px}
+details.more .feat p{margin-top:0}
+details.more .note{margin-top:16px}
 </style>
 </head>
 <body>
@@ -465,17 +472,17 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     </div>
     <div class="steps3">
       <div class="step3">
-        <div class="ghostnum">01</div>
+        <div class="ghostnum" aria-hidden="true">01</div>
         <h3>Pick your trade</h3>
         <p>Catalog and pricing calculators load already set up — nothing to configure first.</p>
       </div>
       <div class="step3">
-        <div class="ghostnum">02</div>
+        <div class="ghostnum" aria-hidden="true">02</div>
         <h3>Build the quote</h3>
         <p>Live pricing as you tap. Done before you'd normally finish typing the client's name.</p>
       </div>
       <div class="step3">
-        <div class="ghostnum">03</div>
+        <div class="ghostnum" aria-hidden="true">03</div>
         <h3>Send it, done</h3>
         <p>Email or SMS from the job. It tracks itself from there.</p>
       </div>
@@ -640,7 +647,9 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     </div>
     <p class="note">Competitor pricing researched July 2026, re-verified August 2026, from public pricing pages — figures change, worth re-checking before quoting anyone directly. Jobber's Australian pricing page is billed in US dollars, not AUD. simPRO is listed for completeness but isn't really a peer for this list — it's enterprise/multi-site software, with reviewers commonly reporting five-figure setup costs and 12-month contracts.</p>
 
-    <div class="section-head" style="margin-top:40px">
+    <details class="more" id="reviews">
+<summary>What reviewers say about each of them</summary>
+<div class="section-head" style="margin-top:40px">
       <div class="kicker">What reviewers actually say</div>
       <h2 class="title" style="font-size:1.35rem">The recurring complaints, straight from Capterra, G2 and Trustpilot.</h2>
     </div>
@@ -654,8 +663,8 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>simPRO</h3><p>Rigid, expensive contracts — reviewers report five-figure setup costs and a 12-month minimum.</p></div>
     </div>
     <p class="note">Complaint themes drawn from public reviews on Capterra, G2 and Trustpilot (Aug 2026) — individual experiences vary, and every product above has plenty of positive reviews too. We're new enough not to have a public review history of our own yet — genuinely the only way to know how we hold up is to try it.</p>
-
-    <div class="explainer">
+</details>
+  <div class="explainer">
       <h3>Why not just use the free one?</h3>
       <p>Because most "free" isn't really free — it's a funnel. Those tiers cap out on clients, jobs or trades right when your business is actually growing, and the ones that stay free long-term make it back some other way: ads, upsells, or your data being the product.</p>
       <p><b>Kept has a real free plan — no time limit, no card, no catch.</b> It's capped at 15 clients and 15 jobs/quotes a month, which is plenty to run a genuinely small operation on for as long as you want. When you outgrow that, upgrading is one click from Settings — not a forced decision on someone else's clock.</p>
@@ -764,6 +773,10 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>Turf/reno soil calculator</h3><p>Live m³ soil volume as you build a renovation quote — no separate spreadsheet.</p></div>
       <div class="feat"><h3>Regular &amp; bond-clean calculators</h3><p>Room and surface-based pricing for residential and commercial cleaning jobs, built into the quote.</p></div>
       <div class="feat"><h3>House/surface wash &amp; gutter calculators</h3><p>Square-metre and linear-metre pricing for pressure washing and gutter jobs, no separate spreadsheet.</p></div>
+    </div>
+    <details class="more" id="all-features">
+    <summary>See all 23 features</summary>
+    <div class="feat-grid">
       <div class="feat"><h3>GST/BAS built in, AU-native</h3><p>Tax-free threshold and BAS position estimates worked out for you — not bolted on for a US-first tool.</p></div>
       <div class="feat"><h3>Mileage &amp; vehicle log</h3><p>GPS-tracked trips or manual entry, turned straight into a cents-per-km tax deduction.</p></div>
       <div class="feat"><h3>Bank reconciliation</h3><p>Import a bank statement CSV and match transactions against paid invoices in a couple of clicks.</p></div>
@@ -779,6 +792,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>Send invoices &amp; quotes</h3><p>Email or SMS straight from the job, with status tracked automatically as sent, viewed or paid.</p></div>
       <div class="feat"><h3>Works offline, syncs everywhere</h3><p>A proper installable app, not just a bookmark — keeps working with no signal and catches up the moment you're back online, across every device.</p></div>
     </div>
+    </details>
     <p class="note">Tax, GST/BAS and payroll tools are a convenience to help with reporting, not professional advice — check anything that matters with your own accountant or registered BAS agent before lodging.</p>
   </div>
 </section>
