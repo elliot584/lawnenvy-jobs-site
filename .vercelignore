@@ -1,0 +1,3 @@
+# Keep developer-only material out of the public deployment (same convention as the app repo).
+# tools/ holds the browser tests for attribution.js; they run on a developer machine, not on the site.
+/tools

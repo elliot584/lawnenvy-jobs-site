@@ -18,6 +18,7 @@
   src="https://www.facebook.com/tr?id=1049765071100614&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
+  <script src="/attribution.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kept — software for service & trade businesses</title>
@@ -871,6 +872,11 @@ document.getElementById('leadForm').addEventListener('submit', async (e) => {
   const status = document.getElementById('leadStatus');
   const form = e.target;
   const data = Object.fromEntries(new FormData(form).entries());
+  // Which ad/link brought this visitor (attribution.js); the form works without it.
+  try {
+    const attr = window.KeptAttribution && window.KeptAttribution.get();
+    if (attr) data.attribution = attr;
+  } catch (_) {}
 
   status.className = 'form-status';
   status.textContent = '';
@@ -889,6 +895,7 @@ document.getElementById('leadForm').addEventListener('submit', async (e) => {
     status.className = 'form-status ok';
     status.textContent = "Thanks — I'll be in touch soon.";
     form.reset();
+    try { window.KeptAttribution && window.KeptAttribution.track('lead_form'); } catch (_) {}
   } catch (err) {
     status.className = 'form-status err';
     status.textContent = err.message || 'Could not send — try again shortly.';
