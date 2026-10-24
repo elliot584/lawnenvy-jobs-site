@@ -5,6 +5,21 @@
     { "source": "/clean/privacy", "destination": "/privacy", "permanent": true },
     { "source": "/clean/terms", "destination": "/terms", "permanent": true },
     { "source": "/wash/privacy", "destination": "/privacy", "permanent": true },
-    { "source": "/wash/terms", "destination": "/terms", "permanent": true }
+    { "source": "/wash/terms", "destination": "/terms", "permanent": true },
+    { "source": "/fb", "destination": "/?utm_source=facebook&utm_medium=social&utm_campaign=groups", "permanent": false },
+    { "source": "/fb/lawn", "destination": "/lawn-care?utm_source=facebook&utm_medium=social&utm_campaign=groups&utm_content=lawn_care", "permanent": false },
+    { "source": "/fb/wash", "destination": "/wash?utm_source=facebook&utm_medium=social&utm_campaign=groups&utm_content=pressure_washing", "permanent": false },
+    { "source": "/fb/clean", "destination": "/clean?utm_source=facebook&utm_medium=social&utm_campaign=groups&utm_content=cleaning", "permanent": false },
+    { "source": "/fb/handyman", "destination": "/handyman?utm_source=facebook&utm_medium=social&utm_campaign=groups&utm_content=handyman", "permanent": false },
+    { "source": "/ig", "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=bio", "permanent": false },
+    { "source": "/tt", "destination": "/?utm_source=tiktok&utm_medium=social&utm_campaign=bio", "permanent": false },
+    { "source": "/yt", "destination": "/?utm_source=youtube&utm_medium=social&utm_campaign=description", "permanent": false },
+    { "source": "/acct", "destination": "/?utm_source=accountant&utm_medium=email&utm_campaign=outreach", "permanent": false },
+    { "source": "/lead", "destination": "/?utm_source=email&utm_medium=email&utm_campaign=lead_followup", "permanent": false },
+    { "source": "/go", "destination": "/?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_term=typed", "permanent": false },
+    { "source": "/go/lawn", "destination": "/lawn-care?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=lawn_care&utm_term=typed", "permanent": false },
+    { "source": "/go/wash", "destination": "/wash?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=pressure_washing&utm_term=typed", "permanent": false },
+    { "source": "/go/clean", "destination": "/clean?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=cleaning&utm_term=typed", "permanent": false },
+    { "source": "/go/handyman", "destination": "/handyman?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=handyman&utm_term=typed", "permanent": false }
   ]
 }
