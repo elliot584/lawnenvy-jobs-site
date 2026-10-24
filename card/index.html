@@ -23,17 +23,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elliot Langham — Kept</title>
 <meta name="description" content="Elliot Langham, Founder of Kept — software for service & trade businesses. Save my contact, try the live demo, or visit the site.">
-<link rel="icon" href="../icons/icon-192.png">
+<link rel="icon" href="../icons/favicon-kept.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
 <meta property="og:title" content="Elliot Langham — Kept">
 <meta property="og:description" content="Software for service & trade businesses — quoting, scheduling and invoicing in one app.">
 <meta property="og:image" content="../icons/icon-512.png">
 <meta property="og:type" content="profile">
 <link rel="canonical" href="https://www.keptsoftware.com.au/card/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&display=swap">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* Schibsted Grotesk (SIL Open Font License, see /fonts/OFL.txt), served from this site: no request to Google */
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
   --green-900:#0D120F;
   --green-700:#0B5F34;
@@ -67,7 +68,7 @@ a{color:inherit}
 body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 16px}
 .card{width:100%;max-width:380px;background:var(--white);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
 .wordmark{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:300;font-size:1.6rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink);display:flex;align-items:baseline;justify-content:center;gap:6px}
-.wordmark .dot{width:12px;height:12px;display:inline-block;transform:translateY(-9px);object-fit:contain}
+.wordmark .dot{width:20px;height:20px;display:inline-block;transform:translateY(-5px);object-fit:contain}
 .tagline{font-size:.85rem;color:var(--ink-soft);margin-top:8px}
 .who{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 .name{font-weight:700;font-size:1.15rem}
@@ -90,7 +91,7 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 </head>
 <body>
 <div class="card">
-  <div class="wordmark">kept<img class="dot" src="../icons/logo_trim.png" alt=""></div>
+  <div class="wordmark">kept<img class="dot" src="../icons/kept-mark.svg" alt=""></div>
   <div class="tagline">Software for service &amp; trade businesses</div>
 
   <div class="who">

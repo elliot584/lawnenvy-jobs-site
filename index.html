@@ -23,7 +23,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kept — software for service & trade businesses</title>
 <meta name="description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built for lawn care, cleaning, pressure washing and handyman businesses.">
-<link rel="icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/favicon-kept.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta property="og:title" content="Kept — software for service & trade businesses">
 <meta property="og:description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built for lawn care, cleaning, pressure washing and handyman businesses.">
@@ -31,9 +31,7 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://www.keptsoftware.com.au/">
 <link rel="preload" as="image" href="videos/kept-hero-loop-poster.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&display=swap">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -83,6 +81,9 @@
 }
 </script>
 <style>
+/* Schibsted Grotesk (SIL Open Font License, see /fonts/OFL.txt), served from this site: no request to Google */
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
   --green-900:#0D120F;
   --green-700:#0B5F34;
@@ -113,7 +114,7 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 .wrap.nav{padding:10px 20px}   /* .nav's padding:10px 0 comes later than .wrap's side padding and was cancelling it: the logo and the button touched the screen edges on a phone and sat 20px outside the page's content column on a desktop */
 .brand{display:flex;flex-direction:column;gap:2px}
 .brand-word{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.32rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink)}
-.brand .dot{width:11px;height:11px;display:inline-block;transform:translateY(-8px);flex:none;object-fit:contain}
+.brand .dot{width:18px;height:18px;display:inline-block;transform:translateY(-5px);flex:none;object-fit:contain}
 .brand-tagline{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
 @media(max-width:520px){.brand-tagline{display:none}}
 .nav-links{display:flex;gap:26px;list-style:none;font-weight:500;font-size:.92rem}
@@ -248,7 +249,7 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 
 /* Free-tier objection: flagged on the price itself, then answered directly right
    after the table rather than hiding the competitors that show $0. */
-.free-badge{display:inline-block;font-size:.66rem;font-weight:700;color:var(--lime);background:color-mix(in srgb, var(--lime) 16%, transparent);border:1px solid color-mix(in srgb, var(--lime) 40%, transparent);padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle;font-family:system-ui,sans-serif}
+.free-badge{display:inline-block;font-size:.66rem;font-weight:700;color:var(--green-700);background:color-mix(in srgb, var(--green-600) 12%, transparent);border:1px solid color-mix(in srgb, var(--green-600) 35%, transparent);padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle;font-family:system-ui,sans-serif}
 .free-badge.enterprise{color:var(--ink-soft);background:color-mix(in srgb, var(--ink-soft) 14%, transparent);border-color:color-mix(in srgb, var(--ink-soft) 35%, transparent)}
 .explainer{background:var(--white);border:1.5px solid var(--green-600);border-radius:var(--radius);padding:22px 26px;margin-top:20px}
 .explainer h3{font-size:1rem;font-weight:700;margin:0 0 10px}
@@ -356,6 +357,26 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
   .rcard.rhero{background:linear-gradient(155deg,#0B7A43,#0B5F34)}
   .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#fff}
 }
+/* Phones: the columns do not fit side by side, so each table row becomes a card (labels come from the column headings) */
+@media (max-width:640px){
+  .tablewrap{overflow:visible;border:0;border-radius:0;background:none}
+  .tablewrap table{display:block;width:100%;min-width:0;margin:0}
+  .tablewrap tbody{display:block}
+  .tablewrap tr{display:block;margin:0 0 12px;padding:2px 16px 8px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}
+  .tablewrap tr:first-child{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tablewrap td{display:block;padding:8px 0 0;border:0;background:none}
+  .tablewrap td:first-child{padding-top:12px;font-size:1rem;font-weight:700;color:var(--ink)}
+  .tablewrap td:not(:first-child)::before{content:attr(data-label);display:block;margin-bottom:1px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .tablewrap tr.us{background:color-mix(in srgb,var(--green-500) 14%,var(--white))}
+  .tablewrap tr.us td{background:none}
+}
+/* Long lists fold away behind one tap (native <details>: keyboard and screen-reader friendly, found by Ctrl+F) */
+details.more{border:0;background:none;padding:0;margin:26px 0 0;border-radius:0}
+details.more>summary{display:flex;justify-content:center;gap:10px;width:max-content;max-width:100%;margin:0 auto;padding:11px 22px;border:1px solid var(--line);border-radius:999px;background:var(--white);color:var(--green-700);font-size:.92rem;font-weight:600;box-shadow:0 4px 14px rgba(14,20,17,.05)}
+details.more>summary:hover{border-color:var(--green-600)}
+details.more[open]>summary{margin-bottom:26px}
+details.more .feat p{margin-top:0}
+details.more .note{margin-top:16px}
 </style>
 </head>
 <body>
@@ -363,7 +384,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <span class="brand-word">kept<img class="dot" src="icons/logo_trim.png" alt=""></span>
+      <span class="brand-word">kept<img class="dot" src="icons/kept-mark.svg" alt=""></span>
       <span class="brand-tagline">Business management, kept simple.</span>
     </div>
     <ul class="nav-links">
@@ -452,17 +473,17 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
     </div>
     <div class="steps3">
       <div class="step3">
-        <div class="ghostnum">01</div>
+        <div class="ghostnum" aria-hidden="true">01</div>
         <h3>Pick your trade</h3>
         <p>Catalog and pricing calculators load already set up — nothing to configure first.</p>
       </div>
       <div class="step3">
-        <div class="ghostnum">02</div>
+        <div class="ghostnum" aria-hidden="true">02</div>
         <h3>Build the quote</h3>
         <p>Live pricing as you tap. Done before you'd normally finish typing the client's name.</p>
       </div>
       <div class="step3">
-        <div class="ghostnum">03</div>
+        <div class="ghostnum" aria-hidden="true">03</div>
         <h3>Send it, done</h3>
         <p>Email or SMS from the job. It tracks itself from there.</p>
       </div>
@@ -613,21 +634,23 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <p>It was built for plumbers and electricians, then stretched to cover everyone else. Here's what solo-to-small lawn care, cleaning and pressure washing operators are actually choosing between right now.</p>
     </div>
     <div class="tablewrap">
-    <table>
-      <tr><th>Software</th><th>Starting price</th><th>Pricing model</th><th>Trade-specific tools?</th></tr>
-      <tr><td><a href="/vs-yardbook" style="color:var(--green-700);font-weight:700">Yardbook</a></td><td class="price">$0–60/mo<span class="free-badge">Free tier</span></td><td>Free tier + paid add-ons</td><td>Lawn care only, limited beyond solo/basic use</td></tr>
-      <tr><td><a href="/vs-zenmaid" style="color:var(--green-700);font-weight:700">ZenMaid</a></td><td class="price">$19–109+/mo</td><td>Flat + per-seat on Pro tier</td><td>Cleaning only</td></tr>
-      <tr><td><a href="/vs-servicem8" style="color:var(--green-700);font-weight:700">ServiceM8</a></td><td class="price">$0–349/mo<span class="free-badge">Free tier</span></td><td>Flat, bundles jobs+SMS</td><td>No — general trades</td></tr>
-      <tr><td>Fergus</td><td class="price">$48–53+/mo</td><td>Flat, per business</td><td>No — general trades (AU/NZ)</td></tr>
-      <tr><td><a href="/vs-jobber" style="color:var(--green-700);font-weight:700">Jobber</a></td><td class="price">US$39–599+/mo</td><td>Per-user on team plans</td><td>No — general field service</td></tr>
-      <tr><td>Tradify</td><td class="price">$47–61/user/mo</td><td>Per user</td><td>No — general trades</td></tr>
-      <tr><td>simPRO</td><td class="price">Custom quote<span class="free-badge enterprise">Enterprise</span></td><td>Per-user, contract-locked</td><td>No — multi-site/enterprise trades, not solo-small</td></tr>
-      <tr class="us"><td>Kept</td><td class="price">Free–$229+/mo + GST<span class="free-badge">Free tier</span></td><td>Flat, per business</td><td>Yes — soil calc, bond-clean &amp; house-wash calculators, weather blockout, route optimisation (Team plan and above)</td></tr>
+    <table role="table">
+      <tr role="row"><th role="columnheader">Software</th><th role="columnheader">Starting price</th><th role="columnheader">Pricing model</th><th role="columnheader">Trade-specific tools?</th></tr>
+      <tr role="row"><td role="cell" data-label="Software"><a href="/vs-yardbook" style="color:var(--green-700);font-weight:700">Yardbook</a></td><td role="cell" data-label="Starting price" class="price">$0–60/mo<span class="free-badge">Free tier</span></td><td role="cell" data-label="Pricing model">Free tier + paid add-ons</td><td role="cell" data-label="Trade-specific tools?">Lawn care only, limited beyond solo/basic use</td></tr>
+      <tr role="row"><td role="cell" data-label="Software"><a href="/vs-zenmaid" style="color:var(--green-700);font-weight:700">ZenMaid</a></td><td role="cell" data-label="Starting price" class="price">$19–109+/mo</td><td role="cell" data-label="Pricing model">Flat + per-seat on Pro tier</td><td role="cell" data-label="Trade-specific tools?">Cleaning only</td></tr>
+      <tr role="row"><td role="cell" data-label="Software"><a href="/vs-servicem8" style="color:var(--green-700);font-weight:700">ServiceM8</a></td><td role="cell" data-label="Starting price" class="price">$0–349/mo<span class="free-badge">Free tier</span></td><td role="cell" data-label="Pricing model">Flat, bundles jobs+SMS</td><td role="cell" data-label="Trade-specific tools?">No — general trades</td></tr>
+      <tr role="row"><td role="cell" data-label="Software">Fergus</td><td role="cell" data-label="Starting price" class="price">$48–53+/mo</td><td role="cell" data-label="Pricing model">Flat, per business</td><td role="cell" data-label="Trade-specific tools?">No — general trades (AU/NZ)</td></tr>
+      <tr role="row"><td role="cell" data-label="Software"><a href="/vs-jobber" style="color:var(--green-700);font-weight:700">Jobber</a></td><td role="cell" data-label="Starting price" class="price">US$39–599+/mo</td><td role="cell" data-label="Pricing model">Per-user on team plans</td><td role="cell" data-label="Trade-specific tools?">No — general field service</td></tr>
+      <tr role="row"><td role="cell" data-label="Software">Tradify</td><td role="cell" data-label="Starting price" class="price">$47–61/user/mo</td><td role="cell" data-label="Pricing model">Per user</td><td role="cell" data-label="Trade-specific tools?">No — general trades</td></tr>
+      <tr role="row"><td role="cell" data-label="Software">simPRO</td><td role="cell" data-label="Starting price" class="price">Custom quote<span class="free-badge enterprise">Enterprise</span></td><td role="cell" data-label="Pricing model">Per-user, contract-locked</td><td role="cell" data-label="Trade-specific tools?">No — multi-site/enterprise trades, not solo-small</td></tr>
+      <tr role="row" class="us"><td role="cell" data-label="Software">Kept</td><td role="cell" data-label="Starting price" class="price">Free–$229+/mo + GST<span class="free-badge">Free tier</span></td><td role="cell" data-label="Pricing model">Flat, per business</td><td role="cell" data-label="Trade-specific tools?">Yes — soil calc, bond-clean &amp; house-wash calculators, weather blockout, route optimisation (Team plan and above)</td></tr>
     </table>
     </div>
     <p class="note">Competitor pricing researched July 2026, re-verified August 2026, from public pricing pages — figures change, worth re-checking before quoting anyone directly. Jobber's Australian pricing page is billed in US dollars, not AUD. simPRO is listed for completeness but isn't really a peer for this list — it's enterprise/multi-site software, with reviewers commonly reporting five-figure setup costs and 12-month contracts.</p>
 
-    <div class="section-head" style="margin-top:40px">
+    <details class="more" id="reviews">
+<summary>What reviewers say about each of them</summary>
+<div class="section-head" style="margin-top:40px">
       <div class="kicker">What reviewers actually say</div>
       <h2 class="title" style="font-size:1.35rem">The recurring complaints, straight from Capterra, G2 and Trustpilot.</h2>
     </div>
@@ -641,8 +664,8 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>simPRO</h3><p>Rigid, expensive contracts — reviewers report five-figure setup costs and a 12-month minimum.</p></div>
     </div>
     <p class="note">Complaint themes drawn from public reviews on Capterra, G2 and Trustpilot (Aug 2026) — individual experiences vary, and every product above has plenty of positive reviews too. We're new enough not to have a public review history of our own yet — genuinely the only way to know how we hold up is to try it.</p>
-
-    <div class="explainer">
+</details>
+  <div class="explainer">
       <h3>Why not just use the free one?</h3>
       <p>Because most "free" isn't really free — it's a funnel. Those tiers cap out on clients, jobs or trades right when your business is actually growing, and the ones that stay free long-term make it back some other way: ads, upsells, or your data being the product.</p>
       <p><b>Kept has a real free plan — no time limit, no card, no catch.</b> It's capped at 15 clients and 15 jobs/quotes a month, which is plenty to run a genuinely small operation on for as long as you want. When you outgrow that, upgrading is one click from Settings — not a forced decision on someone else's clock.</p>
@@ -751,6 +774,10 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>Turf/reno soil calculator</h3><p>Live m³ soil volume as you build a renovation quote — no separate spreadsheet.</p></div>
       <div class="feat"><h3>Regular &amp; bond-clean calculators</h3><p>Room and surface-based pricing for residential and commercial cleaning jobs, built into the quote.</p></div>
       <div class="feat"><h3>House/surface wash &amp; gutter calculators</h3><p>Square-metre and linear-metre pricing for pressure washing and gutter jobs, no separate spreadsheet.</p></div>
+    </div>
+    <details class="more" id="all-features">
+    <summary>See all 23 features</summary>
+    <div class="feat-grid">
       <div class="feat"><h3>GST/BAS built in, AU-native</h3><p>Tax-free threshold and BAS position estimates worked out for you — not bolted on for a US-first tool.</p></div>
       <div class="feat"><h3>Mileage &amp; vehicle log</h3><p>GPS-tracked trips or manual entry, turned straight into a cents-per-km tax deduction.</p></div>
       <div class="feat"><h3>Bank reconciliation</h3><p>Import a bank statement CSV and match transactions against paid invoices in a couple of clicks.</p></div>
@@ -766,6 +793,7 @@ details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
       <div class="feat"><h3>Send invoices &amp; quotes</h3><p>Email or SMS straight from the job, with status tracked automatically as sent, viewed or paid.</p></div>
       <div class="feat"><h3>Works offline, syncs everywhere</h3><p>A proper installable app, not just a bookmark — keeps working with no signal and catches up the moment you're back online, across every device.</p></div>
     </div>
+    </details>
     <p class="note">Tax, GST/BAS and payroll tools are a convenience to help with reporting, not professional advice — check anything that matters with your own accountant or registered BAS agent before lodging.</p>
   </div>
 </section>
