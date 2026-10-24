@@ -11,6 +11,7 @@
     { "source": "/fb/wash", "destination": "/wash?utm_source=facebook&utm_medium=social&utm_campaign=groups&utm_content=pressure_washing", "permanent": false },
     { "source": "/fb/clean", "destination": "/clean?utm_source=facebook&utm_medium=social&utm_campaign=groups&utm_content=cleaning", "permanent": false },
     { "source": "/fb/handyman", "destination": "/handyman?utm_source=facebook&utm_medium=social&utm_campaign=groups&utm_content=handyman", "permanent": false },
+    { "source": "/fbp", "destination": "/?utm_source=facebook&utm_medium=social&utm_campaign=page", "permanent": false },
     { "source": "/ig", "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=bio", "permanent": false },
     { "source": "/tt", "destination": "/?utm_source=tiktok&utm_medium=social&utm_campaign=bio", "permanent": false },
     { "source": "/yt", "destination": "/?utm_source=youtube&utm_medium=social&utm_campaign=description", "permanent": false },
