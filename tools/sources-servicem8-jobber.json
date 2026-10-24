@@ -1,0 +1,452 @@
+[
+  {
+    "id": "SM8-01",
+    "page": "index.html; vs-servicem8.html",
+    "claim": "ServiceM8 plans run from a free tier up to $349/mo (homepage: \"$0–349/mo\"; vs page: \"Free tier, up to $349/mo\")",
+    "verdict": "SUPPORTED (figures) but MISLEADING by omission (no GST basis shown while Kept's figures are + GST)",
+    "url": "https://www.servicem8.com/au/pricing",
+    "seen": "2026-10-24",
+    "quote": "Free $ 0 /mo 1 User 30 Jobs per month 10c per SMS | Starter $ 29 /mo Unlimited Users 50 Jobs per month 100+ SMS per month | Growing $ 79 /mo Unlimited Users 150 Jobs per month 300+ SMS per month | Premium $ 149 /mo Unlimited Users 500 Jobs per month 1000+ SMS per month | Premium Plus $ 349 /mo Unlimited Users 1500+ Jobs per month 3000+ SMS per month | \"Prices are in AUD and include GST\" | FAQ: \"Do you charge in Australian dollars? Yes, in Australia our pricing is in AUD and includes GST.\" (page footer: Last Published Tue Oct 06 2026)",
+    "action": "vs-servicem8: now \"Free, then $29–$349/mo AUD, GST included\" (checked October 2026) and the note says ServiceM8's prices include GST and Kept's are + GST. index.html: add \"GST included\" (old/new strings in the report)."
+  },
+  {
+    "id": "SM8-02",
+    "page": "index.html; vs-servicem8.html",
+    "claim": "ServiceM8 pricing model is \"Flat, bundles jobs+SMS\"",
+    "verdict": "MISLEADING (the price rises by jobs a month, not flat; the true differences are no per-user fee and an SMS allowance)",
+    "url": "https://www.servicem8.com/au/pricing",
+    "seen": "2026-10-24",
+    "quote": "\"Is ServiceM8's price per user? No — we don't charge per user! The only plan which limits the number of users you can have is the Free plan, to help sole traders get started. Once you have a team and upgrade to a paid plan, you can set up as many user logins as required.\" | compare table: \"New Jobs per Month 30 50 150 500 1500+\", \"SMS's per Month 0 100 300 1000 3000\", \"Additional SMS 10c per SMS\", \"Staff/Users 1 Unlimited Unlimited Unlimited Unlimited\" | \"There are no lock-ins with ServiceM8's pricing.\"",
+    "action": "vs-servicem8 row now: \"By jobs a month, not per user — paid plans include unlimited users and an SMS allowance\". index.html: \"By jobs a month, not per user; SMS allowance included\"."
+  },
+  {
+    "id": "SM8-03",
+    "page": "index.html; vs-servicem8.html",
+    "claim": "ServiceM8 has a free tier / \"Free tier available\" / \"ServiceM8's free tier has its own limits on jobs and users\"",
+    "verdict": "SUPPORTED (made specific)",
+    "url": "https://www.servicem8.com/au/free-plan",
+    "seen": "2026-10-24",
+    "quote": "\"Free Plan Includes 1 User The free plan is made for sole trader/proprietor businesses. 30 x Jobs/Mo Create up to 30 new Quotes & Work Orders each month, or earn unlimited jobs. ... 10c per SMS\" | \"Earn Unlimited Bonus Jobs ... every time you take a card payment via ServiceM8 & Stripe (in the app, or online), you earn a Bonus Job credit!\"",
+    "action": "Free-plan row, FAQ and JSON-LD now say: 1 user, 30 new jobs a month (bonus jobs by taking card payments through ServiceM8), SMS at 10c each (checked October 2026)."
+  },
+  {
+    "id": "SM8-04",
+    "page": "vs-servicem8.html",
+    "claim": "Both have a free tier (h1 and meta description)",
+    "verdict": "SUPPORTED",
+    "url": "https://www.servicem8.com/au/pricing",
+    "seen": "2026-10-24",
+    "quote": "Free $ 0 /mo 1 User 30 Jobs per month; pricing page meta description: \"Starting from $0/mo, the FREE plan for sole traders. Affordable pricing for Australian tradies & service businesses. Try free for 14 days.\"",
+    "action": "Kept; reworded \"tier\" to \"plan\" to match ServiceM8's own word."
+  },
+  {
+    "id": "SM8-05",
+    "page": "index.html; vs-servicem8.html",
+    "claim": "ServiceM8's trade-specific tools: \"No — general trades\"",
+    "verdict": "MISLEADING by omission (it markets itself to tradies and service businesses in general, but has industry pages for lawn care and cleaning)",
+    "url": "https://www.servicem8.com/au/industries",
+    "seen": "2026-10-24",
+    "quote": "\"Tour ServiceM8 for your industry ... Electrical Plumbing HVAC Cleaning Locksmith Pool Service Pest Control Lawn care Fire Safety Appliance Repair IT, AV & Communications Other\" | home page: \"Smart job management for tradies & services\" | pricing page FAQ: \"you can choose from over 250 pre-made Forms for a variety of industries and business requirements\" (Form Store)",
+    "action": "Now \"No — general trades, though it lists lawn care and cleaning among its industries\" (same standard as the Fergus fix); vs page adds that we found no trade calculators on its feature pages."
+  },
+  {
+    "id": "SM8-06",
+    "page": "index.html; vs-servicem8.html",
+    "claim": "ServiceM8 does not have trade-specific calculators (soil/turf, bond-clean, house-wash) or weather blockout",
+    "verdict": "UNSUPPORTED as an absolute (absence claim). Supportable only as \"not found on its feature pages\"",
+    "url": "https://www.servicem8.com/au/feature-overview",
+    "seen": "2026-10-24",
+    "quote": "Searched the text of servicem8.com/au/pricing, /free-plan, /industries, /industries/lawn-care-software, /industries/cleaning-software, /features-scheduling, /feature-overview and the AU home page for: weather, rain, calculator, soil, turf, bond, pressure, house wash. No match on any page (only unrelated words such as \"training\"). Seen 2026-10-24. Third-party add-ons exist (\"Third Party Add-ons: Access a range of Free & Paid add-ons by Developer Partners\"), which we did not search.",
+    "action": "Reworded everywhere to \"we found none on ServiceM8's feature pages (checked October 2026)\"; meta description, h1, lede, table, FAQ and JSON-LD updated."
+  },
+  {
+    "id": "SM8-07",
+    "page": "vs-servicem8.html",
+    "claim": "Kept \"adds ... route optimisation ... that ServiceM8 doesn't have\" (lede)",
+    "verdict": "WRONG (ServiceM8 has route optimisation)",
+    "url": "https://www.servicem8.com/au/industries/lawn-care-software",
+    "seen": "2026-10-24",
+    "quote": "Lawn care page: \"Auto-scheduling & route optimization Set ServiceM8 to routinely schedule all your recurring jobs, automatically. ServiceM8 will schedule the job times & staff to optimise efficiency and minimise travel time.\" | pricing page: \"Auto Routing Optimise a staff member's route and schedule for the day, saving time and fuel.\" (listed under Efficiency; also on /au/feature-overview) | cleaning page repeats the \"Auto-scheduling & route optimization\" line",
+    "action": "Removed route optimisation from the sentence about what ServiceM8 lacks. (Kept's own \"route optimisation (Team plan and above)\" cell is a Kept claim, left alone and flagged as not a differentiator.)"
+  },
+  {
+    "id": "SM8-08",
+    "page": "vs-servicem8.html",
+    "claim": "\"Only one of them was built around your trade\" (h1)",
+    "verdict": "MISLEADING (ServiceM8 has pages for 11 named industries including lawn care and cleaning; whose trade is \"your trade\" depends on the reader)",
+    "url": "https://www.servicem8.com/au/industries",
+    "seen": "2026-10-24",
+    "quote": "Industries page lists Electrical, Plumbing, HVAC, Cleaning, Locksmith, Pool Service, Pest Control, Lawn care, Fire Safety, Appliance Repair, IT/AV/Communications, Other. Lawn page: \"The app for Lawn & Garden Care ... Life of a garden care job in ServiceM8\".",
+    "action": "h1 now \"Both have a free plan. Kept is built around lawn care, cleaning, pressure washing and handyman work.\" (the Kept wording already vetted in APP-CLAIMS.md)."
+  },
+  {
+    "id": "SM8-09",
+    "page": "vs-servicem8.html",
+    "claim": "\"ServiceM8 bundles jobs and SMS for general trades\" (lede)",
+    "verdict": "SUPPORTED (each plan includes a monthly job and SMS allowance; it targets tradies and service businesses generally)",
+    "url": "https://www.servicem8.com/au/pricing",
+    "seen": "2026-10-24",
+    "quote": "\"100+ SMS per month\", \"300+ SMS per month\", \"1000+ SMS per month\", \"3000+ SMS per month\"; each plan lists \"Jobs per month\"; home page: \"Smart job management for tradies & services\"",
+    "action": "Reworded to \"job-management software for tradies and service businesses, with plans based on jobs a month and an SMS allowance\"."
+  },
+  {
+    "id": "SM8-10",
+    "page": "index.html; vs-servicem8.html",
+    "claim": "Pricing researched July 2026, re-verified August 2026 (note under the table)",
+    "verdict": "OUTDATED",
+    "url": "https://www.servicem8.com/au/pricing",
+    "seen": "2026-10-24",
+    "quote": "Pricing page re-read 2026-10-24 (Webflow comment: \"Last Published: Tue Oct 06 2026\"); free-plan page and industry pages re-read the same day.",
+    "action": "vs-servicem8 note now says re-verified October 2026, AUD, GST included, Kept's shown + GST. index.html note: add ServiceM8 and Jobber to the October 2026 list (strings in the report)."
+  },
+  {
+    "id": "SM8-11",
+    "page": "vs-servicem8.html",
+    "claim": "ServiceM8 customer support is slow with generic replies / \"Support is the most-cited complaint\" (card and heading \"The most-cited complaint about ServiceM8\")",
+    "verdict": "MISLEADING as a blanket \"most-cited\" claim. Counts: support is the most common complaint among 1-3 star reviews on Trustpilot (12 of 26) and Capterra (9 of 20) but NOT on the Xero App Store (7 of 36), where the lack of a full Android app (11 of 36) and Xero sync problems (about 10 of 36) are more common. Support is also praised often (48 of 92 four/five-star Trustpilot reviews and 36 of 309 on Xero mention it).",
+    "url": "https://www.trustpilot.com/review/www.servicem8.com",
+    "seen": "2026-10-24",
+    "quote": "PARAPHRASE (Trustpilot, 1-3 star, support complaints, 12 of 26): Rob M. 19 Jun 2026 (suggestions rejected, 'Customer Support' vs 'Customer Disdain'); Ryan V. 22 Apr 2026 ('billing and support, terrible'); Subflixed 12 Apr 2026 (suspended account, support slow); Stephen K. Dec 2025 (domain-transfer support); John 11 Jun 2025 (no phone number, 6 hours of messages); Tegan 13 May 2025 ('Support is also useless'); Jaymie-Lea S. 30 Apr 2025 (support dismissive); KG 24 Oct 2024 ('same crap customer service'); Ben 28 Nov 2023; Matt 20 Sep 2023 ('Tech Support is terrible'); Wickenden Family 26 Apr 2023; Nathan T. 18 Apr 2023 (rude support). | Capterra AU (9 of 20): Ryan 1 Feb 2023 ('canned responses'); Ben 4 Oct 2025 ('zero phone support'); Matthew 6 Apr 2023 ('No customer service number'); kristopher 9 Oct 2023; Mohamed 11 Apr 2018; Mohamed 13 Dec 2017; Verified Reviewer 18 Jan 2022 ('no phone number'); Lauren 11 Aug 2016; Heather 27 Feb 2025. | Xero App Store (7 of 36): Toby R-F 25 Mar 2025 ('generic responses'); Tegan 8 May 2025; Ryan C. 1 Feb 2023 ('canned responses'); Shawn D. 13 Dec 2021 ('No telephone support'); Chris G. 22 Jun 2021; John G. 25 Aug 2019; David S. 3 Sep 2015. | Apple App Store AU, 50 most recent (Apr 2025-Oct 2026): 4 criticise support/tech support. ServiceM8's own pricing page: \"Email & Chat Support: Free = Self Serve; Starter and up = 24/7\" and Trustpilot reply (Jun 2025): \"we don't offer phone support directly\".",
+    "action": "Heading and card replaced by \"Mostly positive reviews\" with the ratings, what positive reviews praise, and the per-site counts above; \"commonly\"/\"most-cited\" removed; a note lists what was read."
+  },
+  {
+    "id": "SM8-12",
+    "page": "index.html; vs-servicem8.html",
+    "claim": "\"some users say cancelling is difficult\" / \"some report that cancelling an account is difficult\"",
+    "verdict": "UNSUPPORTED (rests on a single 2020 review)",
+    "url": "https://www.capterra.com.au/software/110711/servicem8",
+    "seen": "2026-10-24",
+    "quote": "One review among all read (Xero 351, Trustpilot 118, Capterra 304 of 311, Apple App Store AU 50): Capterra, 'Sig', 29 Jan 2020, 'Horrible Customer Service': \"No one in chat or by email or phone knows how to cancel their service. I've been reaching out to cancel since Oct.\" ServiceM8's reply (18 Feb 2020): cancelling must be done by the account owner through the Online Dashboard. ServiceM8's help page: \"it can only be done when you login your account online (i.e. through ServiceM8's web interface on a Mac or PC, not the ServiceM8 app)\"; \"You cannot cancel or close your account if you still have an outstanding balance.\" Trustpilot reply to Ryan V. (24 Apr 2026): \"ServiceM8 subscriptions can be upgraded, downgraded or cancelled any time\".",
+    "action": "Removed from both pages. The process constraints (web dashboard only, account owner, no cancelling with a balance owing) are on ServiceM8's help page and could be mentioned neutrally if the founder wants."
+  },
+  {
+    "id": "SM8-13",
+    "page": "vs-servicem8.html",
+    "claim": "Card \"Not built for any one trade\": \"works the same way regardless of what you do — no soil calculator, no bond-clean or house-wash pricing, no calculators tuned to your job type\"",
+    "verdict": "MISLEADING / UNSUPPORTED as written (industry pages and an industry Form Store exist; the absence of calculators is only \"not found\")",
+    "url": "https://www.servicem8.com/au/industries/lawn-care-software",
+    "seen": "2026-10-24",
+    "quote": "Lawn page lists Recurring jobs, Auto-scheduling & route optimization, Online bookings, Automated client communication, Card payment processing, Email conversion; cleaning page the same. Pricing page: \"Customers on all plans (even the Free plan!) can buy & use any Form on the Form Store, where you can choose from over 250 pre-made Forms for a variety of industries\".",
+    "action": "Card rewritten: \"One app for many trades ... industry pages for lawn care, cleaning and others, but we found no soil, turf, bond-clean or house-wash calculators on its feature pages. Kept includes them.\""
+  },
+  {
+    "id": "SM8-14",
+    "page": "vs-servicem8.html",
+    "claim": "FAQ and JSON-LD: \"No — ServiceM8 is general trades software\" (does it have trade-specific calculators?)",
+    "verdict": "MISLEADING as an absolute",
+    "url": "https://www.servicem8.com/au/feature-overview",
+    "seen": "2026-10-24",
+    "quote": "See SM8-05 and SM8-06 for the pages searched.",
+    "action": "Answer now starts \"We found none on ServiceM8's feature pages (checked October 2026)\" and keeps the Kept sentence unchanged. JSON-LD changed to match."
+  },
+  {
+    "id": "SM8-15",
+    "page": "vs-servicem8.html",
+    "claim": "Meta description: \"Kept adds trade calculators ServiceM8 doesn't have\"",
+    "verdict": "UNSUPPORTED (absence)",
+    "url": "https://www.servicem8.com/au/feature-overview",
+    "seen": "2026-10-24",
+    "quote": "See SM8-06.",
+    "action": "Now: \"Kept includes trade calculators; we found none on ServiceM8's feature pages.\""
+  },
+  {
+    "id": "SM8-R01",
+    "page": "vs-servicem8.html",
+    "claim": "ServiceM8 is rated 4.5 out of 5 on Capterra Australia, 311 reviews, 291 of them four or five stars",
+    "verdict": "SUPPORTED",
+    "url": "https://www.capterra.com.au/software/110711/servicem8",
+    "seen": "2026-10-24",
+    "quote": "\"Based on 311 reviews 4.5\"; \"Reviews sentiment Positive 94% Neutral 2% Negative 4%\"; Product Rating 5.0 (212), 4.0 (79), 3.0 (7), 2.0 (4), 1.0 (9). 212 + 79 = 291.",
+    "action": "Stated on vs-servicem8 and used (4.5) in the homepage card suggestion."
+  },
+  {
+    "id": "SM8-R02",
+    "page": "vs-servicem8.html",
+    "claim": "4.6 out of 5 on the Xero App Store (Australia), 351 reviews",
+    "verdict": "SUPPORTED",
+    "url": "https://apps.xero.com/au/app/servicem8/reviews",
+    "seen": "2026-10-24",
+    "quote": "\"4.6 out of 5 stars 351 Reviews 5 star 80% 4 star 10% 3 star 3% 2 star 1% 1 star 6%\". All 351 downloaded from the page's public review list (apps.xero.com/api/reviews?appEntryId=app-servicem8): 275 five-star, 34 four, 11 three, 5 two, 20 one, 6 unrated; dated 27 Nov 2013 to 16 Oct 2026.",
+    "action": "Stated on vs-servicem8."
+  },
+  {
+    "id": "SM8-R03",
+    "page": "vs-servicem8.html",
+    "claim": "4.1 on Trustpilot, 119 reviews",
+    "verdict": "SUPPORTED",
+    "url": "https://www.trustpilot.com/review/www.servicem8.com",
+    "seen": "2026-10-24",
+    "quote": "\"ServiceM8 Reviews 119 • 4.1\". Read 118 of the 119 (23 one-star, 2 two-star, 1 three-star, 4 four-star, 88 five-star; 18 Apr 2023 to 20 Oct 2026), including every 1-3 star review via the star filter (26). Trustpilot also notes \"This company hasn't invited customers recently, so reviews may not be representative\" and \"Replied to 10% of negative reviews\".",
+    "action": "Stated on vs-servicem8."
+  },
+  {
+    "id": "SM8-R04",
+    "page": "vs-servicem8.html",
+    "claim": "Many positive reviews praise ease of use, time saved and the support team",
+    "verdict": "SUPPORTED",
+    "url": "https://www.trustpilot.com/review/www.servicem8.com",
+    "seen": "2026-10-24",
+    "quote": "PARAPHRASE: 48 of the 92 four/five-star Trustpilot reviews mention support or customer service (e.g. Sonja R. 20 Oct 2026 'Michael was super helpful'; Rayna 23 Sep 2026 'Fast Response From Support'; Drew E. 11 Jan 2026 'saves me around 20-30 hours of Admin per week'); on the Xero App Store 36 of the 309 four/five-star reviews mention support (e.g. 21 May 2026 'technical support is brilliant!'; 25 Feb 2026 'the technical support team is consistently helpful'; 24 Apr 2024 'the support is unparalleled').",
+    "action": "Used in the \"Mostly positive reviews\" card."
+  },
+  {
+    "id": "SM8-R05",
+    "page": "vs-servicem8.html",
+    "claim": "On the Xero App Store the most common critical themes are the lack of a full Android app and Xero sync problems",
+    "verdict": "SUPPORTED (counts)",
+    "url": "https://apps.xero.com/au/app/servicem8/reviews",
+    "seen": "2026-10-24",
+    "quote": "PARAPHRASE: of the 36 reviews rated 1-3 stars: Apple-only/no Android app 11 (James C. 20 Apr 2026; Marie-Claire F. 20 Nov 2025; Ana C. 8 Feb 2024; Joe W. 28 Aug 2023; Ian M. 3 Aug 2023; Alan M. 21 Jun 2023; Reuben T. 17 May 2021; Kylie W. 30 Jul 2018; Karen M. 5 May 2016; Aaron D. 22 Mar 2016; Chris J. 23 Nov 2015); Xero sync/integration problems about 10 (Toby R-F 25 Mar 2025; Claudio R. 21 Mar 2023; Jerry B. 10 Aug 2022; Chris R. 19 Jul 2022; Shawn D. 13 Dec 2021; Chris G. 22 Jun 2021; Kevin 13 Jan 2020; Harry W. 25 Sep 2019; Yvonne W. 1 May 2018; Clayton G. 22 Mar 2018); support 7 (see SM8-11). Many are old: ServiceM8 says it released an Android app (\"ServiceM8 Lite\") in 2024 (Trustpilot reply 14 Jul 2025), while its pricing FAQ says the Android app is \"almost identical\" to the iOS app; Chris H. (Trustpilot 9 Mar 2026) says the Android app \"has barely any functions that the apple one does\".",
+    "action": "One sentence on the vs page; no numbers shown for this theme on the page."
+  },
+  {
+    "id": "SM8-R06",
+    "page": "vs-servicem8.html",
+    "claim": "Reviews read: all 351 Xero, 118 of 119 Trustpilot (all 26 rated 1-3 stars), 304 of 311 Capterra (all 20 rated 1-3 stars)",
+    "verdict": "SUPPORTED (method)",
+    "url": "https://www.capterra.com.au/software/110711/servicem8",
+    "seen": "2026-10-24",
+    "quote": "Capterra AU: 9 one-star, 4 two-star, 7 three-star reviews read in full; most recent 55 and most helpful 30 read; remaining pages (3-13 of the default list) pulled to reach 304. Apple App Store AU (itunes.apple.com RSS, 50 most recent, 2 Apr 2025-21 Oct 2026): 25 five-star, 3 four, 8 three, 4 two, 10 one; store rating 4.54 from 5,560 ratings (iTunes lookup, AU).",
+    "action": "Listed in the note under the review cards. Reddit and ProductReview.com.au could not be used: reddit.com refused every request from this environment (403, and blocked in the browser pane and in web search); ProductReview.com.au has no ServiceM8 or Jobber listing (search returned only unrelated items). G2 skipped as instructed."
+  },
+  {
+    "id": "JOB-01",
+    "page": "index.html; vs-jobber.html",
+    "claim": "Jobber starting price \"US$39–599+/mo\"",
+    "verdict": "OUTDATED",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "Page title: \"Jobber Pricing: Plans Starting at $29/Month | Free Trial\". Just me (1 user): Core $49/mo (no commitment); $39/mo 'Monthly for 1 yr' (\"Save $15 for 3 months, then $39/mo\"); $29/mo annual (\"For 12 months, then $29/mo Billed annually\"). Connect $139 / $119 / $99. Grow $199 / $169 / $149. 2-5 people (\"Includes 5 users\"): Connect $199, Grow $299, Plus $499. 6-10 (\"Includes 10 users\"): Connect $299, Grow $399, Plus $599. 11-15 (\"Includes 15 users\"): Connect $399, Grow $499, Plus $699. 16 or more: \"Built for your team size Let's chat Contact Sales\". \"All prices in USD. Subscription plan prices exclude sales tax where applicable. Pricing displayed is Annual prepaid, other billing options are available\". Banner: \"Save up to 40% Offer ends October 30th\". Every team size and billing option was clicked through and read.",
+    "action": "Now \"US$49–699+/mo month to month (from US$29/mo prepaid annually), before sales tax\" with the intro discount (to 30 Oct 2026) disclosed in the note (checked October 2026)."
+  },
+  {
+    "id": "JOB-02",
+    "page": "index.html; vs-jobber.html",
+    "claim": "Jobber pricing model is \"Per-user on team plans\" (and \"Team plans are priced per user, so the cost climbs every time you add a person\")",
+    "verdict": "WRONG (plans are priced by team-size band that includes a set number of users; only users beyond the band cost extra)",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "Team size options: Just me / 2-5 people / 6-10 people / 11-15 people / 16 or more. Plan cards: \"1 user\", \"Includes 5 users\", \"Includes 10 users\", \"Includes 15 users\". Tooltip on every card: \"A user is anyone who accesses your account at the office or in the field to view or manage the team's schedule. Add users for $29/mo each.\"",
+    "action": "Rows now say: \"By team size — plans include 1, 5, 10 or 15 users; each extra user is US$29/mo\". The \"Per-user pricing scales against you\" card was removed (it also set Jobber against 'Kept's seat-band pricing', which Jobber now resembles)."
+  },
+  {
+    "id": "JOB-03",
+    "page": "index.html; vs-jobber.html",
+    "claim": "Jobber's Australian pricing page is billed in US dollars, not AUD",
+    "verdict": "OUTDATED (there is no Australian pricing page now; the AU address redirects to the US-dollar page)",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "HTTP chain recorded in a browser on 2026-10-24: 301 https://www.getjobber.com/au/pricing/ -> https://www.getjobber.com/pricing/ (200). Also 301 /au/features/ -> /features/; /au/industries/lawn-care-software/ is a 404; /au/ redirects to a partner landing page. Pricing page: \"All prices in USD.\" A Jobber help article says payment integrations work for accounts in the United States, Canada and Australia in USD, CAD and AUD (help.getjobber.com/en/articles/payment-integrations/, updated Aug 11 2026), i.e. that is about client payments, not the subscription.",
+    "action": "Note now says Jobber's prices are in US dollars and exclude sales tax, and that its old Australian address (/au/pricing/) now redirects to that page."
+  },
+  {
+    "id": "JOB-04",
+    "page": "vs-jobber.html",
+    "claim": "Jobber is priced \"per user in US dollars\" (lede)",
+    "verdict": "PARTLY WRONG: US dollars is SUPPORTED, \"per user\" is WRONG (see JOB-02)",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "\"All prices in USD.\" and the team-size plan cards above.",
+    "action": "Lede now: \"priced in US dollars by team size\"."
+  },
+  {
+    "id": "JOB-05",
+    "page": "vs-jobber.html",
+    "claim": "Jobber has \"No published free tier\"",
+    "verdict": "SUPPORTED",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "FAQ: \"How does the free trial work? For 14 days you get full access to all of Jobber's features on the Grow plan—no credit card required.\" No free plan appears on the pricing page (Core, Connect, Grow, Plus only). Capterra's listing also shows \"Free trial\".",
+    "action": "Row now \"No free plan — 14-day free trial, no card required\" (the trial is the fair comparison)."
+  },
+  {
+    "id": "JOB-06",
+    "page": "vs-jobber.html",
+    "claim": "Jobber is \"Not built for AU tax specifically\"",
+    "verdict": "WRONG / MISLEADING (Jobber has GST-capable tax settings, a Tax Invoice label for Australian accounts, a taxation report and a Xero sync that works in Australia; what we did not find is BAS tooling or MYOB)",
+    "url": "https://help.getjobber.com/en/articles/tax-settings/",
+    "seen": "2026-10-24",
+    "quote": "Tax Settings (updated June 5, 2026): \"Add your Tax ID name (such as GST) and your Tax ID number. These fields appear in the bottom left corner of all your invoices automatically.\" \"Note: If you are based in Australia and need your invoices to say Tax Invoice, enter your Tax ID number and set your country to Australia. This will automatically update your invoices to say Tax Invoice.\" | Taxation Report (updated March 17, 2025): \"the Taxable amount is the dollar amount for which tax is being collected. The Tax amount is the amount of tax collected.\" with Accrual and Cash views | Xero help (updated August 11, 2026): \"The Xero integration is available in the USA, Canada, UK, Australia, and New Zealand on the Connect and Grow plan.\" \"The sync is one way, from Jobber into Xero.\" \"If a Jobber invoice contains both non-taxable line items and a discount applied, then the tax calculation in Jobber will be different than the tax calculation in Xero. The Xero calculation is correct.\" | Xero App Store AU listing: \"Taxes automatically sync to Xero so you can easily manage your tax obligations come tax season\"; Countries: Australia, Canada, New Zealand, United Kingdom, United States. | App Marketplace lists QuickBooks Online and Xero; no MYOB anywhere in the 790-line page text. | The words BAS, ABN and MYOB do not appear on the pricing page (including its hidden feature-comparison table), Tax Settings, Taxation Report, Xero help, payment-integrations help, the App Marketplace page or the three industry pages (all searched 2026-10-24); GST appears once, as the example in Tax Settings.",
+    "action": "Row now: \"GST rate and tax ID settings; invoices say \"Tax Invoice\" once a tax ID is entered and the country is Australia; one-way Xero sync (Connect plan and up). We found no BAS tools and no MYOB link.\" NOTE for the founder: Jobber prints \"Tax Invoice\" for Australian accounts, while Kept's documents say \"Invoice\" (open accountant question)."
+  },
+  {
+    "id": "JOB-07",
+    "page": "index.html; vs-jobber.html",
+    "claim": "Jobber's trade-specific tools: \"No — general field service\" (and FAQ \"not built around any one trade\")",
+    "verdict": "MISLEADING (partly true: general software, but it has lawn care / cleaning / pressure washing pages, chemical tracking and free web calculators for cleaning and lawn care)",
+    "url": "https://www.getjobber.com/industries/lawn-care-software/",
+    "seen": "2026-10-24",
+    "quote": "Industries We Serve: Cleaning, Construction & Contracting, Electrical, Handyman, HVAC, Landscaping, Lawn Care, Painting, Pest Control, Plumbing, Pool Service, Pressure Washing, Roofing, Tree Care. Lawn page: \"Jobber's lawn care business software helps you manage quotes, schedules, crews, and payments to save you time, even with rain delays or last-minute changes.\" Chemical Tracking help (updated April 10, 2024): \"Chemical Tracking allows you to track chemical and pesticide usage. ... Note: There is no chemical tracking in the mobile app. Chemicals must be recorded from jobber.com. Chemical tracking is available on select plans.\" Free tools: House Cleaning Cost Calculator (rooms, square footage, visit types including Move-out clean and Deep clean, bedrooms, bathrooms, add-ons) and Lawn Care Cost Calculator (\"designed for lawn care professionals in North America\", satellite measurement) are web pages, not in-app features.",
+    "action": "Table cell, FAQ and JSON-LD now say \"Some\" and name what exists; \"No built-in soil, bond-clean or house-wash calculators found\" (searched the pricing page's full feature list and the three industry pages)."
+  },
+  {
+    "id": "JOB-08",
+    "page": "vs-jobber.html",
+    "claim": "Kept \"includes trade-specific calculators Jobber doesn't have\" (lede)",
+    "verdict": "UNSUPPORTED as an absolute (Jobber has free web calculators for cleaning and lawn care)",
+    "url": "https://www.getjobber.com/free-tools/house-cleaning-cost-calculator/",
+    "seen": "2026-10-24",
+    "quote": "\"House Cleaning Cost Calculator ... add in the details of your job, like how many rooms you're cleaning and the basic cleaning tasks you'll complete, and get a competitive range to charge your customers.\" Visit Type options: Regular weekly/biweekly, First visit, Move-out clean, Deep clean. Pricing page's full feature list has no calculator.",
+    "action": "Lede now: \"trade-specific calculators that we didn't find in Jobber's app\"."
+  },
+  {
+    "id": "JOB-09",
+    "page": "vs-jobber.html",
+    "claim": "h1 \"Field-service software built for everyone, versus software built for your trade\"",
+    "verdict": "MISLEADING (Jobber has pages and features for several of the same trades)",
+    "url": "https://www.getjobber.com/about/",
+    "seen": "2026-10-24",
+    "quote": "Industries list as JOB-07; About page: founders spoke to \"HVAC techs, landscapers, roofers, plumbers\" (2011). Jobber's own phrase on the pricing page: \"home service\".",
+    "action": "h1 now \"General home-service software, versus software built around lawn care, cleaning, pressure washing and handyman work.\""
+  },
+  {
+    "id": "JOB-10",
+    "page": "vs-jobber.html",
+    "claim": "FAQ: \"Is Kept cheaper than Jobber? For a small AU business, usually yes. Jobber is priced per user on its team plans in US dollars\"",
+    "verdict": "UNSUPPORTED (\"usually yes\" depends on the exchange rate for one person; \"per user\" is WRONG, see JOB-02)",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "Core (1 user) $49/mo no commitment, $29/mo annual prepaid; 2-5 people: Connect $199 / Grow $299 / Plus $499; 11-15 people: Connect $399 / Grow $499 / Plus $699 (all USD, before sales tax). Kept figures used are the ones already on the page: $35/mo + GST for one person, $229/mo + GST at 11 people.",
+    "action": "Answer rewritten: depends on team size and exchange rate; one person is close, teams cost more on Jobber (US$199–499 for 2–5 people, US$399–699 for 11–15 against Kept's $229 + GST at 11). No currency conversion is stated."
+  },
+  {
+    "id": "JOB-11",
+    "page": "vs-jobber.html",
+    "claim": "Pricing researched July 2026, re-verified August 2026",
+    "verdict": "OUTDATED",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "Pricing page, FAQ, and every team size x billing option re-read 2026-10-24.",
+    "action": "Note says re-verified October 2026 and lists what the figures are (month-to-month list prices Core to Plus, intro discount to 30 Oct 2026 not included)."
+  },
+  {
+    "id": "JOB-12",
+    "page": "index.html; vs-jobber.html",
+    "claim": "Jobber's routing / accounting integrations (context for the Kept comparison; not stated about Jobber on the pages)",
+    "verdict": "SUPPORTED (context)",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "\"Routing Optimize daily or weekly routes for your whole team in seconds—and adjust instantly when plans change.\" \"QuickBooks Online and Xero sync Sync with QuickBooks Online and Xero to cover your accounting needs\" (FAQ on the same page: \"Jobber syncs with QuickBooks Online.\").",
+    "action": "No change; shows route optimisation is not a Kept-only feature against either competitor."
+  },
+  {
+    "id": "JOB-13",
+    "page": "index.html",
+    "claim": "Homepage FAQ: \"You can import your customer list from a CSV export — QuickBooks, Xero, Jobber, ...\"",
+    "verdict": "SUPPORTED (for Jobber: it can export client reports to CSV; the import side is a Kept claim)",
+    "url": "https://help.getjobber.com/en/articles/clients-report/",
+    "seen": "2026-10-24",
+    "quote": "Clients Report (updated November 4, 2025): \"Export the clients report to CSV ... click Export to CSV then select if you'd like to export the report with all columns or just the selected ones. The report will then be sent to the same email address that you use when you log into Jobber.\"",
+    "action": "No change."
+  },
+  {
+    "id": "JOB-14",
+    "page": "vs-jobber.html",
+    "claim": "Meta description: \"Kept starts free and is priced by team size, not per user, with AU-native GST built in.\" (read against Jobber)",
+    "verdict": "MISLEADING by implication (Kept's own statement is not changed): \"not per user\" sets Kept against Jobber, whose base plans are also team-size bands (extra users cost US$29/mo each)",
+    "url": "https://www.getjobber.com/pricing/",
+    "seen": "2026-10-24",
+    "quote": "\"Includes 5 users\", \"Includes 10 users\", \"Includes 15 users\"; \"Add users for $29/mo each.\"",
+    "action": "Left unchanged because it is a Kept statement. Flagged in the report with the same note for the table cell \"Flat, by team size (not per person)\" and for AU-native GST/BAS \"Built in\"."
+  },
+  {
+    "id": "JOB-R01",
+    "page": "vs-jobber.html",
+    "claim": "Reviewers report Jobber's accounting sync drops line items on an estimated ~2% of syncs, making manual reconciliation routine (homepage card, vs-jobber card and heading \"The most-cited complaint about Jobber\")",
+    "verdict": "WRONG / UNSUPPORTED (no source for ~2%; at most one 2021 review says items were \"dropped\" in a QuickBooks transfer)",
+    "url": "https://www.capterra.com.au/software/127994/jobber",
+    "seen": "2026-10-24",
+    "quote": "A web search for the 2% figure found no source. In every Jobber review read (Capterra: all 108 rated 1-3 stars, the 105 most recent, the 55 most helpful; Trustpilot: all 58 rated 1-3 stars plus 154 four/five-star; Xero App Store: all 4), the only mention of anything being dropped in a sync is Capterra, Janice (Bookkeeper), 9 Feb 2021, 2 stars: \"Transferring to QuickBooks was never seamless or accurate. We constantly had to reconcile differences between what transferred and what was dropped in the process. ... We have not used this software since 2014 so these issues may have been addressed.\" The one Trustpilot mention of duplicated line items (Andrii M., 28 Aug 2026) is about Jobber's API duplicating items on quotes, not accounting sync.",
+    "action": "Card deleted and replaced (see JOB-R03). Heading changed to \"What reviewers say about Jobber.\""
+  },
+  {
+    "id": "JOB-R02",
+    "page": "vs-jobber.html",
+    "claim": "Jobber is rated 4.6 out of 5 on Capterra Australia (1,487 reviews, 1,379 four or five stars) and 4.1 on Trustpilot (232, 71% five-star)",
+    "verdict": "SUPPORTED",
+    "url": "https://www.capterra.com.au/software/127994/jobber",
+    "seen": "2026-10-24",
+    "quote": "Capterra AU: \"Based on 1,487 reviews 4.6\"; \"Reviews sentiment Positive 93% Neutral 4% Negative 4%\"; Product Rating 5.0 (1,056), 4.0 (323), 3.0 (54), 2.0 (22), 1.0 (32); 1,056 + 323 = 1,379. Trustpilot (https://www.trustpilot.com/review/getjobber.com): \"Reviews 232 • 4.1\"; 5-star 71%, 4-star 4%, 3-star 2%, 2-star 5%; also \"This company hasn't invited customers recently, so reviews may not be representative\". Apple App Store AU: 4.60 from 248 ratings (iTunes lookup).",
+    "action": "Stated on vs-jobber."
+  },
+  {
+    "id": "JOB-R03",
+    "page": "vs-jobber.html",
+    "claim": "A smaller number of reviewers criticise customer support (32 of the 106 written 1-3 star Capterra reviews, 14 of the 58 on Trustpilot), the cost and plan upsells, or billing and cancellation disputes",
+    "verdict": "SUPPORTED (counts)",
+    "url": "https://www.capterra.com.au/software/127994/jobber",
+    "seen": "2026-10-24",
+    "quote": "PARAPHRASE, Capterra AU support complaints (32 of the 106 written reviews rated 1-3 stars; the other 2 of the 108 are rating-only): Brian 16 Mar 2023; James 1 Sep 2021; Eduardo 20 Nov 2022; Matt 22 Aug 2022; Madonna 18 Feb 2018; Carey 1 Jul 2018; Steven 26 Sep 2022; jane 13 Apr 2021; mike 26 Oct 2023; Kay 19 Mar 2024; Wallace 30 Dec 2016; SHAWN 30 May 2015; Randy 30 Apr 2018; Joshua 7 Nov 2023; Ed 7 Jan 2024; Jake 7 Feb 2024; Dylan 27 Jun 2023; Beth 26 May 2022; Marcie 12 Feb 2020; Kyle 12 Jun 2025; Jennifer 3 Apr 2025; Joshua 10 Jan 2025; Kristeen 20 Nov 2024; Alex 27 Sep 2022; BRIAN 4 Jan 2024; Adam 15 Jul 2020; Cody 1 Apr 2023; Andrew 21 Aug 2024; Roy 27 Mar 2024; Geoffrey 17 Feb 2024; Regina 29 May 2018; Sue 31 May 2020. | Trustpilot support complaints (14 of 58, Jan 2023-Oct 2026): Petar D. 14 Oct 2026; Andrii M. 28 Aug 2026; Nicholas M. 2 Jun 2026; Jross 28 Apr 2026; 'Online Shopping' 24 Mar 2026; John B. 18 Jan 2026; Louie M. 12 Jan 2026; William M. 16 Jun 2025; Ray B. 12 Jun 2025; J.R. Waters 22 May 2025; reviews of 27 Sep 2024, 19 Sep 2024, 13 Sep 2024 and 17 Apr 2024. | Other themes by keyword search (mentions, includes some false positives; not shown with numbers on the page): cost, price or upsell words 24 of 106 Capterra and 18 of 58 Trustpilot; refund, cancel, commitment or billing words 32 of 106 and 16 of 58; bugs, glitches, crashes or slowness 25 of 106 and 12 of 58. Positives: 71 of the 154 four/five-star Trustpilot reviews and 39 of the 102 four/five-star reviews among the 105 most recent on Capterra (17 Feb-18 Aug 2026) mention support; the 105 most recent Capterra reviews are 80 five-star, 22 four, 2 three, 1 two.",
+    "action": "Stated on vs-jobber (support counts only). Cost and billing are named without counts on the page."
+  },
+  {
+    "id": "JOB-R04",
+    "page": "vs-jobber.html",
+    "claim": "Eight of the 106 Capterra reviews and four others on Trustpilot mention problems with the QuickBooks or Xero connection; the Xero App Store lists four reviews of Jobber's Xero link, all one or two stars; Jobber says its Xero sync is one-way",
+    "verdict": "SUPPORTED (counts)",
+    "url": "https://www.capterra.com.au/software/127994/jobber",
+    "seen": "2026-10-24",
+    "quote": "PARAPHRASE, Capterra AU (8 of 106): Anthony 13 Jan 2023 (QuickBooks integration advertising 'misleading'); Madonna 18 Feb 2018 (QB time sync 5 hours off); Ed 7 Jan 2024 (QuickBooks import left bookkeeper 40+ hours of fixes); Janice 9 Feb 2021 (QuickBooks transfer not seamless or accurate); John 17 Aug 2023 (client changes not pushed to QBO); Levi 12 Nov 2015 (accounting sync gaps); Claudia 10 Feb 2015 (payments sometimes go to the wrong invoice); Troy 17 Aug 2015 (tech info and classes do not carry into QBO). | Trustpilot (5 of 58, one is Anthony's 13 Jan 2023 cross-post, so 4 others): 10 Jul 2026 (QuickBooks sync 'frustrating and unreliable', invoice numbering); 6 Mar 2026 (Xero integration 'clunky'); 12 Jun 2025 ('does not automatically sync up with Xero'); 30 Oct 2024 ('didnot link to xero'). | Xero App Store AU, Jobber listing \"1.5 out of 5 stars 4 reviews\": Michelle S. 4 Mar 2026, 2 stars ('Integration with Xero is terrible'); Maurice P. 3 Mar 2026, 1 star ('Xero Integration is at a base level'); Jaz B. 11 Jun 2025, 2 stars (client details in Xero changed); Matt C. 26 Mar 2025, 1 star ('No 2 way sync with Xero'). | Jobber's own Xero help: \"The sync is one way, from Jobber into Xero.\"",
+    "action": "Replaces the removed \"drops line items ~2%\" card; the page says \"mention problems\", not \"drops line items\", and shows both counts and the 4-review Xero listing."
+  },
+  {
+    "id": "JOB-R05",
+    "page": "vs-jobber.html",
+    "claim": "Reviews read: every 1-3 star review on Capterra AU (108) and Trustpilot (58); 105 most recent and 55 most helpful on Capterra; 154 four/five-star Trustpilot reviews; all 4 Xero reviews",
+    "verdict": "SUPPORTED (method)",
+    "url": "https://www.trustpilot.com/review/getjobber.com",
+    "seen": "2026-10-24",
+    "quote": "Trustpilot critical set pulled with the site's star filter (1 star 42, 2 star 11, 3 star 5 = 58; 13 Jan 2023-14 Oct 2026). Capterra AU critical set: 1-star 32 (30 with text), 2-star 22, 3-star 54; most recent 105 (17 Feb-18 Aug 2026); most helpful 55 (3 Jun 2021-18 Aug 2026). Capterra's own most-helpful top reviews are positive: 41 five-star, 11 four-star, 1 three, 1 two, 1 one.",
+    "action": "Listed in the note under the review cards. Reddit not reachable from this environment (403) and ProductReview.com.au has no Jobber listing; G2 skipped."
+  },
+  {
+    "id": "JOB-R06",
+    "page": "vs-jobber.html",
+    "claim": "Jobber features are limited for Australian accounts (found while checking; NOT stated on the pages)",
+    "verdict": "UNSUPPORTED (single community post, 1 year old; not repeated on the pages)",
+    "url": "https://community.getjobber.com/discussions/customer-management-and-self-serve/international-customers---getting-ripped-off/5773",
+    "seen": "2026-10-24",
+    "quote": "Jobber Home Service Community, posted by an Australian cleaning business owner (\"1 year ago\"): \"Because we live in Australia, we do not get access to two way messaging ..., AI Receptionist or Jobber Payments.\" Jobber community reply: \"some features are only available in certain regions due to legal, regulatory, or infrastructure requirements\" (it did not deny the three). Jobber's payment-integrations help: \"Jobber has its own payment processor called Jobber Payments that is available on all plans\" and \"Payment integrations are available for Jobber accounts located in the United States, Canada, and Australia in the following currencies: USD, CAD, and AUD\" (Square, Authorize.net, PayPal Express, Stripe). Jobber's pricing page lists \"two-way SMS\" and \"Receptionist\" without a country note.",
+    "action": "Not used on the pages. Worth the founder asking Jobber (or checking a trial account set to Australia) before anyone writes it; would be a real difference if confirmed."
+  },
+  {
+    "id": "HOME-01",
+    "page": "index.html",
+    "claim": "Cards: ServiceM8 \"Support is the most-cited complaint — slow, generic replies, and some users say cancelling is difficult.\"",
+    "verdict": "MISLEADING / UNSUPPORTED",
+    "url": "https://www.trustpilot.com/review/www.servicem8.com",
+    "seen": "2026-10-24",
+    "quote": "See SM8-11 and SM8-12.",
+    "action": "New card text in the report: mostly positive, with ratings, and \"a smaller number of reviewers say support was slow or gave generic replies, or that the Android app is limited\"."
+  },
+  {
+    "id": "HOME-02",
+    "page": "index.html",
+    "claim": "Cards: Jobber \"Accounting sync drops line items on an estimated ~2% of syncs — manual reconciliation becomes routine.\"",
+    "verdict": "WRONG / UNSUPPORTED",
+    "url": "https://www.capterra.com.au/software/127994/jobber",
+    "seen": "2026-10-24",
+    "quote": "See JOB-R01.",
+    "action": "New card text in the report."
+  },
+  {
+    "id": "HOME-03",
+    "page": "index.html",
+    "claim": "Heading \"The recurring complaints, straight from Capterra, G2 and Trustpilot.\" and note \"Complaint themes drawn from public reviews on Capterra, G2 and Trustpilot (Aug 2026)\"",
+    "verdict": "MISLEADING for ServiceM8 and Jobber (G2 was not read; \"recurring\" needs counts)",
+    "url": "https://www.capterra.com.au/software/127994/jobber",
+    "seen": "2026-10-24",
+    "quote": "Sites actually read for these two: Capterra Australia, Trustpilot, the Xero App Store (Australia), the Apple App Store AU (ServiceM8 only).",
+    "action": "Suggested replacement strings in the report; the lead has to reconcile with the other competitors' agents."
+  },
+  {
+    "id": "HOME-04",
+    "page": "index.html",
+    "claim": "\"It was built for plumbers and electricians, then stretched to cover everyone else.\" (section intro, about job-management software in general)",
+    "verdict": "UNSUPPORTED for these two",
+    "url": "https://www.getjobber.com/about/",
+    "seen": "2026-10-24",
+    "quote": "Jobber's story: co-founders talked to \"HVAC techs, landscapers, roofers, plumbers\" (founded 2011). ServiceM8 describes itself as \"Smart job management for tradies & services\" and its industries page names eleven trades.",
+    "action": "Not changed (general claim, not in my files). Flagged in the report with a suggested replacement."
+  }
+]
