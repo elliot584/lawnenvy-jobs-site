@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '841447128961693');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=841447128961693&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <script src="/attribution.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hourly Rate Calculator for Trade Businesses | Kept</title>
+<meta name="description" content="Work out what to charge per hour from the income you want, the weeks you work, your billable hours and your yearly costs. Free, with an optional GST switch.">
+<link rel="icon" href="/icons/favicon-kept.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta property="og:title" content="Hourly Rate Calculator for Trade Businesses | Kept">
+<meta property="og:description" content="Work out what to charge per hour from the income you want, the weeks you work, your billable hours and your yearly costs. Free, with an optional GST switch.">
+<meta property="og:image" content="https://www.keptsoftware.com.au/icons/icon-512.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.keptsoftware.com.au/free/hourly-rate-calculator">
+<link rel="canonical" href="https://www.keptsoftware.com.au/free/hourly-rate-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Hourly rate calculator",
+      "url": "https://www.keptsoftware.com.au/free/hourly-rate-calculator",
+      "description": "Work out what to charge per hour from the income you want, the weeks you work, your billable hours and your yearly costs. Free, with an optional GST switch.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any (runs in a web browser)",
+      "inLanguage": "en-AU",
+      "isAccessibleForFree": true,
+      "provider": {
+        "@type": "Organization",
+        "name": "Kept",
+        "url": "https://www.keptsoftware.com.au/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is the hourly rate worked out?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add the income you want to your yearly business costs, then divide by your billable hours for the year (weeks worked times billable hours per week). The answer is rounded to the nearest cent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What counts as a billable hour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An hour you can charge a customer for. Time you don't bill, such as quoting, paperwork or driving between jobs, doesn't count, which is why billable hours are usually fewer than the hours you work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the rate include tax?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The calculator doesn't work out tax. If you want your rate to cover tax, work out the income you need before tax, type that in, and check the figures with your accountant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I charge GST?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if your business is registered for GST. Switch the GST option on to see the rate with 10% GST added. The GST calculator page covers when you have to register."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preload" href="/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Schibsted Grotesk (SIL Open Font License, see /fonts/OFL.txt), served from this site: no request to Google */
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--green-900:#0D120F;--green-700:#0B5F34;--green-600:#0B7A43;--green-500:#5FB58A;--lime:#4CC68C;--paper:#F5F7F6;--ink:#0E1411;--ink-soft:#55605B;--white:#ffffff;--line:#E7EAE8;--radius:14px;--shadow:0 10px 30px rgba(14,20,17,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+@media (prefers-color-scheme: dark){
+  :root{--paper:#0D120F;--ink:#EEF3EF;--ink-soft:#A4AFA9;--white:#1C2520;--line:#27312C;--shadow:0 10px 30px rgba(0,0,0,.4);--green-600:#4CC68C;--green-700:#7FD9AE}
+  .btn,.btn-sm,.price-card .price-badge{color:#06150D}
+  .btn-ghost{color:var(--ink)}
+  .founder-banner{background:#123226}
+}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:68px;padding:10px 0}
+.wrap.nav{padding:10px 20px}
+.brand{display:flex;flex-direction:column;gap:2px;text-decoration:none}
+.brand-word{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.32rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink)}
+.brand .dot{width:18px;height:18px;display:inline-block;transform:translateY(-5px);flex:none;object-fit:contain}
+.brand-tagline{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+@media(max-width:520px){.brand-tagline{display:none}}
+.nav-links{display:flex;gap:26px;list-style:none;font-weight:500;font-size:.92rem}
+.nav-links a{text-decoration:none;color:var(--ink-soft)}
+.nav-links a:hover{color:var(--green-600)}
+@media(max-width:840px){.nav-links{display:none}}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;font-weight:600;font-size:1rem;padding:13px 24px;border-radius:999px;background:var(--green-600);color:#fff;box-shadow:0 6px 18px rgba(14,20,17,.18);transition:transform .15s,background .15s}
+.btn:hover{background:var(--green-700);transform:translateY(-1px)}
+.btn-sm{padding:9px 18px;font-size:.88rem}
+.btn-ghost{background:transparent;color:var(--green-700);box-shadow:inset 0 0 0 1.5px var(--line)}
+.hero{padding:64px 0 52px;color:#fff;position:relative;overflow:hidden;background:radial-gradient(ellipse 720px 520px at 88% -12%, rgba(76,198,140,.22), transparent 60%),radial-gradient(ellipse 820px 600px at 2% 105%, rgba(95,181,138,.16), transparent 55%),linear-gradient(165deg, #0D120F 0%, #123226 52%, #0B5F34 135%)}
+.eyebrow{display:inline-block;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
+.hero h1{text-wrap:balance;font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.16;letter-spacing:-.01em;margin-bottom:14px;font-weight:600;color:#fff}
+.hero p.lede{font-size:1.05rem;max-width:62ch;color:rgba(255,255,255,.78);margin-bottom:24px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:52px 0}
+.section-head{max-width:680px;margin-bottom:28px}
+.kicker{font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-600);margin-bottom:10px}
+h2.title{text-wrap:balance;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.18;letter-spacing:-.01em;font-weight:600}
+.section-head p{margin-top:12px;color:var(--ink-soft)}
+.tablewrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);background:var(--white)}
+table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:520px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--paper);font-weight:600;color:var(--green-700)}
+tr:last-child td{border-bottom:0}
+tr.us td{background:color-mix(in srgb, var(--green-500) 14%, transparent);font-weight:600}
+.note{font-size:.8rem;color:var(--ink-soft);margin-top:16px}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.why{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 4px 14px rgba(14,20,17,.05)}
+.why h3{font-size:1rem;margin-bottom:6px;font-weight:600}
+.why p{font-size:.9rem;color:var(--ink-soft)}
+@media(max-width:700px){.why-grid{grid-template-columns:1fr}}
+details{border:1px solid var(--line);border-radius:12px;background:var(--white);padding:16px 18px;margin-bottom:10px}
+details summary{cursor:pointer;font-weight:600;font-size:.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::after{content:"+";color:var(--green-600);font-weight:600;font-size:1.2rem}
+details[open] summary::after{content:"–"}
+details p{margin-top:8px;color:var(--ink-soft);font-size:.9rem}
+.cta-final{background:linear-gradient(135deg,#0B5F34,#0D120F);color:#fff;text-align:center;border-radius:24px;margin:0 20px;padding:48px 30px}
+.cta-final h2{font-size:clamp(1.4rem,2.8vw,2rem);margin-bottom:10px;font-weight:600}
+.cta-final p{color:rgba(255,255,255,.8);margin-bottom:22px}
+.cta-final .btn{background:var(--lime);color:var(--green-900)}
+.cta-final .btn:hover{background:#fff}
+.cta-final .btn-ghost{background:transparent;color:#fff}
+.cta-final .btn-ghost:hover{background:rgba(255,255,255,.12)}
+footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;border-top:1px solid var(--line);margin-top:20px}
+/* Dark mode, last so it wins over the component rules above (the first dark block only sets variables):
+   buttons that sit on the mint accent take dark text, as in the app. */
+@media (prefers-color-scheme: dark){
+  .btn:not(.btn-accent):not(.btn-line):not(.btn-ghost),.price-card .price-badge,.trade-btn.active{color:#06150D}
+  .btn-ghost{color:var(--ink)}
+  .rcard.rhero{background:linear-gradient(155deg,#0B7A43,#0B5F34)}
+  .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#fff}
+}
+/* Phones: the columns do not fit side by side, so each table row becomes a card (labels come from the column headings) */
+@media (max-width:640px){
+  .tablewrap{overflow:visible;border:0;border-radius:0;background:none}
+  .tablewrap table{display:block;width:100%;min-width:0;margin:0}
+  .tablewrap tbody{display:block}
+  .tablewrap tr{display:block;margin:0 0 12px;padding:2px 16px 8px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}
+  .tablewrap tr:first-child{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tablewrap td{display:block;padding:8px 0 0;border:0;background:none}
+  .tablewrap td:first-child{padding-top:12px;font-size:1rem;font-weight:700;color:var(--ink)}
+  .tablewrap td:not(:first-child)::before{content:attr(data-label);display:block;margin-bottom:1px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .tablewrap tr.us{background:color-mix(in srgb,var(--green-500) 14%,var(--white))}
+  .tablewrap tr.us td{background:none}
+}
+
+/* ---- Free tools: components added to the site's own styles above ---- */
+:root{--field:#69746E;--err:#9B1C1C;--err-bg:#FBEAEA;--focus:#0B5F34;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--field:#7F8C85;--err:#FF9E9E;--err-bg:#34201F;--focus:#7FD9AE}
+}
+[hidden]{display:none!important}
+.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:#0D120F;color:#fff;padding:10px 16px;border-radius:8px;font-weight:600}
+.skip:focus{left:12px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.hero a:focus-visible,.cta-final a:focus-visible{outline-color:#fff}
+/* the whole question row is the tap target, not just the line of text */
+details{padding:0}
+details summary{padding:15px 18px;min-height:52px}
+details p{margin-top:0;padding:0 18px 16px}
+.hero.compact{padding:34px 0 30px}
+.hero.compact h1{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+.hero.compact p.lede{margin-bottom:0;max-width:64ch}
+.crumb{font-size:.86rem;margin-bottom:14px;color:rgba(255,255,255,.8)}
+.crumb a{color:#fff;text-underline-offset:3px}
+main>section{padding:40px 0}
+main>section.tool-sec{padding:32px 0 8px}
+.tool{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 4px 14px rgba(14,20,17,.05)}
+.tool h3{font-size:1.1rem;font-weight:600;margin-bottom:14px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.cols.even{align-items:stretch}
+@media(max-width:800px){.cols{grid-template-columns:minmax(0,1fr)}.tool{padding:20px 16px}}
+.tool label,.tool .lbl{display:block;font-weight:600;font-size:.95rem;margin-bottom:6px}
+.field{margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+.hint{font-size:.85rem;color:var(--ink-soft);margin-top:6px}
+.tool input[type=text],.tool input[type=date],.tool select,.tool textarea{display:block;width:100%;font:inherit;font-size:1rem;line-height:1.35;color:var(--ink);background:var(--white);border:1.5px solid var(--field);border-radius:10px;padding:11px 14px;min-height:48px}
+.tool textarea{min-height:92px;resize:vertical}
+/* the same drop-down look and height in every browser (Safari ignores the height of a native one) */
+.tool select{-webkit-appearance:none;appearance:none;padding-right:42px;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+.tool input::placeholder,.tool textarea::placeholder{color:var(--ink-soft);opacity:1}
+.tool input[aria-invalid=true]{border-color:var(--err);box-shadow:0 0 0 1px var(--err)}
+.money{display:flex;align-items:stretch}
+.money .pre{display:flex;align-items:center;padding:0 13px;border:1.5px solid var(--field);border-right:0;border-radius:10px 0 0 10px;background:var(--paper);color:var(--ink-soft);font-weight:600}
+.money input{border-radius:0 10px 10px 0!important;min-width:0}
+.tool .check{display:flex;align-items:flex-start;gap:10px;font-weight:600;cursor:pointer;margin-bottom:0}
+.tool .check input{flex:none;width:22px;height:22px;margin-top:1px;accent-color:var(--green-600)}
+.chip{font:inherit;font-weight:600;font-size:.9rem;line-height:1.2;padding:9px 15px;min-height:40px;border-radius:999px;border:1.5px solid var(--field);background:var(--white);color:var(--ink);cursor:pointer}
+.chip:hover{border-color:var(--green-600);color:var(--green-700)}
+.result{border-radius:var(--radius);padding:18px 20px;background:color-mix(in srgb,var(--green-500) 14%,var(--white));border:1px solid color-mix(in srgb,var(--green-500) 40%,var(--line));overflow-wrap:anywhere}
+.result[data-state=empty]{background:transparent;border:1.5px dashed var(--field);color:var(--ink-soft)}
+.result[data-state=error],.result[data-state=over]{background:var(--err-bg);border-color:var(--err)}
+.result .err,.result .err-title{color:var(--err);font-weight:700}
+.result p+p,.result ul+p,.result p+ul{margin-top:10px}
+.result ul{padding-left:20px}
+.result li{margin-top:4px}
+.rows{display:grid}
+.rows>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:9px 0;border-bottom:1px solid var(--line)}
+.rows>div:last-child{border-bottom:0}
+.rows dt{color:var(--ink-soft)}
+.rows dd{font-weight:600;text-align:right}
+.rows .total dt{color:var(--ink);font-weight:700}
+.rows .total dd{font-size:1.35rem;font-weight:700;color:var(--green-700)}
+.result .kick{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-700)}
+.result .big{font-size:1.35rem;font-weight:700;line-height:1.25;margin-top:4px}
+.result .sub{font-size:.9rem;color:var(--ink-soft)}
+.prose{max-width:760px}
+.prose h2.title{margin-bottom:14px}
+.prose p{margin-bottom:14px}
+.prose ul,.prose ol{margin:0 0 14px;padding-left:24px}
+.prose li{margin-bottom:6px}
+.prose a,.note a,details a,.sources a,.tool a{color:var(--green-700);font-weight:600;text-underline-offset:2px}
+.note{margin-top:14px;text-align:left;font-size:.88rem}
+.narrow{max-width:760px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 16px}
+.grid2>.field,.grid3>.field{margin-bottom:16px}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:minmax(0,1fr)}}
+.tool h3:not(:first-child){margin-top:26px}
+.actions{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:24px}
+.actions .hint{margin-top:0;max-width:46ch}
+.sources{list-style:none;max-width:760px}
+.sources li{padding:9px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.sources li:last-child{border-bottom:0}
+.tag{display:inline-block;margin-right:8px;padding:2px 10px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}
+.tag.next{background:var(--green-600);color:#fff}
+.tag.past{background:var(--line);color:var(--ink-soft)}
+tr.is-next td{background:color-mix(in srgb,var(--green-500) 14%,transparent)}
+tr.is-past td{color:var(--ink-soft)}
+td .sub{display:block;margin-top:2px;font-size:.84rem;color:var(--ink-soft)}
+.rate-table{min-width:0}
+.tool-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.tcard{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 4px 14px rgba(14,20,17,.05);display:flex;flex-direction:column;gap:8px}
+.nw{white-space:nowrap}
+.tcard h3{font-size:1.08rem;font-weight:600}
+.tcard p{font-size:.93rem;color:var(--ink-soft);flex-grow:1}
+.tcard a.more{display:inline-block;padding:6px 0;font-weight:600;color:var(--green-700);text-underline-offset:2px}
+/* quote template: the lines you edit */
+.qtwrap{margin-top:6px}
+.qt{width:100%;border-collapse:collapse;min-width:0;font-size:1rem}
+.qt th{text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);padding:8px;border-bottom:1.5px solid var(--line);background:none}
+.qt td{padding:8px;vertical-align:top;border-bottom:1px solid var(--line)}
+.qt td:nth-child(2){width:100px}
+.qt td:nth-child(3){width:150px}
+.qt td:nth-child(4){width:120px}
+.qt td:nth-child(5){width:96px}
+.qt td .lbl{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.qt td.amt{text-align:right;font-weight:600;padding-top:20px;white-space:nowrap}
+.qt td.rm{padding-top:6px}
+.qt-tools{margin:14px 0 12px}
+.qt-tools .lbl{margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.totals{margin-top:18px;max-width:420px;margin-left:auto}
+.totals .rows>div{padding:7px 0}
+@media(max-width:640px){
+  .qt,.qt tbody{display:block;width:100%}
+  .qt thead{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .qt tbody{counter-reset:ql}
+  .qt tr{counter-increment:ql;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 12px;margin:0 0 14px;padding:14px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius)}
+  .qt td,.qt td:nth-child(n){display:block;width:auto;padding:0;border:0}
+  .qt td:first-child{grid-column:1/-1}
+  .qt td:first-child::before{content:"Line " counter(ql);display:block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+  .qt td .lbl{position:static;width:auto;height:auto;margin:0 0 4px;overflow:visible;clip:auto;white-space:normal}
+  .qt td.amt{padding-top:0;text-align:left;align-self:end}
+  .qt td.amt .lbl{display:block}
+  .qt td.rm{padding-top:0;align-self:end;justify-self:end}
+  .totals{max-width:none}
+}
+/* the printable sheet is built by script and only ever shown when printing */
+#sheet{display:none}
+/* Dark mode, after the component rules above */
+@media (prefers-color-scheme: dark){
+  .tag.next{color:#06150D}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to the main content</a>
+
+<header>
+  <div class="wrap nav">
+    <a href="/" class="brand">
+      <span class="brand-word">kept<img class="dot" src="/icons/kept-mark.svg" alt=""></span>
+      <span class="brand-tagline">Business management, kept simple.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#compare">Compare</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-sm" href="https://app.keptsoftware.com.au/?industry=lawn_care">Get started free</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero compact">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/free">Free tools</a> / Hourly rate calculator</nav>
+    <span class="eyebrow">Free tool</span>
+    <h1>Hourly rate calculator</h1>
+    <p class="lede">Your hourly rate is the income you want plus your yearly business costs, divided by the hours you can bill in a year.</p>
+  </div>
+</section>
+
+<section class="tool-sec" id="tool">
+  <div class="wrap">
+    <h2 class="sr-only">The calculator</h2>
+    <noscript><p class="note">This calculator needs JavaScript. To work it out by hand, add the income you want to your yearly costs and divide by your billable hours for the year (weeks worked times billable hours per week).</p></noscript>
+    <div class="cols">
+      <div class="tool">
+        <div class="field">
+          <label for="h-income">Income you want per year</label>
+          <div class="money"><span class="pre" aria-hidden="true">$</span><input type="text" id="h-income" inputmode="decimal" autocomplete="off" placeholder="85,000" aria-describedby="h-income-hint"></div>
+          <p class="hint" id="h-income-hint">What you want to take out of the business each year.</p>
+        </div>
+        <div class="field">
+          <label for="h-weeks">Weeks you work per year</label>
+          <input type="text" id="h-weeks" inputmode="numeric" autocomplete="off" placeholder="46" aria-describedby="h-weeks-hint">
+          <p class="hint" id="h-weeks-hint">Whole weeks, from 1 to 52. Leave out holidays and time off.</p>
+        </div>
+        <div class="field">
+          <label for="h-hours">Billable hours per week</label>
+          <input type="text" id="h-hours" inputmode="decimal" autocomplete="off" placeholder="25" aria-describedby="h-hours-hint">
+          <p class="hint" id="h-hours-hint">Hours you can charge for, not hours you work. From 1 to 168.</p>
+        </div>
+        <div class="field">
+          <label for="h-costs">Yearly business costs</label>
+          <div class="money"><span class="pre" aria-hidden="true">$</span><input type="text" id="h-costs" inputmode="decimal" autocomplete="off" placeholder="12,000" aria-describedby="h-costs-hint"></div>
+          <p class="hint" id="h-costs-hint">Vehicle, tools, insurance, software and anything else the business pays for. Type 0 if none.</p>
+        </div>
+        <div class="field">
+          <label class="check" for="h-gst"><input type="checkbox" id="h-gst" aria-describedby="h-gst-hint"><span>I charge GST on my work</span></label>
+          <p class="hint" id="h-gst-hint">Shows the rate with 10% GST added as well.</p>
+        </div>
+      </div>
+      <div class="result" id="h-out" aria-live="polite" aria-atomic="true" data-state="empty"><p>The rate appears once all four boxes are filled in.</p></div>
+    </div>
+    <p class="note">This calculator is an estimate and not tax advice. It only does arithmetic on the numbers you enter, and it does not work out tax. Kept&#x27;s tax tools are estimates to help with your reporting, not professional advice: check anything that matters with your accountant.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow prose">
+    <div class="section-head">
+      <div class="kicker">How it works</div>
+      <h2 class="title">The sum behind the rate.</h2>
+    </div>
+      <p>Add the income you want to your yearly business costs. That is how much the business has to bring in over the year. Then work out your billable hours for the year: the weeks you work times the billable hours you manage each week. Divide the first number by the second and you have an hourly rate, rounded to the nearest cent.</p>
+      <p>Here is an example with made-up numbers. An income of $80,000 plus $20,000 of costs is $100,000 to bring in. Working 46 weeks at 25 billable hours a week is 1,150 hours. $100,000 divided by 1,150 hours is $86.96 an hour before GST. It is only an example, not a rate to copy.</p>
+      <p>If you charge GST, the calculator adds 10% to the hourly rate and shows both figures.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap narrow">
+    <div class="section-head">
+      <div class="kicker">Questions</div>
+      <h2 class="title">Good to know.</h2>
+    </div>
+    <details>
+      <summary>How is the hourly rate worked out?</summary>
+      <p>Add the income you want to your yearly business costs, then divide by your billable hours for the year (weeks worked times billable hours per week). The answer is rounded to the nearest cent.</p>
+    </details>
+    <details>
+      <summary>What counts as a billable hour?</summary>
+      <p>An hour you can charge a customer for. Time you don't bill, such as quoting, paperwork or driving between jobs, doesn't count, which is why billable hours are usually fewer than the hours you work.</p>
+    </details>
+    <details>
+      <summary>Does the rate include tax?</summary>
+      <p>No. The calculator doesn't work out tax. If you want your rate to cover tax, work out the income you need before tax, type that in, and check the figures with your accountant.</p>
+    </details>
+    <details>
+      <summary>Should I charge GST?</summary>
+      <p>Only if your business is registered for GST. Switch the GST option on to see the rate with 10% GST added. The <a href="/free/gst-calculator">GST calculator</a> page covers when you have to register.</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <div class="section-head">
+      <div class="kicker">Sources</div>
+      <h2 class="title">Where the numbers come from.</h2>
+      <p>Checked against the ATO pages on 24 October 2026.</p>
+    </div>
+    <ul class="sources">
+      <li><a href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/how-gst-works" rel="noopener">ATO: How GST works</a> (page updated 14 September 2026)</li>
+    </ul>
+    <p class="note">Kept&#x27;s tax tools are estimates to help with your reporting, not professional advice: check anything that matters with your accountant.</p>
+  </div>
+</section>
+
+<section>
+  <div class="cta-final">
+    <h2>Price the job on site and send the quote from your phone.</h2>
+    <p>In Kept you pick the service, set the price and send the quote. Kept works out the GST for you. Free plan, no time limit.</p>
+    <div class="hero-ctas" style="justify-content:center">
+      <a class="btn" href="https://app.keptsoftware.com.au/?industry=lawn_care">Get started free →</a>
+      <a class="btn btn-ghost" style="box-shadow:inset 0 0 0 2px rgba(255,255,255,.6);color:#fff" href="https://app.keptsoftware.com.au/?demo=1">Try the demo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Kept — software built by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
+    <div style="margin-top:10px;font-size:.86rem"><a href="/" style="color:var(--green-700);font-weight:700">See everything Kept covers →</a></div>
+    <div style="margin-top:8px;font-size:.82rem"><a href="/free">Free tools</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>
+    <div style="margin-top:8px;font-size:.82rem">Support: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var MAX_MONEY = 10000000000; // $100,000,000.00 in cents
+
+  // Typed text -> a whole number of units (cents when dp is 2, tenths when dp is 1, ones when dp is 0).
+  // No floating point anywhere.
+  function parseUnits(raw, dp, isMoney) {
+    var s = String(raw == null ? '' : raw).replace(/[\s\u00a0]+/g, '');
+    if (s === '') return { ok: false, reason: 'empty' };
+    if (isMoney) s = s.replace(/^\$/, '');
+    if (/^[-\u2212(]/.test(s)) return { ok: false, reason: 'negative' };
+    var m = /^(\d+|\d{1,3}(?:,\d{3})+)?(?:\.(\d*))?$/.exec(s);
+    if (!m || (m[1] === undefined && !m[2])) return { ok: false, reason: 'format' };
+    var frac = m[2] || '';
+    if (frac.length > dp) return { ok: false, reason: 'decimals' };
+    var padded = dp ? (frac + '000').slice(0, dp) : '';
+    var digits = ((m[1] || '0').replace(/,/g, '') + padded).replace(/^0+(?=\d)/, '');
+    if (digits.length > 15) return { ok: false, reason: 'large' };
+    return { ok: true, units: Number(digits) };
+  }
+
+  function group(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function money(c) {
+    var r = c % 100;
+    return '$' + group(Math.floor(c / 100)) + '.' + (r < 10 ? '0' : '') + r;
+  }
+
+  // Rate in cents: (income + costs) / billable hours, half a cent rounded up.
+  // Hours are held in tenths of an hour, so 20 * total + H over 2 * H is round-half-up of total * 10 / H.
+  function hourlyRate(totalCents, hoursTenths) {
+    return Math.floor((20 * totalCents + hoursTenths) / (2 * hoursTenths));
+  }
+
+  // GST on the rate: a tenth of it, half a cent rounded up.
+  function gstOn(cents) {
+    return Math.floor((cents + 5) / 10);
+  }
+
+  var FIELDS = {
+    income: {
+      id: 'h-income', name: 'Income you want per year', example: '85000', money: true, dp: 2,
+      check: function (u) { return u < 1 ? 'Enter the income you want per year. It needs to be more than $0.' : ''; }
+    },
+    weeks: {
+      id: 'h-weeks', name: 'Weeks you work per year', example: '46', money: false, dp: 0,
+      check: function (u) { return (u < 1 || u > 52) ? 'Enter a whole number of weeks from 1 to 52. A rate cannot be worked out from zero weeks.' : ''; }
+    },
+    hours: {
+      id: 'h-hours', name: 'Billable hours per week', example: '25', money: false, dp: 1,
+      check: function (u) { return (u < 10 || u > 1680) ? 'Enter billable hours per week from 1 to 168. A rate cannot be worked out from zero hours, and there are only 168 hours in a week.' : ''; }
+    },
+    costs: {
+      id: 'h-costs', name: 'Yearly business costs', example: '12000', money: true, dp: 2,
+      check: function () { return ''; }
+    }
+  };
+  var ORDER = ['income', 'weeks', 'hours', 'costs'];
+
+  var REASONS = {
+    negative: 'Enter 0 or more. Negative numbers do not work here.',
+    large: 'That number is too large for this calculator. Money amounts must be $100,000,000 or less.'
+  };
+
+  var out = document.getElementById('h-out'), gstBox = document.getElementById('h-gst');
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+
+  function show(state, nodes) {
+    out.setAttribute('data-state', state);
+    while (out.firstChild) out.removeChild(out.firstChild);
+    nodes.forEach(function (n) { out.appendChild(n); });
+  }
+
+  function row(label, value, key, cls) {
+    var d = el('div', cls), dd = el('dd', '', value);
+    d.appendChild(el('dt', '', label));
+    dd.setAttribute('data-out', key);
+    d.appendChild(dd);
+    return d;
+  }
+
+  function hoursText(tenths) {
+    return group(Math.floor(tenths / 10)) + (tenths % 10 ? '.' + (tenths % 10) : '');
+  }
+
+  function update() {
+    var vals = {}, problems = [], missing = [];
+    ORDER.forEach(function (key) {
+      var f = FIELDS[key], input = document.getElementById(f.id), p = parseUnits(input.value, f.dp, f.money), msg = '';
+      input.removeAttribute('aria-invalid');
+      if (!p.ok && p.reason === 'empty') { missing.push(f.name); return; }
+      if (!p.ok) {
+        if (p.reason === 'decimals') {
+          msg = f.dp === 0 ? 'Use a whole number of weeks, for example 46.' : (f.dp === 1 ? 'Use at most one digit after the decimal point, for example 22.5.' : 'Use dollars and cents, with at most two digits after the decimal point.');
+        } else if (p.reason === 'large' && !f.money) {
+          msg = f.check(Infinity) || 'That number is too large.';
+        } else if (p.reason === 'negative' && !f.money) {
+          msg = f.check(0);
+        } else if (p.reason === 'format') {
+          msg = 'That is not a number this calculator can read. Use digits, for example ' + f.example + '.';
+        } else {
+          msg = REASONS[p.reason];
+        }
+      } else if (f.money && p.units > MAX_MONEY) {
+        msg = REASONS.large;
+      } else {
+        msg = f.check(p.units);
+      }
+      if (msg) {
+        input.setAttribute('aria-invalid', 'true');
+        problems.push({ name: f.name, msg: msg });
+      } else {
+        vals[key] = p.units;
+      }
+    });
+
+    if (problems.length) {
+      var ul = el('ul');
+      problems.forEach(function (x) {
+        var li = el('li'), b = el('strong', '', x.name + ': ');
+        li.appendChild(b);
+        li.appendChild(document.createTextNode(x.msg));
+        ul.appendChild(li);
+      });
+      show('error', [el('p', 'err-title', 'Check these boxes to see your rate:'), ul]);
+      return;
+    }
+    if (missing.length) {
+      show('empty', [el('p', '', 'The rate appears once all four boxes are filled in. Still to do: ' + missing.join(', ').toLowerCase() + '. Type 0 for business costs if you have none.')]);
+      return;
+    }
+
+    var total = vals.income + vals.costs;
+    var hoursTenths = vals.weeks * vals.hours;
+    var rateEx = hourlyRate(total, hoursTenths);
+    var withGst = gstBox.checked;
+    var nodes = [el('p', 'kick', 'Your hourly rate'), null, el('dl', 'rows')];
+    var dl = nodes[2];
+    dl.appendChild(row('Income you want', money(vals.income), 'income'));
+    dl.appendChild(row('Yearly business costs', money(vals.costs), 'costs'));
+    dl.appendChild(row('To cover each year', money(total), 'needed'));
+    dl.appendChild(row('Billable hours per year', hoursText(hoursTenths), 'hours'));
+    if (withGst) {
+      var gst = gstOn(rateEx);
+      nodes[1] = el('p', 'big', 'Charge ' + money(rateEx) + ' an hour plus GST (' + money(rateEx + gst) + ' including GST)');
+      dl.appendChild(row('Hourly rate before GST', money(rateEx), 'rate-ex', 'total'));
+      dl.appendChild(row('GST (10%)', money(gst), 'gst'));
+      dl.appendChild(row('Hourly rate including GST', money(rateEx + gst), 'rate-inc', 'total'));
+    } else {
+      nodes[1] = el('p', 'big', 'Charge ' + money(rateEx) + ' an hour');
+      dl.appendChild(row('Hourly rate', money(rateEx), 'rate-ex', 'total'));
+    }
+    nodes[1].setAttribute('data-out', 'headline');
+    show('ok', nodes);
+  }
+
+  ORDER.forEach(function (key) {
+    document.getElementById(FIELDS[key].id).addEventListener('input', update);
+  });
+  gstBox.addEventListener('change', update);
+  window.addEventListener('pageshow', update);
+  update();
+})();
+</script>
+
+</body>
+</html>
