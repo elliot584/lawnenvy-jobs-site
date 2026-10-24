@@ -1,0 +1,542 @@
+[
+ {
+  "id": "YB-00",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Access: Yardbook's own site could not be read live on 2026-10-24",
+  "verdict": "N/A (access note)",
+  "url": "https://www.yardbook.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Every request to yardbook.com, www.yardbook.com and support.yardbook.com returned HTTP 403 with header 'cf-mitigated: challenge'; in a browser the page showed 'Performing security verification ... Verify you are human'. The check was not attempted or passed. Yardbook facts below therefore come from copies of its own pages in the Internet Archive (capture dates in each url) and from its live Google Play listing.",
+  "action": "Page note states this, and states the capture dates. The founder can open https://www.yardbook.com/pages/pricing in a normal browser to confirm the figures."
+ },
+ {
+  "id": "YB-01",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Yardbook has a free plan (Both are free to start / Both have a free tier)",
+  "verdict": "SUPPORTED",
+  "url": "https://web.archive.org/web/20260119181202/https://www.yardbook.com/pages/pricing",
+  "seen": "2026-10-24",
+  "quote": "Starter - Manage customers, schedules, and billing - FREE. (Terms: 'Basic Plan: Certain Yardbook services are provided to you free-of-charge in the basic plan.' Google Play listing, live 2026-10-24: 'we are pleased to offer our free software for running landscaping businesses!')",
+  "action": "Kept as is. Table/FAQ now name the plan: 'free Starter plan'."
+ },
+ {
+  "id": "YB-02",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Yardbook paid plans and prices: Business US$34.99/mo, Enterprise US$49.99/mo",
+  "verdict": "SUPPORTED (archived copy of Yardbook's own pricing page, 2026-01-19; live page not reachable)",
+  "url": "https://web.archive.org/web/20260119181202/https://www.yardbook.com/pages/pricing",
+  "seen": "2026-10-24",
+  "quote": "Business - Engage with customers, GPS tracking, multi-step programs - $34.99 /month. Enterprise - Quickbooks sync, no ads - $49.99 /month. 'All plans include web & desktop access, and Android mobile app access.' (The page shows '$' with no currency; Yardbook is a US company: San Mateo, CA, 'over 15,000 businesses in the US' on Google Play, so read as US dollars.) A Google Play reviewer (Sherman Wong Dixon, 2025-05-13) also says 'the paid version is only $35/month'.",
+  "action": "Replaced the old figures with these, dated to the archive in the table note. Only one archived capture of the pricing page exists, so a change between January and October 2026 cannot be ruled out."
+ },
+ {
+  "id": "YB-03",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Yardbook 'Free tier + paid add-ons, up to $60/mo' / '$0-60/mo'",
+  "verdict": "UNSUPPORTED (and 'paid add-ons' is WRONG)",
+  "url": "https://web.archive.org/web/20260119181202/https://www.yardbook.com/pages/pricing",
+  "seen": "2026-10-24",
+  "quote": "No $60 figure appears on any Yardbook page read; the top plan on the archived pricing page is $49.99/month. Yardbook sells two paid plans (Business, Enterprise), not add-ons: Terms say 'Premium Subscription Plans provide access to additional features not otherwise available under the Basic Plan' (Business Plan and Enterprise Plan).",
+  "action": "Removed. Table cell, FAQ and JSON-LD now say: free Starter plan plus two paid plans, with the two figures above. Homepage: new strings supplied in the report."
+ },
+ {
+  "id": "YB-04",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Yardbook charges its own 1% processing fee on online card payments on free accounts (on top of Stripe's fees), waived on paid plans",
+  "verdict": "SUPPORTED (archived copies of Yardbook's own terms; same wording in captures 2025-09-06, 2025-12-04, 2026-04-11, 2026-04-18, 2026-05-17)",
+  "url": "https://web.archive.org/web/20260418132314/https://www.yardbook.com/pages/tos",
+  "seen": "2026-10-24",
+  "quote": "In addition to transaction fees charged directly by Stripe, you will also be charged a processing fee by Yardbook. This fee will be automatically deducted from each online payment from your customers to you. The Yardbook processing fee for non-premium accounts is 1% of each transaction. This fee also applies to any free trial accounts. For premium paid accounts (Business Plan and Enterprise Plan), this fee is waived. (Pricing page, Business plan: 'Yardbook Processing Fee Waived'.)",
+  "action": "Added to the hero sub-headline, the starting-price cell and a new FAQ item, each dated to the archive. Founder: confirm on the live terms page before this goes live."
+ },
+ {
+  "id": "YB-05",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Fairness: Yardbook lets the business pass processing fees on to its customers",
+  "verdict": "SUPPORTED (archived copy, 2026-02-23)",
+  "url": "https://web.archive.org/web/20260223135547/https://www.yardbook.com/pages/features",
+  "seen": "2026-10-24",
+  "quote": "Credit Card Payments - Stripe Integration: Set up to receive credit card payments through Stripe, processing fees apply. ... Passing Processing Fees to Customers: Charge your processing fees to your customers when they make a payment online.",
+  "action": "Added one sentence to the new FAQ item so the page does not read as one-sided."
+ },
+ {
+  "id": "YB-06",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Headline: 'Both are free to start. Only one doesn't take a cut of how you get paid.' (vs-yardbook.html h1)",
+  "verdict": "SUPPORTED for Yardbook's half (YB-01, YB-04); Kept's half FLAGGED, left unchanged",
+  "url": "https://web.archive.org/web/20260418132314/https://www.yardbook.com/pages/tos",
+  "seen": "2026-10-24",
+  "quote": "Yardbook half: 1% Yardbook fee on free accounts (YB-04). Kept half: api/billing.js creates Pay now charges as Stripe direct charges on the business's own account and no application_fee is set anywhere in the jobs-app, so Kept itself takes no cut; but Pay now is dormant (no business has Stripe connected) and 'Pay now / online or card payments' is on the held list in marketing-kit/social-bank/APP-CLAIMS.md.",
+  "action": "h1 left exactly as it was. See 'Kept claims to flag' in the report: the founder should decide whether to keep it while Pay now is dormant."
+ },
+ {
+  "id": "YB-07",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Meta description: 'Both have a free tier - Kept covers more trades and doesn't route payments through a markup.'",
+  "verdict": "SUPPORTED for Yardbook's half; Kept half FLAGGED (same reason as YB-06)",
+  "url": "https://web.archive.org/web/20260418132314/https://www.yardbook.com/pages/tos",
+  "seen": "2026-10-24",
+  "quote": "See YB-04 (Yardbook's 1% fee) and YB-06 (Kept's half).",
+  "action": "Left unchanged; flagged."
+ },
+ {
+  "id": "YB-08",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "'Yardbook's free tier is well known in lawn care' (hero sub-headline)",
+  "verdict": "SUPPORTED in reworded form",
+  "url": "https://play.google.com/store/apps/details?id=com.app.yardbook",
+  "seen": "2026-10-24",
+  "quote": "Google Play listing, live 2026-10-24: '100K+ Downloads'; 'Updated on 20 Sept 2026'.",
+  "action": "Reworded to 'popular in lawn care (its Android app lists 100K+ downloads)'."
+ },
+ {
+  "id": "YB-09",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Trade coverage: 'Lawn care only, limited beyond solo/basic use'",
+  "verdict": "MISLEADING",
+  "url": "https://web.archive.org/web/20260223135547/https://www.yardbook.com/pages/features",
+  "seen": "2026-10-24",
+  "quote": "Home page: 'RUN AND GROW YOUR LANDSCAPING BUSINESS'. Pricing page (Starter plan list) includes 'Snow Removal'; features page has 'Snow Removal', 'Chemical Tracking', 'Employees & Crews', 'Time Clock', 'Equipment Management'. PARAPHRASE: Capterra reviewer Paul B. (2023-02-07) says it 'has the ability to function for more than just landscaping businesses. We use it for our Handyman business.'",
+  "action": "Replaced with 'Aimed at landscaping and lawn care; its features page also lists snow removal and chemical tracking'. 'Limited beyond solo/basic use' removed (see YB-10)."
+ },
+ {
+  "id": "YB-10",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "'Limited past solo/basic use' / 'reviewers note it gets limited quickly once a business grows past solo/basic use'",
+  "verdict": "UNSUPPORTED (one review each way)",
+  "url": "https://www.capterra.com/p/207272/Yardbook/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: of the ten most recent Capterra reviews, Ryan D. (2021-12-16) says 'our company got a little too large for it and started to outgrow it' (while calling it 'incredible' for solo or one or two crews); Paul B. (2023-02-07) says it 'was able to grow with us as our revenue grew'; Sean Q. (2025-11-25) wants 'an app that crews can look at'. None of the 20 Google Play reviews read says it was outgrown.",
+  "action": "Removed. No replacement claim about growth."
+ },
+ {
+  "id": "YB-11",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Soil/turf reno calculator - Yardbook: 'Not a core feature'",
+  "verdict": "WRONG",
+  "url": "https://play.google.com/store/apps/details?id=com.app.yardbook",
+  "seen": "2026-10-24",
+  "quote": "Google Play listing (Yardbook's own, live 2026-10-24): 'Calculators - Mulch, Top Soil, Gravel - Fertilizer - Plant'. Features page (archived 2026-02-23): 'Landscaping Calculators - 5 New Calculators'; 'Track Lawn Size and Mulch Quantity'. Google Play reviewers mention 'measuring mulch' (Benita Touchet, 2026-04-20) and 'the fertilizer calculator' (NO SWEAT, 2021-04-27).",
+  "action": "Replaced with: has mulch, top soil, gravel, fertiliser and plant calculators in its Android app (Google Play listing, October 2026). Kept's 'Built in' untouched."
+ },
+ {
+  "id": "YB-12",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Route optimisation - Yardbook: 'Not core features'",
+  "verdict": "WRONG",
+  "url": "https://web.archive.org/web/20260223135547/https://www.yardbook.com/pages/features",
+  "seen": "2026-10-24",
+  "quote": "Pricing page, Starter (free) plan list: 'Routing'. Features page: 'Routing & Optimization - Create Route Sheets ... Optimize Routes: Let Yardbook find the shortest route for you. Optimize Routes XL (beta): Improved mapping API and support up to 100 stops for route optimization.' PARAPHRASE: Capterra Sean Q. (2025-11-25) 'Helped with route planning and maximizing efficiency'; Google Play Sherman Wong Dixon (2025-05-13) lists 'optimize routes'.",
+  "action": "Replaced with: routing is on its free plan and its features page lists 'Optimize Routes' (shortest route)."
+ },
+ {
+  "id": "YB-13",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Weather blockout - Yardbook: 'Not core features'",
+  "verdict": "UNSUPPORTED as an absence claim; reworded to what the page shows",
+  "url": "https://web.archive.org/web/20260223135547/https://www.yardbook.com/pages/features",
+  "seen": "2026-10-24",
+  "quote": "No weather blockout appears on the archived features page. Weather items that do appear: 'Auto Weather: Automatically capture weather information based on your GPS location' (chemical records) and 'Push Out Jobs / Batch Reschedule: Reschedule multiple jobs at once'.",
+  "action": "Reworded to: 'No weather blockout is listed on that page (archived February 2026)'."
+ },
+ {
+  "id": "YB-14",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Kept column of the route/weather row: 'Included on Team plan and above'",
+  "verdict": "KEPT-FLAG (left unchanged)",
+  "url": "index.html (this repo), pricing section",
+  "seen": "2026-10-24",
+  "quote": "Homepage price cards: Solo lists 'Weather blockout'; Team lists 'Route optimisation'. So 'Team plan and above' is right for route optimisation but not for weather blockout.",
+  "action": "Left unchanged; flagged in the report."
+ },
+ {
+  "id": "YB-15",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Note: 'Competitor pricing researched July 2026, re-verified August 2026, from Yardbook's public pricing page'",
+  "verdict": "UNVERIFIABLE today",
+  "url": "https://www.yardbook.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "See YB-00. The live pricing page could not be opened; archived copies are dated 2026-01-19 (pricing), 2026-02-23 (features), 2026-04-18 and 2026-05-17 (terms).",
+  "action": "Replaced with a note that names the archive dates, the Google Play listing date and the currency assumption; no 're-verified October 2026' claim for Yardbook."
+ },
+ {
+  "id": "YB-16",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "FAQ: 'Does Kept only work for lawn care like Yardbook?' (implies Yardbook is lawn-care-only)",
+  "verdict": "MISLEADING (see YB-09)",
+  "url": "https://web.archive.org/web/20260223135547/https://www.yardbook.com/pages/features",
+  "seen": "2026-10-24",
+  "quote": "See YB-09.",
+  "action": "Question reworded to 'Does Kept only work for lawn care?'; Kept's answer untouched."
+ },
+ {
+  "id": "YB-17",
+  "page": "vs-yardbook.html",
+  "claim": "FAQ: 'Yardbook's free tier sits alongside paid add-ons'",
+  "verdict": "WRONG (see YB-03)",
+  "url": "https://web.archive.org/web/20260418132314/https://www.yardbook.com/pages/tos",
+  "seen": "2026-10-24",
+  "quote": "See YB-03.",
+  "action": "Replaced with the plan names and figures (HTML and JSON-LD)."
+ },
+ {
+  "id": "YB-18",
+  "page": "vs-yardbook.html",
+  "claim": "New FAQ item: 'Does Yardbook charge fees on card payments?'",
+  "verdict": "SUPPORTED (YB-04, YB-05)",
+  "url": "https://web.archive.org/web/20260418132314/https://www.yardbook.com/pages/tos",
+  "seen": "2026-10-24",
+  "quote": "See YB-04 and YB-05.",
+  "action": "Added to HTML and JSON-LD, dated 'as archived in April and May 2026'."
+ },
+ {
+  "id": "YB-19",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Review claim: 'The most-cited gripe from reviewers is expensive third-party payment processing fees' (also homepage card)",
+  "verdict": "MISLEADING (two of 30 reviews read)",
+  "url": "https://www.capterra.com/p/207272/Yardbook/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE, Capterra (ten most recent of 14, read 2026-10-24): matt C. (2023-04-14, 5 stars) cons: 'the payment processing company they use for online payments is very expensive..'; Ryan D. (2021-12-16, 5 stars): 'We used the paid version to save on processing credit card fees and it was well worth it overall!'. The other eight do not mention it; Paul B. (2023-02-07) calls the Stripe integration 'a breeze'. Google Play, first 20 under 'Most relevant': none criticises processing fees (Sonic Broadcasting, 2021-08-05: 'Get the premium if you are doing a bunch of transactions'). Trustpilot: no Yardbook reviews.",
+  "action": "Replaced with a counted statement: 'two of the 30 reviews we read (Capterra, December 2021 and April 2023)'; 'most-cited' removed."
+ },
+ {
+  "id": "YB-20",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Capterra rating for Yardbook: 4.4 from 14 reviews",
+  "verdict": "SUPPORTED",
+  "url": "https://www.capterra.com/p/207272/Yardbook/",
+  "seen": "2026-10-24",
+  "quote": "'Yardbook 4.4 (14)', 'Last updated on October 19, 2026'; breakdown 5 stars (10), 4 (2), 3 (1), 2 (0), 1 (1). Reviews page: 'Showing 1-14 of 14 Reviews' (only the first two are shown without signing in, so the ten read are those on the product page, 'Sorted by most recent': Sean Q. 2025-11-25, Siewart W. 2025-04-15, Jeremy H. 2024-03-09, Dana B. 2023-10-16, matt C. 2023-04-14, Paul B. 2023-02-07, Ryan D. 2021-12-16, Chris J. 2021-07-13, Patrick B. 2021-02-19, chris J. 2020-09-17). The four older reviews were not readable without signing in.",
+  "action": "Used on the page ('4.4 out of 5 from 14 reviews')."
+ },
+ {
+  "id": "YB-21",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Google Play rating for Yardbook: 4.6 from about 1,870 reviews; 100K+ downloads",
+  "verdict": "SUPPORTED",
+  "url": "https://play.google.com/store/apps/details?id=com.app.yardbook",
+  "seen": "2026-10-24",
+  "quote": "Play page, US store, 2026-10-24: '4.6 1.87K reviews'; '100K+ Downloads'.",
+  "action": "Used on the page ('4.6 from about 1,870')."
+ },
+ {
+  "id": "YB-22",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "'Of the ten most recent Capterra reviews we read, seven gave 5 stars and six mention the free plan or low cost as a plus'",
+  "verdict": "SUPPORTED (counts made by me)",
+  "url": "https://www.capterra.com/p/207272/Yardbook/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: 5 stars: Jeremy H., matt C., Paul B., Ryan D., Chris J. (2021-07-13), Patrick B., chris J. (2020-09-17) = 7; 4 stars: Sean Q., Dana B.; 1 star: Siewart W. (account deleted, no reply from staff). Free/low cost as a plus: Sean Q. ('Free system that was a great way to start business'), Jeremy H. ('It's free to use'), matt C. ('Most of yardbook's features are free'), Paul B. ('great software for us on the free tier'), Ryan D. ('for free software nothing can compare'), Chris J. 2021 (reason for choosing: 'Free') = 6.",
+  "action": "Used on the page."
+ },
+ {
+  "id": "YB-23",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "'Four of the 20 Google Play reviews we read praise the free version'",
+  "verdict": "SUPPORTED (count made by me; first 20 under 'Most relevant', read 2026-10-24)",
+  "url": "https://play.google.com/store/apps/details?id=com.app.yardbook",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: Katrina Joll (2023-07-12) 'best and most inclusive app that's actually free'; D A (2026-05-06) 'I love that it's free'; Sherman Wong Dixon (2025-05-13) 'The free version works really well'; Bradley R (2026-04-01) 'using the free version for over a year in a half now and I love it'.",
+  "action": "Used on the page."
+ },
+ {
+  "id": "YB-24",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "'Seven of those 20 Google Play reviews say the Android app does less than the website'",
+  "verdict": "SUPPORTED (count made by me)",
+  "url": "https://play.google.com/store/apps/details?id=com.app.yardbook",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: Brigitte Norby (2024-03-20) 'missing some key features compared to the desktop/web version'; Ryan Mueller (2022-02-08) wants to 'add/edit customers and recurring jobs from the app versus the website'; Sonic Broadcasting (2021-08-05) 'Can't set up jobs from the app. Have to do it through the website'; Emilio Flores (2020-06-28) 'Not a whole lot you can do through the app'; NO SWEAT (2021-04-27) 'the app is a very cut down version'; A Google user (2019-08-20) wants to do 'more than just complete jobs or cancel them'; Benita Touchet (2026-04-20) 'You can't access all the features from the app'.",
+  "action": "Used on the page."
+ },
+ {
+  "id": "YB-25",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "'Two say the app login stopped working'",
+  "verdict": "SUPPORTED (count made by me)",
+  "url": "https://play.google.com/store/apps/details?id=com.app.yardbook",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: Jack Pleeb (2025-04-03) 'Login hasn't worked in over a month'; Mr. Smith (2026-06-23) 'App Login not working all of a sudden'. (A third, Heather Krueger 2022-09-29, says she has to sign in every time; not counted.)",
+  "action": "Used on the page."
+ },
+ {
+  "id": "YB-26",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "'Yardbook has no reviews on Trustpilot'",
+  "verdict": "SUPPORTED",
+  "url": "https://www.trustpilot.com/review/yardbook.com",
+  "seen": "2026-10-24",
+  "quote": "Page title: 'Landscaping Business Software Reviews | Be the first to review yardbook.com'.",
+  "action": "Used in the review note."
+ },
+ {
+  "id": "YB-27",
+  "page": "index.html",
+  "claim": "Generic homepage paragraph 'Why not just use the free one?': 'the ones that stay free long-term make it back some other way: ads, upsells, or your data being the product'",
+  "verdict": "OBSERVATION (does not name Yardbook; not edited)",
+  "url": "https://web.archive.org/web/20260517090807/https://www.yardbook.com/",
+  "seen": "2026-10-24",
+  "quote": "Yardbook's privacy statement (archived 2026-05-17): 'Yardbook does not sell, rent or lease its customer lists to third parties.' and 'Yardbook does not sell, trade, or otherwise transfer to outside parties your PII.' Its pricing page lists 'no ads' only on the Enterprise plan. So 'your data being the product' is not supported for Yardbook if a reader applies the paragraph to it.",
+  "action": "None (index.html not edited). Mentioned in the report so the lead can decide."
+ },
+ {
+  "id": "ZM-01",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "ZenMaid plans: Starter US$19/mo (up to 40 appointments a month), Pro US$39, Pro Max US$49; SMS not included",
+  "verdict": "SUPPORTED (ZenMaid's own pricing page, read live 2026-10-24)",
+  "url": "https://get.zenmaid.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "ZenMaid Starter $19 / month *SMS charges not included - Up to 40 appointments per month; ZenMaid Pro $39 / month; ZenMaid Pro Max $49 / month. (The 'COMING SOON' badge on that page sits next to the Pro card's 'Quickbooks integration' feature, not on a plan.)",
+  "action": "Replaced '$19-109+/mo' with these figures."
+ },
+ {
+  "id": "ZM-02",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "ZenMaid '$19-109+/mo'",
+  "verdict": "MISLEADING / OUTDATED",
+  "url": "https://get.zenmaid.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "$19 is Starter. $109 is not on ZenMaid's pricing page; it equals Pro with five extra users (39 + 5 x 14). The page shows '$' with no currency, and ZenMaid's help centre says 'All ZenMaid charges are billed in USD', so an Australian reader would take $19-109 for AUD.",
+  "action": "Replaced; 'US$' used throughout."
+ },
+ {
+  "id": "ZM-03",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "ZenMaid charges per user on every plan: US$4 (Starter), US$14 (Pro), US$24 (Pro Max) per user per month; only the owner is included",
+  "verdict": "SUPPORTED (ZenMaid's own help centre, dated 2026-06-04, read live 2026-10-24)",
+  "url": "https://zenmaid.com/answers/en/articles/2423512-how-much-does-zenmaid-cost",
+  "seen": "2026-10-24",
+  "quote": "Important: All ZenMaid charges are billed in USD. Only the Owner profile is included in the base plan. All other profiles have an additional charge. Starter Plan - $19/month ... Additional users (cleaner, contractor, office manager, etc): $4 per user/month. Pro Plan - $39/month ... $14 per user/month. Pro Max Plan - $49/month ... $24 per user/month. Only active roles are charged.",
+  "action": "Used in the lede, the table, the FAQ and the JSON-LD."
+ },
+ {
+  "id": "ZM-04",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "ZenMaid's own price calculator: Pro is US$95 a month with four team members besides the owner",
+  "verdict": "SUPPORTED (read live 2026-10-24 by moving the slider on ZenMaid's pricing page; nothing submitted)",
+  "url": "https://get.zenmaid.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "'How many cleaners and office managers do you have on your team?' Starter/Pro/Pro Max: 0 in total $19/$39/$49; 1 in total $23/$53/$73; 2 in total $27/$67/$97; 4 in total $35/$95/$145; 10 in total $59/$179/$289. These match base price + users x fee in ZM-03 at every point.",
+  "action": "Used for the 'US$95' example in the pricing-model cell."
+ },
+ {
+  "id": "ZM-05",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "ZenMaid 'Flat + per-seat on Pro tier'",
+  "verdict": "WRONG",
+  "url": "https://zenmaid.com/answers/en/articles/2423512-how-much-does-zenmaid-cost",
+  "seen": "2026-10-24",
+  "quote": "The per-user fee applies on all three plans (US$4 / US$14 / US$24), not only Pro. See ZM-03, ZM-04.",
+  "action": "Replaced with: base price by plan, plus a monthly fee per user on every plan."
+ },
+ {
+  "id": "ZM-06",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "'ZenMaid's per-seat Pro pricing climbs the moment your team passes 2-3 staff' (lede) / 'the moment a team grows past 2-3 staff' (homepage and review card)",
+  "verdict": "WRONG",
+  "url": "https://get.zenmaid.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "ZenMaid's calculator adds the fee from the first person besides the owner: 1 in total = Starter $23, Pro $53, Pro Max $73 (base $19/$39/$49). There is no 2-3 staff threshold.",
+  "action": "Lede rewritten to state the per-user fees as ZenMaid lists them. Homepage review card replaced (strings in the report)."
+ },
+ {
+  "id": "ZM-07",
+  "page": "vs-zenmaid.html",
+  "claim": "Currency and tax: prices are in US dollars; ZenMaid's pages do not say whether tax is added",
+  "verdict": "SUPPORTED",
+  "url": "https://zenmaid.com/answers/en/articles/2423512-how-much-does-zenmaid-cost",
+  "seen": "2026-10-24",
+  "quote": "'All ZenMaid charges are billed in USD.' Neither the pricing page nor the cost article mentions tax; tax rates are something the customer sets up for their own invoices (help article 'How to Set Up Sales Tax for Appointments', 2026-05-14: 'Settings and select Taxes under the Client Billing section ... Add another primary tax rate').",
+  "action": "Table note says so. 'AU-native GST' (Kept's phrase) left unchanged; see Kept flags."
+ },
+ {
+  "id": "ZM-08",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "SMS: 'Texts are extra'",
+  "verdict": "SUPPORTED",
+  "url": "https://zenmaid.com/answers/en/articles/2423512-how-much-does-zenmaid-cost",
+  "seen": "2026-10-24",
+  "quote": "'SMS bundles start at $14 for 125 messages, with discounts available for higher usage.' Pricing page: '*SMS charges not included'.",
+  "action": "Added to the starting-price cell."
+ },
+ {
+  "id": "ZM-09",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "ZenMaid 'No published free tier'",
+  "verdict": "SUPPORTED",
+  "url": "https://get.zenmaid.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Three paid plans, each with 'Try Free for 14 days'; FAQ: 'Is the trial really free? Yes, when you sign up today you'll have 14 days free access ... No hidden fees or surprise bills.'; 'Is there a contract or long-term commitment? No, you can try any of ZenMaid's plans on a month-to-month agreement'.",
+  "action": "Reworded to 'No free plan; 14-day free trial'."
+ },
+ {
+  "id": "ZM-10",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "ZenMaid 'Cleaning only'",
+  "verdict": "MISLEADING (reworded)",
+  "url": "https://get.zenmaid.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Pricing page title: 'Maid Service Owners Love How Affordable ZenMaid Is'; home page: '#1 maid service software', 'Designed by maid service owners', 'We exist to help maid service owners simplify, automate, and grow their cleaning business.' Nothing read says it cannot be used for other trades, and nothing says it can.",
+  "action": "Replaced with 'Built for maid services and cleaning businesses'. The card line 'ZenMaid doesn't come with it' removed."
+ },
+ {
+  "id": "ZM-11",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "Bond-clean calculator - ZenMaid: 'Not a core feature'",
+  "verdict": "MISLEADING",
+  "url": "https://zenmaid.com/answers/en/articles/3242732-how-to-price-your-booking-form",
+  "seen": "2026-10-24",
+  "quote": "Help centre 'How to Price Your Booking Form' (2026-09-10): 'In the Form tab, locate sliders for Bedrooms, Bathrooms, Square Footage, and Man-Hours.' 'Extras are flat-fee items.' Guide on ZenMaid's own magazine (updated 2026-08-26): 'The default form includes basic service types (standard, deep, move-in/out)'; 'ZenMaid offers several pricing methods: Base price + additional rooms/bathrooms; Square footage pricing; Flat rate per service type'. Pricing page: booking forms listed under Pro ('High-converting booking forms for your website (with ZenMaid branding)') and Pro Max ('with your own branding'), not under Starter.",
+  "action": "Replaced with what ZenMaid's booking form does. Kept's 'Built in' untouched. FAQ question 'like ZenMaid' removed (ZM-19)."
+ },
+ {
+  "id": "ZM-12",
+  "page": "vs-zenmaid.html",
+  "claim": "Headline: 'Priced by seat band, not by every cleaner you add.'",
+  "verdict": "SUPPORTED (ZenMaid half: ZM-03; Kept half checked against the homepage price cards)",
+  "url": "index.html (this repo), pricing section",
+  "seen": "2026-10-24",
+  "quote": "Homepage price cards: Free/Solo '1 person', Crew '2-4 people', Team '5-10 people', Operation '11+ people ... Priced individually for your team size' (from $229). ZenMaid: every user besides the owner is charged (ZM-03).",
+  "action": "Left unchanged. Minor flag: 'price only changes at seat-band thresholds' is not strictly true inside the 11+ band, which is 'priced individually'."
+ },
+ {
+  "id": "ZM-13",
+  "page": "vs-zenmaid.html",
+  "claim": "Meta description: 'pricing that doesn't balloon as your team grows, a bond-clean calculator built in, and AU-native GST'",
+  "verdict": "UNSUPPORTED as a comparison (and 'AU-native GST' is a Kept claim)",
+  "url": "https://zenmaid.com/answers/en/articles/2423512-how-much-does-zenmaid-cost",
+  "seen": "2026-10-24",
+  "quote": "ZenMaid does charge per extra user (ZM-03), has booking-form pricing (ZM-11) and lets the customer set tax rates (ZM-07), so the three phrases cannot be read as things ZenMaid lacks.",
+  "action": "Rewritten: 'ZenMaid charges for every extra user on every plan, Kept is priced by seat band, with a bond-clean calculator built in and AU-native GST'. Kept's own phrases kept as they were; flagged."
+ },
+ {
+  "id": "ZM-14",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "Note: 'Competitor pricing researched July 2026, re-verified August 2026, from ZenMaid's public pricing page'",
+  "verdict": "OUTDATED (now re-verified)",
+  "url": "https://get.zenmaid.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Pricing page, calculator and help-centre article all read on 2026-10-24.",
+  "action": "Replaced with: re-verified on 24 October 2026 on its pricing page (incl. calculator) and the help-centre article (June 2026); billed in USD; tax not stated."
+ },
+ {
+  "id": "ZM-15",
+  "page": "vs-zenmaid.html",
+  "claim": "FAQ: 'Does Kept's price go up per cleaner like ZenMaid's?'",
+  "verdict": "SUPPORTED (ZenMaid half, ZM-03)",
+  "url": "https://zenmaid.com/answers/en/articles/2423512-how-much-does-zenmaid-cost",
+  "seen": "2026-10-24",
+  "quote": "See ZM-03.",
+  "action": "Question and Kept's answer unchanged; one sentence added with ZenMaid's per-user fees (HTML and JSON-LD)."
+ },
+ {
+  "id": "ZM-16",
+  "page": "vs-zenmaid.html",
+  "claim": "FAQ: 'Does Kept have a bond-clean calculator like ZenMaid?'",
+  "verdict": "MISLEADING ('like ZenMaid'; see ZM-11)",
+  "url": "https://zenmaid.com/answers/en/articles/3242732-how-to-price-your-booking-form",
+  "seen": "2026-10-24",
+  "quote": "See ZM-11.",
+  "action": "Question reworded to 'Does Kept have a bond-clean calculator?'; Kept's answer unchanged (HTML and JSON-LD)."
+ },
+ {
+  "id": "ZM-17",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "Review claim: 'Reviewers note the price balloons past the sticker figure the moment a team grows past 2-3 staff' / 'the most-cited complaint'",
+  "verdict": "UNSUPPORTED (no such pattern in the reviews read)",
+  "url": "https://www.trustpilot.com/review/zenmaid.com",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE, cost mentions in everything read: Trustpilot (all 9): Garcia LN (2020-07-22) 'it would cost £80 a month for four staff, I decided against it'; Mrs Weintrob (2022-12-20) disputes a bill 8 months after cancelling a trial. Capterra (ten most recent): no complaint about price; three praise it (see ZM-20). App Store 'ZenMaid Legacy' (26 written reviews): Denisse wullschleger (2025-09-23) 'My bill was suddenly increased by $60'; Xoxo1923 (2026-01-28) 'my bill increased unexpectedly'; WWM2014 (2020-05-16) 'who would paid 50.00 a month for this'; Lindaclara (2023-05-20) says $49 a month was taken for something never used. None says the rise starts at 2-3 staff.",
+  "action": "Replaced with counted statements (ZM-18 to ZM-22) and the plain per-user fee facts (ZM-03); 'most-cited' and '2-3 staff' removed."
+ },
+ {
+  "id": "ZM-18",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "Capterra rating for ZenMaid: 4.7 from 205 reviews",
+  "verdict": "SUPPORTED",
+  "url": "https://www.capterra.com/p/133875/ZenMaid-Software/",
+  "seen": "2026-10-24",
+  "quote": "'ZenMaid 4.7 (205)', 'Last updated October 21st, 2026'; breakdown 5 stars (162), 4 (32), 3 (5), 2 (2), 1 (4). Capterra's own AI summary (updated October 2026): 'Positive feedback centers around its ease of use, affordability, and business-focused features ... Some key downsides are occasional software glitches, limited mobile app capabilities, and constraints in text and email customization.'",
+  "action": "Used on the page and the homepage card."
+ },
+ {
+  "id": "ZM-19",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "'Nine of the ten most recent Capterra reviews (October 2025 to April 2026) gave 5 stars, praising ease of use and support'",
+  "verdict": "SUPPORTED (counts made by me; the full list beyond these ten is behind a sign-in on Capterra)",
+  "url": "https://www.capterra.com/p/133875/ZenMaid-Software/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: Fary and Armando B. 2026-04-23 (5), Renee H. 2026-02-09 (5), Liz D. 2025-12-09 (5), Stefan D. 2025-12-07 (5), Martha P. 2025-11-21 (5), Suyen R. 2025-11-12 (5), Anonymous User 2025-11-11 (4; moved to Jobber for its features), Michael H. 2025-11-10 (5), April V. 2025-10-13 (5), Romana Z. 2025-10-13 (5). Support praised by five (Fary and Armando B., Liz D., Martha P., Suyen R., April V.); ease of use by Michael H., Romana Z., Suyen R., Martha P., Fary and Armando B.",
+  "action": "Used on the page."
+ },
+ {
+  "id": "ZM-20",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "'Three say the price is fair or good value, and three mention occasional glitches'",
+  "verdict": "SUPPORTED (counts made by me)",
+  "url": "https://www.capterra.com/p/133875/ZenMaid-Software/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: price: Fary and Armando B. 'the price is just right ... The competitors where way higher than ZM'; Suyen R. 'They do more then other cleaning software for their money'; Romana Z. 'ZenMaid fits my business the best in terms of features and price'. Glitches: Fary and Armando B. ('it gets very slow and even crash' after updates), Renee H. ('Once in a while, there would be a glitch'), Michael H. ('Sometimes there are glitches'). Also Romana Z.: invoicing and employee-hours tracking 'aren't fully compatible with our local accounting rules' (one non-US reviewer).",
+  "action": "Used on the page."
+ },
+ {
+  "id": "ZM-21",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "'Trustpilot shows 2.1 from 9 reviews, seven of them 1-star, mostly about support, bugs and features'",
+  "verdict": "SUPPORTED (all 9 read)",
+  "url": "https://www.trustpilot.com/review/zenmaid.com",
+  "seen": "2026-10-24",
+  "quote": "'ZenMaid.com Software ... 2.1 Poor 9 reviews'; 5-star 11%, 4-star 11%, 1-star 78%. PARAPHRASE of the seven 1-star reviews: app test (2026-06-16) 'they mislead and features are terrible'; customer (2026-06-16) 'lack of support ... bugs everywhere'; Lisa Graham (2026-06-16) 'Very dated and old software ... lack features and customer support'; lisa eckert (2026-01-11) 'Their booking form trashed my website ... No customer support'; Jaydynce Vitrano (2024-03-24) not about the product; Mrs Weintrob (2022-12-20) billing dispute after a trial; Garcia LN (2020-07-22) cost and rudeness. Positive: Esat (2019-10-21) 'Helpful customer service and excellent software, but too many emails'; Jan Maskew (2019-08-16) 'Best software!'.",
+  "action": "Used on the page. Support/bugs/features = 4 of the 7, so 'mostly' holds."
+ },
+ {
+  "id": "ZM-22",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "'Two reviews of ZenMaid's iPhone app (September 2025 and January 2026) say their bill rose unexpectedly'",
+  "verdict": "SUPPORTED (all 26 written reviews read via Apple's public customer-reviews feed)",
+  "url": "https://apps.apple.com/us/app/zenmaid-legacy/id1357534769",
+  "seen": "2026-10-24",
+  "quote": "Denisse wullschleger, 2025-09-23, 1 star: 'My bill was suddenly increased by $60 just because I asked several times how to reactivate a worker'. Xoxo1923, 2026-01-28, 1 star: 'my bill increased unexpectedly. Being charged extra simply for services which were included before.' The App Store lists ZenMaid's iPhone app as 'ZenMaid Legacy' (seller ZenMaid INC, version 7.25.1 updated 2026-08-11, 78 ratings, 3.3 average); it is the current app, only the listing name says 'Legacy'. Feed: https://itunes.apple.com/us/rss/customerreviews/page=1/id=1357534769/sortby=mostrecent/json",
+  "action": "Used on the page ('ZenMaid's iPhone app'; the note says it is listed as 'ZenMaid Legacy')."
+ },
+ {
+  "id": "ZM-23",
+  "page": "vs-zenmaid.html + index.html",
+  "claim": "'Three of those ten Capterra reviews say they like that ZenMaid is made just for cleaning companies'",
+  "verdict": "SUPPORTED (count made by me)",
+  "url": "https://www.capterra.com/p/133875/ZenMaid-Software/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: Renee H. 2026-02-09 'a platform specifically designed for cleaning companies'; Liz D. 2025-12-09 'I love that it is specifically for the cleaning business industry!'; Romana Z. 2025-10-13 'I love that ZenMaid is made just for cleaning businesses'.",
+  "action": "Used for the third card. The card's second sentence ('Kept already covers 20+ trades in the same app') is Kept's original wording, unchanged."
+ },
+ {
+  "id": "ZM-24",
+  "page": "index.html",
+  "claim": "Reviews heading and note on the homepage: 'The recurring complaints, straight from Capterra, G2 and Trustpilot.' / 'Complaint themes drawn from public reviews on Capterra, G2 and Trustpilot (Aug 2026)'",
+  "verdict": "UNSUPPORTED for Yardbook and ZenMaid",
+  "url": "https://www.capterra.com/p/133875/ZenMaid-Software/",
+  "seen": "2026-10-24",
+  "quote": "G2 was not read (it blocks automated access). Sources actually read for these two: Capterra, Trustpilot, Google Play, Apple App Store. 'Recurring' needs a count and the counts are small (YB-19, ZM-17).",
+  "action": "index.html not edited; suggested wording is in the report. Shared with the other agent's rows, so the lead should settle it after merging."
+ },
+ {
+  "id": "KP-01",
+  "page": "vs-yardbook.html + index.html",
+  "claim": "Hero sub-headline, Kept half: 'Kept's Free plan has no forced payment markup'",
+  "verdict": "KEPT-FLAG (left unchanged)",
+  "url": "marketing-kit/social-bank/APP-CLAIMS.md ('Do NOT say')",
+  "seen": "2026-10-24",
+  "quote": "'Pay now / online or card payments / payment links / tap to pay. Not live. Nobody has Stripe connected.' The sentence reads as if Kept has a payments feature. (Code check: no application_fee is set in the jobs-app, so a Kept fee would not exist even when Pay now goes live.)",
+  "action": "Left exactly as it was; flagged for the founder."
+ },
+ {
+  "id": "KP-02",
+  "page": "vs-yardbook.html + vs-zenmaid.html",
+  "claim": "Kept column: 'Free, then $35-$229+/mo AUD + GST', 'Permanent - 15 clients & 15 jobs/quotes a month, no card required', 'Flat, by seat band (1, 2-4, 5-10, 11+)'",
+  "verdict": "CONSISTENT with the homepage (not edited)",
+  "url": "index.html (this repo), pricing section",
+  "seen": "2026-10-24",
+  "quote": "Homepage price cards: Free $0 (1 person, up to 15 clients, up to 15 jobs/quotes a month, 'No card, no time limit'); Solo $35 + GST (1 person); Crew $69 (2-4); Team $119 (5-10); Operation 'From $229' (11+, 'Priced individually for your team size').",
+  "action": "None."
+ }
+]
