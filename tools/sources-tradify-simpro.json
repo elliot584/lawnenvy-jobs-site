@@ -1,0 +1,372 @@
+[
+ {
+  "id": "TR-01",
+  "page": "index.html",
+  "claim": "Line 645, Tradify 'Starting price' cell: \"$47–61/user/mo\" (no currency shown; the table's convention is AUD)",
+  "verdict": "WRONG",
+  "url": "https://www.tradifyhq.com/au/pricing",
+  "seen": "2026-10-24",
+  "quote": "Lite \"$48 AUD per user/month. Ex GST.\"  Pro \"$52 AUD per user/month. Ex GST.\"  Plus \"$62 AUD per user/month. Ex GST.\"  Custom: \"Price by request\". Trial: \"Free for 14 Days!\". Add-ons: Instant Website $19 per month; SMS $0.20 per message. No promotion, annual price or minimum number of users on the page.",
+  "action": "Replace with \"$48–62/user/mo + GST\" (E1) and say in the table note that Tradify's prices are Australian dollars per user per month excluding GST (E3)."
+ },
+ {
+  "id": "TR-02",
+  "page": "index.html",
+  "claim": "Where \"$47–61\" comes from: Tradify's global (US-dollar) pricing page, which an Australian visitor never sees",
+  "verdict": "WRONG",
+  "url": "https://www.tradifyhq.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Lite \"$47 USD per user/month.\"  Pro \"$51 USD per user/month.\"  Plus \"$61 USD per user/month.\"  No tax wording. Read twice on 2026-10-24 through the fetch tool (US-side fetcher); from an Australian IP the same URL redirects to /au/pricing. Lite-to-Plus = $47-$61, which is exactly the site's range. An archived copy of this global page dated 2026-08-13 (https://web.archive.org/web/20260813221035/https://www.tradifyhq.com/pricing) shows the same Lite $47 USD, Pro $51 USD, Plus $61 USD, i.e. what was on the page in the month the site says it re-verified its prices.",
+  "action": "None. Do not present USD figures in an AUD table."
+ },
+ {
+  "id": "TR-03",
+  "page": "index.html",
+  "claim": "Was \"$47–61\" ever the Australian price (would make it OUTDATED rather than WRONG)?",
+  "verdict": "WRONG",
+  "url": "https://web.archive.org/web/20250807154659/https://www.tradifyhq.com/au/pricing",
+  "seen": "2026-10-24",
+  "quote": "Archived AU page 2025-08-07: Lite $48 AUD, Pro $52 AUD, Plus $62 AUD, each \"Ex GST.\" Same figures in the copies dated 2025-11-12 (…/web/20251112164928/…), 2026-01-14 (…/20260114041016/…), 2026-03-16 (…/20260316053014/…) and 2026-09-16 (…/20260916124858/…). So the AU price has been $48/$52/$62 for at least 14 months.",
+  "action": "None. Archive copies dated June, July and 23 October 2026 (AU) and July 2026 (global) were not read: the Internet Archive answered HTTP 429."
+ },
+ {
+  "id": "TR-04",
+  "page": "index.html",
+  "claim": "Tradify prices in other regions (for anyone quoting a non-AU figure)",
+  "verdict": "SUPPORTED",
+  "url": "https://www.tradifyhq.com/nz/pricing",
+  "seen": "2026-10-24",
+  "quote": "NZ: NZ$48 / NZ$52 / NZ$62 per user/month, Ex GST (/nz/pricing). UK: £34 / £37 / £44 (/uk/pricing). Canada: C$62 / C$68 / C$80 (/ca/pricing). Ireland: €38 / €42 / €49 (/ie/pricing). South Africa: R480 / R520 / R630, Ex VAT (/za/pricing).",
+  "action": "None."
+ },
+ {
+  "id": "TR-05",
+  "page": "index.html",
+  "claim": "Line 645, Tradify 'Pricing model': \"Per user\"",
+  "verdict": "SUPPORTED",
+  "url": "https://www.tradifyhq.com/au/pricing",
+  "seen": "2026-10-24",
+  "quote": "\"per user/month\" on each plan card; FAQ answer to \"How much does Tradify cost?\" says it costs \"from $48 per user, per month\".",
+  "action": "Keep. Optional (E1): \"Per user, month to month\"."
+ },
+ {
+  "id": "TR-06",
+  "page": "index.html",
+  "claim": "Contract term for Tradify (not on the site today): month to month, with a yearly option",
+  "verdict": "SUPPORTED",
+  "url": "https://www.tradifyhq.com/au/pricing",
+  "seen": "2026-10-24",
+  "quote": "FAQ \"Am I locked into a contract?\" answers \"month-to-month payment model\", no contracts, cancel any time. PARAPHRASE: Tradify help-centre articles (last updated 3 to 4 years ago) say it is generally billed monthly but offers annual pricing options, that a yearly plan is paid in advance, users cannot be reduced until the year ends, and charges are not refunded on cancelling (https://help.tradifyhq.com/hc/en-us/articles/360036351493-How-Much-Does-Tradify-Cost and https://help.tradifyhq.com/hc/en-us/articles/360016147094-Frequently-Asked-Questions-About-Our-Annual-Billing). The annual price is not published. One Trustpilot reviewer, Nik Miller (GB, 2025-02-28, 1 star), says he was locked in for a year; Tradify's public reply says billing is month to month.",
+  "action": "Optional: add \"month to month\" to the pricing-model cell (E1). Do not add any annual price."
+ },
+ {
+  "id": "TR-07",
+  "page": "index.html",
+  "claim": "Line 645, Tradify 'Trade-specific tools?': \"No — general trades\"",
+  "verdict": "MISLEADING",
+  "url": "https://www.tradifyhq.com/au/trades",
+  "seen": "2026-10-24",
+  "quote": "Heading \"Tradify works for every trade\". Trades listed include Lawn Services, Landscaping, Gardening, Pressure Washing, Cleaning Services, Janitorial, Carpet Cleaning, Window Cleaning, Gutter Cleaning, Handyman Services, Pool Services. Own pages: …/au/trades/lawn-care-business-software-app, …/pressure-washing-business-software-app, …/cleaning-business-software-app, …/handyman-business-software-app, …/landscaping-business-software-app. Their feature lists are generic (digital timesheets, subcontractor management, automated service reminders, Instant Website, accounting integrations); no lawn, cleaning or wash calculator was seen.",
+  "action": "Keep \"No — general trades\" but disclose that it lists lawn care, pressure washing and cleaning among its industries (E1), as was done for Fergus. A page can't prove a feature is absent: say 'none listed' if challenged."
+ },
+ {
+  "id": "TR-08",
+  "page": "index.html",
+  "claim": "Line 664, review card: \"Per-user pricing gets expensive fast once a crew passes about 10 people.\"",
+  "verdict": "MISLEADING",
+  "url": "https://www.capterra.com/p/152413/Tradify/reviews/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: I read all 152 Capterra reviews (2016-2025), 248 Trustpilot reviews (the 200 most recent, 2025-11-29 to 2026-10-23, plus every other review ever rated below 5 stars; 64 below-5-star reviews in all) and 139 Apple App Store reviews: 539 reviews. The 'about 10 people' figure traces to ONE review: Leigh E., Capterra, 2017-06-01 (5 stars, 11-50 employees): priced per user, 'can get expensive for a small business with 10+ employees/subcontractors'. Nine reviews in all tie cost to staff or user numbers: Capterra: Leigh E. 2017-06-01, Sam F. 2020-09-20, Kevin K. 2021-01-27; Trustpilot: Maz maz 2020-09-22, Daniel Wierzbowski 2020-09-27, makie 2024-08-08, Scott Garside 2024-10-02, JC 2025-12-18 (a 5-star review); App Store: JIH Electrical 2025-02-18. Other price complaints without staff numbers: Capterra Euan W. 2021-01-27, Jason B. 2023-02-06, Daniel M. 2025-07-14; Trustpilot Adrian Rep 2026-03-20. In the 200 most recent Trustpilot reviews only two raise cost as a problem (Adrian Rep, JC) and seven call the price good value (Scott 2026-07-31, Kevin 2026-07-21, John 2026-06-23, Neil 2026-05-13, Customer 2026-03-15, Tropical Pool Technicians FNQ 2026-01-15, andrew Hallett 2026-01-12). Capterra's last Tradify review is dated 2025-07-14.",
+  "action": "Replace the card (E4): mostly praised (4.7 on Capterra from 152 reviews, 4.8 on Trustpilot from 616); a smaller number say the per-user price adds up as staff are added; nine of the 539 reviews read say so. Do not use 'recurring', 'commonly', 'expensive fast' or '10 people'."
+ },
+ {
+  "id": "TR-09",
+  "page": "index.html",
+  "claim": "Is the overall Tradify picture positive? (needed so the card is not one-sided)",
+  "verdict": "SUPPORTED",
+  "url": "https://www.capterra.com.au/software/152413/tradify",
+  "seen": "2026-10-24",
+  "quote": "Capterra: 4.7 from 152 reviews (113 five-star, 36 four, 2 three, 0 two, 1 one); value for money 4.7; Capterra sentiment Positive 98%, Neutral 1%, Negative 1%. Trustpilot (https://www.trustpilot.com/review/tradifyhq.com): 4.8 from 616 reviews, 89% five-star, 3% one-star, 217 in the last 12 months. Apple App Store AU: 4.73 from 4,108 ratings (iTunes lookup). Apple review feed, 139 reviews read: 71 five-star, 19 four, 12 three, 9 two, 28 one. Capterra marks 26 of the 152 as vendor-invited or incentivised (9 vendor-referred, 17 Capterra gift-card invitations) and 126 as organic; of the 126 organic reviews 123 give 4 or 5 stars (94 five, 29 four, 2 three, 1 one), so the positive share does not depend on invited reviews. Trustpilot's profile says Tradify invites customers to review, so its 4.8 is partly solicited.",
+  "action": "Card (E4) may say 'mostly praised' with the Capterra and Trustpilot headline ratings."
+ },
+ {
+  "id": "TR-10",
+  "page": "index.html",
+  "claim": "What the negative Tradify reviews are really about (information, in case a complaint theme is wanted)",
+  "verdict": "INFO",
+  "url": "https://www.trustpilot.com/review/tradifyhq.com?stars=1",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: Of the 29 Trustpilot reviews rated 1 to 3 stars (all read), nine are about billing or cancelling (Steven Buchan 2025-04-08, Nick Wainman 2025-03-10, Nik Miller 2025-02-28, Adam McNamara 2024-08-09, Michal Perecz 2024-07-08, Steven Gregory 2024-05-21, francis peters 2022-05-08, Gio 2022-01-18, Jack 2024-05-04) and five mention price (Scott Garside, Maz maz, makie, Daniel Wierzbowski, Adrian Rep). On Capterra the most common dislike is no offline use: 10 of 152 (Antonio D. 2016-09-05, Ido H. 2016-10-31, Steve Z. 2017-01-21, Joseph C. 2017-02-06, Jason L. 2017-02-08, Jason F. 2017-06-26, Dan H. 2017-07-05, Darren H. 2017-10-31, Luuk H. 2021-02-15, David W. 2023-01-15) against 6 for cost (Leigh E., Sam F., Kevin K., Euan W., Jason B., Daniel M.).",
+  "action": "None. If a complaint theme is wanted for Tradify, the honest ones are 'a smaller number say billing/cancelling was hard' or 'no offline use'."
+ },
+ {
+  "id": "TR-11",
+  "page": "index.html",
+  "claim": "Line 560 (names no one): \"Most competitors need a live connection just to open.\" — as it applies to Tradify",
+  "verdict": "SUPPORTED",
+  "url": "https://help.tradifyhq.com/hc/en-us/articles/360026848353-Does-Tradify-Work-Offline",
+  "seen": "2026-10-24",
+  "quote": "\"Tradify does not work offline\" (article marked updated 2 years ago).",
+  "action": "None for Tradify. See SP-14 for simPRO."
+ },
+ {
+  "id": "TR-12",
+  "page": "index.html",
+  "claim": "Line 565 (names no one): \"Most job-management tools stop at time tracking and leave the rest to a spreadsheet.\" — as it applies to Tradify",
+  "verdict": "WRONG",
+  "url": "https://www.tradifyhq.com/au/pricing",
+  "seen": "2026-10-24",
+  "quote": "Plan lists include \"Costing & Bill Tracking\", \"Pricing & Markups\" (margins on materials and jobs), \"Purchase Orders\" and \"Kit Bundles\" (parts and labour bundles).",
+  "action": "Optional (E8): 'Most' to 'Some', or delete the sentence."
+ },
+ {
+  "id": "SP-01",
+  "page": "index.html",
+  "claim": "Line 646, simPRO 'Starting price': \"Custom quote\"",
+  "verdict": "SUPPORTED",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Pricing page has a \"REQUEST PRICING\" button and no figure. FAQ \"How much does Simpro cost per month?\" ends with \"Contact us today for a personalised quote\". Capterra AU shows Starting Price \"Not provided by vendor\" (https://www.capterra.com.au/software/10529/simpro-enterprise).",
+  "action": "Keep."
+ },
+ {
+  "id": "SP-02",
+  "page": "index.html",
+  "claim": "Line 646, simPRO badge \"Enterprise\"",
+  "verdict": "UNSUPPORTED",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Pricing page: \"Whether you have five or 200 staff\". The word 'enterprise' appears on none of the simPRO pages read (pricing, industries, comparisons, vs Tradify, training and implementation, residential, mobile app, pool service). Capterra reviewer company sizes (151 reviews): 1-10 employees 38; 11-50 75; 51-200 14; 201-500 1; 501-1,000 1; 1,001-5,000 3; 5,001-10,000 1; not stated 18, so 113 of the 133 who state a size have 50 or fewer employees. 'Enterprise' survives only as a legacy product name (Capterra's listing is titled Simpro Enterprise; old Xero replies mention Enterprise, Service and Corporate tiers).",
+  "action": "Replace the badge text with \"Quote only\" (E2), or delete the badge."
+ },
+ {
+  "id": "SP-03",
+  "page": "index.html",
+  "claim": "Line 646, simPRO 'Pricing model': \"Per-user\" part",
+  "verdict": "UNSUPPORTED",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "simPRO's own wording: pricing is \"tailored to your team size, whether in the office or field\" plus add-ons; no per-user rate and no use of 'per user' on the pages read. Reviewers do describe per-user licences. PARAPHRASE: Alex K., Capterra, 2026-10-06 (1 star): more than $250 per user licence per month (currency not stated); Braden Bailey, Xero App Store, 2026-03-25 (1 star): NZ$200 per user per month plus NZ$50 per user for the mobile app; Darcy Burch, Trustpilot (AU), 2026-08-24: cannot change number of seats or licences once locked in; Michael G., Capterra, 2026-02-10: licences with minimum user numbers.",
+  "action": "Say 'By team size' (simPRO's own words) in the cell (E2); keep per-user detail out unless simPRO publishes it."
+ },
+ {
+  "id": "SP-04",
+  "page": "index.html",
+  "claim": "Line 646, simPRO 'Pricing model': \"contract-locked\" part",
+  "verdict": "MISLEADING",
+  "url": "https://www.simprogroup.com/legal/terms-and-conditions",
+  "seen": "2026-10-24",
+  "quote": "Pricing page: \"You can choose monthly or annual billing\". Terms and Conditions (PDF, 'Version: September 29, 2026', reached from that URL): clause 7 says services \"renew automatically\" unless terminated under the agreement or the order; clause 10(c) refers to \"If your subscription term is not monthly\" (added services co-terminate, cannot be removed during the term); clause 14 lets either party end a monthly subscription \"at least 30 days' written notice\". Order forms (where the term sits) are not public. PARAPHRASE of reviewers who describe their own term: Jim K., Capterra, 2023-07-14: a one-year contract paid in full; Braden Bailey, Xero, Capterra and Trustpilot, 2026-03-25: minimum 12 months; Nate Shaw, Xero, 2026-07-22: a 12-month renewal after a 60-day notice rule; Michael G., Capterra, 2026-02-10: offered 3- or 5-year lock-in with minimum users; Ben W., Capterra, 2026-08-05, Carl H., Capterra, 2025-11-13, Carl, Trustpilot, 2025-11-27 and Ryan, Trustpilot, 2026-10-08: a binding contract enforced; Dean W., Capterra, and Dean Ward, Trustpilot, 2024-04-09: about £5k to exit; Steve B., Capterra, 2019-03-13, refers to a monthly contract.",
+  "action": "Replace with \"By team size; monthly or annual billing\" (simPRO's own words) (E2); put the reviewer reports in the note and card as 'a smaller number of reviewers'."
+ },
+ {
+  "id": "SP-05",
+  "page": "index.html",
+  "claim": "Line 646, simPRO 'Trade-specific tools?': \"No — multi-site/enterprise trades, not solo-small\"",
+  "verdict": "MISLEADING",
+  "url": "https://www.simprogroup.com/industries",
+  "seen": "2026-10-24",
+  "quote": "Industries page: main trades Electrical, Plumbing, HVAC, Security, Fire Protection; under 'Other industries' it lists Landscaping and Cleaning Services (with Solar, Pool Service, Pest Control, Facilities Management and others). Pricing page: \"Whether you have five or 200 staff\". Its customer stories include Dutchman Window & Cleaning (https://www.simprogroup.com/case-studies/dutchman) and Hub Property Care (https://www.simprogroup.com/case-studies/hub-property-care).",
+  "action": "Replace with \"No — field-service trades (electrical, plumbing, HVAC), though it lists landscaping and cleaning among its industries\" (E2)."
+ },
+ {
+  "id": "SP-06",
+  "page": "index.html",
+  "claim": "Line 650 note: simPRO \"is enterprise/multi-site software\"",
+  "verdict": "UNSUPPORTED",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Only multi-site-type feature seen: \"Multi-company compatible\" in the base plan. No 'enterprise' wording on simPRO's pages (see SP-02). One Capterra reviewer, Braden B., 2026-03-25 (1 star), says it suits 'large, multisite businesses'; 113 of 133 Capterra reviewers who state a size have 50 or fewer employees.",
+  "action": "Delete (E3)."
+ },
+ {
+  "id": "SP-07",
+  "page": "index.html",
+  "claim": "Line 650 note and line 665 card: reviewers report \"five-figure setup costs\"",
+  "verdict": "WRONG",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "simPRO FAQ \"Are there any setup or implementation fees?\" answers \"Yes, there's an initial setup fee\"; the price \"depends on the complexity\" (no amount). PARAPHRASE of the figures in reviews read (Capterra 151, Xero 69, Trustpilot 45, App Store 121): Braden B. / Bailey (Capterra, Xero, Trustpilot, 2026-03-25) about NZ$6,000 setup (discounted) plus NZ$750 for 3 hours of training; Michelle Beckett (Xero, 2025-09-24) '$3k+' set-up in 2021; Jazmine K. (Capterra, 2026-02-25) $2,300 taken; matthew C. (Capterra, 2020-02-26) and Brad E. (Capterra/Software Advice, 2021-07-28) 'thousands'. Zero of the 151 Capterra reviews and none of the 2024-2026 reviews on Xero or Trustpilot give a five-figure setup cost. The only five-figure outlay is Matthew Pritchard (Xero, undated, an old review): initial outlay 'over $15,000'. Jonathan M. (Capterra, 2026-10-04) writes of a '$40,000+' contract, but that was a cancelled contract balance, credited to $0.",
+  "action": "Delete the claim (E3, E5). The accurate version is: simPRO says there is an initial setup fee and does not publish the amount."
+ },
+ {
+  "id": "SP-08",
+  "page": "index.html",
+  "claim": "Line 650 note and line 665 card: \"12-month contracts\" / \"a 12-month minimum\", said to be common",
+  "verdict": "MISLEADING",
+  "url": "https://apps.xero.com/au/app/simpro/reviews",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: three reviewers name a 12-month term: Jim K. (Capterra, 2023-07-14, a year paid in full), Braden Bailey (Xero/Capterra/Trustpilot, 2026-03-25, minimum 12 months), Nate Shaw (Xero, 2026-07-22, 12-month renewal). About ten distinct reviewers (2023-2026) describe a binding or lock-in contract (SP-04). Against 151 Capterra, 69 Xero and 45 Trustpilot reviews that is a minority, not 'commonly'. simPRO's own terms allow monthly subscriptions (SP-04).",
+  "action": "Reword as 'a smaller number of reviewers say they were held to a 12-month or longer contract' (E3, E5)."
+ },
+ {
+  "id": "SP-09",
+  "page": "index.html",
+  "claim": "Line 650 note: simPRO \"isn't really a peer for this list\" (and the reason given)",
+  "verdict": "UNSUPPORTED",
+  "url": "https://www.simprogroup.com/industries",
+  "seen": "2026-10-24",
+  "quote": "The stated reason (enterprise/multi-site) fails (SP-02, SP-06). Whether simPRO is a peer is an editorial judgement; its own pages say five to 200 staff and list landscaping and cleaning. A factual reason that does hold: it publishes no prices, so no like-for-like price comparison is possible.",
+  "action": "Founder decision. Proposed text (E3) drops 'isn't really a peer' and keeps 'listed for completeness' plus the no-published-price fact."
+ },
+ {
+  "id": "SP-10",
+  "page": "index.html",
+  "claim": "Line 665, review card: \"Rigid, expensive contracts — reviewers report five-figure setup costs and a 12-month minimum.\"",
+  "verdict": "WRONG",
+  "url": "https://www.capterra.com/p/10529/Simpro-Enterprise/reviews/",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: read all 151 Capterra reviews (2016-2026, 16 syndicated from Software Advice/GetApp), all 69 Xero App Store reviews, 45 Trustpilot reviews (simpro.co.uk 40, simprogroup.com 5) and 121 reviews of the Simpro Mobile app: 386 in all. Capterra: 3.9 overall; 72 five-star, 40 four, 12 three, 8 two, 19 one (112 of 151 = 74% give 4 or 5; Capterra's own sentiment score is 74% positive, 8% neutral, 18% negative); value for money 3.7, support 3.7. Complaint themes among the 39 Capterra reviews rated 3 or below, by my hand count (a review can carry several): sold features it lacks 14 (e.g. Russell T. 2022-03-16, Jonathan M. 2026-10-04, Braden B. 2026-03-25, Jazmine K. 2026-02-25, Paul B. 2022-03-01), poor or slow support 16 (e.g. Guy F. 2025-08-05, Alex K. 2026-10-06, Ben W. 2026-08-05, Tricia C. 2026-09-21), clunky, complex or buggy about 17, price or price rises 8 (Tricia C. 15% rise 2026-09-21, Michael G. 8-12% a year 2026-02-10, Guy F. 2025-08-05, Alex K. 2026-10-06, Edward E. 2026-02-28, Peter T. 2018-08-31, Lorne K. 2023-01-24, Renico D. 2025-02-12), contract or lock-in 6 (Jim K. 2023-07-14, Dean W. 2024-04-09, Carl H. 2025-11-13, Michael G. 2026-02-10, Ben W. 2026-08-05, Jonathan M. 2026-10-04). Trustpilot simpro.co.uk: 3.6 from 40 (19 one-star, 18 five-star, many invited event reviews); simprogroup.com: 4.1 from 5 (all five-star). Xero: 3.6 from 69 (46% five-star, 24% one-star). Capterra marks 78 of the 151 as vendor-invited or incentivised (50 vendor-referred with an incentive, 28 Capterra gift-card invitations) and 73 as organic: the invited 78 are all rated 3 to 5 stars, while all 27 reviews rated 1 or 2 stars are organic; of the 73 organic reviews 39 (53%) give 4 or 5 stars.",
+  "action": "Replace the card (E5): Mixed, with the headline ratings (3.9 Capterra from 151, 3.6 Xero from 69); a smaller number of reviewers say sold features it lacks, slow support, or a 12-month or longer contract."
+ },
+ {
+  "id": "SP-11",
+  "page": "index.html",
+  "claim": "Does positive feedback dominate for simPRO (the 'not one-sided' rule)? Headline yes, organic reviews only about half",
+  "verdict": "INFO",
+  "url": "https://www.capterra.com.au/software/10529/simpro-enterprise",
+  "seen": "2026-10-24",
+  "quote": "Capterra AU: 3.9 from 151 reviews; sentiment Positive 74%, Neutral 8%, Negative 18%. Xero App Store AU: 3.6 from 69. Apple App Store (Simpro Mobile, AU): 4.14 from 510 ratings. Positive reviewers praise job costing, reporting, scheduling, asset and inventory control and onboarding help (many Capterra and Xero reviews 2016-2026). Headline: 112 of 151 Capterra reviews give 4 or 5 stars, but 73 of those 112 were invited or incentivised (SP-10); among organic reviews it is 39 of 73.",
+  "action": "Use 'Mixed' plus the headline ratings (E5) rather than 'most reviews are positive'."
+ },
+ {
+  "id": "SP-12",
+  "page": "index.html",
+  "claim": "Brand styling \"simPRO\" (table, note, card, llms.txt)",
+  "verdict": "OUTDATED",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "simPRO's own site now writes \"Simpro\" (page title \"Simpro Pricing & Comparisons | Simpro\"; Capterra and Trustpilot also \"Simpro\").",
+  "action": "Optional style change to 'Simpro' everywhere (index.html lines 646, 650, 665; llms.txt line 11). Not applied in E1-E8."
+ },
+ {
+  "id": "SP-13",
+  "page": "index.html",
+  "claim": "simPRO sales route (relevant to 'Custom quote'): no self-serve free trial",
+  "verdict": "SUPPORTED",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "FAQ \"Does Simpro have a free trial or demo?\" says it offers a tailored demo with a local consultant rather than a self-serve trial. Implementation is planned at around 60 days (https://www.simprogroup.com/resources/training-implementation).",
+  "action": "None (not on the site). Could replace the badge with 'Demo first' if wanted."
+ },
+ {
+  "id": "SP-14",
+  "page": "index.html",
+  "claim": "Line 560 (names no one): \"Most competitors need a live connection just to open.\" — as it applies to simPRO",
+  "verdict": "WRONG",
+  "url": "https://apps.apple.com/au/app/id1419936837",
+  "seen": "2026-10-24",
+  "quote": "Simpro Mobile App Store description (AU, read via the iTunes lookup on 2026-10-24) lists \"Offline functionality\".",
+  "action": "Optional (E7): 'Most' to 'Some'. Tradify (TR-11) supports the sentence; simPRO contradicts it."
+ },
+ {
+  "id": "SP-15",
+  "page": "index.html",
+  "claim": "Line 565 (names no one): \"Most job-management tools stop at time tracking and leave the rest to a spreadsheet.\" — as it applies to simPRO",
+  "verdict": "WRONG",
+  "url": "https://www.simprogroup.com/pricing",
+  "seen": "2026-10-24",
+  "quote": "Base plan lists \"Real-time inventory management and purchasing\" and \"Quoting and estimating\"; the Simpro Mobile description lists \"Inventory management\" and \"Comprehensive asset management\".",
+  "action": "Optional (E8): 'Most' to 'Some', or delete the sentence."
+ },
+ {
+  "id": "SP-16",
+  "page": "index.html",
+  "claim": "Line 634 as it stood at 95c6e90 (names no one): job-management software \"was built for plumbers and electricians\" — as it applies to Tradify and simPRO",
+  "verdict": "SUPPORTED",
+  "url": "https://www.simprogroup.com/industries",
+  "seen": "2026-10-24",
+  "quote": "simPRO main trades: Electrical, Plumbing, HVAC, Security, Fire Protection. Tradify trades page leads with Electrical & AV, Plumbing & Gas, HVAC & Refrigeration, Property Maintenance (https://www.tradifyhq.com/au/trades).",
+  "action": "None. The line was reworded in 210c60b ('Most of it is built to cover many trades at once'), which also fits both: Tradify says it works for every trade; simPRO lists some twenty industries."
+ },
+ {
+  "id": "SP-17",
+  "page": "index.html",
+  "claim": "Other public review sites read for simPRO (size and cost comments)",
+  "verdict": "INFO",
+  "url": "https://www.trustradius.com/products/simpro/reviews",
+  "seen": "2026-10-24",
+  "quote": "PARAPHRASE: TrustRadius, 8.4 out of 10 from 13 reviews (whole page read 2026-10-24): one reviewer says simPRO will work well for businesses of any size but is quite pricy for small trades businesses; another says it is clearly built for small house-call businesses as well as larger jobs; none gives a set-up cost or a contract length. Gartner Peer Insights: 4.4 from 143 ratings, but the page shows only the vendor's description (no individual reviews readable). Trustpilot: simprogroup.com 4.1 from 5 reviews; simpro.co.uk 3.6 from 40 reviews (e.g. Ryan, GB, 2026-10-08, contract enforced; Darcy Burch, AU, 2026-08-24, locked in to seat numbers). G2 not read (skipped as instructed). ProductReview.com.au: no simPRO or Tradify listing found (/listings/simpro and /listings/tradify return 'Listing not found'; web search found none).",
+  "action": "None. If the original 'five-figure' figure came from G2, ask for the G2 URLs; otherwise delete it."
+ },
+ {
+  "id": "SH-01",
+  "page": "index.html",
+  "claim": "Line 656 heading over the cards, as it stood at 95c6e90: \"The recurring complaints, straight from Capterra, G2 and Trustpilot.\"",
+  "verdict": "UNSUPPORTED",
+  "url": "https://www.capterra.com/p/152413/Tradify/reviews/",
+  "seen": "2026-10-24",
+  "quote": "'Recurring' needs a count and fails for Tradify (TR-08) and simPRO (SP-10). G2 was not read (skipped as instructed), so no source for it. simPRO's own Trustpilot listings are tiny (5 and 40 reviews); my simPRO sources are Capterra and the Xero App Store.",
+  "action": "None now: 210c60b already replaced it with \"What reviewers say, from Capterra, Trustpilot and the app stores.\", which is supported for Tradify (Capterra, Trustpilot, Apple App Store) and simPRO (Capterra, Xero App Store, Trustpilot, Apple App Store)."
+ },
+ {
+  "id": "SH-02",
+  "page": "index.html",
+  "claim": "Line 667 note (210c60b): \"Review themes drawn from public reviews on Capterra, Trustpilot and the Xero, Google Play and Apple app stores (October 2026 for Yardbook, ZenMaid, ServiceM8, Jobber and Fergus; August 2026 for the rest)\"",
+  "verdict": "OUTDATED",
+  "url": "https://apps.xero.com/au/app/simpro/reviews",
+  "seen": "2026-10-24",
+  "quote": "Sources I actually read on 2026-10-24: Tradify = Capterra, Trustpilot, Apple App Store; simPRO = Capterra, Xero App Store, Trustpilot, Apple App Store (plus TrustRadius). No G2, no Google Play. So the source list fits both, but the date list ('August 2026 for the rest') is now wrong for Tradify and simPRO. 'Every product above has plenty of positive reviews too' holds for both (TR-09; SP-11 with the invited-review caveat).",
+  "action": "E6: change the parenthetical to \"(October 2026)\" once Tradify and simPRO are in (all cards are then October)."
+ },
+ {
+  "id": "SH-03",
+  "page": "index.html",
+  "claim": "Line 650 note, first sentence (210c60b): \"Competitor pricing researched July 2026, re-verified August 2026 (Fergus, SortScape, ZenMaid, ServiceM8 and Jobber: October 2026; Yardbook: …), from public pricing pages\"",
+  "verdict": "OUTDATED",
+  "url": "https://www.tradifyhq.com/au/pricing",
+  "seen": "2026-10-24",
+  "quote": "For Tradify the 'researched/re-verified' claim cannot be right: the page the figures came from is the US-dollar page (TR-02), and the AU page has shown $48/$52/$62 since at least 2025-08-07 (TR-03). Tradify and simPRO were re-read on 2026-10-24.",
+  "action": "Add Tradify and simPRO to the October list (E3). E3's first substring needs commit 210c60b or later (it contains 'Fergus, SortScape, ZenMaid, ServiceM8 and Jobber: October 2026; Yardbook:')."
+ },
+ {
+  "id": "SH-04",
+  "page": "llms.txt",
+  "claim": "Line 11: \"comparison against Yardbook, ZenMaid, ServiceM8, SortScape, Fergus, Jobber, Tradify and simPRO\"",
+  "verdict": "SUPPORTED",
+  "url": "https://www.keptsoftware.com.au/",
+  "seen": "2026-10-24",
+  "quote": "States only that the homepage compares against these products; no competitor fact in it.",
+  "action": "None (rename to 'Simpro' only if SP-12 is applied)."
+ },
+ {
+  "id": "KF-01",
+  "page": "index.html",
+  "claim": "Line 702 (Free card): \"$0 /mo forever\"",
+  "verdict": "FLAG (Kept claim)",
+  "url": "file:///Users/elliotlangham/Documents/Lawn envy revamp/marketing-kit/social-bank/APP-CLAIMS.md",
+  "seen": "2026-10-24",
+  "quote": "APP-CLAIMS 'Do NOT say' lists 'free forever'. (jobs-app/app.js comment above PLAN_LIMITS calls Free 'a permanent $0 tier, not a trial', so the fact may be fine; the phrase is held.)",
+  "action": "Founder to decide; no change proposed."
+ },
+ {
+  "id": "KF-02",
+  "page": "index.html",
+  "claim": "Line 672 (explainer): Free \"is capped at 15 clients and 15 jobs/quotes a month\"",
+  "verdict": "FLAG (Kept claim)",
+  "url": "file:///Users/elliotlangham/Documents/Lawn envy revamp/jobs-app/app.js",
+  "seen": "2026-10-24",
+  "quote": "PLAN_LIMITS.free also has dataRetentionDays: 90: paid and written-off invoices older than 90 days are hidden on Free ('Upgrade to Solo to see everything'). The explainer and the Free card list two caps; the section argues other 'free' tiers cap out.",
+  "action": "Founder to decide whether to disclose the third cap; no change proposed."
+ },
+ {
+  "id": "KF-03",
+  "page": "index.html",
+  "claim": "Line 705 (Free card): \"1 person\"",
+  "verdict": "FLAG (Kept claim)",
+  "url": "file:///Users/elliotlangham/Documents/Lawn envy revamp/jobs-app/app.js",
+  "seen": "2026-10-24",
+  "quote": "PLAN_LIMITS.free has staffMax: 1, which the code comment says counts staff BEYOND the owner (Solo = 0), so Free allows owner + 1 staff member, i.e. two people. The card under-promises; check which is intended.",
+  "action": "Founder to check; no change proposed."
+ },
+ {
+  "id": "KF-04",
+  "page": "index.html",
+  "claim": "Line 647 (Kept row): pricing model \"Flat, per business\"",
+  "verdict": "FLAG (Kept claim)",
+  "url": "file:///Users/elliotlangham/Documents/Lawn envy revamp/lawn-envy-jobs-site/index.html",
+  "seen": "2026-10-24",
+  "quote": "Pricing cards price by headcount band (1, 2-4, 5-10, 11+) and Operation is 'Priced individually for your team size'. 'Flat' is true within a band only. The rest of the Kept row (Free-$229+/mo + GST; route optimisation on Team and above) matches the pricing cards and app.js.",
+  "action": "Minor; no change proposed."
+ }
+]
