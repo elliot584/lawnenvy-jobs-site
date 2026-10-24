@@ -473,8 +473,8 @@ def check_pixel(ctx, R):
     for f in PAGES:
         text = ctx.text(f)
         R.check("pixel", "%s: pixel init, PageView and the noscript image carry the site's pixel id" % f,
-                "fbq('init', '1049765071100614');" in text and "fbq('track', 'PageView');" in text
-                and "https://www.facebook.com/tr?id=1049765071100614&ev=PageView&noscript=1" in text)
+                "fbq('init', '841447128961693');" in text and "fbq('track', 'PageView');" in text
+                and "https://www.facebook.com/tr?id=841447128961693&ev=PageView&noscript=1" in text)
         R.check("pixel", "%s: attribution.js right after the 'End Meta Pixel Code' comment, exactly once" % f,
                 text.count(tag) == 1 and re.search(r"<!-- End Meta Pixel Code -->\s*" + re.escape(tag), text) is not None
                 and text.count("attribution.js") == 1)
@@ -899,7 +899,7 @@ def mutations():
         ("viewport meta removed", FG, sub1('<meta name="viewport"', '<meta name="viewportx"'), ["head"]),
         ("JSON-LD answer no longer matches the visible answer", SS, sub1('"text": "SortScape says it was made exclusively', '"text": "SortScape says it was built exclusively'), ["jsonld"]),
         ("JSON-LD question changed", FG, sub1('"name": "Does Fergus have a free plan?"', '"name": "Does Fergus have a free tier?"'), ["jsonld"]),
-        ("pixel init removed", FG, sub1("fbq('init', '1049765071100614');", ""), ["pixel", "head"]),
+        ("pixel init removed", FG, sub1("fbq('init', '841447128961693');", ""), ["pixel", "head"]),
         ("attribution script moved above the pixel comment", SS, lambda t: t.replace('  <script src="/attribution.js" defer></script>\n', "", 1).replace("<!-- Meta Pixel Code -->", '<script src="/attribution.js" defer></script>\n<!-- Meta Pixel Code -->', 1), ["pixel"]),
         ("attribution script written twice", FG, sub1('<script src="/attribution.js" defer></script>', '<script src="/attribution.js" defer></script>\n  <script src="/attribution.js" defer></script>'), ["pixel"]),
         ("app link with campaign tags written by hand", SS, sub1('href="https://app.keptsoftware.com.au/?industry=lawn_care"', 'href="https://app.keptsoftware.com.au/?industry=lawn_care&utm_source=x"'), ["links"]),
