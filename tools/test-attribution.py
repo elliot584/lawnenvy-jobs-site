@@ -982,7 +982,7 @@ def case_referrer(env, R):
 # 12. The pages themselves
 # ---------------------------------------------------------------------------------------------
 SENTENCE = ("When you sign up or leave your details, we save which link or ad brought you here (the campaign tags in the web "
-            "address) so we know which advertising works. We keep this in our own database and do not send it to anyone.")
+            "address, the website you came from and the page you landed on) so we know which advertising works. We keep this in our own database and do not send it to anyone.")
 TAG = '<script src="/attribution.js" defer></script>'
 
 
