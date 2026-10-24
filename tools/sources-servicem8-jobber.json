@@ -77,7 +77,7 @@
     "url": "https://www.servicem8.com/au/industries",
     "seen": "2026-10-24",
     "quote": "Industries page lists Electrical, Plumbing, HVAC, Cleaning, Locksmith, Pool Service, Pest Control, Lawn care, Fire Safety, Appliance Repair, IT/AV/Communications, Other. Lawn page: \"The app for Lawn & Garden Care ... Life of a garden care job in ServiceM8\".",
-    "action": "h1 now \"Both have a free plan. Kept is built around lawn care, cleaning, pressure washing and handyman work.\" (the Kept wording already vetted in APP-CLAIMS.md)."
+    "action": "h1 now \"Kept and ServiceM8 both have a free plan. Kept is built around lawn care, cleaning, pressure washing and handyman work.\" (the Kept wording already vetted in APP-CLAIMS.md; names both products as the newer vs pages do)."
   },
   {
     "id": "SM8-09",
@@ -103,7 +103,7 @@
     "id": "SM8-11",
     "page": "vs-servicem8.html",
     "claim": "ServiceM8 customer support is slow with generic replies / \"Support is the most-cited complaint\" (card and heading \"The most-cited complaint about ServiceM8\")",
-    "verdict": "MISLEADING as a blanket \"most-cited\" claim. Counts: support is the most common complaint among 1-3 star reviews on Trustpilot (12 of 26) and Capterra (9 of 20) but NOT on the Xero App Store (7 of 36), where the lack of a full Android app (11 of 36) and Xero sync problems (about 10 of 36) are more common. Support is also praised often (48 of 92 four/five-star Trustpilot reviews and 36 of 309 on Xero mention it).",
+    "verdict": "MISLEADING as a blanket \"most-cited\" claim. Counts: support is the most common complaint among 1-3 star reviews on Trustpilot (12 of 26) and Capterra (9 of 20) but NOT on the Xero App Store (7 of 36), where the limits of the Android app (11 of 36) and Xero sync problems (about 10 of 36) are more common. Support is also praised often (48 of 92 four/five-star Trustpilot reviews and 36 of 309 on Xero mention it).",
     "url": "https://www.trustpilot.com/review/www.servicem8.com",
     "seen": "2026-10-24",
     "quote": "PARAPHRASE (Trustpilot, 1-3 star, support complaints, 12 of 26): Rob M. 19 Jun 2026 (suggestions rejected, 'Customer Support' vs 'Customer Disdain'); Ryan V. 22 Apr 2026 ('billing and support, terrible'); Subflixed 12 Apr 2026 (suspended account, support slow); Stephen K. Dec 2025 (domain-transfer support); John 11 Jun 2025 (no phone number, 6 hours of messages); Tegan 13 May 2025 ('Support is also useless'); Jaymie-Lea S. 30 Apr 2025 (support dismissive); KG 24 Oct 2024 ('same crap customer service'); Ben 28 Nov 2023; Matt 20 Sep 2023 ('Tech Support is terrible'); Wickenden Family 26 Apr 2023; Nathan T. 18 Apr 2023 (rude support). | Capterra AU (9 of 20): Ryan 1 Feb 2023 ('canned responses'); Ben 4 Oct 2025 ('zero phone support'); Matthew 6 Apr 2023 ('No customer service number'); kristopher 9 Oct 2023; Mohamed 11 Apr 2018; Mohamed 13 Dec 2017; Verified Reviewer 18 Jan 2022 ('no phone number'); Lauren 11 Aug 2016; Heather 27 Feb 2025. | Xero App Store (7 of 36): Toby R-F 25 Mar 2025 ('generic responses'); Tegan 8 May 2025; Ryan C. 1 Feb 2023 ('canned responses'); Shawn D. 13 Dec 2021 ('No telephone support'); Chris G. 22 Jun 2021; John G. 25 Aug 2019; David S. 3 Sep 2015. | Apple App Store AU, 50 most recent (Apr 2025-Oct 2026): 4 criticise support/tech support. ServiceM8's own pricing page: \"Email & Chat Support: Free = Self Serve; Starter and up = 24/7\" and Trustpilot reply (Jun 2025): \"we don't offer phone support directly\".",
@@ -192,7 +192,7 @@
   {
     "id": "SM8-R05",
     "page": "vs-servicem8.html",
-    "claim": "On the Xero App Store the most common critical themes are the lack of a full Android app and Xero sync problems",
+    "claim": "On the Xero App Store the most common critical themes are the limits of the Android app and Xero sync problems",
     "verdict": "SUPPORTED (counts)",
     "url": "https://apps.xero.com/au/app/servicem8/reviews",
     "seen": "2026-10-24",
@@ -267,7 +267,7 @@
     "url": "https://help.getjobber.com/en/articles/tax-settings/",
     "seen": "2026-10-24",
     "quote": "Tax Settings (updated June 5, 2026): \"Add your Tax ID name (such as GST) and your Tax ID number. These fields appear in the bottom left corner of all your invoices automatically.\" \"Note: If you are based in Australia and need your invoices to say Tax Invoice, enter your Tax ID number and set your country to Australia. This will automatically update your invoices to say Tax Invoice.\" | Taxation Report (updated March 17, 2025): \"the Taxable amount is the dollar amount for which tax is being collected. The Tax amount is the amount of tax collected.\" with Accrual and Cash views | Xero help (updated August 11, 2026): \"The Xero integration is available in the USA, Canada, UK, Australia, and New Zealand on the Connect and Grow plan.\" \"The sync is one way, from Jobber into Xero.\" \"If a Jobber invoice contains both non-taxable line items and a discount applied, then the tax calculation in Jobber will be different than the tax calculation in Xero. The Xero calculation is correct.\" | Xero App Store AU listing: \"Taxes automatically sync to Xero so you can easily manage your tax obligations come tax season\"; Countries: Australia, Canada, New Zealand, United Kingdom, United States. | App Marketplace lists QuickBooks Online and Xero; no MYOB anywhere in the 790-line page text. | The words BAS, ABN and MYOB do not appear on the pricing page (including its hidden feature-comparison table), Tax Settings, Taxation Report, Xero help, payment-integrations help, the App Marketplace page or the three industry pages (all searched 2026-10-24); GST appears once, as the example in Tax Settings.",
-    "action": "Row now: \"GST rate and tax ID settings; invoices say \"Tax Invoice\" once a tax ID is entered and the country is Australia; one-way Xero sync (Connect plan and up). We found no BAS tools and no MYOB link.\" NOTE for the founder: Jobber prints \"Tax Invoice\" for Australian accounts, while Kept's documents say \"Invoice\" (open accountant question)."
+    "action": "Row now: \"GST rate and tax ID settings, with the tax ID printed on invoices and an Australia-specific invoice heading; one-way Xero sync (Connect plan and up). We found no BAS tools and no MYOB link.\" The exact words are not printed on the page because APP-CLAIMS.md and tools/test-vs-pages.py ban the phrase \"tax invoice\" for now. Jobber's help centre says an Australian account that enters a tax ID gets invoices that say Tax Invoice (quote above), while Kept's documents say \"Invoice\" (open question with the accountant). Founder decision: whether to print that fact."
   },
   {
     "id": "JOB-07",
@@ -297,7 +297,7 @@
     "url": "https://www.getjobber.com/about/",
     "seen": "2026-10-24",
     "quote": "Industries list as JOB-07; About page: founders spoke to \"HVAC techs, landscapers, roofers, plumbers\" (2011). Jobber's own phrase on the pricing page: \"home service\".",
-    "action": "h1 now \"General home-service software, versus software built around lawn care, cleaning, pressure washing and handyman work.\""
+    "action": "h1 now \"Jobber is general home-service software. Kept is built around lawn care, cleaning, pressure washing and handyman work.\""
   },
   {
     "id": "JOB-10",
