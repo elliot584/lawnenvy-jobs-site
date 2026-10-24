@@ -37,7 +37,7 @@
     "url": "https://www.servicem8.com/au/pricing",
     "seen": "2026-10-24",
     "quote": "Free $ 0 /mo 1 User 30 Jobs per month; pricing page meta description: \"Starting from $0/mo, the FREE plan for sole traders. Affordable pricing for Australian tradies & service businesses. Try free for 14 days.\"",
-    "action": "Kept; reworded \"tier\" to \"plan\" to match ServiceM8's own word."
+    "action": "Claim unchanged; \"tier\" reworded to \"plan\" to match ServiceM8's own word."
   },
   {
     "id": "SM8-05",
@@ -236,7 +236,7 @@
     "verdict": "OUTDATED (there is no Australian pricing page now; the AU address redirects to the US-dollar page)",
     "url": "https://www.getjobber.com/pricing/",
     "seen": "2026-10-24",
-    "quote": "HTTP chain recorded in a browser on 2026-10-24: 301 https://www.getjobber.com/au/pricing/ -> https://www.getjobber.com/pricing/ (200). Also 301 /au/features/ -> /features/; /au/industries/lawn-care-software/ is a 404; /au/ redirects to a partner landing page. Pricing page: \"All prices in USD.\" A Jobber help article says payment integrations work for accounts in the United States, Canada and Australia in USD, CAD and AUD (help.getjobber.com/en/articles/payment-integrations/, updated Aug 11 2026), i.e. that is about client payments, not the subscription.",
+    "quote": "HTTP chain recorded in headless Chromium (Playwright) on 2026-10-24, and the Browser pane also ended on /pricing/: 301 https://www.getjobber.com/au/pricing/ -> https://www.getjobber.com/pricing/ (200). Also 301 /au/features/ -> /features/; /au/industries/lawn-care-software/ is a 404; /au/ redirects to a partner landing page. Pricing page: \"All prices in USD.\" A Jobber help article says payment integrations work for accounts in the United States, Canada and Australia in USD, CAD and AUD (help.getjobber.com/en/articles/payment-integrations/, updated Aug 11 2026), i.e. that is about client payments, not the subscription.",
     "action": "Note now says Jobber's prices are in US dollars and exclude sales tax, and that its old Australian address (/au/pricing/) now redirects to that page."
   },
   {
@@ -296,7 +296,7 @@
     "verdict": "MISLEADING (Jobber has pages and features for several of the same trades)",
     "url": "https://www.getjobber.com/about/",
     "seen": "2026-10-24",
-    "quote": "Industries list as JOB-07; About page: founders spoke to \"HVAC techs, landscapers, roofers, plumbers\" (2011). Jobber's own phrase on the pricing page: \"home service\".",
+    "quote": "Industries list as JOB-07; About page: \"Jobber supports home and commercial service businesses\"; founders (2011) spoke to \"HVAC techs, landscapers, roofers, plumbers\". Lawn care page: \"400,000+ home service pros trust Jobber\".",
     "action": "h1 now \"Jobber is general home-service software. Kept is built around lawn care, cleaning, pressure washing and handyman work.\""
   },
   {
