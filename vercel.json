@@ -21,6 +21,7 @@
     { "source": "/go/lawn", "destination": "/lawn-care?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=lawn_care&utm_term=typed", "permanent": false },
     { "source": "/go/wash", "destination": "/wash?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=pressure_washing&utm_term=typed", "permanent": false },
     { "source": "/go/clean", "destination": "/clean?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=cleaning&utm_term=typed", "permanent": false },
-    { "source": "/go/handyman", "destination": "/handyman?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=handyman&utm_term=typed", "permanent": false }
+    { "source": "/go/handyman", "destination": "/handyman?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=handyman&utm_term=typed", "permanent": false },
+    { "source": "/truck", "destination": "/free/truck-checklist?utm_source=social&utm_medium=video&utm_campaign=truck_checklist", "permanent": false }
   ]
 }

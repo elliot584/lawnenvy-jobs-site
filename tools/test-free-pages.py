@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """Browser tests for the free tool pages (/free, /free/gst-calculator, /free/cents-per-km-calculator,
-/free/bas-due-dates, /free/hourly-rate-calculator, /free/quote-template).
+/free/bas-due-dates, /free/hourly-rate-calculator, /free/quote-template, /free/truck-checklist).
 
 Run it with the app repo's Python, which has Playwright and a cached headless Chromium
 (there is no Node on this machine):
 
   PY="/Users/elliotlangham/Documents/Lawn envy revamp/jobs-app/tools/demo-capture/.venv/bin/python"
   "$PY" tools/test-free-pages.py                       # the whole suite; PASS/FAIL per check, exit 1 on any FAIL
-  "$PY" tools/test-free-pages.py --selftest            # breaks the pages on purpose, ~45 ways, and checks the suite goes red each time
+  "$PY" tools/test-free-pages.py --selftest            # breaks the pages on purpose, 145 ways, and checks the suite goes red each time
   "$PY" tools/test-free-pages.py --only gst,bas        # just those groups (while developing)
-  "$PY" tools/test-free-pages.py --page quote-template # just one page
+  "$PY" tools/test-free-pages.py --page truck-checklist # just one page
   "$PY" tools/test-free-pages.py --browser webkit      # the same suite in WebKit (Safari's engine); the PDF check is Chromium-only
   "$PY" tools/test-free-pages.py --shots DIR           # also saves a screenshot of every page at 375 and 1280 px, light and dark
 
-Groups: static, gst, km, bas, hourly, quote, print, net, layout, a11y, cta.
+Groups: static, gst, km, bas, hourly, quote, truck, print, net, layout, a11y, cta.
 
 How it works: the site folder is served from a local threaded http.server that answers clean URLs the way
 Vercel does (/free/gst-calculator -> free/gst-calculator.html). Every request to anywhere else is aborted and
@@ -21,6 +21,12 @@ recorded, and window.fbq is stubbed before any page script runs so Meta's snippe
 calculators are checked against a second, independent implementation of the sums in Python (decimal
 arithmetic with ROUND_HALF_UP), the BAS dates against a Python calendar, with the browser clock set
 (page.clock) and a browser time zone chosen per case. Nothing waits on a fixed sleep. Python 3.9 compatible.
+
+The truck checklist (free/truck-checklist.html) is not a calculator or a tax tool, so it is tested differently: the "truck" group drives the editor (lines added, renamed,
+removed, reordered, the 25-line and 80-character limits, focus and announcements, the sheets built for each vehicle), the "print" group prints it to PDF (one A4 page for
+each vehicle, 1 to 6 of them, none cut off), and the "static" group holds what the page may and may not say: it is written for crews with two or more trucks and welcomes
+one-truck owners; it says once that it is not a safety inspection; it makes no compliance, WHS or legal claim; it says nothing about a vehicle check in the Kept app (which is not
+live); and its call to action is exactly the vetted words (APP-CLAIMS.md). The clean-up rule is the same as everywhere: nothing typed leaves the page or is stored.
 
 The numbers the pages may state come from FACTS.md (marketing-kit/social-bank/FACTS.md in the app repo's
 parent folder); the constants below are copies of the ones this suite checks, with their ids.
@@ -56,13 +62,13 @@ APP_DEMO = "https://app.keptsoftware.com.au/?demo=1"
 TAX_NOTE = ("Kept's tax tools are estimates to help with your reporting, not professional advice: "
             "check anything that matters with your accountant.")
 
-SLUGS = ["gst-calculator", "cents-per-km-calculator", "bas-due-dates", "hourly-rate-calculator", "quote-template"]
+SLUGS = ["gst-calculator", "cents-per-km-calculator", "bas-due-dates", "hourly-rate-calculator", "quote-template", "truck-checklist"]
 PAGE_PATH = {"": "/free"}
 for _s in SLUGS:
     PAGE_PATH[_s] = "/free/" + _s
 ALL_PAGES = [""] + SLUGS
 
-GROUPS = ["static", "gst", "km", "bas", "hourly", "quote", "print", "net", "layout", "a11y", "cta"]
+GROUPS = ["static", "gst", "km", "bas", "hourly", "quote", "truck", "print", "net", "layout", "a11y", "cta"]
 
 # ---------------------------------------------------------------------------------------------
 # What the pages must say (FACTS.md ids in the comments; ATO pages re-read on 24 October 2026)
@@ -92,13 +98,39 @@ F_BAS_3 = ("If you lodge online you may be eligible for an extra 2 weeks to lodg
            "and you may get extra time if you lodge through a registered tax or BAS agent. "
            "A later date does not apply to Quarter 2 because its due date already includes a one-month extension.")
 F_BAS_2_WEEKEND = "you have until the next business day"
+# The truck checklist is a tidy-up list, not a safety inspection. Its page says that once, makes no compliance, WHS or legal claim at all, says nothing about a
+# vehicle check in the Kept app (that is being built and is not live), and says only what APP-CLAIMS.md allows about Kept.
+TRUCK_SAFETY = "A weekly check keeps the truck tidy and catches small problems early. It is not a safety inspection."
+TRUCK_LINES = [   # the example lines, in order: the page's own words, short and plain, no claim in any of them
+    "Cab rubbish out and wiped down", "Outside washed", "Tools and equipment clean and stowed", "Fuel, oil and tyres looked at",
+    "Lights and number plate wiped clean", "Trailer hitch and lights looked at (if you use one)", "Anything damaged or missing written in the notes",
+]
+TRUCK_CTA = ("Keep the paperwork as tidy as the truck.",   # the call to action word for word: APP-CLAIMS.md "The whole thing", "Gear" and "Free to start"
+             "Kept puts quotes, jobs, schedule, invoices, clients and gear in one app. Equipment shows what each item is, when it was last serviced "
+             "and when the next service is due. Free plan, no time limit.")
+TRUCK_MAX_LINES, TRUCK_MAX_LEN, TRUCK_MAX_NAME = 25, 80, 40
+NO_TAX_NOTE = {"truck-checklist"}      # pages that are not tax tools: they carry no tax note, and no tax words either
+# No compliance, WHS or legal claims at all (the one allowed "safety" and "inspection" are in TRUCK_SAFETY).
+TRUCK_NO_CLAIMS = [
+    (r"\bWHS\b|\bOHS\b|OH&S|work(place)? health|health and safety", "WHS"),
+    (r"complian|regulat|\blegal|\blaws?\b|legislat|statut|audit|insur|licen[cs]|roadworth|certif|accredit|approved|mandatory|obligat|duty of care|liab|negligen|\bfines?\b|penalt", "compliance or legal"),
+    (r"hazard|accident|injur|unsafe|\bsafe(ly)?\b|\brisks?\b|defect|breakdown", "safety"),
+]
+# The Reel this idea came from is not named, and none of its rules are copied (the recognition goes to the person who finishes a sheet).
+TRUCK_NOT_COPIED = r"dirtiest|cleanest|clean-?up duty|reward|winner|loser|prize|contest|competition|punish|shame|reel\b|viral|instagram|tiktok"
 # Statements each page must contain (checked in the page's visible text).
 MUST_SAY = {
+    "": ["Six small tools"],
     "gst-calculator": ["10%", "one-eleventh", "$220", "$200", "$20 GST", "nearest cent", "half a cent", "$75,000", "$150,000", "21 days", "12 months", "ABN"],
     "cents-per-km-calculator": ["91 cents", "88 cents", "2026-27", "2025-26", "2024-25", "5,000", "accountant", "receipts", "myDeductions", "decline in value", "registration", "insurance", "maintenance", "repairs", "fuel"],
     "bas-due-dates": ["28 October", "28 February", "28 April", "28 July", "21st day of the month", "$20 million", "$200,000", "31 October", "$75,000", "$150,000", "general interest charge", F_BAS_3, F_BAS_2_WEEKEND],
     "hourly-rate-calculator": ["estimate", "not tax advice", "billable"],
     "quote-template": ["Add GST (10%)", "Print or save as PDF", "A4"],
+    # who it is for (crews with two or more trucks first, one truck welcome), the routine, and the one-time "not a safety inspection" sentence
+    "truck-checklist": ["Print or save as PDF", "A4", "five minutes", "Checked by", "Keep twelve weeks of sheets", "one named person",
+                        "Running one truck? One sheet a week is plenty.", "two or more trucks", "Is this only for businesses with several trucks?",
+                        "It is optional, and it is your call as the owner.", "It only makes sense with two or more trucks", "What you type stays in this page.",
+                        TRUCK_SAFETY],
 }
 # Every dollar amount and percentage that may appear in a page's static text. Anything else is a stray number.
 ALLOWED_AMOUNTS = {
@@ -108,6 +140,7 @@ ALLOWED_AMOUNTS = {
     "bas-due-dates": {"$20 million", "$200,000", "$75,000", "$150,000"},
     "hourly-rate-calculator": {"$80,000", "$20,000", "$100,000", "$86.96"},
     "quote-template": {"$0.00"},
+    "truck-checklist": set(),
 }
 ALLOWED_PERCENTS = {
     "": {"10%"},
@@ -116,6 +149,7 @@ ALLOWED_PERCENTS = {
     "bas-due-dates": set(),
     "hourly-rate-calculator": {"10%"},
     "quote-template": {"10%"},
+    "truck-checklist": set(),
 }
 # Words the pages must not use (the "Do NOT say" list in APP-CLAIMS.md and the ads pack), as regexes.
 HELD = [
@@ -542,7 +576,11 @@ def group_static(env, R, pages):
         extra_pct = percent_tokens(visible) - ALLOWED_PERCENTS[slug]
         R.check(W, "%s: no stray percentages (only %s)" % (rel, ", ".join(sorted(ALLOWED_PERCENTS[slug])) or "none"), not extra_pct, sorted(extra_pct))
         plain_text = strip_tags(text)
-        R.check(W, "%s: says Kept's tax tools are estimates, not professional advice" % rel, TAX_NOTE in plain_text)
+        if slug in NO_TAX_NOTE:
+            R.check(W, "%s: is not a tax tool, so it has no tax note and no tax words (GST, ATO, BAS, ABN, tax, deduction)" % rel,
+                    TAX_NOTE not in plain_text and not re.search(r"\b(GST|ATO|BAS|ABN)\b|\btax|deduct", everything, re.I))
+        else:
+            R.check(W, "%s: says Kept's tax tools are estimates, not professional advice" % rel, TAX_NOTE in plain_text)
         if slug in MUST_SAY:
             lacking = [s for s in MUST_SAY[slug] if s not in plain_text]
             R.check(W, "%s: says what FACTS.md says (%d statements)" % (rel, len(MUST_SAY[slug])), not lacking, lacking)
@@ -561,7 +599,7 @@ def group_static(env, R, pages):
             R.check(W, "%s: no ATO link other than the listed sources" % rel, ato_links <= want, sorted(faq_links))
             R.check(W, "%s: says when the ATO pages were checked" % rel, "Checked against the ATO pages on 24 October 2026" in plain_text)
         else:
-            R.check(W, "%s: no ATO links on the index" % rel, not ato_links)
+            R.check(W, "%s: no ATO links (nothing here needs one)" % rel, not ato_links)
 
         # --- headings: one h1, no skipped levels
         levels = [int(m) for m in re.findall(r"<h([1-6])\b", text)]
@@ -573,8 +611,8 @@ def group_static(env, R, pages):
             R.check(W, "%s: no structured data (nothing on it to describe)" % rel, not ld_blocks)
             cards = re.findall(r'(?s)<article class="tcard">(.*?)</article>', text)
             hrefs = [re.search(r'href="(/free/[a-z-]+)"', c).group(1) if re.search(r'href="(/free/[a-z-]+)"', c) else None for c in cards]
-            R.check(W, "%s: lists the five tools, each with a one-line description and a link" % rel,
-                    len(cards) == 5 and sorted(hrefs) == sorted("/free/" + s for s in SLUGS) and all(len(re.findall(r"<p>", c)) == 1 for c in cards), hrefs)
+            R.check(W, "%s: lists the six tools, each with a one-line description and a link" % rel,
+                    len(cards) == 6 and sorted(hrefs) == sorted("/free/" + s for s in SLUGS) and all(len(re.findall(r"<p>", c)) == 1 for c in cards), hrefs)
         else:
             ok, why = False, ""
             try:
@@ -596,11 +634,63 @@ def group_static(env, R, pages):
             R.check(W, "%s: JSON-LD is a WebApplication for this page plus a FAQPage that matches the 3-4 visible questions word for word" % rel, ok, why)
 
         R.check(W, "%s: a sensible size (under 120 KB)" % rel, len(raw) < 120000, len(raw))
+        if slug == "truck-checklist":
+            static_truck(env, R, rel, text)
 
     dup_t = {k: v for k, v in seen_titles.items() if len(v) > 1}
     dup_d = {k: v for k, v in seen_desc.items() if len(v) > 1}
     R.check("static", "titles are all different", not dup_t, dup_t)
     R.check("static", "descriptions are all different", not dup_d, dup_d)
+
+
+def static_truck(env, R, rel, text):
+    """What only the truck checklist page promises: who it is for, what it claims (almost nothing), what it leaves out."""
+    import html as _html
+    W = "static"
+    plain = strip_tags(text)
+    everything = all_visible_strings(text) + " " + " ".join(re.findall(r"(?s)<script type=\"application/ld\+json\">(.*?)</script>", text))
+    main = re.search(r"(?s)<main\b.*?</main>", text).group(0)
+    cta = re.search(r'(?s)<div class="cta-final">(.*?)</div>\s*</section>', main)
+    cta_h2 = _html.unescape(re.sub(r"<[^>]+>", "", re.search(r"<h2>(.*?)</h2>", cta.group(1)).group(1))).strip() if cta else ""
+    cta_p = strip_tags(re.search(r"(?s)<p>(.*?)</p>", cta.group(1)).group(1)) if cta else ""
+
+    lede = re.search(r'<p class="lede">(.*?)</p>', text)
+    R.check(W, "%s: the first words answer a crew owner: 'Running more than one truck?', then what to do (one sheet each, one named person each, five minutes a week)" % rel,
+            lede is not None and lede.group(1).startswith("Running more than one truck?") and all(x in lede.group(1) for x in ("one sheet", "one person", "five minutes")), lede and lede.group(1))
+    hint = re.search(r'<p class="hint" id="t-count-hint">(.*?)</p>', text)
+    R.check(W, "%s: right by the vehicle count, a friendly line for one-truck owners: 'Running one truck? One sheet a week is plenty.'" % rel,
+            hint is not None and "Running one truck? One sheet a week is plenty." in hint.group(1), hint and hint.group(1))
+    faq1 = re.search(r"(?s)<details>\s*<summary>(.*?)</summary>\s*<p>(.*?)</p>", text)
+    R.check(W, "%s: the first question is 'Is this only for businesses with several trucks?' and the answer welcomes one-truck owners" % rel,
+            faq1 is not None and faq1.group(1) == "Is this only for businesses with several trucks?" and faq1.group(2).startswith("No.") and "choose 1 vehicle" in faq1.group(2) and "plenty" in faq1.group(2),
+            faq1 and faq1.groups())
+
+    R.check(W, "%s: the sentence '%s' appears once, and 'safety' and 'inspection' appear nowhere else" % (rel, TRUCK_SAFETY[:40] + "..."),
+            plain.count(TRUCK_SAFETY) == 1 and len(re.findall(r"safety", everything, re.I)) == 1 and len(re.findall(r"inspect", everything, re.I)) == 1,
+            (plain.count(TRUCK_SAFETY), re.findall(r"\w*safe\w*|\w*inspect\w*", everything, re.I)))
+    hits = [(label, m.group(0)) for rx, label in TRUCK_NO_CLAIMS for m in [re.search(rx, everything, re.I)] if m]
+    R.check(W, "%s: no compliance, WHS, legal or safety claim anywhere (page text, labels, structured data)" % rel, not hits, hits)
+    copied = re.search(TRUCK_NOT_COPIED, everything, re.I)
+    R.check(W, "%s: the recognition idea is in the page's own words: no 'reward', 'cleanest', 'dirtiest', clean-up duty, prize or contest, and no mention of the Reel or its platforms" % rel,
+            not copied, copied and copied.group(0))
+
+    R.check(W, "%s: the call to action is exactly the vetted words (APP-CLAIMS.md: the whole thing, Gear, Free to start)" % rel, (cta_h2, cta_p) == TRUCK_CTA, (cta_h2, cta_p))
+    R.check(W, "%s: what the call to action says about Kept never mentions vehicles, trucks, trailers, rego, checks or what is coming (the app's vehicle check is not live)" % rel,
+            not re.search(r"vehicle|truck|trailer|\bute\b|rego|check|inspect|soon|coming|launch|beta|new", cta_p, re.I), cta_p)
+    outside = strip_tags(main.replace(cta.group(0), "")) if cta else strip_tags(main)
+    R.check(W, "%s: Kept is named nowhere in the page's main text except the call to action (no word of an app vehicle check, which is not live)" % rel,
+            not re.search(r"\bKept\b|\bapp\b", outside) and not re.search(r"(vehicle|truck)\s+(check|inspection)\w*\s+(in|on|inside|with)\s+(Kept|the app)|in the app", everything, re.I), outside[:120])
+
+    own = own_script(text)
+    got = re.search(r"var DEFAULT_LINES = \[(.*?)\];", own, re.S)
+    lines = re.findall(r"'((?:[^'\\]|\\.)*)'", got.group(1)) if got else []
+    R.check(W, "%s: the %d example lines in the script are exactly the vetted ones, each 80 characters or fewer" % (rel, len(TRUCK_LINES)),
+            lines == TRUCK_LINES and all(len(x) <= TRUCK_MAX_LEN for x in lines), lines)
+    R.check(W, "%s: the script's limits are 25 lines, 80 characters a line, 40 a vehicle name" % rel,
+            all(x in own for x in ("var MAX_LINES = %d;" % TRUCK_MAX_LINES, "var MAX_LEN = %d;" % TRUCK_MAX_LEN, "var MAX_NAME = %d;" % TRUCK_MAX_NAME)))
+    names = re.findall(r'<input type="text" id="t-v-(\d)" maxlength="(\d+)"', text)
+    R.check(W, "%s: six vehicle name boxes, each limited to %d characters, the third to sixth hidden until chosen" % (rel, TRUCK_MAX_NAME),
+            names == [(str(i), str(TRUCK_MAX_NAME)) for i in range(1, 7)] and len(re.findall(r'<div class="field" hidden>', text)) == 4, names)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -1282,6 +1372,233 @@ def group_quote(env, R, pages):
     s.close()
 
 
+
+# ---------------------------------------------------------------------------------------------
+# truck checklist: the vehicles, the lines you edit, the sheets that print
+# ---------------------------------------------------------------------------------------------
+T_STATE_JS = """() => {
+  const q = id => document.getElementById(id);
+  const lines = Array.from(document.querySelectorAll('#t-lines > li')).map(li => { const t = li.querySelector('[data-f=t]'); return {
+    text: t.value, tag: t.tagName.toLowerCase(), label: li.querySelector('label').textContent, labelled: li.querySelector('label').getAttribute('for') === t.id, max: t.getAttribute('maxlength'),
+    up: li.querySelector('[data-f=up]').getAttribute('aria-label'), down: li.querySelector('[data-f=down]').getAttribute('aria-label'), rm: li.querySelector('[data-f=rm]').getAttribute('aria-label'),
+    upOff: li.querySelector('[data-f=up]').getAttribute('aria-disabled'), downOff: li.querySelector('[data-f=down]').getAttribute('aria-disabled')}; });
+  const names = [1, 2, 3, 4, 5, 6].map(i => ({value: q('t-v-' + i).value, shown: !q('t-v-' + i).parentNode.hidden, label: document.querySelector('label[for=t-v-' + i + ']').textContent}));
+  const ae = document.activeElement, li = ae && ae.closest ? ae.closest('#t-lines > li') : null;
+  return {lines: lines, names: names, count: q('t-count').value, week: q('t-week').value, note: q('t-count-note').textContent, status: q('t-status').textContent,
+    focus: !ae ? '' : (li ? ae.getAttribute('data-f') + ':' + (Array.from(li.parentNode.children).indexOf(li) + 1) : (ae.id || ae.tagName))};
+}"""
+T_SHEET_JS = """() => { const text = (p, sel) => { const e = p.querySelector(sel); return e ? e.textContent : null; };
+  return Array.from(document.querySelectorAll('#sheet > .s-page')).map(p => ({
+  title: text(p, '.s-title'),
+  fields: Array.from(p.querySelectorAll('.s-head .s-field, .s-sign .s-field')).map(f => [text(f, '.s-k'), text(f, '.s-fill')]),
+  rows: Array.from(p.querySelectorAll('.s-lines > .s-row')).map(r => text(r, '.s-text')),
+  boxes: p.querySelectorAll('.s-lines .s-box').length, notes: text(p, '.s-notes .s-label'), foot: text(p, '.s-foot')})); }"""
+T_SET_JS = """(lines) => {
+  const list = document.getElementById('t-lines');
+  while (list.children.length < lines.length) document.getElementById('t-add').click();
+  while (list.children.length > lines.length) list.lastElementChild.querySelector('[data-f=rm]').click();
+  lines.forEach((t, i) => { const e = list.children[i].querySelector('[data-f=t]'); e.value = t; e.dispatchEvent(new Event('input', {bubbles: true})); });
+}"""
+
+
+def sheet_lines(page):
+    return [r for r in page.evaluate(T_SHEET_JS)[0]["rows"]]
+
+
+def group_truck(env, R, pages):
+    if "truck-checklist" not in pages:
+        return
+    W = "truck"
+    clock = datetime(2026, 10, 25, 10, 0, tzinfo=timezone(timedelta(hours=10)))
+    s = open_clean(env, "truck-checklist", clock=clock)
+    page = s.page
+    no_page_errors(R, W, "truck-checklist", s)
+
+    # --- the start: two vehicles (it is written for crews first), the seven example lines, nothing typed
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "it starts with 2 vehicles: two name boxes showing (Vehicle 1 and Vehicle 2: name or rego), the other four hidden, no week chosen",
+            st["count"] == "2" and [n["shown"] for n in st["names"]] == [True, True, False, False, False, False] and st["week"] == ""
+            and [n["label"] for n in st["names"]] == ["Vehicle %d: name or rego" % i for i in range(1, 7)] and not any(n["value"] for n in st["names"]), st["names"])
+    R.check(W, "it starts with the seven example lines in order, each in a wrapping text area limited to 80 characters, labelled Line 1 to Line 7, counted as '7 of 25 lines'",
+            [l["text"] for l in st["lines"]] == TRUCK_LINES and all(l["tag"] == "textarea" and l["max"] == "80" and l["labelled"] for l in st["lines"])
+            and [l["label"] for l in st["lines"]] == ["Line %d" % i for i in range(1, 8)] and st["note"] == "7 of 25 lines" and st["status"] == "", st)
+    R.check(W, "every line has Move up, Move down and Remove buttons that name their line; the first line's Up and the last line's Down are marked unavailable (and stay focusable)",
+            [(l["up"], l["down"], l["rm"]) for l in st["lines"]] == [("Move line %d up" % i, "Move line %d down" % i, "Remove line %d" % i) for i in range(1, 8)]
+            and [l["upOff"] for l in st["lines"]] == ["true"] + ["false"] * 6 and [l["downOff"] for l in st["lines"]] == ["false"] * 6 + ["true"], st["lines"][:1])
+    opts = page.evaluate("Array.from(document.querySelectorAll('#t-count option')).map(o => [o.value, o.textContent])")
+    R.check(W, "the vehicle count offers 1 vehicle, 2 vehicles ... 6 vehicles, and nothing else", opts == [[str(i), "%d vehicle%s" % (i, "" if i == 1 else "s")] for i in range(1, 7)], opts)
+    sheet = page.evaluate(T_SHEET_JS)
+    R.check(W, "the sheets (built for printing, hidden on screen) start as 2 pages, each: title, Vehicle, Week starting, the seven lines each with a tick box, the notes box, Checked by, Date and the footer line",
+            len(sheet) == 2 and all(p["title"] == "Weekly truck check" and p["fields"] == [["Vehicle", ""], ["Week starting", ""], ["Checked by", ""], ["Date", ""]]
+                                    and p["rows"] == TRUCK_LINES and p["boxes"] == 7 and p["notes"] == "Notes: anything damaged, missing or to fix"
+                                    and p["foot"] == "Weekly truck check from keptsoftware.com.au" for p in sheet), sheet[:1])
+    shown = page.evaluate("() => [getComputedStyle(document.getElementById('sheet')).display, document.getElementById('sheet').getAttribute('aria-hidden')]")
+    R.check(W, "on screen the sheets are not displayed and are hidden from screen readers", shown == ["none", "true"], shown)
+
+    # --- how many vehicles: 1 to 6, one sheet and one name box each; typed names are kept when the count changes
+    bad = []
+    for n in range(1, 7):
+        page.select_option("#t-count", str(n))
+        st, sh = page.evaluate(T_STATE_JS), page.evaluate(T_SHEET_JS)
+        want = "%d sheet%s will print, one for each vehicle." % (n, "" if n == 1 else "s")
+        if not ([x["shown"] for x in st["names"]] == [i < n for i in range(6)] and len(sh) == n and st["status"] == want):
+            bad.append((n, [x["shown"] for x in st["names"]], len(sh), st["status"]))
+    R.check(W, "choosing 1, 2, 3, 4, 5 and 6 vehicles shows that many name boxes, builds that many sheets and announces how many will print", not bad, bad[:2])
+    page.select_option("#t-count", "6")
+    page.fill("#t-v-5", "Spare ute")
+    page.select_option("#t-count", "2")
+    gone = page.evaluate(T_SHEET_JS)
+    page.select_option("#t-count", "5")
+    back = page.evaluate(T_SHEET_JS)
+    R.check(W, "lowering the count then raising it again keeps what was typed in a hidden name box (Spare ute is back on sheet 5)",
+            len(gone) == 2 and len(back) == 5 and back[4]["fields"][0] == ["Vehicle", "Spare ute"] and page.input_value("#t-v-5") == "Spare ute", back[4]["fields"])
+
+    # --- names and the week
+    page.select_option("#t-count", "3")
+    page.fill("#t-v-1", "  Truck   1  (Sam) ")
+    page.fill("#t-v-2", "")
+    page.evaluate("() => { const e = document.getElementById('t-v-3'); e.value = 'z'.repeat(60); e.dispatchEvent(new Event('input', {bubbles: true})); }")
+    page.fill("#t-week", "2026-10-26")
+    sh = page.evaluate(T_SHEET_JS)
+    R.check(W, "vehicle names print on their own sheets, trimmed with spaces tidied; a blank name prints as a blank line; a name over 40 characters is cut to 40",
+            [p["fields"][0] for p in sh] == [["Vehicle", "Truck 1 (Sam)"], ["Vehicle", ""], ["Vehicle", "z" * 40]], [p["fields"][0] for p in sh])
+    R.check(W, "the week prints on every sheet with its weekday: 2026-10-26 is Monday 26 October 2026", all(p["fields"][1] == ["Week starting", "Monday 26 October 2026"] for p in sh), [p["fields"][1] for p in sh])
+    bad = []
+    for iso, want in [("2026-12-31", "Thursday 31 December 2026"), ("2028-02-29", "Tuesday 29 February 2028"), ("2027-01-01", "Friday 1 January 2027"), ("2026-11-01", "Sunday 1 November 2026"), ("2026-07-01", "Wednesday 1 July 2026")]:
+        page.fill("#t-week", iso)
+        got = page.evaluate(T_SHEET_JS)[0]["fields"][1][1]
+        if got != want:
+            bad.append((iso, got, want))
+    page.fill("#t-week", "")
+    blank = page.evaluate(T_SHEET_JS)[0]["fields"][1]
+    R.check(W, "the weekday and month are right on other dates (leap day, new year, a Sunday), and clearing the week leaves a blank line to write on", not bad and blank == ["Week starting", ""], (bad, blank))
+
+    # --- adding, renaming, removing
+    page.reload()
+    page.wait_for_load_state("load")
+    page.click("#t-add")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "Add a line adds an empty eighth line at the end, labelled Line 8, moves focus into it, announces it and counts 8 of 25",
+            len(st["lines"]) == 8 and st["lines"][7]["text"] == "" and st["lines"][7]["label"] == "Line 8" and st["focus"] == "t:8" and st["status"] == "Line 8 added." and st["note"] == "8 of 25 lines", st["focus"])
+    page.keyboard.type("Wipe down the mirrors")
+    page.locator("#t-lines li:nth-child(2) textarea").fill("Outside washed and dried")
+    sh = page.evaluate(T_SHEET_JS)
+    R.check(W, "typing a new line and renaming another show on every sheet straight away", all(p["rows"][7] == "Wipe down the mirrors" and p["rows"][1] == "Outside washed and dried" and p["boxes"] == 8 for p in sh), sh[0]["rows"])
+    page.click("#t-lines li:nth-child(2) [data-f=rm]")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "Remove takes line 2 away, the labels and button names renumber (Line 1 to 7), focus moves to the line that took its place, and '7 lines left' is announced",
+            [l["text"] for l in st["lines"]] == [TRUCK_LINES[0]] + TRUCK_LINES[2:] + ["Wipe down the mirrors"] and [l["label"] for l in st["lines"]] == ["Line %d" % i for i in range(1, 8)]
+            and [l["rm"] for l in st["lines"]] == ["Remove line %d" % i for i in range(1, 8)] and st["focus"] == "t:2" and st["status"] == "Line 2 removed. 7 lines left." and st["note"] == "7 of 25 lines", st)
+    page.click("#t-lines li:nth-child(7) [data-f=rm]")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "removing the last line puts focus on the new last line", len(st["lines"]) == 6 and st["focus"] == "t:6", (len(st["lines"]), st["focus"]))
+    for _ in range(6):
+        page.click("#t-lines li:first-child [data-f=rm]")
+    st, sh = page.evaluate(T_STATE_JS), page.evaluate(T_SHEET_JS)
+    R.check(W, "every line can be removed: '0 of 25 lines', focus goes to Add a line, and the sheets still carry the title, notes, Checked by and footer",
+            not st["lines"] and st["note"] == "0 of 25 lines" and st["focus"] == "t-add" and all(p["rows"] == [] and p["boxes"] == 0 and p["foot"] for p in sh), st["focus"])
+    page.click("#t-reset")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "Start again swaps in the seven example lines (names and week are left alone) and says so",
+            [l["text"] for l in st["lines"]] == TRUCK_LINES and st["status"] == "Lines reset to the 7 example lines.", st["status"])
+
+    # --- reordering
+    page.click("#t-lines li:nth-child(3) [data-f=up]")
+    st = page.evaluate(T_STATE_JS)
+    order = [TRUCK_LINES[0], TRUCK_LINES[2], TRUCK_LINES[1]] + TRUCK_LINES[3:]
+    R.check(W, "Up on line 3 swaps it with line 2, keeps focus on that line's Up button (so pressing again keeps moving it) and says where it went",
+            [l["text"] for l in st["lines"]] == order and st["focus"] == "up:2" and st["status"] == "Line 3 moved up. It is now line 2." and [l["label"] for l in st["lines"]] == ["Line %d" % i for i in range(1, 8)], (st["focus"], st["status"]))
+    R.check(W, "the sheets follow the new order", all(p["rows"] == order for p in page.evaluate(T_SHEET_JS)), page.evaluate(T_SHEET_JS)[0]["rows"])
+    page.click("#t-lines li:nth-child(1) [data-f=down]")
+    st = page.evaluate(T_STATE_JS)
+    order2 = [order[1], order[0]] + order[2:]
+    R.check(W, "Down on line 1 moves it to line 2 and keeps focus on that line's Down button",
+            [l["text"] for l in st["lines"]] == order2 and st["focus"] == "down:2" and st["status"] == "Line 1 moved down. It is now line 2.", (st["focus"], st["status"]))
+    page.click("#t-lines li:nth-child(1) [data-f=up]", force=True)   # aria-disabled, not disabled: a real click is allowed and answered in words
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "Up on the first line changes nothing and says it is already the first line", [l["text"] for l in st["lines"]] == order2 and st["status"] == "Line 1 is already the first line.", st["status"])
+    page.click("#t-lines li:nth-child(7) [data-f=down]", force=True)
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "Down on the last line changes nothing and says it is already the last line", [l["text"] for l in st["lines"]] == order2 and st["status"] == "Line 7 is already the last line.", st["status"])
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "after moving, only the first line's Up and the last line's Down are marked unavailable",
+            [l["upOff"] for l in st["lines"]] == ["true"] + ["false"] * 6 and [l["downOff"] for l in st["lines"]] == ["false"] * 6 + ["true"])
+
+    # --- the limits: 25 lines, 80 characters, one line of text
+    page.reload()
+    page.wait_for_load_state("load")
+    for _ in range(18):
+        page.click("#t-add")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "the checklist grows to 25 lines and counts '25 of 25 lines'", len(st["lines"]) == 25 and st["note"] == "25 of 25 lines", (len(st["lines"]), st["note"]))
+    page.click("#t-add")
+    st, sh = page.evaluate(T_STATE_JS), page.evaluate(T_SHEET_JS)
+    R.check(W, "a 26th line is refused, with the reason in words, and the sheets still have 25 rows",
+            len(st["lines"]) == 25 and st["status"] == "This checklist holds up to 25 lines. Remove one to add another." and all(len(p["rows"]) == 25 for p in sh), st["status"])
+    page.locator("#t-lines li:nth-child(1) textarea").fill("")
+    page.keyboard.type("x" * 100)
+    typed = page.input_value("#t-lines li:nth-child(1) textarea")
+    page.evaluate("() => { const e = document.querySelector('#t-lines li:nth-child(2) textarea'); e.value = 'y'.repeat(100); e.dispatchEvent(new Event('input', {bubbles: true})); }")
+    sh = page.evaluate(T_SHEET_JS)
+    R.check(W, "typing stops at 80 characters, and a longer line put in by other means (a paste, autofill) still prints as 80", len(typed) == 80 and all(len(p["rows"][0]) == 80 and len(p["rows"][1]) == 80 for p in sh), (len(typed), [len(r) for r in sh[0]["rows"][:2]]))
+    page.locator("#t-lines li:nth-child(3) textarea").fill("a\nb\r\nc")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "pasted line breaks become spaces: a line is always one line of text", st["lines"][2]["text"] == "a b c" and page.evaluate(T_SHEET_JS)[0]["rows"][2] == "a b c", st["lines"][2]["text"])
+    before = [l["text"] for l in page.evaluate(T_STATE_JS)["lines"]]
+    page.locator("#t-lines li:nth-child(4) textarea").focus()
+    page.keyboard.press("Enter")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "Enter inside a line adds no line break (to it or to the next line) and moves to the next line", st["focus"] == "t:5" and [l["text"] for l in st["lines"]] == before, (st["focus"], [l["text"] for l in st["lines"]][2:5]))
+    page.locator("#t-lines li:nth-child(25) textarea").focus()
+    page.keyboard.press("Enter")
+    st = page.evaluate(T_STATE_JS)
+    R.check(W, "Enter in the last line stays there and adds nothing", st["focus"] == "t:25" and len(st["lines"]) == 25 and "\n" not in st["lines"][24]["text"], st["focus"])
+
+    # --- blank lines, typed HTML, printing
+    page.click("#t-reset")
+    page.locator("#t-lines li:nth-child(2) textarea").fill("")
+    sh = page.evaluate(T_SHEET_JS)
+    R.check(W, "a blank line prints as an empty row with its tick box, so a line can be left to write in by hand", all(p["rows"][1] == "" and len(p["rows"]) == 7 and p["boxes"] == 7 for p in sh), sh[0]["rows"])
+    page.evaluate("() => { window.__xss = 0; }")
+    page.locator("#t-lines li:nth-child(1) textarea").fill("<b>bold</b><img src=x onerror='window.__xss=3'>")
+    page.fill("#t-v-1", "<script>window.__xss=2</script><img src=x onerror='window.__xss=4'>")
+    got = page.evaluate("() => ({xss: window.__xss, imgs: document.querySelectorAll('#sheet img, #t-lines img, #sheet b, #sheet script').length, text: document.getElementById('sheet').textContent})")
+    R.check(W, "typed HTML is shown as plain text on the sheets, never run", got["xss"] == 0 and got["imgs"] == 0 and "<b>bold</b>" in got["text"] and "window.__xss=2" in got["text"], got)
+    page.evaluate("() => { const e = document.querySelector('#t-lines li:nth-child(3) textarea'); e.value = 'changed without an input event'; }")
+    page.evaluate("() => window.dispatchEvent(new Event('beforeprint'))")
+    R.check(W, "just before the browser prints, the sheets are rebuilt from the boxes (a change that sent no input event still prints)", page.evaluate(T_SHEET_JS)[0]["rows"][2] == "changed without an input event")
+    page.evaluate("() => { document.querySelector('#t-lines li:nth-child(4) textarea').value = 'changed again'; }")
+    page.click("#t-print")
+    R.check(W, "the Print or save as PDF button rebuilds the sheets, then calls the browser's print once",
+            page.evaluate("window.__printed") == 1 and page.evaluate(T_SHEET_JS)[0]["rows"][3] == "changed again")
+    s.close()
+
+    # --- a phone: a long line wraps in its box and all of it can be read; narrowing a wide window still shows all of every line
+    s = open_clean(env, "truck-checklist", width=375, height=800, clock=clock)
+    page = s.page
+    long_line = "Walk round the truck once, look at tyres, lights and tools, then note any damage"[:80]
+    short_h = page.evaluate("document.querySelector('#t-lines li:nth-child(2) textarea').offsetHeight")
+    page.locator("#t-lines li:nth-child(1) textarea").fill(long_line)
+    h1 = page.evaluate("() => { const e = document.querySelector('#t-lines li:nth-child(1) textarea'); return [e.offsetHeight, e.scrollHeight, e.clientHeight, getComputedStyle(e).overflow]; }")
+    R.check(W, "at 375 px an 80-character line wraps and its box grows to show all of it (nothing hidden); a short line stays one row tall (%d px)" % short_h,
+            h1[0] > short_h + 20 and h1[1] <= h1[2] + 1 and 44 <= short_h <= 60, (h1, short_h))
+    no_page_errors(R, W, "truck-checklist at 375 px", s)
+    s.close()
+    s = open_clean(env, "truck-checklist", width=1280, height=900, clock=clock)
+    page = s.page
+    page.locator("#t-lines li:nth-child(1) textarea").fill(long_line)
+    page.locator("#t-lines li:nth-child(3) textarea").fill(long_line)
+    page.set_viewport_size({"width": 375, "height": 800})   # the resize event arrives a moment after the new size, so wait for it
+    try:
+        page.wait_for_function("() => Array.from(document.querySelectorAll('#t-lines textarea')).every(e => e.scrollHeight <= e.clientHeight + 1)", timeout=3000)
+        narrowed = True
+    except Exception:   # noqa: BLE001
+        narrowed = False
+    grown = page.evaluate("document.querySelector('#t-lines li:nth-child(1) textarea').offsetHeight")
+    R.check(W, "a wide window dragged narrow (or a phone turned upright) re-fits every line, so all the text of every line still shows", narrowed and grown > 70, (narrowed, grown))
+    s.close()
+
+
 # ---------------------------------------------------------------------------------------------
 # print: the A4 stylesheet, with no site chrome
 # ---------------------------------------------------------------------------------------------
@@ -1292,8 +1609,13 @@ def pdf_pages(pdf):
 
 
 def group_print(env, R, pages):
-    if "quote-template" not in pages:
-        return
+    if "quote-template" in pages:
+        print_quote(env, R)
+    if "truck-checklist" in pages:
+        print_truck(env, R)
+
+
+def print_quote(env, R):
     W = "print"
     text = env.read("free/quote-template.html")
     R.check(W, "the stylesheet sets the page to A4", re.search(r"@page\s*\{[^}]*size:\s*A4", text) is not None)
@@ -1343,6 +1665,84 @@ def group_print(env, R, pages):
         s.close()
 
 
+def realistic_lines(n, length=80):
+    """n different lines of ordinary words, each exactly `length` characters (the longest a line may be)."""
+    base = "Walk round the truck once and look at the tyres, the lights, the hitch and the tools, then write down anything odd"
+    return [("%02d %s" % (i + 1, base))[:length].rstrip() + "x" * (length - len(("%02d %s" % (i + 1, base))[:length].rstrip())) for i in range(n)]
+
+
+def print_truck(env, R):
+    W = "print"
+    text = env.read("free/truck-checklist.html")
+    R.check(W, "truck: the stylesheet sets the page to A4", re.search(r"@page\s*\{[^}]*size:\s*A4", text) is not None)
+    R.check(W, "truck: each sheet starts a new page (break-after: page) and the last one does not, so there is no blank page at the end",
+            re.search(r"\.s-page\{[^}]*break-after:page", text) is not None and re.search(r"\.s-page:last-child\{[^}]*break-after:auto", text) is not None)
+    a4 = lambda boxes: all(abs(w - 595.3) < 2 and abs(h - 841.9) < 2 for w, h in boxes)
+    for scheme in ("light", "dark"):
+        s = open_clean(env, "truck-checklist", scheme=scheme)
+        page = s.page
+        page.select_option("#t-count", "3")
+        page.fill("#t-v-1", "Truck 1 (Sam)")
+        page.fill("#t-week", "2026-10-26")
+        screen = page.evaluate("() => ({sheet: getComputedStyle(document.getElementById('sheet')).display, header: getComputedStyle(document.querySelector('header')).display})")
+        R.check(W, "truck %s: on screen the printable sheets are hidden and the header shows" % scheme, screen["sheet"] == "none" and screen["header"] != "none", screen)
+        if env.browser_name == "chromium" and scheme == "light":
+            bad = []
+            for n in range(1, 7):
+                page.select_option("#t-count", str(n))
+                pdf = page.pdf(prefer_css_page_size=True)
+                count, boxes = pdf_pages(pdf)
+                if not (count == n and len(boxes) >= 1 and a4(boxes)):
+                    bad.append((n, count, boxes[:1]))
+            R.check(W, "truck: the PDF has exactly one A4 page (595 x 842 points) for each vehicle, for 1, 2, 3, 4, 5 and 6 vehicles with the example lines", not bad, bad[:2])
+            page.select_option("#t-count", "6")
+            page.evaluate(T_SET_JS, realistic_lines(25))
+            for i in range(1, 7):
+                page.fill("#t-v-%d" % i, ("Truck %d with a long name to fill the line!!" % i)[:40])
+            pdf = page.pdf(prefer_css_page_size=True)
+            count, boxes = pdf_pages(pdf)
+            R.check(W, "truck: 6 vehicles with the most lines (25 lines of 80 characters, 40-character names) is still exactly 6 A4 pages, one sheet each", count == 6 and a4(boxes), (count, boxes[:1]))
+            page.select_option("#t-count", "1")
+            page.evaluate(T_SET_JS, ["W" * 80] * 25)
+            pdf = page.pdf(prefer_css_page_size=True)
+            count, boxes = pdf_pages(pdf)
+            R.check(W, "truck: the worst case, 25 lines of 80 capital Ws, runs onto a second A4 page rather than being cut off", 1 <= count <= 3 and a4(boxes), (count, boxes[:1]))
+            page.select_option("#t-count", "3")
+            page.evaluate(T_SET_JS, TRUCK_LINES)
+            page.fill("#t-v-1", "Truck 1 (Sam)")
+        page.emulate_media(media="print")
+        info = page.evaluate("""() => { const shown = sel => { const e = document.querySelector(sel); return !!e && e.getClientRects().length > 0; };
+          const sheet = document.getElementById('sheet'), pages = Array.from(sheet.children);
+          const bad = []; sheet.querySelectorAll('*').forEach(e => { const cs = getComputedStyle(e);
+            if (!['rgb(17, 17, 17)', 'rgb(68, 68, 68)', 'rgb(85, 85, 85)'].includes(cs.color) || cs.backgroundColor !== 'rgba(0, 0, 0, 0)' || cs.backgroundImage !== 'none') bad.push([e.className || e.tagName, cs.color, cs.backgroundColor]); });
+          return {header: shown('header'), footer: shown('footer'), hero: shown('.hero'), tool: shown('#tool'), faq: shown('#faq'), cta: shown('.cta-final'), skip: shown('.skip'), sheet: shown('#sheet'),
+            sections: Array.from(document.querySelectorAll('main > section')).filter(e => e.getClientRects().length > 0).length,
+            bg: getComputedStyle(document.body).backgroundColor, fg: getComputedStyle(sheet).color, text: sheet.textContent.replace(/\\s+/g, ' ').trim(), wide: sheet.scrollWidth <= sheet.clientWidth + 1,
+            pages: pages.length, breaks: pages.map(p => getComputedStyle(p).breakAfter), boxes: Array.from(sheet.querySelectorAll('.s-box')).map(b => { const cs = getComputedStyle(b); return [cs.borderTopWidth !== '0px', b.getBoundingClientRect().width > 10]; }),
+            bad: bad.slice(0, 3)}; }""")
+        R.check(W, "truck %s: in print the site header and footer, the intro, the tool, the FAQ and the CTA are all hidden" % scheme,
+                not any(info[k] for k in ("header", "footer", "hero", "tool", "faq", "cta", "skip")) and info["sections"] == 0, info)
+        R.check(W, "truck %s: in print only the sheets show, on white, in dark text: title, vehicle, week, every line, Notes, Checked by, Date and the footer line" % scheme,
+                info["sheet"] and info["bg"] in ("rgb(255, 255, 255)", "rgba(0, 0, 0, 0)") and info["fg"] == "rgb(17, 17, 17)"
+                and all(x in info["text"] for x in ("Weekly truck check", "Truck 1 (Sam)", "Monday 26 October 2026", "Checked by", "Date", "Notes: anything damaged, missing or to fix", "Weekly truck check from keptsoftware.com.au") + tuple(TRUCK_LINES))
+                and "Get started" not in info["text"] and "Privacy" not in info["text"], info["text"][:240])
+        R.check(W, "truck %s: three vehicles print as three sheets, the first two ending with a page break and the last not" % scheme, info["pages"] == 3 and info["breaks"] == ["page", "page", "auto"], (info["pages"], info["breaks"]))
+        R.check(W, "truck %s: the sheets fit the paper's width" % scheme, info["wide"])
+        R.check(W, "truck %s: every tick box has a drawn border (nothing relies on printed backgrounds) and the sheet has no background colour or image anywhere" % scheme,
+                info["bad"] == [] and all(b[0] and b[1] for b in info["boxes"]) and len(info["boxes"]) == 21, (info["bad"], len(info["boxes"])))
+        page.emulate_media(media="null")
+        s.close()
+    if env.browser_name == "chromium":
+        s = open_clean(env, "truck-checklist")
+        page = s.page
+        page.evaluate("(w) => { const e = document.getElementById('t-v-1'); e.value = w; e.dispatchEvent(new Event('input', {bubbles: true})); }", "Q" * 60)
+        page.evaluate(T_SET_JS, ["W" * 80] * 3)
+        page.emulate_media(media="print")
+        fits = page.evaluate("() => { const s = document.getElementById('sheet'); return s.scrollWidth <= s.clientWidth + 1 && Array.from(s.querySelectorAll('.s-text, .s-fill')).every(e => e.scrollWidth <= e.clientWidth + 1); }")
+        R.check(W, "truck: an 80-letter word in a line and a long name wrap inside the sheet (no sideways overflow)", fits)
+        s.close()
+
+
 # ---------------------------------------------------------------------------------------------
 # things to do on each page: type something, so there is a result (or a mistake) to look at
 # ---------------------------------------------------------------------------------------------
@@ -1370,6 +1770,13 @@ def show_result(page, slug):
         page.fill("#q-valid", "2026-11-07")
         page.fill("#q-notes", MARK + " notes " + "w" * 70)
         page.evaluate(Q_SET_JS, {"lines": [(MARK + " Mowing", "2", "35.50"), ("w" * 70, "1", "120"), ("Hedges", "1", "99.95")], "gst": True})
+    elif slug == "truck-checklist":
+        page.select_option("#t-count", "3")
+        page.fill("#t-v-1", MARK + " Truck 1 (Sam)")
+        page.fill("#t-v-2", "w" * 40)
+        page.fill("#t-v-3", "Trailer 1")
+        page.fill("#t-week", "2026-10-26")
+        page.evaluate(T_SET_JS, [MARK + " " + "w" * 70, "x" * 80, "Outside washed", "Fuel, oil and tyres looked at", ""])
     for d in page.query_selector_all("details"):
         d.evaluate("e => { e.open = true; }")
 
@@ -1388,6 +1795,8 @@ def show_mistake(page, slug):
         page.fill("#h-costs", "abc")
     elif slug == "quote-template":
         page.evaluate(Q_SET_JS, {"lines": [("a", "x", "1,000,000"), ("b", "-1", "abc")], "gst": True})
+    elif slug == "truck-checklist":
+        page.evaluate("() => { const add = document.getElementById('t-add'); for (let i = 0; i < 30; i++) add.click(); }")   # 25 lines, then the 'holds up to 25' message
     for d in page.query_selector_all("details"):
         d.evaluate("e => { e.open = true; }")
 
@@ -1425,6 +1834,9 @@ def group_net(env, R, pages):
         if slug == "quote-template":
             page.click("#q-print")
             page.click("#q-reset")
+        if slug == "truck-checklist":
+            page.click("#t-print")
+            page.click("#t-reset")
         dump = page.evaluate(STORAGE_JS)
         after = s.requests[before:]
         R.check(W, "%s: typing, adding lines, opening the FAQ and printing makes no request at all (%d after load)" % (label, len(after)), not after and not s.blocked, (after[:2], s.blocked[:2]))
@@ -1617,12 +2029,13 @@ FOCUS_STEP_JS = """() => { const e = document.activeElement; if (!e || e === doc
   return {tag: e.tagName.toLowerCase(), id: e.id, text: (e.textContent || '').trim().slice(0, 30), href: e.getAttribute('href') || '', outline: cs.outlineStyle, width: parseFloat(cs.outlineWidth)}; }"""
 LIVE_REGIONS = {
     "gst-calculator": ["add-out", "rem-out"], "cents-per-km-calculator": ["km-out"], "bas-due-dates": ["bas-live"],
-    "hourly-rate-calculator": ["h-out"], "quote-template": ["q-out", "q-status"],
+    "hourly-rate-calculator": ["h-out"], "quote-template": ["q-out", "q-status"], "truck-checklist": ["t-status"],
 }
 KEY_CONTROLS = {
     "": [], "gst-calculator": ["add-amount", "rem-amount"], "cents-per-km-calculator": ["km-year", "km-input"], "bas-due-dates": [],
     "hourly-rate-calculator": ["h-income", "h-weeks", "h-hours", "h-costs", "h-gst"],
     "quote-template": ["q-trade", "q-from", "q-to", "q-no", "q-date", "q-valid", "q-reset", "q-gst", "q-notes", "q-print"],
+    "truck-checklist": ["t-count", "t-week", "t-v-1", "t-v-2", "t-add", "t-reset", "t-print"],
 }
 
 
@@ -1858,6 +2271,76 @@ MUTATIONS = [
     M("all: a broken internal link", "hourly-rate-calculator", 'href="/free/gst-calculator"', 'href="/free/gst-calc"', ["static"]),
     M("all: two pages share a title", "bas-due-dates", "<title>BAS Due Dates 2026-27: Quarterly and Monthly | Kept</title>", "<title>GST Calculator Australia: Add or Remove 10% GST | Kept</title>", ["static"], pages=["bas-due-dates", "gst-calculator"]),
     M("all: the index no longer lists the BAS tool", "", 'href="/free/bas-due-dates"', 'href="/free/bas-dates"', ["static"]),
+    M("all: the index no longer lists the truck checklist", "", 'href="/free/truck-checklist"', 'href="/free/truck-list"', ["static"]),
+    M("all: the index still says five tools", "", "Six small tools:", "Five small tools:", ["static"]),
+    # --- truck checklist: the editor and its limits
+    M("truck: no limit on the number of lines", "truck-checklist", "if (list.children.length >= MAX_LINES) {", "if (false) {", ["truck"]),
+    M("truck: the limit is 26 lines, not 25", "truck-checklist", "var MAX_LINES = 25;", "var MAX_LINES = 26;", ["static", "truck"]),
+    M("truck: a line can be typed past 80 characters", "truck-checklist", "inp.maxLength = MAX_LEN;", "", ["truck"]),
+    M("truck: a pasted line past 80 characters still prints in full", "truck-checklist", "function tidy(s, max) { return String(s).replace(/\\s+/g, ' ').trim().slice(0, max); }", "function tidy(s, max) { return String(s).replace(/\\s+/g, ' ').trim(); }", ["truck"]),
+    M("truck: pasted line breaks stay in the line", "truck-checklist", "if (/[\\r\\n]/.test(el.value)) el.value = el.value.replace(/[\\r\\n]+/g, ' ').slice(0, MAX_LEN);", "", ["truck"]),
+    M("truck: Enter puts a line break in a line", "truck-checklist", "    e.preventDefault();\n    var all = rows(), i = all.indexOf(el.closest('li'));", "    var all = rows(), i = all.indexOf(el.closest('li'));", ["truck"]),
+    M("truck: removing a line does not renumber the rest", "truck-checklist", "list.removeChild(li);\n      renumber();", "list.removeChild(li);", ["truck"]),
+    M("truck: Up sends the line to the end", "truck-checklist", "list.insertBefore(li, all[i - 1]);", "list.appendChild(li);", ["truck"]),
+    M("truck: moving a line loses the keyboard focus", "truck-checklist", "      b.focus();\n", "", ["truck"], count=None),
+    M("truck: Up on the first line says nothing", "truck-checklist", "if (i === 0) { say('Line 1 is already the first line.'); return; }", "if (i === 0) { return; }", ["truck"]),
+    M("truck: a long line is cut off in its box (the box does not grow)", "truck-checklist", "el.style.height = (el.scrollHeight + el.offsetHeight - el.clientHeight) + 'px';", "el.style.height = '48px';", ["truck"]),
+    M("truck: the lines are not re-fitted when the window is resized", "truck-checklist", "  window.addEventListener('resize', fitAll);\n", "", ["truck"]),
+    M("truck: only one sheet however many vehicles", "truck-checklist", "for (var i = 1; i <= vehicles(); i++) sheet.appendChild(", "for (var i = 1; i <= 1; i++) sheet.appendChild(", ["truck"]),
+    M("truck: a blank line is left off the sheets", "truck-checklist", "var lines = rows().map(function (li) { return tidy(box(li).value, MAX_LEN); });", "var lines = rows().map(function (li) { return tidy(box(li).value, MAX_LEN); }).filter(function (t) { return t; });", ["truck"]),
+    M("truck: typed text is put in as HTML", "truck-checklist", "if (text !== undefined) n.textContent = text;", "if (text !== undefined) n.innerHTML = text;", ["truck"]),
+    M("truck: the week is written month first", "truck-checklist", "return DAYS[t.getUTCDay()] + ' ' + d + ' ' + MONTHS[mo - 1] + ' ' + y;", "return DAYS[t.getUTCDay()] + ' ' + MONTHS[mo - 1] + ' ' + d + ' ' + y;", ["truck"]),
+    M("truck: the weekday is a day late", "truck-checklist", "return DAYS[t.getUTCDay()] + ' '", "return DAYS[(t.getUTCDay() + 1) % 7] + ' '", ["truck"]),
+    M("truck: a typed vehicle name is wiped when the count goes down", "truck-checklist", "for (var i = 1; i <= 6; i++) nameBox(i).parentNode.hidden = i > n;", "for (var i = 1; i <= 6; i++) { nameBox(i).parentNode.hidden = i > n; if (i > n) nameBox(i).value = ''; }", ["truck"]),
+    M("truck: seven vehicles on offer", "truck-checklist", '<option value="6">6 vehicles</option>', '<option value="6">6 vehicles</option>\n            <option value="7">7 vehicles</option>', ["truck"]),
+    M("truck: the Print button does not rebuild the sheets or print", "truck-checklist", "    renderSheet();\n    window.print();", "", ["truck"]),
+    M("truck: the sheets are not rebuilt just before the browser prints", "truck-checklist", "  window.addEventListener('beforeprint', renderSheet);\n", "", ["truck"]),
+    M("truck: an example line makes a claim", "truck-checklist", "'Fuel, oil and tyres looked at',", "'Fuel, oil and tyres checked for compliance',", ["static", "truck"]),
+    # --- truck checklist: the printed sheets
+    M("truck: printing still shows the site header", "truck-checklist", ".skip,header,footer,main>section{display:none!important}", ".skip,footer,main>section{display:none!important}", ["print"]),
+    M("truck: printing still shows the site footer", "truck-checklist", ".skip,header,footer,main>section{display:none!important}", ".skip,header,main>section{display:none!important}", ["print"]),
+    M("truck: printing still shows the intro, tool, FAQ and call to action", "truck-checklist", ".skip,header,footer,main>section{display:none!important}", ".skip,header,footer{display:none!important}", ["print"]),
+    M("truck: the page size is Letter, not A4", "truck-checklist", "@page{size:A4;margin:12mm}", "@page{size:letter;margin:12mm}", ["print"]),
+    M("truck: the sheets run together (no page break between vehicles)", "truck-checklist", "min-height:266mm;break-after:page;page-break-after:always}", "min-height:266mm}", ["print"]),
+    M("truck: a sheet is taller than the paper, so each prints on two pages", "truck-checklist", "min-height:266mm;", "min-height:292mm;", ["print"]),
+    M("truck: the tick boxes have no border (they would not print)", "truck-checklist", "border:1.1pt solid #111;border-radius:.8mm}", "border:0;border-radius:.8mm}", ["print"]),
+    M("truck: the notes box has a grey background (it may not print)", "truck-checklist", "#sheet .s-notes{flex:1 1 auto;min-height:22mm;", "#sheet .s-notes{flex:1 1 auto;min-height:22mm;background:#eee;", ["print"]),
+    M("truck: the Checked by line is missing", "truck-checklist", "sign.appendChild(field('Checked by', ''));", "", ["truck"]),
+    M("truck: the footer line is missing", "truck-checklist", "page.appendChild(h('p', 's-foot', 'Weekly truck check from keptsoftware.com.au'));", "", ["truck"]),
+    M("truck: the notes box is missing", "truck-checklist", "page.appendChild(notes);", "", ["truck"]),
+    M("truck: the tick boxes are missing", "truck-checklist", "li.appendChild(h('span', 's-box'));", "", ["truck"]),
+    # --- truck checklist: nothing typed leaves the page
+    M("truck: what is typed is sent to a server", "truck-checklist", "function renderSheet() {", "function renderSheet() { try { fetch('/leak?x=' + encodeURIComponent($('t-v-1').value)); } catch (e) {}", ["static", "net"]),
+    M("truck: what is typed is kept in local storage", "truck-checklist", "function renderSheet() {", "function renderSheet() { try { localStorage.setItem('t', $('t-v-1').value); } catch (e) {}", ["static", "net"]),
+    M("truck: what is typed is put in the address bar", "truck-checklist", "function renderSheet() {", "function renderSheet() { try { history.replaceState(null, '', '#' + encodeURIComponent($('t-v-1').value)); } catch (e) {}", ["net"]),
+    M("truck: a script error on load", "truck-checklist", "(function () {\n  'use strict';\n\n  // The example lines", "(function () {\n  'use strict';\n  notDefinedAnywhere();\n\n  // The example lines", ["truck"]),
+    # --- truck checklist: what the page says and does not say
+    M("truck: a held word (Pay now) in the intro", "truck-checklist", "Running more than one truck? Print one sheet for each,", "Pay now: running more than one truck? Print one sheet for each,", ["static"]),
+    M("truck: the intro no longer speaks to crews with more than one truck", "truck-checklist", '<p class="lede">Running more than one truck? Print', '<p class="lede">Got a truck? Print', ["static"]),
+    M("truck: a compliance claim is added to the routine", "truck-checklist", "It is not a safety inspection.</p>", "It is not a safety inspection. It keeps you compliant.</p>", ["static"]),
+    M("truck: an insurance claim is added to the habit section", "truck-checklist", "It is optional, and it is your call as the owner.", "It is optional, and it is your call as the owner. Your insurer may ask for it.", ["static"]),
+    M("truck: a work health and safety claim is added", "truck-checklist", "Anything damaged, missing or worn goes in the notes box, with what needs doing.", "Anything damaged, missing or worn goes in the notes box, with what needs doing. It helps meet your work health and safety duties.", ["static"]),
+    M("truck: the not-a-safety-inspection sentence is missing", "truck-checklist", "    <p>A weekly check keeps the truck tidy and catches small problems early. It is not a safety inspection.</p>\n", "", ["static"]),
+    M("truck: the not-a-safety-inspection sentence is said twice", "truck-checklist", "<p>With one truck, the sheet is the habit. Tick it, then put the kettle on.</p>", "<p>With one truck, the sheet is the habit. Tick it, then put the kettle on. It is not a safety inspection.</p>", ["static"]),
+    M("truck: the call to action mentions a vehicle check in the app", "truck-checklist", "Free plan, no time limit.</p>", "Free plan, no time limit. Kept's vehicle check is coming soon.</p>", ["static"]),
+    M("truck: the call to action claims more about vehicles than the Gear line", "truck-checklist", "Equipment shows what each item is, when it was last serviced", "Vehicles show their rego and when they were last serviced", ["static"]),
+    M("truck: the app is named in the page text outside the call to action", "truck-checklist", "Printing the sheets is the easy part.", "Kept makes printing the sheets easy.", ["static"]),
+    M("truck: the one-truck line is gone from beside the vehicle count", "truck-checklist", "a truck, ute, van or trailer. Running one truck? One sheet a week is plenty.", "a truck, ute, van or trailer.", ["static"]),
+    M("truck: the recognition becomes a reward for the cleanest truck (the Reel's rule)", "truck-checklist", "you could add a small weekly recognition for the crew member who hands in a finished sheet.", "you could give a weekly reward to the cleanest truck.", ["static"]),
+    M("truck: the recognition is no longer called optional", "truck-checklist", "It is optional, and it is your call as the owner. ", "", ["static"]),
+    M("truck: the recognition no longer says it needs two or more trucks", "truck-checklist", " It only makes sense with two or more trucks, because it is the sheets side by side that let everyone see whose is done.", "", ["static"]),
+    M("truck: the FAQ no longer welcomes one-truck owners", "truck-checklist", " If you run one truck, choose 1 vehicle: one sheet a week is plenty.", "", ["static"], count=None),
+    M("truck: the FAQ answer in the structured data no longer matches the page", "truck-checklist", '"text": "Yes. There is nothing to sign up for. Fill it in, then print it or save it as a PDF."', '"text": "Yes. There is nothing to sign up for. Fill it in, then print it."', ["static"]),
+    M("truck: a call to action link with a campaign tag typed in by hand", "truck-checklist", 'href="https://app.keptsoftware.com.au/?demo=1"', 'href="https://app.keptsoftware.com.au/?demo=1&utm_source=x"', ["static", "cta"]),
+    M("truck: a tax word on a page that is not a tax tool", "truck-checklist", "Keep it the same every week.", "Keep it the same every week, like your BAS.", ["static"]),
+    # --- truck checklist: labels, announcements, layout
+    M("truck: the vehicle count has no label", "truck-checklist", '<label for="t-count">How many vehicles?</label>', "<span>How many vehicles?</span>", ["a11y"]),
+    M("truck: a line has no label", "truck-checklist", "lab.setAttribute('for', 't-l-' + n);", "", ["truck"]),
+    M("truck: the line labels are hidden from sighted people", "truck-checklist", "lab = h('label', '', 'Line')", "lab = h('label', 'sr-only', 'Line')", ["a11y"]),
+    M("truck: changes are not announced (no aria-live)", "truck-checklist", 'id="t-status" aria-live="polite" aria-atomic="true"', 'id="t-status"', ["a11y"]),
+    M("truck: sideways scroll on a phone", "truck-checklist", "</style>", ".tool{min-width:560px}\n</style>", ["layout"]),
+    M("truck: the line buttons are too small to tap", "truck-checklist", "</style>", ".tl .chip{min-height:24px;padding:2px 8px}\n</style>", ["layout"]),
+    M("truck: the line count is too pale to read", "truck-checklist", ".tl-count{margin:12px 0 0;font-size:.9rem;color:var(--ink-soft)}", ".tl-count{margin:12px 0 0;font-size:.9rem;color:#c5ccc8}", ["a11y"]),
 ]
 
 

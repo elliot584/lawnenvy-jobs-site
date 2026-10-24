@@ -2,7 +2,7 @@
 """Checks the short tagged links in vercel.json (keptsoftware.com.au/fb, /yt, /go/lawn ...).
 
     python3 tools/test-redirects.py             run the checks
-    python3 tools/test-redirects.py --selftest  also break the file seven ways and confirm every break is caught
+    python3 tools/test-redirects.py --selftest  also break the file nine ways and confirm every break is caught
 
 A short link only has to do one thing: send the visitor to a real page with campaign tags that attribution.js and the app will keep. So each one is checked for:
   - a plain lowercase source that does not shadow a real page or folder of the site;
@@ -11,6 +11,8 @@ A short link only has to do one thing: send the visitor to a real page with camp
     (so what is saved is exactly what was written here);
   - not permanent (a 308 is cached by browsers for good; a short link may need to point elsewhere one day).
 The four older redirects (/clean/privacy ...) must still be there, untouched, and sources must be unique.
+Some short links are printed in the marketing kit (marketing-kit/free-channels/truck-checklist/ prints keptsoftware.com.au/truck). Those are listed in REQUIRED:
+each must exist and go to exactly the address the kit says, so editing or removing one here cannot quietly break a post that is already out.
 """
 import copy, json, pathlib, re, sys
 from urllib.parse import parse_qsl, urlsplit
@@ -18,6 +20,8 @@ from urllib.parse import parse_qsl, urlsplit
 SITE = pathlib.Path(__file__).resolve().parent.parent
 TAGS = {"utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid"}
 OLD = [("/clean/privacy", "/privacy"), ("/clean/terms", "/terms"), ("/wash/privacy", "/privacy"), ("/wash/terms", "/terms")]
+# Short links the marketing kit prints on posts: source -> the exact destination. Change them here and in the kit together.
+REQUIRED = {"/truck": "/free/truck-checklist?utm_source=social&utm_medium=video&utm_campaign=truck_checklist"}
 
 
 def clean(v):
@@ -66,6 +70,12 @@ def check(cfg):
         for need in ("utm_source", "utm_medium", "utm_campaign"):
             if need not in keys:
                 problems.append("%s: no %s" % (where, need))
+    by_source = {r.get("source"): r for r in redirects}
+    for src, dest in REQUIRED.items():
+        if src not in by_source:
+            problems.append("%s: a short link the marketing kit prints is missing" % src)
+        elif by_source[src].get("destination") != dest:
+            problems.append("%s: the marketing kit prints this link, so it must go to %s (it goes to %s)" % (src, dest, by_source[src].get("destination")))
     return problems, len(redirects) - len(OLD)
 
 
@@ -88,6 +98,8 @@ def main():
         "a value the cleaner would change": lambda c: c["redirects"][4].update(destination="/?utm_source=a b&utm_medium=b&utm_campaign=c"),
         "no campaign": lambda c: c["redirects"][4].update(destination="/?utm_source=a&utm_medium=b"),
         "a permanent short link": lambda c: c["redirects"][4].update(permanent=True),
+        "the /truck short link is removed": lambda c: c.update(redirects=[r for r in c["redirects"] if r["source"] != "/truck"]),
+        "the /truck short link goes to another tag": lambda c: [r.update(destination="/free/truck-checklist?utm_source=social&utm_medium=video&utm_campaign=other") for r in c["redirects"] if r["source"] == "/truck"],
     }
     missed = []
     for name, fn in breaks.items():
