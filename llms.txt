@@ -8,8 +8,9 @@ Storage modes: each business chooses how its data is stored (Settings > Account 
 
 ## Product
 
-- [Homepage](https://www.keptsoftware.com.au/): overview, pricing, feature list, comparison against Yardbook, ZenMaid, ServiceM8, Fergus, Jobber, Tradify and simPRO.
+- [Homepage](https://www.keptsoftware.com.au/): overview, pricing, feature list, comparison against Yardbook, ZenMaid, ServiceM8, SortScape, Fergus, Jobber, Tradify and simPRO.
 - [Pricing](https://www.keptsoftware.com.au/#pricing): the five tiers in detail.
+- [Free tools](https://www.keptsoftware.com.au/free): a GST calculator, a cents-per-kilometre calculator, BAS due dates, an hourly rate calculator and a printable quote template. They run in the browser and send nothing anywhere.
 - [FAQ](https://www.keptsoftware.com.au/#faq): trades covered, data privacy, client migration, cost.
 - [Request a quote](https://www.keptsoftware.com.au/request-a-quote.html): for customers of a business using Kept, not for signing up to Kept itself.
 - [App](https://app.keptsoftware.com.au/): the product itself - sign-up starts here.

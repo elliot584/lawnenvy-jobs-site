@@ -46,7 +46,7 @@ TAGS = {"utm_source": "facebook", "utm_medium": "paid_social", "utm_campaign": "
 SUFFIX = TAGS_QS + "&kl=%2F"
 VALUE_OK = re.compile(r"^[A-Za-z0-9_.~+%:/-]{1,100}$")
 
-HOME_PAGES = ["/", "/vs-jobber.html", "/vs-servicem8.html", "/vs-yardbook.html", "/vs-zenmaid.html",
+HOME_PAGES = ["/", "/vs-jobber.html", "/vs-servicem8.html", "/vs-yardbook.html", "/vs-zenmaid.html", "/vs-fergus.html", "/vs-sortscape.html",
               "/lawn-care/", "/wash/", "/clean/", "/handyman/", "/card/", "/request-a-quote.html"]
 
 # Injected into every page before its own scripts. Stubs window.fbq (so Meta's snippet does nothing
