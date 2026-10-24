@@ -1,0 +1,357 @@
+{
+  "about": "Source table for vs-sortscape.html and vs-fergus.html. Every statement those pages make about a competitor, and every competitor figure, comes from a public page read on the date in 'seen'. tools/test-vs-pages.py reads this file: each 'figures' entry must appear in its 'quote', each 'page_text' fragment must appear on its page, every competitor cell in the comparison table must be covered by fragments listed here, and every number on a page must be a figure listed here or one of the Kept figures vetted below. Review themes are paraphrased (never quoted on the pages); the entries say which reviews they come from. Prices are the figures shown on the competitor's own public pricing page and need re-checking before they are quoted again.",
+  "checked": "2026-10-24",
+  "kept_claims": [
+    {"text": "Free, then $35–$229+/mo AUD + GST", "from": "Starting price row of vs-yardbook, vs-jobber, vs-servicem8, vs-zenmaid"},
+    {"text": "Permanent — 15 clients & 15 jobs/quotes a month, no card required", "from": "Free plan row of vs-zenmaid.html"},
+    {"text": "Flat, by team size (1, 2–4, 5–10, 11+)", "from": "vs-jobber 'Flat, by team size' and vs-zenmaid 'Flat, by seat band (1, 2–4, 5–10, 11+)'"},
+    {"text": "Lawn care in depth, plus cleaning, pressure washing, handyman and 20+ others", "from": "Trade coverage row of vs-yardbook.html"},
+    {"text": "Turf/reno soil calculator built in", "from": "vs-yardbook 'Soil/turf reno calculator: Built in'; vs-jobber FAQ 'turf/reno soil calculator'"},
+    {"text": "Turf/reno soil, bond-clean and house-wash calculators built in", "from": "vs-jobber.html FAQ: 'a turf/reno soil calculator, bond-clean and house-wash calculators'"},
+    {"text": "standard prices saved in a price list", "from": "APP-CLAIMS.md, Quotes: 'Save standard prices once in the price list'"},
+    {"text": "Today map with numbered stops and rough drive times", "from": "APP-CLAIMS.md, Today: 'a map of the day with numbered stops and the drive between them; each stop shows roughly how long the drive takes'"},
+    {"text": "route optimisation on Team plan and above", "from": "vs-yardbook 'Included on Team plan and above'; homepage pricing lists Route optimisation under Team"},
+    {"text": "Late invoices flagged on Today, with a reminder ready for you to send", "from": "APP-CLAIMS.md, Late invoices: 'flagged on Today with a reminder ready to send' (you send it)"},
+    {"text": "GST worked out on quotes (Add GST toggle)", "from": "APP-CLAIMS.md, Quotes: 'Kept works out the GST (a toggle: Add GST)'"},
+    {"text": "GST calculator in the Tax area", "from": "APP-CLAIMS.md, Money: 'The Tax area has a GST calculator'"}
+  ],
+  "sources": [
+    {
+      "id": "SS-01", "page": "vs-sortscape.html",
+      "claim": "SortScape is job management software for lawn mowing and garden maintenance businesses",
+      "url": "https://sortscape.com.au/", "seen": "2026-10-24",
+      "quote": "Lawn Care & Garden Maintenance Software. Scheduling, quoting and invoicing software for lawn care, mowing and garden maintenance businesses.",
+      "figures": [],
+      "page_text": ["SortScape is job management software for lawn mowing and garden maintenance businesses", "Lawn and garden maintenance"]
+    },
+    {
+      "id": "SS-02", "page": "vs-sortscape.html",
+      "claim": "SortScape says it was made exclusively for lawn and garden maintenance businesses",
+      "url": "https://sortscape.com.au/about-us/", "seen": "2026-10-24",
+      "quote": "We made SortScape exclusively for lawn and garden maintenance businesses.",
+      "figures": [],
+      "page_text": ["SortScape is made for lawn and garden maintenance", "SortScape says it was made exclusively for lawn and garden maintenance businesses", "if you only do lawn and garden maintenance"]
+    },
+    {
+      "id": "SS-03", "page": "vs-sortscape.html",
+      "claim": "Identification only: SortScape is a Sydney-based company selling in Australia and overseas, priced in AUD, NZD, USD, CAD, GBP and EUR",
+      "url": "https://sortscape.com.au/", "seen": "2026-10-24",
+      "quote": "1000+ businesses In Australia, US, Canada & UK. Sydney, Australia. ABN: 73629863038. © 2026 SortScape.",
+      "figures": [],
+      "page_text": []
+    },
+    {
+      "id": "SS-04", "page": "vs-sortscape.html",
+      "claim": "Basic plan is AUD $15 a month for 1 user; the Australian table excludes GST",
+      "url": "https://sortscape.com.au/pricing/", "seen": "2026-10-24",
+      "quote": "Basic AUD $15/month Great for when you are starting out. Australia (AUD), excluding GST. 1 user AUD $15 AUD $29",
+      "figures": ["$15"],
+      "page_text": ["From AUD $15/mo for 1 user (Basic)", "paid plans from AUD $15 a month (excluding GST)", "excl. GST", "SortScape's Australian prices are in AUD and exclude GST", "SortScape lists AUD $15 a month for Basic"]
+    },
+    {
+      "id": "SS-05", "page": "vs-sortscape.html",
+      "claim": "Premium plan is AUD $29 a month for 1 user",
+      "url": "https://sortscape.com.au/pricing/", "seen": "2026-10-24",
+      "quote": "Premium AUD $29/month Get your business to the next level",
+      "figures": ["$29"],
+      "page_text": ["AUD $29/mo (Premium)", "AUD $29 for Premium"]
+    },
+    {
+      "id": "SS-06", "page": "vs-sortscape.html",
+      "claim": "Prices are listed by team size, from 1 user to 50 users",
+      "url": "https://sortscape.com.au/pricing/", "seen": "2026-10-24",
+      "quote": "Prices for every team size. Team size Basic, per month Premium, per month. 1 user AUD $15 AUD $29 ... 50 users AUD $449 AUD $889",
+      "figures": ["1", "50"],
+      "page_text": ["By team size, from 1 to 50 users"]
+    },
+    {
+      "id": "SS-07", "page": "vs-sortscape.html",
+      "claim": "A 14-day free trial is offered",
+      "url": "https://sortscape.com.au/pricing/", "seen": "2026-10-24",
+      "quote": "Start with a 14-day free trial. Is there a free trial? Yes! You can sign up for a free trial and explore all features before committing to a paid plan.",
+      "figures": ["14"],
+      "page_text": ["a 14-day free trial", "14-day free trial", "SortScape lists a 14-day free trial and no free plan"]
+    },
+    {
+      "id": "SS-08", "page": "vs-sortscape.html",
+      "claim": "No free plan is listed (absence): the pricing page shows two paid plans, Basic and Premium, each with a free-trial button",
+      "url": "https://sortscape.com.au/pricing/", "seen": "2026-10-24",
+      "quote": "Our pricing plans. Most popular Basic AUD $15/month Try free. Most popular Premium AUD $29/month Try free. (No free plan appears anywhere on the page.)",
+      "figures": [],
+      "page_text": ["No free plan listed", "and no free plan"]
+    },
+    {
+      "id": "SS-09", "page": "vs-sortscape.html",
+      "claim": "Route optimisation is on every plan; Basic optimises up to 25 stops, Premium up to 150",
+      "url": "https://sortscape.com.au/scheduling/", "seen": "2026-10-24",
+      "quote": "Free for 14 days. Scheduling and route optimisation are on every plan. Is route optimisation on every plan? Yes. Basic optimises runs of up to 25 stops, and Premium up to 150.",
+      "figures": ["25", "150"],
+      "page_text": ["Route optimisation on every plan (up to 25 stops on Basic, 150 on Premium)", "route optimisation on every plan"]
+    },
+    {
+      "id": "SS-10", "page": "vs-sortscape.html",
+      "claim": "Automatic reminders for jobs, quotes and invoices are a Premium feature",
+      "url": "https://sortscape.com.au/pricing/", "seen": "2026-10-24",
+      "quote": "Premium. All the Basic plan features, plus: Automatic reminders for jobs, quotes and invoices",
+      "figures": [],
+      "page_text": ["Automatic reminders for jobs, quotes and invoices on Premium", "chemical tracking and automatic reminders on Premium"]
+    },
+    {
+      "id": "SS-11", "page": "vs-sortscape.html",
+      "claim": "Chemical tracking is part of Premium",
+      "url": "https://sortscape.com.au/mobile-app/", "seen": "2026-10-24",
+      "quote": "Which features need SortScape Premium? Photo timestamps, service reports and chemical tracking are part of Premium.",
+      "figures": [],
+      "page_text": ["chemical tracking on Premium", "chemical tracking and automatic reminders on Premium"]
+    },
+    {
+      "id": "SS-12", "page": "vs-sortscape.html",
+      "claim": "A lawn mowing calculator and a spray mix calculator are listed as free tools",
+      "url": "https://sortscape.com.au/", "seen": "2026-10-24",
+      "quote": "Free tools Spray mix calculator Lawn mowing calculator",
+      "figures": [],
+      "page_text": ["Lawn mowing and spray mix calculators"]
+    },
+    {
+      "id": "SS-13", "page": "vs-sortscape.html",
+      "claim": "Invoices can be paid by card (listed on both plans in the comparison table)",
+      "url": "https://sortscape.com.au/invoicing/", "seen": "2026-10-24",
+      "quote": "Turn a finished job into an invoice in two taps, send it by text and get paid by card.",
+      "figures": [],
+      "page_text": ["card payments on invoices"]
+    },
+    {
+      "id": "SS-14", "page": "vs-sortscape.html",
+      "claim": "A missed-call answering feature (a receptionist that answers instead of voicemail)",
+      "url": "https://sortscape.com.au/receptionist/", "seen": "2026-10-24",
+      "quote": "When you cannot get to the phone, the SortScape AI Receptionist answers instead of voicemail, greeting customers, answering common questions, and capturing new job requests so no enquiry is lost.",
+      "figures": [],
+      "page_text": ["a missed-call answering feature"]
+    },
+    {
+      "id": "SS-15", "page": "vs-sortscape.html",
+      "claim": "A requests inbox for website enquiries",
+      "url": "https://sortscape.com.au/", "seen": "2026-10-24",
+      "quote": "Put a request form on your website and every enquiry lands in one inbox, with photos, address and contact details attached, ready to quote.",
+      "figures": [],
+      "page_text": ["a requests inbox"]
+    },
+    {
+      "id": "SS-16", "page": "vs-sortscape.html",
+      "claim": "Capterra rating 4.9 from 115 reviews",
+      "url": "https://www.capterra.com/p/147236/SortScape/reviews/", "seen": "2026-10-24",
+      "quote": "SortScape 4.9 (115). Last updated October 19th, 2026. Ease of use 4.9. Customer Service 5.0.",
+      "figures": ["4.9", "115"],
+      "page_text": ["SortScape is rated 4.9 out of 5 on Capterra (115 reviews)"]
+    },
+    {
+      "id": "SS-17", "page": "vs-sortscape.html",
+      "claim": "Xero App Store (Australia) rating 4.9 from 91 reviews",
+      "url": "https://apps.xero.com/au/app/sortscape", "seen": "2026-10-24",
+      "quote": "Rated 4.9 out of 5. Reviewed by 91 Xero users. 4.89 out of 5 stars 91 reviews",
+      "figures": ["4.9", "91"],
+      "page_text": ["4.9 out of 5 on the Xero App Store (91 reviews)"]
+    },
+    {
+      "id": "SS-18", "page": "vs-sortscape.html",
+      "claim": "Review theme (paraphrased): reviewers most often praise ease of use, quick support and value for money",
+      "url": "https://www.capterra.com/p/147236/SortScape/reviews/", "seen": "2026-10-24",
+      "quote": "PARAPHRASE, not quoted on the page. Read the 25 most-helpful Capterra reviews shown (24 of them 5 stars): ease of use and support replies are praised in most, value or price in about eight (e.g. Jonathon K. 7 Aug 2026, Vijay P. 15 Apr 2026, Shane M. 1 Mar 2026, Craig W. 17 Oct 2025). The Xero App Store listing (91 reviews, 90% five-star) reads the same way (e.g. 24 Oct 2026, 23 Oct 2026).",
+      "figures": [],
+      "page_text": ["Reviewers most often praise how easy it is to use, how quickly support replies and the value for money"]
+    },
+    {
+      "id": "SS-19", "page": "vs-sortscape.html",
+      "claim": "Review theme (paraphrased): text-message credits run out or are not carried over",
+      "url": "https://www.capterra.com/p/147236/SortScape/reviews/", "seen": "2026-10-24",
+      "quote": "PARAPHRASE. Carol v (13 May 2026) says texts run out in the last days of the month and unused texts are not carried over; Vijay P. (15 Apr 2026) says only limited two-way texts are included and more cost extra. SortScape's replies confirm each plan includes a number of text credits.",
+      "figures": [],
+      "page_text": ["text-message credits run out or don't roll over"]
+    },
+    {
+      "id": "SS-20", "page": "vs-sortscape.html",
+      "claim": "Review theme (paraphrased): team-size pricing bands do not suit some teams",
+      "url": "https://www.capterra.com/p/147236/SortScape/reviews/", "seen": "2026-10-24",
+      "quote": "PARAPHRASE. Jack M. (24 Dec 2025) would prefer per-user pricing to bands when his team size falls between bands; Mark S. (2 Mar 2026) and Roslyn S. (14 Feb 2026) say it costs a little more than other apps or 'a bit'.",
+      "figures": [],
+      "page_text": ["the team-size pricing bands don't suit their exact team", "A few reviewers on Capterra say"]
+    },
+    {
+      "id": "SS-21", "page": "vs-sortscape.html",
+      "claim": "Review theme (paraphrased): the mobile app can be slow on older phones",
+      "url": "https://www.capterra.com/p/147236/SortScape/reviews/", "seen": "2026-10-24",
+      "quote": "PARAPHRASE. Jarden S. (8 Jan 2026) reports mobile app performance issues on older devices; Dallas F. (16 Dec 2025) says the Android app can be bandwidth hungry.",
+      "figures": [],
+      "page_text": ["the mobile app can be slow on older phones"]
+    },
+
+    {
+      "id": "FG-01", "page": "vs-fergus.html",
+      "claim": "Fergus is job management software for trade businesses",
+      "url": "https://fergus.com/au/", "seen": "2026-10-24",
+      "quote": "Job management software built for Aussie tradies. It suits different business needs across trades, from electrical and plumbing, to fire protection to pest control.",
+      "figures": [],
+      "page_text": ["Trade businesses of many kinds"]
+    },
+    {
+      "id": "FG-02", "page": "vs-fergus.html",
+      "claim": "Fergus lists these industries: electricians, plumbers, builders, HVAC, roofers, field services, cleaning, pest control, locksmiths, lawn care",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "INDUSTRIES Electricians Plumbers Builders HVAC Roofers Field Services Cleaning Pest Control Locksmiths Lawn Care",
+      "figures": [],
+      "page_text": ["lists electricians, plumbers, builders, HVAC, roofers, cleaning, pest control, locksmiths and lawn care", "Fergus is job management software for trade businesses, from plumbing and electrical to cleaning and lawn care", "if you run a plumbing, electrical, building or similar trade"]
+    },
+    {
+      "id": "FG-03", "page": "vs-fergus.html",
+      "claim": "Essentials is from $53 a month, Professional from $77 a month, and a custom plan is offered for more than 10 staff",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Essentials ... From $53 $5.30 per month. Professional ... From $77 $7.70 per month. Enterprise 10 + Have more than 10 staff? Contact us for a custom plan designed to fit your business. Let's talk",
+      "figures": ["$53", "$77", "10"],
+      "page_text": ["Essentials from $53/mo", "Professional from $77/mo", "custom plan for more than 10 staff"]
+    },
+    {
+      "id": "FG-04", "page": "vs-fergus.html",
+      "claim": "Fergus is priced per user, month to month, in AUD",
+      "url": "https://fergus.com/au/", "seen": "2026-10-24",
+      "quote": "No setup fees, no lock-in. Month-to-month per user, priced in AUD, so you add or remove users as the crew changes.",
+      "figures": [],
+      "page_text": ["Per user, month to month", "Fergus is priced per user", "Fergus describes its plans as month to month and per user", "Fergus prices in AUD"]
+    },
+    {
+      "id": "FG-05", "page": "vs-fergus.html",
+      "claim": "A 14-day free trial, no credit card required",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "14 days free trial Experience the benefits of Fergus for free with a 14-day trial. no credit card required Start using Fergus right away, no credit card required.",
+      "figures": ["14"],
+      "page_text": ["14-day free trial, no credit card required", "with a 14-day free trial", "Fergus lists a 14-day free trial with no credit card required"]
+    },
+    {
+      "id": "FG-06", "page": "vs-fergus.html",
+      "claim": "No free plan is listed (absence): the pricing page shows Essentials, Professional and an Enterprise 10+ option, each with a trial or demo button",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Essentials From $53 Start A Free Trial. Professional From $77 Start A Free Trial. Enterprise 10 + Let's talk Book A Demo. (No free plan appears anywhere on the page.)",
+      "figures": [],
+      "page_text": ["no free plan listed", "and no free plan"]
+    },
+    {
+      "id": "FG-07", "page": "vs-fergus.html",
+      "claim": "The pricing page shows a limited-time offer banner: 90% off until December",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Limited Offer: Get 90% off til December",
+      "figures": ["90"],
+      "page_text": ["its pricing page also shows a limited-time offer (its banner reads 90% off until December)"]
+    },
+    {
+      "id": "FG-08", "page": "vs-fergus.html",
+      "claim": "Add-ons are priced separately (SMS, card payments, contractor users, timesheet users, certificates)",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Certificates $30 for 1-9 staff, $80 for 10+ staff. SMS Alerts & Reminders $15 for 100 texts. Credit Card Payments 1.95% + $0.30 per transaction. Contractor Users $4 per user/day. Timesheet Users From $26 per month.",
+      "figures": [],
+      "page_text": ["add-ons priced separately", "with some add-ons priced separately"]
+    },
+    {
+      "id": "FG-09", "page": "vs-fergus.html",
+      "claim": "Quoting & Estimating and Price Books are on both plans; supplier integrations are manual on Essentials and auto on Professional",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Compare Our Plans table: Quoting & Estimating (tick on both Essentials and Pro); Price Books (tick on both); Supplier Integrations: Manually (Essentials) / Auto (Pro).",
+      "figures": [],
+      "page_text": ["Quoting and estimating with price books on both plans", "supplier integrations (manual on Essentials, auto on Professional)"]
+    },
+    {
+      "id": "FG-10", "page": "vs-fergus.html",
+      "claim": "Fergus applies GST and syncs to Xero, MYOB and QuickBooks",
+      "url": "https://fergus.com/au/", "seen": "2026-10-24",
+      "quote": "Fergus produces GST-compliant tax invoices and applies GST, then syncs the lot to Xero or MYOB so your bookkeeping stays clean without double entry. Syncs with Xero, MYOB & QuickBooks.",
+      "figures": [],
+      "page_text": ["Applies GST and syncs to Xero, MYOB or QuickBooks", "a sync to Xero, MYOB or QuickBooks"]
+    },
+    {
+      "id": "FG-11", "page": "vs-fergus.html",
+      "claim": "The pricing page does not say whether the prices include GST (absence)",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "GST appears on the pricing page only in an FAQ about invoices ('Fergus produces GST-compliant tax invoices and applies GST ...'); no 'ex GST' or 'inc GST' note sits beside the plan prices.",
+      "figures": [],
+      "page_text": ["the page doesn't say whether they include GST"]
+    },
+    {
+      "id": "FG-12", "page": "vs-fergus.html",
+      "claim": "Supplier invoice import (for example Reece and Tradelink)",
+      "url": "https://fergus.com/au/", "seen": "2026-10-24",
+      "quote": "Supplier invoices import and match to the right job automatically, with the merchants you use every day like Reece and Tradelink.",
+      "figures": [],
+      "page_text": ["supplier invoice import"]
+    },
+    {
+      "id": "FG-13", "page": "vs-fergus.html",
+      "claim": "Purchase Orders and Job Phases are listed, and are ticked for Professional but not Essentials",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Compare Our Plans table: Purchase Orders (cross on Essentials, tick on Pro); Job Phases (cross on Essentials, tick on Pro).",
+      "figures": [],
+      "page_text": ["purchase orders", "job phases", "some of them only on its higher plan", "(check which plan each needs)"]
+    },
+    {
+      "id": "FG-14", "page": "vs-fergus.html",
+      "claim": "Timesheets, Hazards and SWMS are listed",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Timesheets. Health & Safety: Hazards, SWMS.",
+      "figures": [],
+      "page_text": ["timesheets", "hazard and SWMS tools"]
+    },
+    {
+      "id": "FG-15", "page": "vs-fergus.html",
+      "claim": "Card payments are listed (Payments, and a Credit Card Payments add-on)",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "Cashflow: Invoicing, Payments. Credit Card Payments 1.95% + $0.30 per transaction",
+      "figures": [],
+      "page_text": ["card payments"]
+    },
+    {
+      "id": "FG-16", "page": "vs-fergus.html",
+      "claim": "Assistant tools that answer questions about jobs, costs and numbers",
+      "url": "https://fergus.com/au/pricing/", "seen": "2026-10-24",
+      "quote": "FERGUS ASSISTANT Simply ask about your jobs, costs and numbers, and get answers.",
+      "figures": [],
+      "page_text": ["assistant tools"]
+    },
+    {
+      "id": "FG-17", "page": "vs-fergus.html",
+      "claim": "Capterra rating 4.6 from 155 reviews",
+      "url": "https://www.capterra.com/p/155571/Fergus/reviews/", "seen": "2026-10-24",
+      "quote": "Fergus 4.6 (155). Last updated October 19th, 2026. Ease of use 4.5. Customer Service 4.6.",
+      "figures": ["4.6", "155"],
+      "page_text": ["Fergus is rated 4.6 out of 5 on Capterra (155 reviews)"]
+    },
+    {
+      "id": "FG-18", "page": "vs-fergus.html",
+      "claim": "Xero App Store (Australia) rating 4.4 from 79 reviews",
+      "url": "https://apps.xero.com/au/app/fergus", "seen": "2026-10-24",
+      "quote": "Rated 4.4 out of 5. Reviewed by 79 Xero users. 4.41 out of 5 stars 79 reviews",
+      "figures": ["4.4", "79"],
+      "page_text": ["4.4 out of 5 on the Xero App Store (79 reviews)"]
+    },
+    {
+      "id": "FG-19", "page": "vs-fergus.html",
+      "claim": "Trustpilot rating 3.9 from 15 reviews",
+      "url": "https://www.trustpilot.com/review/fergus.com", "seen": "2026-10-24",
+      "quote": "Fergus Reviews 15 • 3.9. 3.9 Great 15 reviews",
+      "figures": ["3.9", "15"],
+      "page_text": ["3.9 out of 5 on Trustpilot (15 reviews)"]
+    },
+    {
+      "id": "FG-20", "page": "vs-fergus.html",
+      "claim": "Review theme (paraphrased): reviewers most often praise support, ease of use and the Xero connection",
+      "url": "https://apps.xero.com/au/app/fergus/reviews", "seen": "2026-10-24",
+      "quote": "PARAPHRASE, not quoted on the page. Read all 79 Xero App Store reviews (70% five-star): support, ease of use and the Xero link are the most common praise (e.g. 17 Apr 2026, 10 Apr 2026, 26 Mar 2026). Capterra sub-ratings: ease of use 4.5, customer service 4.6. Trustpilot reviews (Dec 2025 to Aug 2026) mostly praise support.",
+      "figures": [],
+      "page_text": ["Reviewers most often praise the support team, how easy it is to use and the Xero connection"]
+    },
+    {
+      "id": "FG-21", "page": "vs-fergus.html",
+      "claim": "Review theme (paraphrased): a smaller number of reviewers say Fergus is complicated, that requested features have not arrived, or that cost adds up",
+      "url": "https://www.capterra.com/p/155571/Fergus/reviews/", "seen": "2026-10-24",
+      "quote": "PARAPHRASE. Complexity: Xero App Store, Stephen Gilligan (26 Mar 2025) calls it over complicated; Capterra, Lyndsay D. (14 Jun 2024) suggests a simpler version. Requested features: Capterra, Sharon D. (26 May 2025); Xero, Sharon Dimond and Stephen Gilligan (26 Mar 2025). Cost: Trustpilot, Mahmoud wahsheh (experience dated Jul 2025, listed Aug 2025) describes price changes every 6 to 12 months; Capterra, Dave D. (29 Nov 2018) mentions add-on costs on top of the plan.",
+      "figures": [],
+      "page_text": ["A smaller number of reviewers say Fergus is complicated or takes time to learn, that features they asked for haven't arrived, or that the cost adds up"]
+    }
+  ]
+}
