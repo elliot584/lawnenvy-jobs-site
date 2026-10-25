@@ -366,7 +366,7 @@
   "verdict": "FLAG (Kept claim)",
   "url": "file:///Users/elliotlangham/Documents/Lawn envy revamp/lawn-envy-jobs-site/index.html",
   "seen": "2026-10-24",
-  "quote": "Pricing cards price by headcount band (1, 2-4, 5-10, 11+) and Operation is 'Priced individually for your team size'. 'Flat' is true within a band only. The rest of the Kept row (Free-$229+/mo + GST; route optimisation on Team and above) matches the pricing cards and app.js.",
+  "quote": "Pricing cards price by headcount band (1, 2-4, 5-10, 11+) and Operation is 'Priced individually for your team size'. 'Flat' is true within a band only. The rest of the Kept row (Free-$229+/mo + GST; route optimisation on every plan) matches the pricing cards and app.js (as of 2026-10-25; the row said 'on Team and above' until route optimisation moved to every plan).",
   "action": "Minor; no change proposed."
  }
 ]

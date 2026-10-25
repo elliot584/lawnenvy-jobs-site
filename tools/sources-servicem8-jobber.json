@@ -67,7 +67,7 @@
     "url": "https://www.servicem8.com/au/industries/lawn-care-software",
     "seen": "2026-10-24",
     "quote": "Lawn care page: \"Auto-scheduling & route optimization Set ServiceM8 to routinely schedule all your recurring jobs, automatically. ServiceM8 will schedule the job times & staff to optimise efficiency and minimise travel time.\" | pricing page: \"Auto Routing Optimise a staff member's route and schedule for the day, saving time and fuel.\" (listed under Efficiency; also on /au/feature-overview) | cleaning page repeats the \"Auto-scheduling & route optimization\" line",
-    "action": "Removed route optimisation from the sentence about what ServiceM8 lacks. (Kept's own \"route optimisation (Team plan and above)\" cell is a Kept claim, left alone and flagged as not a differentiator.)"
+    "action": "Removed route optimisation from the sentence about what ServiceM8 lacks. (Kept's own route optimisation cell said \"Team plan and above\" then, a Kept claim left alone and flagged as not a differentiator. On 2026-10-25 route optimisation moved to every plan in the app and the cell now says \"on every plan\".)"
   },
   {
     "id": "SM8-08",
