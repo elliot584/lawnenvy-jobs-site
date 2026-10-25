@@ -25,8 +25,9 @@ arithmetic with ROUND_HALF_UP), the BAS dates against a Python calendar, with th
 The truck checklist (free/truck-checklist.html) is not a calculator or a tax tool, so it is tested differently: the "truck" group drives the editor (lines added, renamed,
 removed, reordered, the 25-line and 80-character limits, focus and announcements, the sheets built for each vehicle), the "print" group prints it to PDF (one A4 page for
 each vehicle, 1 to 6 of them, none cut off), and the "static" group holds what the page may and may not say: it is written for crews with two or more trucks and welcomes
-one-truck owners; it says once that it is not a safety inspection; it makes no compliance, WHS or legal claim; it says nothing about a vehicle check in the Kept app (which is not
-live); and its call to action is exactly the vetted words (APP-CLAIMS.md). The clean-up rule is the same as everywhere: nothing typed leaves the page or is stored.
+one-truck owners; it says once that it is not a safety inspection; it makes no compliance, WHS or legal claim; it names the Kept vehicle check once, in one vetted sentence of the
+call to action (APP-CLAIMS.md, "Weekly truck check (live 2026-10-25)"), with no photos, no safety or compliance wording, no plan names and nothing about what is coming; and the
+call to action is exactly the vetted words. The clean-up rule is the same as everywhere: nothing typed leaves the page or is stored.
 
 The numbers the pages may state come from FACTS.md (marketing-kit/social-bank/FACTS.md in the app repo's
 parent folder); the constants below are copies of the ones this suite checks, with their ids.
@@ -98,16 +99,26 @@ F_BAS_3 = ("If you lodge online you may be eligible for an extra 2 weeks to lodg
            "and you may get extra time if you lodge through a registered tax or BAS agent. "
            "A later date does not apply to Quarter 2 because its due date already includes a one-month extension.")
 F_BAS_2_WEEKEND = "you have until the next business day"
-# The truck checklist is a tidy-up list, not a safety inspection. Its page says that once, makes no compliance, WHS or legal claim at all, says nothing about a
-# vehicle check in the Kept app (that is being built and is not live), and says only what APP-CLAIMS.md allows about Kept.
+# The truck checklist is a tidy-up list, not a safety inspection. Its page says that once, makes no compliance, WHS or legal claim at all, mentions Kept's own weekly
+# vehicle check (live since 25 October 2026) once, in one sentence of the call to action, and says only what APP-CLAIMS.md allows about Kept.
 TRUCK_SAFETY = "A weekly check keeps the truck tidy and catches small problems early. It is not a safety inspection."
 TRUCK_LINES = [   # the example lines, in order: the page's own words, short and plain, no claim in any of them
     "Cab rubbish out and wiped down", "Outside washed", "Tools and equipment clean and stowed", "Fuel, oil and tyres looked at",
     "Lights and number plate wiped clean", "Trailer hitch and lights looked at (if you use one)", "Anything damaged or missing written in the notes",
 ]
-TRUCK_CTA = ("Keep the paperwork as tidy as the truck.",   # the call to action word for word: APP-CLAIMS.md "The whole thing", "Gear" and "Free to start"
-             "Kept puts quotes, jobs, schedule, invoices, clients and gear in one app. Equipment shows what each item is, when it was last serviced "
-             "and when the next service is due. Free plan, no time limit.")
+TRUCK_CTA = ("Keep the paperwork as tidy as the truck.",   # the call to action word for word: APP-CLAIMS.md "The whole thing", "Weekly truck check (live 2026-10-25)", "Gear", "Free to start"
+             "Kept puts quotes, jobs, schedule, invoices, clients and gear in one app. With two or more vehicles, Kept has a weekly vehicle check built in: "
+             "your crew tick it on their phones, you see which vehicles are done, and Today reminds you until they are. "
+             "Equipment shows what each item is, when it was last serviced and when the next service is due. Free plan, no time limit.")
+# Whatever else changes, the call to action never says: what is coming, photos (not part of the vehicle check), safety, inspection, compliance, WHS or legal wording, messages
+# sent to the crew or anything automatic, a plan name or a price. (The one allowed sentence about the vehicle check is pinned word for word above.)
+TRUCK_CTA_NEVER = [
+    (r"\bsoon\b|coming|launch|beta|\bnew\b|upcoming|\blater\b|\bwill\b|being built|in development|roadmap", "something that is coming"),
+    (r"photo|picture|\bimages?\b|camera|snap", "photos"),
+    (r"safe|safety|inspect|complian|\bWHS\b|health and safety|legal|\blaws?\b|regulat|insur|audit|certif|approved", "safety, inspection, compliance, WHS or legal wording"),
+    (r"\bsms\b|\btext(s|ed|ing)?\b|messag|notif|e-?mail|automatic", "a message sent, or anything automatic"),
+    (r"\b(solo|crew|team|operation)\s+(plan|tier)|\btiers?\b|\bpric|\$|per month|/ ?mo\b|\bsubscri", "a plan name or a price"),
+]
 TRUCK_MAX_LINES, TRUCK_MAX_LEN, TRUCK_MAX_NAME = 25, 80, 40
 NO_TAX_NOTE = {"truck-checklist"}      # pages that are not tax tools: they carry no tax note, and no tax words either
 # No compliance, WHS or legal claims at all (the one allowed "safety" and "inspection" are in TRUCK_SAFETY).
@@ -674,12 +685,14 @@ def static_truck(env, R, rel, text):
     R.check(W, "%s: the recognition idea is in the page's own words: no 'reward', 'cleanest', 'dirtiest', clean-up duty, prize or contest, and no mention of the Reel or its platforms" % rel,
             not copied, copied and copied.group(0))
 
-    R.check(W, "%s: the call to action is exactly the vetted words (APP-CLAIMS.md: the whole thing, Gear, Free to start)" % rel, (cta_h2, cta_p) == TRUCK_CTA, (cta_h2, cta_p))
-    R.check(W, "%s: what the call to action says about Kept never mentions vehicles, trucks, trailers, rego, checks or what is coming (the app's vehicle check is not live)" % rel,
-            not re.search(r"vehicle|truck|trailer|\bute\b|rego|check|inspect|soon|coming|launch|beta|new", cta_p, re.I), cta_p)
+    R.check(W, "%s: the call to action is exactly the vetted words (APP-CLAIMS.md: the whole thing, the weekly vehicle check for two or more vehicles, Gear, Free to start)" % rel,
+            (cta_h2, cta_p) == TRUCK_CTA, (cta_h2, cta_p))
+    never = [(label, m.group(0)) for rx, label in TRUCK_CTA_NEVER for m in [re.search(rx, cta_h2 + " " + cta_p, re.I)] if m]
+    R.check(W, "%s: the call to action says nothing about what is coming, photos, safety, inspection, compliance, WHS or the law, messages sent or anything automatic, plan names or prices" % rel,
+            not never, never)
     outside = strip_tags(main.replace(cta.group(0), "")) if cta else strip_tags(main)
-    R.check(W, "%s: Kept is named nowhere in the page's main text except the call to action (no word of an app vehicle check, which is not live)" % rel,
-            not re.search(r"\bKept\b|\bapp\b", outside) and not re.search(r"(vehicle|truck)\s+(check|inspection)\w*\s+(in|on|inside|with)\s+(Kept|the app)|in the app", everything, re.I), outside[:120])
+    R.check(W, "%s: Kept and the app are named nowhere in the page's main text except the call to action, and 'vehicle check' appears once on the whole page (in its one sentence)" % rel,
+            not re.search(r"\bKept\b|\bapp\b", outside) and plain.count("vehicle check") == 1, (outside[:120], plain.count("vehicle check")))
 
     own = own_script(text)
     got = re.search(r"var DEFAULT_LINES = \[(.*?)\];", own, re.S)
@@ -2322,7 +2335,15 @@ MUTATIONS = [
     M("truck: a work health and safety claim is added", "truck-checklist", "Anything damaged, missing or worn goes in the notes box, with what needs doing.", "Anything damaged, missing or worn goes in the notes box, with what needs doing. It helps meet your work health and safety duties.", ["static"]),
     M("truck: the not-a-safety-inspection sentence is missing", "truck-checklist", "    <p>A weekly check keeps the truck tidy and catches small problems early. It is not a safety inspection.</p>\n", "", ["static"]),
     M("truck: the not-a-safety-inspection sentence is said twice", "truck-checklist", "<p>With one truck, the sheet is the habit. Tick it, then put the kettle on.</p>", "<p>With one truck, the sheet is the habit. Tick it, then put the kettle on. It is not a safety inspection.</p>", ["static"]),
-    M("truck: the call to action mentions a vehicle check in the app", "truck-checklist", "Free plan, no time limit.</p>", "Free plan, no time limit. Kept's vehicle check is coming soon.</p>", ["static"]),
+    M("truck: the call to action says more is coming soon", "truck-checklist", "Free plan, no time limit.</p>", "Free plan, no time limit. More is coming soon.</p>", ["static"]),
+    M("truck: the call to action says the vehicle check takes photos", "truck-checklist", "your crew tick it on their phones", "your crew tick it and add photos on their phones", ["static"]),
+    M("truck: the call to action says the vehicle check keeps vehicles safe", "truck-checklist", "you see which vehicles are done, and Today", "you see which vehicles are done and safe, and Today", ["static"]),
+    M("truck: the call to action says the vehicle check is for every business, not two or more vehicles", "truck-checklist", "With two or more vehicles, Kept has a weekly vehicle check built in:", "Kept has a weekly vehicle check built in for everyone:", ["static"]),
+    M("truck: the call to action says Kept texts the crew", "truck-checklist", "and Today reminds you until they are.", "and Kept texts your crew until they are.", ["static"]),
+    M("truck: the call to action names a plan", "truck-checklist", "Free plan, no time limit.</p>", "Free plan, no time limit. The Crew plan adds the vehicle check.</p>", ["static"]),
+    M("truck: the call to action goes past the vetted words (it adds exports)", "truck-checklist", "and Today reminds you until they are.", "and Today reminds you until they are. You can export the checks.", ["static"]),
+    M("truck: the call to action drops the vehicle check sentence", "truck-checklist", "With two or more vehicles, Kept has a weekly vehicle check built in: your crew tick it on their phones, you see which vehicles are done, and Today reminds you until they are. ", "", ["static"]),
+    M("truck: the vehicle check is named a second time, in the habit section", "truck-checklist", "<p>With one truck, the sheet is the habit. Tick it, then put the kettle on.</p>", "<p>With one truck, the sheet is the habit. Tick it, then put the kettle on. Kept has a vehicle check for that.</p>", ["static"]),
     M("truck: the call to action claims more about vehicles than the Gear line", "truck-checklist", "Equipment shows what each item is, when it was last serviced", "Vehicles show their rego and when they were last serviced", ["static"]),
     M("truck: the app is named in the page text outside the call to action", "truck-checklist", "Printing the sheets is the easy part.", "Kept makes printing the sheets easy.", ["static"]),
     M("truck: the one-truck line is gone from beside the vehicle count", "truck-checklist", "a truck, ute, van or trailer. Running one truck? One sheet a week is plenty.", "a truck, ute, van or trailer.", ["static"]),
