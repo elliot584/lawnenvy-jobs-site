@@ -10,7 +10,8 @@
     {"text": "Turf/reno soil, bond-clean and house-wash calculators built in", "from": "vs-jobber.html FAQ: 'a turf/reno soil calculator, bond-clean and house-wash calculators'"},
     {"text": "standard prices saved in a price list", "from": "APP-CLAIMS.md, Quotes: 'Save standard prices once in the price list'"},
     {"text": "Today map with numbered stops and rough drive times", "from": "APP-CLAIMS.md, Today: 'a map of the day with numbered stops and the drive between them; each stop shows roughly how long the drive takes'"},
-    {"text": "route optimisation on Team plan and above", "from": "vs-yardbook 'Included on Team plan and above'; homepage pricing lists Route optimisation under Team"},
+    {"text": "route optimisation on every plan", "from": "Founder's decision 2026-10-25, built in the app's route-opt-all change: PLAN_LIMITS routeOptimize is true for free, solo, crew, team and operation, and api/optimize-route.js has no plan check (a daily limit per business instead). Homepage and trade price cards no longer list it under Team"},
+    {"text": "route optimisation on every plan (up to 25 stops a day)", "from": "Same change: ROUTE_ORDER_MAX_STOPS is 25 in app.js, Google's limit of 25 waypoints in one Directions request; a longer day is opened in the order it is listed, without a best order"},
     {"text": "Late invoices flagged on Today, with a reminder ready for you to send", "from": "APP-CLAIMS.md, Late invoices: 'flagged on Today with a reminder ready to send' (you send it)"},
     {"text": "GST worked out on quotes (Add GST toggle)", "from": "APP-CLAIMS.md, Quotes: 'Kept works out the GST (a toggle: Add GST)'"},
     {"text": "GST calculator in the Tax area", "from": "APP-CLAIMS.md, Money: 'The Tax area has a GST calculator'"}
@@ -86,7 +87,7 @@
       "url": "https://sortscape.com.au/scheduling/", "seen": "2026-10-24",
       "quote": "Free for 14 days. Scheduling and route optimisation are on every plan. Is route optimisation on every plan? Yes. Basic optimises runs of up to 25 stops, and Premium up to 150.",
       "figures": ["25", "150"],
-      "page_text": ["Route optimisation on every plan (up to 25 stops on Basic, 150 on Premium)", "route optimisation on every plan"]
+      "page_text": ["Route optimisation on every plan (up to 25 stops on Basic, 150 on Premium)", "route optimisation for up to 150 stops"]
     },
     {
       "id": "SS-10", "page": "vs-sortscape.html",

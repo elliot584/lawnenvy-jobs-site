@@ -22,8 +22,8 @@ What it covers, per page:
               adds the campaign tags at run time, so none are written by hand); no other external links
   copy        no "tax invoice"; none of the held words (Pay now, automatically, set and forget, encryption,
               AI, testimonial, 3 months free, free forever, founding offer ...); no superlatives, "better
-              than", disparagement or unsourced negatives; route optimisation is never offered for Kept
-              without "Team plan and above"
+              than", disparagement or unsourced negatives; route optimisation is only ever offered for
+              Kept as "on every plan" (it was Team-only until 2026-10-25), never tied to a plan name
   figures     every number on a page is either one of the Kept figures the sibling pages already state or a
               competitor figure listed in tools/vs-sources.json (and the other way round); Kept's only
               prices are $35 and $229+
@@ -99,6 +99,7 @@ KEPT_FIGURES = [
     re.compile(r"\(1, 2–4, 5–10, 11\+\)"), re.compile(r"\(1 person, 2–4, 5–10, 11\+\)"),
     re.compile(r"\b2–4\b"), re.compile(r"\b5–10\b"), re.compile(r"\b11\+"), re.compile(r"\b1 person\b"),
     re.compile(r"\bout of 5\b"),
+    re.compile(r"\(up to 25 stops a day\)"),   # route optimisation: Google takes 25 stops in one Directions request (app.js ROUTE_ORDER_MAX_STOPS); vs-sources.json kept_claims has where it comes from
 ]
 KEPT_DOLLARS = {"$35", "$229"}
 
@@ -514,16 +515,19 @@ def check_copy(ctx, R):
             m = rx.search(copy)
             R.check("copy", "%s: no %s wording" % (f, label), not m, "…%s…" % copy[max(0, m.start() - 40):m.end() + 40] if m else "")
         dom = ctx.dom(f)
-        # route optimisation is a Team-plan feature: never offer it for Kept without saying so
+        # route optimisation is on every plan (the founder's decision of 2026-10-25, live with the app's route-opt-all change): any Kept cell or sentence that offers it
+        # must say so, and nothing may tie it to a plan name any more (it was "Team plan and above" until then)
         bad = []
         for td in find_all(dom, "td", data_label="Kept"):
             t = node_text(td)
-            if re.search(r"route optimi", t, re.I) and "Team plan and above" not in t:
+            if re.search(r"route optimi", t, re.I) and "on every plan" not in t:
                 bad.append(t)
         for s in sentences(visible_text(dom)):
-            if re.search(r"\bKept\b", s) and re.search(r"route optimi", s, re.I) and "Team plan" not in s:
+            if re.search(r"\bKept\b", s) and re.search(r"route optimi", s, re.I) and "on every plan" not in s:
                 bad.append(s)
-        R.check("copy", "%s: route optimisation is only ever claimed for Kept as 'Team plan and above'" % f, not bad, bad)
+        if re.search(r"route optimi\w*[^.;|]{0,40}\bTeam\b|\bTeam plan and above\b|\bTeam and above\b", copy, re.I):
+            bad.append("route optimisation is tied to the Team plan")
+        R.check("copy", "%s: route optimisation is only ever claimed for Kept as 'on every plan', never tied to a plan name" % f, not bad, bad)
         h1 = find_all(dom, "h1")
         R.check("copy", "%s: one h1 that names both products" % f,
                 len(h1) == 1 and "Kept" in node_text(h1[0]) and cfg["name"] in node_text(h1[0]), [node_text(x) for x in h1])
@@ -916,7 +920,8 @@ def mutations():
         ("'better than'", FG, sub1("Try each on a few real jobs", "Kept is better than Fergus, so try each on a few real jobs"), ["copy"]),
         ("disparagement", SS, sub1("Lawn and garden maintenance</td>", "Lawn and garden maintenance, clunky</td>"), ["copy", "table"]),
         ("an unsourced negative claim", FG, sub1("Applies GST and syncs", "Lacks proper GST and syncs"), ["copy", "table"]),
-        ("route optimisation claimed for Kept without 'Team plan and above'", SS, sub1("; route optimisation on Team plan and above", "; route optimisation"), ["copy", "table"]),
+        ("route optimisation claimed for Kept without saying it is on every plan", SS, sub1("; route optimisation on every plan (up to 25 stops a day)", "; route optimisation"), ["copy", "table"]),
+        ("route optimisation said to be Team-only again", SS, sub1("; route optimisation on every plan (up to 25 stops a day)", "; route optimisation on Team plan and above"), ["copy", "table"]),
         ("a new Kept price", SS, sub1("Kept is worth a look if", "Kept's Solo plan is $49 a month, so Kept is worth a look if"), ["figures"]),
         ("the founding offer's price", FG, sub1("Try each on a few real jobs", "Kept's first year is $21/mo, so try each on a few real jobs"), ["figures", "copy"]),
         ("a competitor price changed on the page only", SS, sub1("From AUD $15/mo for 1 user", "From AUD $16/mo for 1 user"), ["figures", "table", "sources"]),

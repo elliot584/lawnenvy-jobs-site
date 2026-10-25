@@ -142,12 +142,12 @@
  {
   "id": "YB-14",
   "page": "vs-yardbook.html + index.html",
-  "claim": "Kept column of the route/weather row: 'Included on Team plan and above'",
-  "verdict": "KEPT-FLAG (left unchanged)",
+  "claim": "Kept column of the route/weather row: 'Weather blockout from the Solo plan; route optimisation on every plan' (it read 'Included on Team plan and above' until 2026-10-25)",
+  "verdict": "KEPT-CLAIM (reworded 2026-10-25)",
   "url": "index.html (this repo), pricing section",
-  "seen": "2026-10-24",
-  "quote": "Homepage price cards: Solo lists 'Weather blockout'; Team lists 'Route optimisation'. So 'Team plan and above' is right for route optimisation but not for weather blockout.",
-  "action": "Left unchanged; flagged in the report."
+  "seen": "2026-10-25",
+  "quote": "Homepage price cards: Solo lists 'Weather blockout'; Team no longer lists 'Route optimisation'. On 2026-10-25 route optimisation moved to every plan (the app's route-opt-all change: PLAN_LIMITS routeOptimize is true on all five plans, and api/optimize-route.js has no plan check, a daily limit per business instead), so 'on every plan' is right for route optimisation and 'from the Solo plan' is right for weather blockout.",
+  "action": "Reworded on vs-yardbook.html and the homepage to match."
  },
  {
   "id": "YB-15",
