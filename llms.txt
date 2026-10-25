@@ -2,7 +2,7 @@
 
 > Kept is business-management software for Australian service and trade businesses - quotes, jobs, scheduling, invoicing, payments and basic tax, in one app. It launches supporting lawn care, cleaning, pressure washing and handyman work in depth, with over 20 other trades selectable. AU-native GST/BAS and mileage tools are built in, not bolted on.
 
-Every business starts on a permanent Free plan (no card required, capped at 15 clients and 15 jobs/quotes a month). Paid plans are priced by team size, not per seat: Solo $35/mo (1 person), Crew $69/mo (2-4 people), Team $119/mo (5-10 people, adds route optimisation), Operation $229/mo (11+ people, adds multi-task projects). All prices in AUD + GST.
+Every business starts on a permanent Free plan (no card required, capped at 15 clients and 15 jobs/quotes a month). Paid plans are priced by team size, not per seat: Solo $35/mo (1 person), Crew $69/mo (2-4 people), Team $119/mo (5-10 people), Operation $229/mo (11+ people, adds multi-task projects). All prices in AUD + GST. Route optimisation, the best driving order for a day's stops opened in Google Maps, is on every plan.
 
 Storage modes: each business chooses how its data is stored (Settings > Account & sync). In Secure mode, the jobs, clients and invoices a business enters are encrypted on its own device before they reach Kept's servers, using a key derived from its own login password, so Kept cannot read them. In Standard mode (the default) that data is stored in ordinary, readable form, which is simpler and has nothing to lose if a password is forgotten. Either way Kept can see a business's name, its login email and which parts of the app are used. Details: https://www.keptsoftware.com.au/privacy.html
 
