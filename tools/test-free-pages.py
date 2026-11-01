@@ -7,7 +7,7 @@ Run it with the app repo's Python, which has Playwright and a cached headless Ch
 
   PY="/Users/elliotlangham/Documents/Lawn envy revamp/jobs-app/tools/demo-capture/.venv/bin/python"
   "$PY" tools/test-free-pages.py                       # the whole suite; PASS/FAIL per check, exit 1 on any FAIL
-  "$PY" tools/test-free-pages.py --selftest            # breaks the pages on purpose, 145 ways, and checks the suite goes red each time
+  "$PY" tools/test-free-pages.py --selftest            # breaks the pages on purpose, 148 ways, and checks the suite goes red each time
   "$PY" tools/test-free-pages.py --only gst,bas        # just those groups (while developing)
   "$PY" tools/test-free-pages.py --page truck-checklist # just one page
   "$PY" tools/test-free-pages.py --browser webkit      # the same suite in WebKit (Safari's engine); the PDF check is Chromium-only
@@ -1913,6 +1913,10 @@ CONTROLS_JS = """() => {
   }
   return bad.slice(0, 8);
 }"""
+VALUE_WRAP_JS = """() => Array.from(document.querySelectorAll('dd')).filter(d => d.offsetParent !== null && d.textContent.trim()).filter(d => {
+  const cs = getComputedStyle(d), lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.3;
+  return d.getBoundingClientRect().height > lh * 1.5;
+}).map(d => d.textContent.trim()).slice(0, 6)"""
 SHOTS_DIR = None
 
 
@@ -1939,6 +1943,17 @@ def group_layout(env, R, pages):
                 R.check(W, "%s: inputs are 16px+ type and 44px+ tall, buttons 38px+" % label, not bad, bad)
                 no_page_errors(R, W, label, s)
                 s.close()
+    # A result value (a price, a rate, a distance) stays on one line on the narrowest phones. 2026-11-01: on a 375 px phone the GST calculator showed
+    # "$20.0" over "0" in "GST in that price", because the result box lets words break anywhere and the row squeezed the value instead of the label.
+    for slug in pages:
+        for width in (320, 360, 375, 412):
+            label = "%s %dpx" % (PAGE_PATH[slug], width)
+            s = env.session(scheme="light", width=width, height=800, clock=datetime(2026, 10, 24, 10, 0, tzinfo=timezone(timedelta(hours=10))))
+            page = s.goto(slug)
+            show_result(page, slug)
+            bad = page.evaluate(VALUE_WRAP_JS)
+            R.check(W, "%s: no result value breaks across two lines" % label, not bad, bad)
+            s.close()
 
 
 # ---------------------------------------------------------------------------------------------
@@ -2279,6 +2294,9 @@ MUTATIONS = [
     M("all: pale text in dark mode only", "gst-calculator", "--err:#FF9E9E;", "--err:#5a2a2a;", ["a11y"]),
     M("all: sideways scroll on a phone", "cents-per-km-calculator", "</style>", ".tool{min-width:560px}\n</style>", ["layout"]),
     M("all: a long word breaks the quote's layout", "quote-template", ".result{border-radius:var(--radius);padding:18px 20px;", ".result{white-space:nowrap;border-radius:var(--radius);padding:18px 20px;", ["layout"]),
+    M("GST: a result value breaks across two lines on a phone", "gst-calculator", ".rows dd{font-weight:600;text-align:right;white-space:nowrap}", ".rows dd{font-weight:600;text-align:right}", ["layout"]),
+    M("hourly: a result value breaks across two lines on a phone", "hourly-rate-calculator", ".rows dd{font-weight:600;text-align:right;white-space:nowrap}", ".rows dd{font-weight:600;text-align:right}", ["layout"]),
+    M("km: a result value breaks across two lines on a phone", "cents-per-km-calculator", ".rows dd{font-weight:600;text-align:right;white-space:nowrap}", ".rows dd{font-weight:600;text-align:right}", ["layout"]),
     M("all: a tag left open", "gst-calculator", '<section id="faq">\n  <div class="wrap narrow">', '<section id="faq">\n  <div class="wrap narrow"><div>', ["static"]),
     M("all: two elements with the same id", "gst-calculator", '<section id="faq">', '<section id="tool">', ["static"]),
     M("all: a broken internal link", "hourly-rate-calculator", 'href="/free/gst-calculator"', 'href="/free/gst-calc"', ["static"]),
