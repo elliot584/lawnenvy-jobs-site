@@ -2,7 +2,7 @@
   "about": "Source table for vs-sortscape.html and vs-fergus.html. Every statement those pages make about a competitor, and every competitor figure, comes from a public page read on the date in 'seen'. tools/test-vs-pages.py reads this file: each 'figures' entry must appear in its 'quote', each 'page_text' fragment must appear on its page, every competitor cell in the comparison table must be covered by fragments listed here, and every number on a page must be a figure listed here or one of the Kept figures vetted below. Review themes are paraphrased (never quoted on the pages); the entries say which reviews they come from. Prices are the figures shown on the competitor's own public pricing page and need re-checking before they are quoted again.",
   "checked": "2026-10-24",
   "kept_claims": [
-    {"text": "Free, then $35–$229+/mo AUD + GST", "from": "Starting price row of vs-yardbook, vs-jobber, vs-servicem8, vs-zenmaid"},
+    {"text": "Free, then $35–$229+/mo AUD", "from": "Starting price row of vs-yardbook, vs-jobber, vs-servicem8, vs-zenmaid"},
     {"text": "Permanent — 15 clients & 15 jobs/quotes a month, no card required", "from": "Free plan row of vs-zenmaid.html"},
     {"text": "Flat, by team size (1, 2–4, 5–10, 11+)", "from": "vs-jobber 'Flat, by team size' and vs-zenmaid 'Flat, by seat band (1, 2–4, 5–10, 11+)'"},
     {"text": "Lawn care in depth, plus cleaning, pressure washing, handyman and 20+ others", "from": "Trade coverage row of vs-yardbook.html"},
