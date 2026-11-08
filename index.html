@@ -322,6 +322,7 @@ td.price{font-family:'SF Mono',Consolas,monospace;white-space:nowrap}
 .founder-banner .fb-kicker{font-weight:600;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-bottom:6px}
 .founder-banner h3{font-size:1.15rem;font-weight:600;margin-bottom:6px}
 .founder-banner p{font-size:.88rem;color:rgba(255,255,255,.78);max-width:56ch}
+.founder-banner[hidden]{display:none}
 .founder-tiers{display:flex;gap:10px;flex-wrap:wrap;margin-left:auto}
 .founder-tier{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:10px 16px;text-align:center;min-width:90px}
 .founder-tier .ft-pct{font-size:1.3rem;font-weight:600;color:var(--lime)}
@@ -681,7 +682,7 @@ details.more .note{margin-top:16px}
       <h2 class="title">Start free. Pay only once you've outgrown it.</h2>
       <p>Priced by how many people are using it, not per seat on top of a base fee. Pick the tier that matches your team size and upgrade whenever you actually need to — nothing locks you in.</p>
     </div>
-    <div class="founder-banner">
+    <div class="founder-banner" id="founderBanner" hidden>
       <div>
         <div class="fb-kicker">Founding-member pricing</div>
         <h3>The first 100 businesses pay $21/month.</h3>
@@ -712,7 +713,7 @@ details.more .note{margin-top:16px}
       <div class="price-card">
         <h3>Solo</h3>
         <div class="price-tag">$35<span>/mo</span></div>
-        <div class="price-sub">$21/mo for the first 100 businesses — 12 months</div>
+        <div class="price-sub" id="founderPriceSub" hidden>$21/mo for the first 100 businesses — 12 months</div>
         <ul>
           <li>1 person</li>
           <li>No caps on clients or jobs</li>
@@ -993,15 +994,17 @@ document.getElementById('calcJobsSlider').addEventListener('input', calcRun);
 calcPopulateJobSelect();
 calcRun();
 
-// Founding-member spots-left tile — stays hidden (see its default style) unless
-// this succeeds with a real number, rather than ever showing a static guess that
-// could go stale or a broken "— of 100" if the fetch fails or JS doesn't run.
+// The founding-member wording: the banner (with its spots-left tile) and the "$21" line on the Solo card are in the page but hidden (the hidden attribute), and they show
+// only when the live counter confirms that spots are left. When it says none are left, or cannot be read at all (a failed request, an answer that is not a number,
+// JavaScript off), they stay hidden: the page never advertises a price that may be gone, and never shows a static guess that could go stale.
 fetch('https://app.keptsoftware.com.au/api/leads')
   .then(r => r.json())
   .then(data => {
-    if (!data || !data.ok || data.remaining == null) return;
+    if (!data || !data.ok || !Number.isFinite(data.remaining) || data.remaining <= 0) return;
     document.getElementById('founderSlotsCount').textContent = data.remaining;
     document.getElementById('founderSlotsTile').style.display = '';
+    document.getElementById('founderBanner').hidden = false;
+    document.getElementById('founderPriceSub').hidden = false;
   })
   .catch(() => {});
 </script>
