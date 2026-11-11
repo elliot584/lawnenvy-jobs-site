@@ -7,7 +7,8 @@ Why: on 11 November 2026 the founder pointed out that a phone had no way to the 
 and that the link's wording, "Need a quote instead?", could be read as a quote for Kept itself. The fix gave phones a menu button and the link the wording
 "Need work done?". Building it turned up two more things that this test now guards: the page's global rule for the FAQ <details> (white card, padding, a "+" after the
 summary) leaked into the menu and made the header 109 px tall and the page 8 px too wide at 320 px, and the home page's seven links had been squeezed onto two lines
-between 841 and about 1060 px. Each of those makes a check below fail when put back.
+between 841 and about 1060 px. Each of those makes a check below fail when put back. He then asked for a visible "Need work done?" line under the hero buttons as well, so a phone
+sees the way to the request page without opening the menu: first on the home page, then on the four trade pages (12 November 2026); the checks on that line are below.
 
 What it checks, on index.html, lawn-care, clean, wash and handyman (each page's breakpoint is read from its own CSS):
   - the two lists agree: every link in the menu is also in the header links, in the same order, with the same address; the old wording is gone from the page
@@ -17,8 +18,9 @@ What it checks, on index.html, lawn-care, clean, wash and handyman (each page's 
   - the menu opens with its button; all its links are on screen and at least 40 px tall; it closes after a tap on a link (an in-page link also scrolls the page), after a
     tap outside it, and on Escape (the focus goes back to the button); the quote tile says "Need work done?" and reaches the request page
   - without nav.js the button still opens and closes the menu
-  - on the home page the "Need work done?" line under the two hero buttons shows exactly where the header links are folded away (and not above that), sits between the
-    last button and the proof list, is at least 24 px tall to tap, and on a 390 px phone ends within the first 700 px, so it is on the first screen
+  - on every page the "Need work done?" line under the two hero buttons shows exactly where the header links are folded away (and not above that), goes to the same address
+    as the menu tile, sits between the last button and the proof list, is at least 24 px tall to tap, reaches the request page when tapped (the trade pages are one
+    folder down, so they need the leading slash), and on a 390 px phone ends within the first 700 px, so it is on the first screen
 """
 import functools, http.server, os, pathlib, re, socketserver, sys, threading
 
@@ -29,6 +31,7 @@ OLD_LABEL, NEW_LABEL, TILE_SUB = "Need a quote instead?", "Need work done?", "Ge
 BLOCKED = ("facebook", "google", "googletagmanager")
 IGNORED_CONSOLE = ("ERR_FAILED", "Failed to load resource", "CORS policy", "access control checks", "Access-Control-Allow-Origin")
 BP_RE = re.compile(r"@media\(max-width:(\d+)px\)\{\.nav-links\{display:none\}\.navmenu\{display:block\}\}")
+HERO_BP_RE = re.compile(r"@media\(max-width:(\d+)px\)\{\.hero-work\{display:block\}\}")
 
 problems, checks = [], [0]
 
@@ -61,7 +64,8 @@ QUIET_SPOT = """() => { for (let y = 780; y > 300; y -= 12) for (const x of [8, 
 
 HERO = """() => { const e = document.querySelector('.hero-work'); if (!e) return null; const a = e.querySelector('a');
   const r = x => { const b = x.getBoundingClientRect(); return {t: b.top, b: b.bottom, h: b.height}; }; const btns = [...document.querySelectorAll('.hero .hero-ctas .btn')];
-  return {shown: getComputedStyle(e).display !== 'none', link: r(a), href: a.getAttribute('href'), text: e.textContent.trim(), lastBtn: r(btns[btns.length - 1]),
+  const tile = document.querySelector('header .navmenu-work a');
+  return {shown: getComputedStyle(e).display !== 'none', link: r(a), href: a.getAttribute('href'), tileHref: tile && tile.getAttribute('href'), text: e.textContent.trim(), lastBtn: r(btns[btns.length - 1]),
     proof: r(document.querySelector('.hero-proof')), sw: document.documentElement.scrollWidth, vw: document.documentElement.clientWidth}; }"""
 
 
@@ -101,19 +105,20 @@ def geometry(browser, base, engine, scheme, rel, bp):
         ctx.close()
 
 
-def hero_link(browser, base, engine, scheme, bp):
+def hero_link(browser, base, engine, scheme, rel, bp):
     for w in sorted(set([320, 390, 414, 768, 900, 1024, 1280, bp, bp + 1])):
         ctx, page = new_page(browser, w, scheme, 844)
-        page.goto(base + "index.html", wait_until="load")
+        page.goto(base + rel, wait_until="load")
         page.evaluate("document.fonts.ready.then(() => true)")
         page.wait_for_timeout(100)
         g = page.evaluate(HERO)
-        tag = "%s %s index.html, the hero line at %d px" % (engine, scheme, w)
+        tag = "%s %s %s, the hero line at %d px" % (engine, scheme, rel, w)
         ok(g is not None, "%s: the line is missing" % tag)
         if g:
             ok(g["sw"] <= g["vw"] + 1, "%s: the page is %d px wide in a %d px window" % (tag, g["sw"], g["vw"]))
             ok(g["text"].startswith("Need work done?") and "Get free quotes from local businesses" in g["text"], "%s: the wording is %r" % (tag, g["text"]))
             ok((g["href"] or "").endswith("request-a-quote.html"), "%s: the link goes to %r" % (tag, g["href"]))
+            ok(g["href"] == g["tileHref"], "%s: the line goes to %r but the menu tile to %r" % (tag, g["href"], g["tileHref"]))
             if w <= bp:
                 ok(g["shown"], "%s: it should show where the header links are folded away" % tag)
                 if g["shown"]:
@@ -122,6 +127,14 @@ def hero_link(browser, base, engine, scheme, bp):
                     ok(g["link"]["h"] >= 24, "%s: the link is only %d px tall to tap" % (tag, g["link"]["h"]))
                     if w == 390:
                         ok(g["link"]["b"] <= 700, "%s: it ends %d px down, below the first screen" % (tag, g["link"]["b"]))
+                        # tapping it reaches the request page (a link written without the leading slash would look for it one folder down on a trade page)
+                        try:
+                            with page.expect_navigation(wait_until="load", timeout=15000):
+                                page.locator(".hero-work a").click()
+                            ok(page.url == base + "request-a-quote.html", "%s: tapping it went to %s" % (tag, page.url))
+                            ok("quote" in page.title().lower(), "%s: the page it reached is titled %r" % (tag, page.title()))
+                        except Exception as e:
+                            ok(False, "%s: tapping it failed: %s" % (tag, str(e).splitlines()[0][:160]))
             else:
                 ok(not g["shown"], "%s: it should be hidden where the header already shows the link" % tag)
         ctx.close()
@@ -201,10 +214,12 @@ def main():
         ok(t.count('<details class="navmenu">') == 1, "%s: expected one menu <details>" % rel)
         ok('<script src="/nav.js" defer></script>' in t, "%s: nav.js is not loaded" % rel)
         ok(OLD_LABEL not in t, "%s: still says %r" % (rel, OLD_LABEL))
-        want = 3 if rel == "index.html" else 2   # header link and menu tile, and on the home page the line under the hero buttons
-        ok(t.count(NEW_LABEL) == want, "%s: %r should appear %d times (header link, menu tile%s), found %d" % (rel, NEW_LABEL, want, ", hero line" if want == 3 else "", t.count(NEW_LABEL)))
+        ok(t.count(NEW_LABEL) == 3, "%s: %r should appear 3 times (header link, menu tile, the line under the hero buttons), found %d" % (rel, NEW_LABEL, t.count(NEW_LABEL)))
+        ok(t.count('<p class="hero-work">') == 1, "%s: expected one hero line under the buttons" % rel)
+        hero_bp = HERO_BP_RE.findall(t)
+        ok(len(hero_bp) == 1 and len(found) == 1 and int(hero_bp[0]) == int(found[0]),
+           "%s: the hero line should appear at the same width the header links fold away (%s), found %s" % (rel, found, hero_bp))
     ok("Get a free quote" not in texts["index.html"] and TILE_SUB in texts["index.html"], "index.html: the footer line should offer %r" % TILE_SUB)
-    ok(texts["index.html"].count('<p class="hero-work">') == 1, "index.html: expected one hero line under the buttons")
     ok((ROOT / "nav.js").exists(), "nav.js is missing")
 
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(ROOT))
@@ -218,7 +233,8 @@ def main():
             browser = getattr(p, engine).launch()
             for rel in PAGES:
                 geometry(browser, base, engine, scheme, rel, bps[rel])
-            hero_link(browser, base, engine, scheme, bps["index.html"])
+            for rel in PAGES:
+                hero_link(browser, base, engine, scheme, rel, bps[rel])
             for rel in PAGES:
                 behaviour(browser, base, engine, rel)
             # the two lists agree (once per page, in the first engine)
@@ -249,7 +265,7 @@ def main():
     if problems:
         print("FAIL: %d problems in %d checks" % (len(problems), checks[0]))
         sys.exit(1)
-    print("PASS: %d checks: %d pages, the header, its menu and the home page's hero line hold from 320 to 1440 px in WebKit and Chromium, and the quote link says %r" % (checks[0], len(PAGES), NEW_LABEL))
+    print("PASS: %d checks: %d pages, the header, its menu and the hero line under the buttons hold from 320 to 1440 px in WebKit and Chromium, and the quote link says %r" % (checks[0], len(PAGES), NEW_LABEL))
 
 
 main()

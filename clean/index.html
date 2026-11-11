@@ -130,6 +130,11 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--pape
 .hero-copy h1{font-size:clamp(1.8rem,3.2vw,2.5rem)}
 .hero-copy .lede{max-width:52ch}
 .hero .hero-ctas{margin-bottom:22px}
+/* For people who came for a job, not for software. The header links are folded into the menu below 880px, so on a phone this link also stands under the two buttons. */
+.hero-work{display:none;margin:-4px 0 18px;font-size:.92rem;line-height:1.4;font-weight:600;color:rgba(255,255,255,.92)}
+.hero-work a{display:block;width:max-content;max-width:100%;padding:5px 0;color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+.hero-work a:hover{color:#fff}
+@media(max-width:880px){.hero-work{display:block}}
 .hero .btn{padding:14px 26px}
 .btn-accent{background:var(--lime);color:var(--green-900);box-shadow:0 8px 22px rgba(0,0,0,.28)}
 .btn-accent:hover{background:#fff;color:var(--green-900)}
@@ -235,6 +240,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
         <a class="btn btn-accent" href="https://app.keptsoftware.com.au/?plan=free&industry=cleaning">Get started free →</a>
         <a class="btn btn-line" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
       </div>
+      <p class="hero-work">Need work done?<a href="/request-a-quote.html">Get free quotes from local businesses →</a></p>
       <ul class="hero-proof">
         <li>Free plan: no card, no time limit</li>
         <li>Live demo: no account needed</li>
