@@ -56,7 +56,9 @@
       "mainEntity": [
         { "@type": "Question", "name": "How does the house wash calculator work?", "acceptedAnswer": { "@type": "Answer", "text": "Square-metre pricing for house and surface washing, and linear-metre pricing for gutters, both built into the quote — no separate spreadsheet for working out the area." } },
         { "@type": "Question", "name": "Why does weather blockout matter for pressure washing?", "acceptedAnswer": { "@type": "Answer", "text": "A rain day usually means the job's off entirely, not just uncomfortable — the dashboard flags likely-rain days ahead of time and suggests the next clear one, one tap to move the day's jobs." } },
-        { "@type": "Question", "name": "Can I quote multiple properties in one run?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — route optimisation (on every plan) opens a day's stops in Google Maps in the best driving order, useful when a day is a string of house washes across one suburb." } }
+        { "@type": "Question", "name": "Can I quote multiple properties in one run?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — route optimisation (on every plan) opens a day's stops in Google Maps in the best driving order, useful when a day is a string of house washes across one suburb." } },
+        { "@type": "Question", "name": "How do I get the square metres?", "acceptedAnswer": { "@type": "Answer", "text": "You measure on site and type the area in. Kept does the pricing from there, by the square metre for surfaces and by the linear metre for gutters." } },
+        { "@type": "Question", "name": "What does my customer hear when rain moves the job?", "acceptedAnswer": { "@type": "Answer", "text": "Nothing from Kept. One tap moves the day's jobs to the next clear day in your schedule. Telling the customer is still yours to do." } }
       ]
     }
   ]
@@ -197,6 +199,11 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   .rcard.rhero{background:linear-gradient(155deg,#0B7A43,#0B5F34)}
   .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#fff}
 }
+/* Your first ten minutes: five numbered steps (15 November 2026) */
+.first10{list-style:none;counter-reset:f10;padding:0;margin:0;display:grid;gap:10px}
+.first10 li{counter-increment:f10;position:relative;border:1px solid var(--line);border-radius:12px;background:var(--white);padding:14px 18px 14px 58px;font-size:.92rem;color:var(--ink-soft)}
+.first10 li::before{content:counter(f10);position:absolute;left:16px;top:13px;width:28px;height:28px;border-radius:50%;background:var(--green-700);color:var(--white);font-weight:600;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.first10 li b{color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -308,6 +315,30 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <summary>Can I quote multiple properties in one run?</summary>
       <p>Yes — route optimisation (on every plan) opens a day's stops in Google Maps in the best driving order, useful when a day is a string of house washes across one suburb.</p>
     </details>
+    <details>
+      <summary>How do I get the square metres?</summary>
+      <p>You measure on site and type the area in. Kept does the pricing from there, by the square metre for surfaces and by the linear metre for gutters.</p>
+    </details>
+    <details>
+      <summary>What does my customer hear when rain moves the job?</summary>
+      <p>Nothing from Kept. One tap moves the day's jobs to the next clear day in your schedule. Telling the customer is still yours to do.</p>
+    </details>
+  </div>
+</section>
+
+<section id="first-ten-minutes">
+  <div class="wrap" style="max-width:760px">
+    <div class="section-head">
+      <div class="kicker">Getting started</div>
+      <h2 class="title">Your first ten minutes.</h2>
+    </div>
+    <ol class="first10">
+      <li><b>Make your account.</b> An email and a password. No card.</li>
+      <li><b>Pick your trade.</b> Your quote options and a starter price list are already set up. Change any price.</li>
+      <li><b>Bring your clients.</b> Import a spreadsheet or an export from the software you use now, or add them as jobs come in.</li>
+      <li><b>Put Kept on your phone.</b> Add it to your home screen and it opens like any other app, and keeps working with no signal.</li>
+      <li><b>Price your first house wash.</b> By the square metre, then send the quote.</li>
+    </ol>
   </div>
 </section>
 
@@ -324,7 +355,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
 
 <footer>
   <div class="wrap">
-    Kept — software built by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
+    Kept — made in Brisbane by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
     <div style="margin-top:10px;font-size:.86rem">Not pressure washing? <a href="/" style="color:var(--green-700);font-weight:700">See every trade Kept covers →</a></div>
     <div style="margin-top:8px;font-size:.82rem"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>
     <div style="margin-top:8px;font-size:.82rem">Support: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a></div>

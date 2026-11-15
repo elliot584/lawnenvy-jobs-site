@@ -409,6 +409,11 @@ details.more>summary:hover{border-color:var(--green-600)}
 details.more[open]>summary{margin-bottom:26px}
 details.more .feat p{margin-top:0}
 details.more .note{margin-top:16px}
+/* Your first ten minutes: five numbered steps (15 November 2026) */
+.first10{list-style:none;counter-reset:f10;padding:0;margin:0;display:grid;gap:10px}
+.first10 li{counter-increment:f10;position:relative;border:1px solid var(--line);border-radius:12px;background:var(--white);padding:14px 18px 14px 58px;font-size:.92rem;color:var(--ink-soft)}
+.first10 li::before{content:counter(f10);position:absolute;left:16px;top:13px;width:28px;height:28px;border-radius:50%;background:var(--green-700);color:var(--white);font-weight:600;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.first10 li b{color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -532,7 +537,7 @@ details.more .note{margin-top:16px}
       <div class="step3">
         <div class="ghostnum" aria-hidden="true">03</div>
         <h3>Send it, done</h3>
-        <p>Email or SMS from the job. It tracks itself from there.</p>
+        <p>Email it from the job. It tracks itself from there.</p>
       </div>
     </div>
   </div>
@@ -814,7 +819,7 @@ details.more .note{margin-top:16px}
     <div class="feat-grid">
       <div class="feat"><h3>Marketplace job leads</h3><p>Real customer job requests matched to your trade and service area — quote and win work without spending a cent on ads.</p></div>
       <div class="feat"><h3>Quotes → jobs → invoices</h3><p>One record flows into the next — no retyping the same job three times.</p></div>
-      <div class="feat"><h3>Recurring jobs</h3><p>Weekly, fortnightly or monthly, repeating forever until you cancel the series.</p></div>
+      <div class="feat"><h3>Recurring jobs</h3><p>Weekly, fortnightly or every 4 weeks, repeating until you cancel the series.</p></div>
       <div class="feat"><h3>Multi-day projects</h3><p>Break a big job into dated task cards spread across days, then bill it all as one invoice — or bill it in stages as it progresses.</p></div>
       <div class="feat"><h3>Route optimisation</h3><p>The best driving order for a day's stops, opened in Google Maps, not just the order they were entered. On every plan.</p></div>
       <div class="feat"><h3>Weather blockout</h3><p>Flags likely-rain days and suggests the next clear one, one tap to move a day's jobs.</p></div>
@@ -837,7 +842,7 @@ details.more .note{margin-top:16px}
       <div class="feat"><h3>Custom staff roles</h3><p>Decide exactly what each login can see — crew gets their jobs, not your financials or client list.</p></div>
       <div class="feat"><h3>Job-linked documents</h3><p>Work orders, site plans or SWMS attached straight to the job — no separate folder to go hunting through.</p></div>
       <div class="feat"><h3>Subcontractor work orders</h3><p>A no-login PDF work order you can text or email a sub, without handing them access to your books.</p></div>
-      <div class="feat"><h3>Send invoices &amp; quotes</h3><p>Email or SMS straight from the job, with status tracked automatically as sent, viewed or paid.</p></div>
+      <div class="feat"><h3>Send invoices &amp; quotes</h3><p>Email straight from the job, with status tracked as sent, viewed or paid. Texting works once you add your own SMS account.</p></div>
       <div class="feat"><h3>Works offline, syncs everywhere</h3><p>A proper installable app, not just a bookmark — keeps working with no signal and catches up the moment you're back online, across every device.</p></div>
     </div>
     </details>
@@ -851,6 +856,16 @@ details.more .note{margin-top:16px}
     <h2 class="title">Tell us what you do — we'll build the tools for it.</h2>
     <p style="margin-top:12px;color:var(--ink-soft)">Kept already covers 25+ service trades under the hood, from lawn care to cleaning to pressure washing. If yours isn't one of them yet, let us know what you need and we'll build it out.</p>
     <a class="btn" style="margin-top:22px" href="#get-in-touch">Request your trade →</a>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap" style="max-width:760px">
+    <div class="section-head">
+      <div class="kicker">Who is behind it</div>
+      <h2 class="title">Built on the tools, not in an office.</h2>
+      <p>I'm Elliot. I run a lawn care business in Brisbane, and I built Kept because I was doing my invoices at the kitchen table at nine at night. I run my own business on it. If something does not work the way your day works, tell me: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a> comes to me.</p>
+    </div>
   </div>
 </section>
 
@@ -919,6 +934,22 @@ details.more .note{margin-top:16px}
   </div>
 </section>
 
+<section id="first-ten-minutes">
+  <div class="wrap" style="max-width:760px">
+    <div class="section-head">
+      <div class="kicker">Getting started</div>
+      <h2 class="title">Your first ten minutes.</h2>
+    </div>
+    <ol class="first10">
+      <li><b>Make your account.</b> An email and a password. No card.</li>
+      <li><b>Pick your trade.</b> Your quote options and a starter price list are already set up. Change any price.</li>
+      <li><b>Bring your clients.</b> Import a spreadsheet or an export from the software you use now, or add them as jobs come in.</li>
+      <li><b>Put Kept on your phone.</b> Add it to your home screen and it opens like any other app, and keeps working with no signal.</li>
+      <li><b>Send your first quote, or book your first regular.</b> That is the whole setup.</li>
+    </ol>
+  </div>
+</section>
+
 <section>
   <div class="cta-final">
     <h2>Start free. No card, no time limit.</h2>
@@ -932,7 +963,7 @@ details.more .note{margin-top:16px}
 
 <footer>
   <div class="wrap">
-    Kept — software built by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
+    Kept — made in Brisbane by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
     <div style="margin-top:10px;font-size:.86rem">Built for your trade: <a href="/lawn-care" style="color:var(--green-700);font-weight:700">Lawn care</a> · <a href="/clean" style="color:var(--green-700);font-weight:700">Cleaning</a> · <a href="/wash" style="color:var(--green-700);font-weight:700">Pressure washing</a> · <a href="/handyman" style="color:var(--green-700);font-weight:700">Handyman</a></div>
     <div style="margin-top:8px;font-size:.86rem">Need lawn care, cleaning, pressure washing or handyman work done? <a href="request-a-quote.html" style="color:var(--green-700);font-weight:700">Get free quotes from local businesses →</a></div>
     <div style="margin-top:8px;font-size:.82rem"><a href="/free">Free tools</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>

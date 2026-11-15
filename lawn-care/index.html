@@ -54,9 +54,10 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Does it handle recurring mow rounds?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — set a job to repeat weekly, fortnightly or monthly and it keeps generating until you cancel the series. A reschedule or a rain-day move only affects that one visit, not the whole round." } },
+        { "@type": "Question", "name": "Does it handle recurring mow rounds?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Set a job to repeat weekly, fortnightly or every 4 weeks and it keeps adding visits until you cancel the series. A reschedule or a rain-day move only affects that one visit, not the whole round." } },
         { "@type": "Question", "name": "What does the soil calculator actually do?", "acceptedAnswer": { "@type": "Answer", "text": "As you build a turf renovation or garden reno quote, it works out the m³ of soil needed live from the area and depth you enter, so you're not doing that math in a separate spreadsheet or guessing." } },
-        { "@type": "Question", "name": "Can it optimise my run order for the day?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, on every plan. Tap Directions on a day and its stops open in Google Maps in the best driving order, starting and ending at your business address, not just the order jobs were booked in." } }
+        { "@type": "Question", "name": "Can it optimise my run order for the day?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, on every plan. Tap Directions on a day and its stops open in Google Maps in the best driving order, starting and ending at your business address, not just the order jobs were booked in." } },
+        { "@type": "Question", "name": "I have a full round. Will the Free plan fit?", "acceptedAnswer": { "@type": "Answer", "text": "Free covers up to 15 clients and 15 jobs and quotes in a month, which suits a small or part-time run. A full round needs Solo at $35 a month, with no caps." } }
       ]
     }
   ]
@@ -197,6 +198,11 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   .rcard.rhero{background:linear-gradient(155deg,#0B7A43,#0B5F34)}
   .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#fff}
 }
+/* Your first ten minutes: five numbered steps (15 November 2026) */
+.first10{list-style:none;counter-reset:f10;padding:0;margin:0;display:grid;gap:10px}
+.first10 li{counter-increment:f10;position:relative;border:1px solid var(--line);border-radius:12px;background:var(--white);padding:14px 18px 14px 58px;font-size:.92rem;color:var(--ink-soft)}
+.first10 li::before{content:counter(f10);position:absolute;left:16px;top:13px;width:28px;height:28px;border-radius:50%;background:var(--green-700);color:var(--white);font-weight:600;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.first10 li b{color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -262,11 +268,14 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <h2 class="title">The parts of the day a generic tool doesn't think about.</h2>
     </div>
     <div class="feat-grid">
-      <div class="feat"><h3>Recurring mow rounds</h3><p>Weekly, fortnightly or monthly — set it once and it keeps generating jobs until you cancel the series. A reschedule only touches that one visit.</p></div>
+      <div class="feat"><h3>Recurring mow rounds</h3><p>Weekly, fortnightly or every 4 weeks. Set it once and it keeps adding visits until you cancel the series. A reschedule only touches that one visit.</p></div>
       <div class="feat"><h3>Turf/reno soil calculator</h3><p>Live m³ soil volume as you build a renovation quote, worked out from the area and depth you enter — no separate spreadsheet.</p></div>
       <div class="feat"><h3>Route optimisation</h3><p>The best driving order for a day's stops, opened in Google Maps, not just the order they were booked in. On every plan.</p></div>
       <div class="feat"><h3>Weather blockout</h3><p>Flags likely-rain days on the calendar and suggests the next clear one — one tap moves a whole day's jobs.</p></div>
       <div class="feat"><h3>Mileage &amp; vehicle log</h3><p>GPS-tracked trips between properties, turned straight into a cents-per-km tax deduction at tax time.</p></div>
+      <div class="feat"><h3>Catch up after rain</h3><p>After the rain, Kept suggests new days for your overdue visits. You check them, tick them and apply, and you can undo it.</p></div>
+      <div class="feat"><h3>Warm and cold seasons</h3><p>Mow fortnightly in the warm months and every 4 weeks in the cold ones? Kept suggests the change twice a year. You review, tick and apply, and can undo it.</p></div>
+      <div class="feat"><h3>Dry-spell hold</h3><p>When the grass stops growing, Kept can hold your regular clients back a cycle. You choose who, check the new dates and apply, and you can undo it.</p></div>
       <div class="feat"><h3>Marketplace job leads</h3><p>Real customer job requests matched to your service area — quote and win work without spending on ads.</p></div>
     </div>
   </div>
@@ -298,7 +307,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
     </div>
     <details>
       <summary>Does it handle recurring mow rounds?</summary>
-      <p>Yes — set a job to repeat weekly, fortnightly or monthly and it keeps generating until you cancel the series. A reschedule or a rain-day move only affects that one visit, not the whole round.</p>
+      <p>Yes. Set a job to repeat weekly, fortnightly or every 4 weeks and it keeps adding visits until you cancel the series. A reschedule or a rain-day move only affects that one visit, not the whole round.</p>
     </details>
     <details>
       <summary>What does the soil calculator actually do?</summary>
@@ -308,6 +317,26 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <summary>Can it optimise my run order for the day?</summary>
       <p>Yes, on every plan. Tap Directions on a day and its stops open in Google Maps in the best driving order, starting and ending at your business address, not just the order jobs were booked in.</p>
     </details>
+    <details>
+      <summary>I have a full round. Will the Free plan fit?</summary>
+      <p>Free covers up to 15 clients and 15 jobs and quotes in a month, which suits a small or part-time run. A full round needs Solo at $35 a month, with no caps.</p>
+    </details>
+  </div>
+</section>
+
+<section id="first-ten-minutes">
+  <div class="wrap" style="max-width:760px">
+    <div class="section-head">
+      <div class="kicker">Getting started</div>
+      <h2 class="title">Your first ten minutes.</h2>
+    </div>
+    <ol class="first10">
+      <li><b>Make your account.</b> An email and a password. No card.</li>
+      <li><b>Pick your trade.</b> Your quote options and a starter price list are already set up. Change any price.</li>
+      <li><b>Bring your clients.</b> Import a spreadsheet or an export from the software you use now, or add them as jobs come in.</li>
+      <li><b>Put Kept on your phone.</b> Add it to your home screen and it opens like any other app, and keeps working with no signal.</li>
+      <li><b>Book your first regular.</b> Pick weekly, fortnightly or every 4 weeks and the visits fill themselves in.</li>
+    </ol>
   </div>
 </section>
 
@@ -324,7 +353,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
 
 <footer>
   <div class="wrap">
-    Kept — software built by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
+    Kept — made in Brisbane by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
     <div style="margin-top:10px;font-size:.86rem">Not lawn care? <a href="/" style="color:var(--green-700);font-weight:700">See every trade Kept covers →</a></div>
     <div style="margin-top:8px;font-size:.82rem"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>
     <div style="margin-top:8px;font-size:.82rem">Support: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a></div>

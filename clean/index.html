@@ -55,8 +55,9 @@
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "How does the bond-clean calculator work?", "acceptedAnswer": { "@type": "Answer", "text": "Room and surface-based pricing built straight into the quote — enter the property's rooms and surfaces and the price builds live, instead of working it out on a separate spreadsheet or guessing." } },
-        { "@type": "Question", "name": "Can I roster staff to different jobs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — staff rostering and payroll works from the Free plan onward: log hours, assign jobs to specific cleaners, and run pay with tax and super estimates worked out for you. How many staff you can add grows as you move up from Free through Crew, Team and Operation." } },
-        { "@type": "Question", "name": "Are before/after photos useful for bond disputes?", "acceptedAnswer": { "@type": "Answer", "text": "Photos taken on the job are kept against that job for good — proof of a finished clean if a property manager or landlord ever queries the standard of work." } }
+        { "@type": "Question", "name": "Can I roster staff to different jobs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, from the Crew plan. Free and Solo are for one person working alone. Crew covers 2 to 4 people, Team 5 to 10 and Operation 11 or more. Assign each job to a cleaner, log their hours and run pay with tax and super estimates worked out for you." } },
+        { "@type": "Question", "name": "Are before/after photos useful for bond disputes?", "acceptedAnswer": { "@type": "Answer", "text": "Photos taken on the job are kept against that job for good — proof of a finished clean if a property manager or landlord ever queries the standard of work." } },
+        { "@type": "Question", "name": "Do my cleaners need their own login?", "acceptedAnswer": { "@type": "Answer", "text": "Each cleaner logs in on their own phone and sees the jobs given to them. You decide what else each login can see, so your invoices and your books stay yours." } }
       ]
     }
   ]
@@ -197,6 +198,11 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   .rcard.rhero{background:linear-gradient(155deg,#0B7A43,#0B5F34)}
   .rcard.rhero .ramt,.rcard.rhero .rlbl{color:#fff}
 }
+/* Your first ten minutes: five numbered steps (15 November 2026) */
+.first10{list-style:none;counter-reset:f10;padding:0;margin:0;display:grid;gap:10px}
+.first10 li{counter-increment:f10;position:relative;border:1px solid var(--line);border-radius:12px;background:var(--white);padding:14px 18px 14px 58px;font-size:.92rem;color:var(--ink-soft)}
+.first10 li::before{content:counter(f10);position:absolute;left:16px;top:13px;width:28px;height:28px;border-radius:50%;background:var(--green-700);color:var(--white);font-weight:600;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.first10 li b{color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -265,7 +271,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <div class="feat"><h3>Regular &amp; bond-clean calculators</h3><p>Room and surface-based pricing for residential and commercial cleaning jobs, built straight into the quote.</p></div>
       <div class="feat"><h3>Before &amp; after job photos</h3><p>Snap photos on site and they're kept against the job for good — proof of a finished clean if a landlord or agent ever queries it.</p></div>
       <div class="feat"><h3>Staff &amp; payroll</h3><p>Log hours, roster cleaners to jobs, and run pay with tax and super estimates worked out for you.</p></div>
-      <div class="feat"><h3>Recurring jobs</h3><p>Weekly, fortnightly or monthly cleans, repeating automatically until you cancel the series.</p></div>
+      <div class="feat"><h3>Recurring jobs</h3><p>Weekly, fortnightly or 4-weekly cleans, repeating until you cancel the series.</p></div>
       <div class="feat"><h3>Client &amp; lead CRM</h3><p>Referral tracking, site access notes and full job history per client, all in one place.</p></div>
       <div class="feat"><h3>Custom staff roles</h3><p>Decide exactly what each login can see — cleaners get their jobs, not your financials or client list.</p></div>
     </div>
@@ -281,7 +287,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
     </div>
     <div class="price-grid">
       <div class="price-card"><h3>Free</h3><div class="price-tag">$0<span>/mo forever</span></div><ul><li>1 person</li><li>Up to 15 clients</li><li>Up to 15 jobs/quotes a month</li></ul><a class="btn btn-block btn-ghost" href="https://app.keptsoftware.com.au/?plan=free&industry=cleaning">Get started free →</a></div>
-      <div class="price-card"><h3>Solo</h3><div class="price-tag">$35<span>/mo</span></div><ul><li>1 person</li><li>No caps on clients or jobs</li><li>Weather blockout</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=solo&industry=cleaning">Get started free →</a></div>
+      <div class="price-card"><h3>Solo</h3><div class="price-tag">$35<span>/mo</span></div><ul><li>1 person</li><li>No caps on clients or jobs</li><li>GST, BAS and mileage tools</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=solo&industry=cleaning">Get started free →</a></div>
       <div class="price-card featured"><span class="price-badge">Most popular for teams</span><h3>Crew</h3><div class="price-tag">$69<span>/mo</span></div><ul><li>2–4 people</li><li>Staff &amp; payroll</li><li>Client &amp; lead CRM</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=crew&industry=cleaning">Get started free →</a></div>
       <div class="price-card"><h3>Team</h3><div class="price-tag">$119<span>/mo</span></div><ul><li>5–10 people</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=team&industry=cleaning">Get started free →</a></div>
       <div class="price-card"><h3>Operation</h3><div class="price-tag">From $229<span>/mo</span></div><ul><li>11+ people</li><li>Multi-task projects</li><li>Priced individually for your team size</li></ul><a class="btn btn-block btn-ghost" href="mailto:support@keptsoftware.com.au?subject=Kept%20-%20Operation%20plan">Contact us</a></div>
@@ -302,12 +308,32 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
     </details>
     <details>
       <summary>Can I roster staff to different jobs?</summary>
-      <p>Yes — staff rostering and payroll works from the Free plan onward: log hours, assign jobs to specific cleaners, and run pay with tax and super estimates worked out for you. How many staff you can add grows as you move up from Free through Crew, Team and Operation.</p>
+      <p>Yes, from the Crew plan. Free and Solo are for one person working alone. Crew covers 2 to 4 people, Team 5 to 10 and Operation 11 or more. Assign each job to a cleaner, log their hours and run pay with tax and super estimates worked out for you.</p>
     </details>
     <details>
       <summary>Are before/after photos useful for bond disputes?</summary>
       <p>Photos taken on the job are kept against that job for good — proof of a finished clean if a property manager or landlord ever queries the standard of work.</p>
     </details>
+    <details>
+      <summary>Do my cleaners need their own login?</summary>
+      <p>Each cleaner logs in on their own phone and sees the jobs given to them. You decide what else each login can see, so your invoices and your books stay yours.</p>
+    </details>
+  </div>
+</section>
+
+<section id="first-ten-minutes">
+  <div class="wrap" style="max-width:760px">
+    <div class="section-head">
+      <div class="kicker">Getting started</div>
+      <h2 class="title">Your first ten minutes.</h2>
+    </div>
+    <ol class="first10">
+      <li><b>Make your account.</b> An email and a password. No card.</li>
+      <li><b>Pick your trade.</b> Your quote options and a starter price list are already set up. Change any price.</li>
+      <li><b>Bring your clients.</b> Import a spreadsheet or an export from the software you use now, or add them as jobs come in.</li>
+      <li><b>Put Kept on your phone.</b> Add it to your home screen and it opens like any other app, and keeps working with no signal.</li>
+      <li><b>Price your first clean.</b> By rooms and surfaces, then send the quote.</li>
+    </ol>
   </div>
 </section>
 
@@ -324,7 +350,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
 
 <footer>
   <div class="wrap">
-    Kept — software built by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
+    Kept — made in Brisbane by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
     <div style="margin-top:10px;font-size:.86rem">Not cleaning? <a href="/" style="color:var(--green-700);font-weight:700">See every trade Kept covers →</a></div>
     <div style="margin-top:8px;font-size:.82rem"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>
     <div style="margin-top:8px;font-size:.82rem">Support: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a></div>
