@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """Browser tests for the free tool pages (/free, /free/gst-calculator, /free/cents-per-km-calculator,
-/free/bas-due-dates, /free/hourly-rate-calculator, /free/quote-template, /free/truck-checklist).
+/free/bas-due-dates, /free/hourly-rate-calculator, /free/quote-template, /free/truck-checklist, /free/bond-clean-checklist).
 
 Run it with the app repo's Python, which has Playwright and a cached headless Chromium
 (there is no Node on this machine):
 
   PY="/Users/elliotlangham/Documents/Lawn envy revamp/jobs-app/tools/demo-capture/.venv/bin/python"
   "$PY" tools/test-free-pages.py                       # the whole suite; PASS/FAIL per check, exit 1 on any FAIL
-  "$PY" tools/test-free-pages.py --selftest            # breaks the pages on purpose, 148 ways, and checks the suite goes red each time
+  "$PY" tools/test-free-pages.py --selftest            # breaks the pages on purpose, 205 ways, and checks the suite goes red each time
   "$PY" tools/test-free-pages.py --only gst,bas        # just those groups (while developing)
   "$PY" tools/test-free-pages.py --page truck-checklist # just one page
   "$PY" tools/test-free-pages.py --browser webkit      # the same suite in WebKit (Safari's engine); the PDF check is Chromium-only
   "$PY" tools/test-free-pages.py --shots DIR           # also saves a screenshot of every page at 375 and 1280 px, light and dark
 
-Groups: static, gst, km, bas, hourly, quote, truck, print, net, layout, a11y, cta.
+Groups: static, gst, km, bas, hourly, quote, truck, bond, print, net, layout, a11y, cta.
 
 How it works: the site folder is served from a local threaded http.server that answers clean URLs the way
 Vercel does (/free/gst-calculator -> free/gst-calculator.html). Every request to anywhere else is aborted and
@@ -28,6 +28,14 @@ each vehicle, 1 to 6 of them, none cut off), and the "static" group holds what t
 one-truck owners; it says once that it is not a safety inspection; it makes no compliance, WHS or legal claim; it names the Kept vehicle check once, in one vetted sentence of the
 call to action (APP-CLAIMS.md, "Weekly truck check (live 2026-10-25)"), with no photos, no safety or compliance wording, no plan names and nothing about what is coming; and the
 call to action is exactly the vetted words. The clean-up rule is the same as everywhere: nothing typed leaves the page or is stored.
+
+The bond clean checklist (free/bond-clean-checklist.html, 16 November 2026) is for cleaning businesses doing an end of lease clean. The "bond" group drives its editor
+(eight rooms, each with lines that can be ticked, renamed, added, removed and reordered; 20 lines a room, 80 characters a line; the job's address, date and cleaner), the
+"print" group prints it to A4 (one checklist that runs onto as many pages as it needs, a line never split, ticks drawn as borders, no site chrome), and the "static" group
+holds its wording rules: it says once that it is a working checklist and not a guarantee that a bond is returned, once that the entry condition report and what the agent or
+owner asks for is the standard, once that it is general information and not legal advice; it names the Queensland RTA's Exit condition report (Form 14a) with links to
+the RTA pages it was checked against (tools/guide-sources.json, checked by tools/test-guides.py); it says nothing about what agents "require", no "bond back" promise, no
+prices; Kept is named once, in the call to action, in APP-CLAIMS.md's words for cleaning; and every app link opens the cleaning sign-up.
 
 The numbers the pages may state come from FACTS.md (marketing-kit/social-bank/FACTS.md in the app repo's
 parent folder); the constants below are copies of the ones this suite checks, with their ids.
@@ -59,17 +67,23 @@ from zoneinfo import ZoneInfo
 SITE = Path(__file__).resolve().parent.parent
 BASE_URL = "https://www.keptsoftware.com.au"
 APP_FREE = "https://app.keptsoftware.com.au/?industry=lawn_care"
+APP_FREE_CLEAN = "https://app.keptsoftware.com.au/?plan=free&industry=cleaning"   # the cleaning sign-up, written as clean/index.html writes it
+
+
+def app_free(slug):
+    """The Get started link a page uses: the cleaning sign-up on the bond clean checklist, the lawn care one everywhere else."""
+    return APP_FREE_CLEAN if slug == "bond-clean-checklist" else APP_FREE
 APP_DEMO = "https://app.keptsoftware.com.au/?demo=1"
 TAX_NOTE = ("Kept's tax tools are estimates to help with your reporting, not professional advice: "
             "check anything that matters with your accountant.")
 
-SLUGS = ["gst-calculator", "cents-per-km-calculator", "bas-due-dates", "hourly-rate-calculator", "quote-template", "truck-checklist"]
+SLUGS = ["gst-calculator", "cents-per-km-calculator", "bas-due-dates", "hourly-rate-calculator", "quote-template", "truck-checklist", "bond-clean-checklist"]
 PAGE_PATH = {"": "/free"}
 for _s in SLUGS:
     PAGE_PATH[_s] = "/free/" + _s
 ALL_PAGES = [""] + SLUGS
 
-GROUPS = ["static", "gst", "km", "bas", "hourly", "quote", "truck", "print", "net", "layout", "a11y", "cta"]
+GROUPS = ["static", "gst", "km", "bas", "hourly", "quote", "truck", "bond", "print", "net", "layout", "a11y", "cta"]
 
 # ---------------------------------------------------------------------------------------------
 # What the pages must say (FACTS.md ids in the comments; ATO pages re-read on 24 October 2026)
@@ -120,7 +134,7 @@ TRUCK_CTA_NEVER = [
     (r"\b(solo|crew|team|operation)\s+(plan|tier)|\btiers?\b|\bpric|\$|per month|/ ?mo\b|\bsubscri", "a plan name or a price"),
 ]
 TRUCK_MAX_LINES, TRUCK_MAX_LEN, TRUCK_MAX_NAME = 25, 80, 40
-NO_TAX_NOTE = {"truck-checklist"}      # pages that are not tax tools: they carry no tax note, and no tax words either
+NO_TAX_NOTE = {"truck-checklist", "bond-clean-checklist"}      # pages that are not tax tools: they carry no tax note, and no tax words either
 # No compliance, WHS or legal claims at all (the one allowed "safety" and "inspection" are in TRUCK_SAFETY).
 TRUCK_NO_CLAIMS = [
     (r"\bWHS\b|\bOHS\b|OH&S|work(place)? health|health and safety", "WHS"),
@@ -129,9 +143,49 @@ TRUCK_NO_CLAIMS = [
 ]
 # The Reel this idea came from is not named, and none of its rules are copied (the recognition goes to the person who finishes a sheet).
 TRUCK_NOT_COPIED = r"dirtiest|cleanest|clean-?up duty|reward|winner|loser|prize|contest|competition|punish|shame|reel\b|viral|instagram|tiktok"
+
+# The bond clean checklist (16 November 2026): for cleaners doing an end of lease clean. It is a working list, not a promise about anyone's bond.
+SHARE_IMAGE = BASE_URL + "/images/share-kept.png"     # the site's wide share picture (index.html, the trade pages)
+WIDE_SHARE = {"bond-clean-checklist"}                 # pages that must use it, with its size and a large Twitter card
+BOND_ONCE = [   # each said exactly once in the page's visible text
+    "This is a working checklist, not a guarantee that a bond is returned.",
+    "The standard that counts is the property's entry condition report and what the agent or owner asks for.",
+    "General information, not legal advice.",
+    "Other states and territories have their own forms: check your state's tenancy authority.",
+]
+BOND_RTA_14A = "https://www.rta.qld.gov.au/forms-resources/forms/forms-for-general-tenancies/exit-condition-report-general-tenancies-form-14a"
+BOND_RTA_CLEAN = "https://www.rta.qld.gov.au/ending-a-tenancy/vacating-a-property/cleaning"
+BOND_ROOMS = [   # (id, name, example lines): the page's own words, short and plain, no claim in any of them
+    ("kitchen", "Kitchen", ["Oven inside, racks and trays", "Cooktop and rangehood, filters washed", "Cupboards and drawers, inside and out", "Benchtops, splashback and sink",
+                            "Dishwasher inside and filter", "Microwave inside and out", "Light switches and power points wiped"]),
+    ("bath", "Bathrooms and toilets", ["Shower screen, tiles and grout", "Bath, basin and taps", "Toilet inside, outside and behind", "Mirror and cabinet, inside and out",
+                                       "Exhaust fan cover", "Floor and drain"]),
+    ("living", "Bedrooms and living areas", ["Wardrobes inside, shelves and tracks", "Skirting boards and doors", "Light fittings and ceiling fans", "Air conditioning vents and filters",
+                                             "Light switches and door handles"]),
+    ("laundry", "Laundry", ["Tub, taps and cabinet", "Behind and under where the machines stood", "Floor and drain"]),
+    ("floors", "Floors", ["Vacuum every room, edges and corners too", "Mop the hard floors", "Carpets: as the lease or the agent asks"]),
+    ("windows", "Windows and tracks", ["Windows inside", "Window tracks and sills", "Fly screens", "Sliding door tracks", "Blinds"]),
+    ("outside", "Outside and garage", ["Balcony or patio swept", "Garage floor swept, cobwebs down", "Rubbish taken away from the property", "Bins emptied and rinsed"]),
+    ("final", "Final walk-through", ["Every room checked against the entry condition report", "Every light switched on and off", "Nothing left in cupboards or drawers",
+                                     "Before and after photos taken", "Keys and remotes handed back as agreed"]),
+]
+BOND_CTA = ("Price the next bond clean the same way you clean it: room by room.",   # APP-CLAIMS.md "The whole thing", "Cleaning quotes", "Free to start", word for word
+            "Kept puts quotes, jobs, schedule, invoices, clients and gear in one app. Room and surface-based pricing is built into the quote for residential and commercial "
+            "cleaning jobs. Free plan, no time limit.")
+BOND_MAX_LINES, BOND_MAX_LEN, BOND_MAX_ADDR, BOND_MAX_NAME = 20, 80, 80, 40
+# Never anywhere on the bond page (page text, labels, structured data): what agents "require", a bond-back promise, a price, or anything sounding like a guarantee
+# beyond the one sentence that says it is not one.
+BOND_NEVER = [
+    (r"\brequir", "what agents or owners 'require'"),
+    (r"bond[- ]back|get (your|the) bond|money back|full refund", "a bond-back promise"),
+    (r"\$|\bcosts?\b|\bfees?\b|\bcheap|per room|per hour|/ ?hr\b", "a price"),
+    (r"guaranteed|\bpromise|100 ?%|pass(es)? (the )?inspection|approved|certified|compliant|complian", "a promise or a compliance claim"),
+    (r"\bmonthly\b", "'monthly' for a repeat"),
+    (r"(?<!Kept )\bagents? (will|always|expect)", "what agents do"),
+]
 # Statements each page must contain (checked in the page's visible text).
 MUST_SAY = {
-    "": ["Six small tools"],
+    "": ["Seven small tools"],
     "gst-calculator": ["10%", "one-eleventh", "$220", "$200", "$20 GST", "nearest cent", "half a cent", "$75,000", "$150,000", "21 days", "12 months", "ABN"],
     "cents-per-km-calculator": ["91 cents", "88 cents", "2026-27", "2025-26", "2024-25", "5,000", "accountant", "receipts", "myDeductions", "decline in value", "registration", "insurance", "maintenance", "repairs", "fuel"],
     "bas-due-dates": ["28 October", "28 February", "28 April", "28 July", "21st day of the month", "$20 million", "$200,000", "31 October", "$75,000", "$150,000", "general interest charge", F_BAS_3, F_BAS_2_WEEKEND],
@@ -152,6 +206,7 @@ ALLOWED_AMOUNTS = {
     "hourly-rate-calculator": {"$80,000", "$20,000", "$100,000", "$86.96"},
     "quote-template": {"$0.00"},
     "truck-checklist": set(),
+    "bond-clean-checklist": set(),
 }
 ALLOWED_PERCENTS = {
     "": {"10%"},
@@ -161,6 +216,7 @@ ALLOWED_PERCENTS = {
     "hourly-rate-calculator": {"10%"},
     "quote-template": {"10%"},
     "truck-checklist": set(),
+    "bond-clean-checklist": set(),
 }
 # Words the pages must not use (the "Do NOT say" list in APP-CLAIMS.md and the ads pack), as regexes.
 HELD = [
@@ -182,7 +238,7 @@ HELD = [
 ]
 HELD_CASE_SENSITIVE = [(r"\bAI\b", "AI")]
 
-EXTERNAL_OK = {"www.keptsoftware.com.au", "app.keptsoftware.com.au", "www.ato.gov.au", "www.lawnenvyaustralia.com", "schema.org",
+EXTERNAL_OK = {"www.keptsoftware.com.au", "app.keptsoftware.com.au", "www.ato.gov.au", "www.lawnenvyaustralia.com", "schema.org", "www.rta.qld.gov.au",
                 "connect.facebook.net", "www.facebook.com"}
 
 D = Decimal
@@ -537,7 +593,11 @@ def group_static(env, R, pages):
         og = dict(re.findall(r'<meta property="og:([a-z:]+)" content="([^"]*)"', head))
         R.check(W, "%s: og:title, og:description, og:type, og:url (= canonical) and an absolute og:image" % rel,
                 all(k in og and og[k] for k in ("title", "description", "type", "url", "image")) and og.get("url") == canon
-                and og.get("image", "").startswith(BASE_URL + "/icons/"), og)
+                and (og.get("image", "").startswith(BASE_URL + "/icons/") or og.get("image") == SHARE_IMAGE), og)
+        if slug in WIDE_SHARE:
+            R.check(W, "%s: shares with the site's wide picture (%s, 1200 x 630) and a large Twitter card, as index.html does" % (rel, SHARE_IMAGE),
+                    og.get("image") == SHARE_IMAGE and og.get("image:width") == "1200" and og.get("image:height") == "630"
+                    and '<meta name="twitter:card" content="summary_large_image">' in head, og)
         if titles:
             seen_titles.setdefault(strip_tags(titles[0]), []).append(rel)
         if descs:
@@ -567,8 +627,8 @@ def group_static(env, R, pages):
 
         # --- links
         apps = [h for h in attr_values(text, "href") if "app.keptsoftware.com.au" in h]
-        R.check(W, "%s: every app link is exactly %s or %s (3 of them: header, CTA, CTA)" % (rel, "?industry=lawn_care", "?demo=1"),
-                len(apps) == 3 and sorted(apps) == sorted([APP_FREE, APP_FREE, APP_DEMO]), apps)
+        R.check(W, "%s: every app link is exactly %s or %s (3 of them: header, CTA, CTA)" % (rel, app_free(slug).split("/", 3)[3], "?demo=1"),
+                len(apps) == 3 and sorted(apps) == sorted([app_free(slug), app_free(slug), APP_DEMO]), apps)
         cta = re.search(r'(?s)<div class="cta-final">.*?</div>\s*</section>', text)
         R.check(W, "%s: exactly one calm CTA block, with no list in it" % rel,
                 text.count('class="cta-final"') == 1 and cta is not None and "<li" not in cta.group(0) and len(re.findall(r"<p>", cta.group(0))) == 1)
@@ -622,8 +682,8 @@ def group_static(env, R, pages):
             R.check(W, "%s: no structured data (nothing on it to describe)" % rel, not ld_blocks)
             cards = re.findall(r'(?s)<article class="tcard">(.*?)</article>', text)
             hrefs = [re.search(r'href="(/free/[a-z-]+)"', c).group(1) if re.search(r'href="(/free/[a-z-]+)"', c) else None for c in cards]
-            R.check(W, "%s: lists the six tools, each with a one-line description and a link" % rel,
-                    len(cards) == 6 and sorted(hrefs) == sorted("/free/" + s for s in SLUGS) and all(len(re.findall(r"<p>", c)) == 1 for c in cards), hrefs)
+            R.check(W, "%s: lists the seven tools, each with a one-line description and a link" % rel,
+                    len(cards) == 7 and sorted(hrefs) == sorted("/free/" + s for s in SLUGS) and all(len(re.findall(r"<p>", c)) == 1 for c in cards), hrefs)
         else:
             ok, why = False, ""
             try:
@@ -647,6 +707,8 @@ def group_static(env, R, pages):
         R.check(W, "%s: a sensible size (under 120 KB)" % rel, len(raw) < 120000, len(raw))
         if slug == "truck-checklist":
             static_truck(env, R, rel, text)
+        if slug == "bond-clean-checklist":
+            static_bond(env, R, rel, text)
 
     dup_t = {k: v for k, v in seen_titles.items() if len(v) > 1}
     dup_d = {k: v for k, v in seen_desc.items() if len(v) > 1}
@@ -705,6 +767,67 @@ def static_truck(env, R, rel, text):
     R.check(W, "%s: six vehicle name boxes, each limited to %d characters, the third to sixth hidden until chosen" % (rel, TRUCK_MAX_NAME),
             names == [(str(i), str(TRUCK_MAX_NAME)) for i in range(1, 7)] and len(re.findall(r'<div class="field" hidden>', text)) == 4, names)
 
+
+
+def pretty_date(iso):
+    d = date.fromisoformat(iso)
+    return "%d %s %d" % (d.day, MONTHNAMES[d.month - 1], d.year)
+
+
+def static_bond(env, R, rel, text):
+    """What only the bond clean checklist promises: who it is for, the lines said once, the Queensland form, nothing about bonds coming back, the cleaning CTA."""
+    import html as _html
+    W = "static"
+    plain = strip_tags(text)
+    everything = all_visible_strings(text) + " " + " ".join(re.findall(r"(?s)<script type=\"application/ld\+json\">(.*?)</script>", text))
+    main = re.search(r"(?s)<main\b.*?</main>", text).group(0)
+    cta = re.search(r'(?s)<div class="cta-final">(.*?)</div>\s*</section>', main)
+    cta_h2 = _html.unescape(re.sub(r"<[^>]+>", "", re.search(r"<h2>(.*?)</h2>", cta.group(1)).group(1))).strip() if cta else ""
+    cta_p = strip_tags(re.search(r"(?s)<p>(.*?)</p>", cta.group(1)).group(1)) if cta else ""
+
+    lede = re.search(r'<p class="lede">(.*?)</p>', text)
+    R.check(W, "%s: the first words say who it is for: 'For cleaners doing a bond clean.'" % rel, lede is not None and lede.group(1).startswith("For cleaners doing a bond clean."), lede and lede.group(1))
+    counts = [(s, plain.count(s)) for s in BOND_ONCE]
+    R.check(W, "%s: each of the %d set sentences (a working checklist, not a guarantee; the entry condition report is the standard; general information, not legal advice; other states) appears exactly once" % (rel, len(BOND_ONCE)),
+            all(c == 1 for _, c in counts), counts)
+    R.check(W, "%s: 'guarantee' appears once on the whole page (in 'not a guarantee'), and 'legal advice' once" % rel,
+            len(re.findall(r"guarantee", everything, re.I)) == 1 and len(re.findall(r"legal advice", plain, re.I)) == 1, re.findall(r"\w*guarantee\w*", everything, re.I))
+    hits = [(label, m.group(0)) for rx, label in BOND_NEVER for m in [re.search(rx, everything, re.I)] if m]
+    R.check(W, "%s: nothing about what agents 'require', no bond-back promise, no price, no compliance or 'monthly'" % rel, not hits, hits)
+
+    # the Queensland form, named and linked, and no other state's form named
+    p14 = re.search(r'(?s)<p>In Queensland, the Residential Tenancies Authority\'s <a href="([^"]+)">Exit condition report \(Form 14a\)</a>(.*?)</p>', text)
+    R.check(W, "%s: names the RTA's Exit condition report (Form 14a), linked to the RTA's own Form 14a page" % rel, p14 is not None and p14.group(1) == BOND_RTA_14A, p14 and p14.group(1))
+    R.check(W, "%s: links the RTA cleaning page it quotes" % rel, ('<a href="%s">' % BOND_RTA_CLEAN) in text)
+    other = re.findall(r"\b(NSW|New South Wales|Victoria|VCAT|NCAT|Fair Trading|Consumer Affairs|South Australia|Western Australia|Tasmania|Northern Territory)\b", plain)
+    forms = sorted(set(re.findall(r"Form \d+[a-z]?", plain)))
+    R.check(W, "%s: no other state's form or tribunal is named (only Form 14a and Form 1a)" % rel, not other and forms == ["Form 14a", "Form 1a"], (other, forms))
+    rta_hosts = set(re.findall(r'href="https://(www\.rta\.qld\.gov\.au)/', text))
+    R.check(W, "%s: the only government site linked is the RTA (www.rta.qld.gov.au)" % rel, rta_hosts == {"www.rta.qld.gov.au"} and not re.search(r'href="https://(?!www\.rta\.qld\.gov\.au|app\.keptsoftware|www\.lawnenvy)[^"]*\.gov\.au', text), rta_hosts)
+    src = json.loads((SITE / "tools/guide-sources.json").read_text(encoding="utf-8"))
+    want = "Checked against the RTA pages on %s." % pretty_date(src["checked"])
+    R.check(W, "%s: says when the RTA pages were checked, the same date as tools/guide-sources.json (%s)" % (rel, want), want in plain, src["checked"])
+
+    # Kept: once, in the call to action, in the vetted words; every app link is the cleaning sign-up
+    R.check(W, "%s: the call to action is exactly the vetted words (APP-CLAIMS.md: the whole thing, Cleaning quotes, Free to start)" % rel, (cta_h2, cta_p) == BOND_CTA, (cta_h2, cta_p))
+    never = [(label, m.group(0)) for rx, label in TRUCK_CTA_NEVER[:4] for m in [re.search(rx, cta_h2 + " " + cta_p, re.I)] if m]
+    R.check(W, "%s: the call to action says nothing about what is coming, photos, safety or compliance, or messages sent" % rel, not never, never)
+    R.check(W, "%s: Kept is named once in the page's main text, in the call to action, and the app nowhere else" % rel,
+            len(re.findall(r"\bKept\b", strip_tags(main))) == 1 and "Kept" in cta_p and not re.search(r"\bapp\b", strip_tags(main.replace(cta.group(0), "")) if cta else ""),
+            re.findall(r"[^.]*\bKept\b[^.]*", strip_tags(main)))
+    R.check(W, "%s: the header and both CTA buttons open the cleaning sign-up (%s) or the demo" % (rel, APP_FREE_CLEAN),
+            sorted(h for h in attr_values(text, "href") if "app.keptsoftware.com.au" in h) == sorted([APP_FREE_CLEAN, APP_FREE_CLEAN, APP_DEMO]))
+
+    # the script: rooms, example lines and limits
+    own = own_script(text)
+    rooms = re.findall(r"\['(\w+)', '([^']+)', \[(.*?)\]\]", own, re.S)
+    got = [(rid, name, re.findall(r"'((?:[^'\\]|\\.)*)'", body)) for rid, name, body in rooms]
+    R.check(W, "%s: the eight rooms and their example lines in the script are exactly the vetted ones, each 80 characters or fewer" % rel,
+            got == [(a, b, list(c)) for a, b, c in BOND_ROOMS] and all(len(x) <= BOND_MAX_LEN for _, _, ls in got for x in ls), got[:2])
+    R.check(W, "%s: the script's limits are 20 lines a room, 80 characters a line, 80 for the address, 40 for the cleaner's name" % rel,
+            all(x in own for x in ("var MAX_LINES = %d;" % BOND_MAX_LINES, "var MAX_LEN = %d;" % BOND_MAX_LEN, "var MAX_ADDR = %d;" % BOND_MAX_ADDR, "var MAX_NAME = %d;" % BOND_MAX_NAME)))
+    R.check(W, "%s: the address box holds 80 characters and the cleaner box 40" % rel,
+            '<input type="text" id="b-addr" maxlength="80"' in text and '<input type="text" id="b-who" maxlength="40"' in text)
 
 # ---------------------------------------------------------------------------------------------
 # helpers shared by the calculator groups
@@ -1626,6 +1749,8 @@ def group_print(env, R, pages):
         print_quote(env, R)
     if "truck-checklist" in pages:
         print_truck(env, R)
+    if "bond-clean-checklist" in pages:
+        print_bond(env, R)
 
 
 def print_quote(env, R):
@@ -1756,6 +1881,299 @@ def print_truck(env, R):
         s.close()
 
 
+
+# ---------------------------------------------------------------------------------------------
+# bond clean checklist: the job, the rooms and their lines, the checklist that prints
+# ---------------------------------------------------------------------------------------------
+B_STATE_JS = """() => {
+  const q = id => document.getElementById(id);
+  const rooms = Array.from(document.querySelectorAll('#b-secs > .bsec')).map(sec => ({
+    id: sec.id, name: sec.getAttribute('data-name'), heading: sec.querySelector('h4').textContent, note: sec.querySelector('.tl-count').textContent,
+    add: sec.querySelector('[data-f=add]').textContent, addId: sec.querySelector('[data-f=add]').id, labelledBy: sec.querySelector('ol').getAttribute('aria-labelledby') === sec.querySelector('h4').id,
+    lines: Array.from(sec.querySelectorAll('ol > li')).map(li => { const t = li.querySelector('[data-f=t]'), c = li.querySelector('[data-f=c]'); return {
+      text: t.value, tag: t.tagName.toLowerCase(), max: t.getAttribute('maxlength'), label: li.querySelector('label.ln').textContent, labelled: li.querySelector('label.ln').getAttribute('for') === t.id,
+      name: t.getAttribute('aria-label'), done: c.checked, tick: c.getAttribute('aria-label'), type: c.type,
+      up: li.querySelector('[data-f=up]').getAttribute('aria-label'), down: li.querySelector('[data-f=down]').getAttribute('aria-label'), rm: li.querySelector('[data-f=rm]').getAttribute('aria-label'),
+      upOff: li.querySelector('[data-f=up]').getAttribute('aria-disabled'), downOff: li.querySelector('[data-f=down]').getAttribute('aria-disabled')}; })}));
+  const ae = document.activeElement, li = ae && ae.closest ? ae.closest('#b-secs li') : null, sec = ae && ae.closest ? ae.closest('.bsec') : null;
+  return {rooms: rooms, addr: q('b-addr').value, date: q('b-date').value, who: q('b-who').value, status: q('b-status').textContent,
+    focus: !ae ? '' : (li ? sec.id.slice(6) + ':' + ae.getAttribute('data-f') + ':' + (Array.from(li.parentNode.children).indexOf(li) + 1) : (ae.id || ae.tagName))};
+}"""
+B_SHEET_JS = """() => { const text = (p, sel) => { const e = p.querySelector(sel); return e ? e.textContent : null; };
+  const pages = Array.from(document.querySelectorAll('#sheet > .s-page'));
+  return pages.map(p => ({title: text(p, '.s-title'),
+    fields: Array.from(p.querySelectorAll('.s-head .s-field, .s-sign .s-field')).map(f => [text(f, '.s-k'), text(f, '.s-fill')]),
+    secs: Array.from(p.querySelectorAll('.s-sec')).map(s => ({title: text(s, '.s-sec-title'), rows: Array.from(s.querySelectorAll('.s-row')).map(r => text(r, '.s-text')),
+      on: Array.from(s.querySelectorAll('.s-row')).map(r => r.querySelector('.s-box').classList.contains('on'))})),
+    boxes: p.querySelectorAll('.s-box').length, notes: text(p, '.s-notes .s-label'), foot: text(p, '.s-foot')})); }"""
+B_SET_JS = """(spec) => {
+  for (const [room, lines] of Object.entries(spec)) {
+    const sec = document.getElementById('b-sec-' + room), ol = sec.querySelector('ol');
+    while (ol.children.length < lines.length) sec.querySelector('[data-f=add]').click();
+    while (ol.children.length > lines.length) ol.lastElementChild.querySelector('[data-f=rm]').click();
+    lines.forEach((t, i) => { const e = ol.children[i].querySelector('[data-f=t]'); e.value = t; e.dispatchEvent(new Event('input', {bubbles: true})); });
+  }
+}"""
+BOND_NOTES = "Notes: anything not done, marks that were already there, extras asked for"
+BOND_FOOT = "Bond clean checklist from keptsoftware.com.au"
+
+
+def bond_room(st, rid):
+    return [r for r in st["rooms"] if r["id"] == "b-sec-" + rid][0]
+
+
+def group_bond(env, R, pages):
+    if "bond-clean-checklist" not in pages:
+        return
+    W = "bond"
+    clock = datetime(2026, 11, 16, 10, 0, tzinfo=timezone(timedelta(hours=10)))
+    s = open_clean(env, "bond-clean-checklist", clock=clock)
+    page = s.page
+    no_page_errors(R, W, "bond-clean-checklist", s)
+
+    # --- the start: eight rooms, their example lines, nothing ticked, nothing typed
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "it starts with the eight rooms in order, each with its heading, its list named by that heading, and 'Add a line to <room>'",
+            [(r["id"], r["name"], r["heading"], r["add"], r["addId"]) for r in st["rooms"]] == [("b-sec-" + a, b, b, "Add a line to " + b, "b-add-" + a) for a, b, _ in BOND_ROOMS]
+            and all(r["labelledBy"] for r in st["rooms"]), [(r["id"], r["heading"]) for r in st["rooms"]])
+    R.check(W, "each room starts with its example lines, each in a wrapping text area limited to 80 characters, labelled Line 1, Line 2 ..., counted as 'n of 20 lines'",
+            all([l["text"] for l in r["lines"]] == lines and all(l["tag"] == "textarea" and l["max"] == "80" and l["labelled"] for l in r["lines"])
+                and [l["label"] for l in r["lines"]] == ["Line %d" % i for i in range(1, len(lines) + 1)] and r["note"] == "%d of 20 lines" % len(lines)
+                for r, (_, _, lines) in zip(st["rooms"], BOND_ROOMS)) and st["status"] == "", [(r["name"], r["note"]) for r in st["rooms"]])
+    R.check(W, "every line has a tick box (unticked) and Up, Down and Remove buttons, all named with the room and the line ('Kitchen, line 1 done', 'Move Kitchen line 1 up' ...)",
+            all(l["type"] == "checkbox" and not l["done"] and l["tick"] == "%s, line %d done" % (r["name"], i) and l["name"] == "%s, line %d" % (r["name"], i)
+                and (l["up"], l["down"], l["rm"]) == ("Move %s line %d up" % (r["name"], i), "Move %s line %d down" % (r["name"], i), "Remove %s line %d" % (r["name"], i))
+                and l["upOff"] == ("true" if i == 1 else "false") and l["downOff"] == ("true" if i == len(r["lines"]) else "false")
+                for r in st["rooms"] for i, l in enumerate(r["lines"], 1)), st["rooms"][0]["lines"][:1])
+    sh = page.evaluate(B_SHEET_JS)
+    R.check(W, "the checklist (built for printing, hidden on screen) starts as one sheet: title, Property, Date and Cleaner blank, every room and line with an empty tick box, notes, Checked by, Date and the footer line",
+            len(sh) == 1 and sh[0]["title"] == "End of lease clean" and sh[0]["fields"] == [["Property", ""], ["Date", ""], ["Cleaner", ""], ["Checked by", ""], ["Date", ""]]
+            and [(x["title"], x["rows"]) for x in sh[0]["secs"]] == [(b, c) for _, b, c in BOND_ROOMS] and not any(any(x["on"]) for x in sh[0]["secs"])
+            and sh[0]["boxes"] == sum(len(c) for _, _, c in BOND_ROOMS) and sh[0]["notes"] == BOND_NOTES and sh[0]["foot"] == BOND_FOOT, sh[0]["fields"])
+    shown = page.evaluate("() => [getComputedStyle(document.getElementById('sheet')).display, document.getElementById('sheet').getAttribute('aria-hidden')]")
+    R.check(W, "on screen the checklist sheet is not displayed and is hidden from screen readers", shown == ["none", "true"], shown)
+
+    # --- the job: address, date and cleaner
+    page.fill("#b-addr", "  12   Example Street,  Suburb ")
+    page.fill("#b-who", "  Sam   Lee ")
+    page.fill("#b-date", "2026-11-16")
+    f = page.evaluate(B_SHEET_JS)[0]["fields"]
+    R.check(W, "the address, date and cleaner print in the header, trimmed with spaces tidied; 2026-11-16 is Monday 16 November 2026",
+            f[:3] == [["Property", "12 Example Street, Suburb"], ["Date", "Monday 16 November 2026"], ["Cleaner", "Sam Lee"]], f[:3])
+    page.evaluate("() => { for (const [id, n] of [['b-addr', 120], ['b-who', 60]]) { const e = document.getElementById(id); e.value = 'z'.repeat(n); e.dispatchEvent(new Event('input', {bubbles: true})); } }")
+    f = page.evaluate(B_SHEET_JS)[0]["fields"]
+    R.check(W, "an address put in past 80 characters prints as 80, a cleaner's name past 40 prints as 40", f[0] == ["Property", "z" * 80] and f[2] == ["Cleaner", "z" * 40], [len(x[1]) for x in f[:3]])
+    bad = []
+    for iso, want in [("2026-12-31", "Thursday 31 December 2026"), ("2028-02-29", "Tuesday 29 February 2028"), ("2027-01-03", "Sunday 3 January 2027")]:
+        page.fill("#b-date", iso)
+        got = page.evaluate(B_SHEET_JS)[0]["fields"][1][1]
+        if got != want:
+            bad.append((iso, got, want))
+    page.fill("#b-date", "")
+    R.check(W, "other dates print with the right weekday and month, and clearing the date leaves a blank line", not bad and page.evaluate(B_SHEET_JS)[0]["fields"][1] == ["Date", ""], bad)
+
+    # --- ticking
+    page.click("#b-sec-bath li:nth-child(2) [data-f=c]")
+    page.click("#b-sec-final li:nth-child(5) [data-f=c]")
+    secs = {x["title"]: x for x in page.evaluate(B_SHEET_JS)[0]["secs"]}
+    R.check(W, "ticking a line on screen ticks it on the printed checklist, and only that line",
+            secs["Bathrooms and toilets"]["on"] == [False, True, False, False, False, False] and secs["Final walk-through"]["on"] == [False] * 4 + [True]
+            and sum(sum(x["on"]) for x in secs.values()) == 2, [(k, v["on"]) for k, v in secs.items() if any(v["on"])])
+    page.click("#b-sec-bath li:nth-child(2) [data-f=c]")
+    R.check(W, "unticking it takes the tick off the printed checklist", sum(sum(x["on"]) for x in page.evaluate(B_SHEET_JS)[0]["secs"]) == 1)
+
+    # --- adding, renaming, removing
+    page.click("#b-add-kitchen")
+    st = page.evaluate(B_STATE_JS)
+    k = bond_room(st, "kitchen")
+    R.check(W, "Add a line to Kitchen adds an empty eighth kitchen line, labelled Line 8, moves focus into it, announces it and counts 8 of 20",
+            len(k["lines"]) == 8 and k["lines"][7]["text"] == "" and k["lines"][7]["label"] == "Line 8" and st["focus"] == "kitchen:t:8" and st["status"] == "Kitchen: line 8 added." and k["note"] == "8 of 20 lines",
+            (st["focus"], st["status"], k["note"]))
+    page.keyboard.type("Rangehood light cover")
+    page.locator("#b-sec-kitchen li:nth-child(2) textarea").fill("Cooktop, knobs and rangehood")
+    secs = {x["title"]: x for x in page.evaluate(B_SHEET_JS)[0]["secs"]}
+    R.check(W, "a new line and a renamed one show on the printed checklist straight away, in that room only",
+            secs["Kitchen"]["rows"][7] == "Rangehood light cover" and secs["Kitchen"]["rows"][1] == "Cooktop, knobs and rangehood" and len(secs["Kitchen"]["rows"]) == 8
+            and secs["Laundry"]["rows"] == BOND_ROOMS[3][2], secs["Kitchen"]["rows"])
+    page.click("#b-sec-kitchen li:nth-child(2) [data-f=rm]")
+    st = page.evaluate(B_STATE_JS)
+    k = bond_room(st, "kitchen")
+    R.check(W, "Remove takes kitchen line 2 away, the labels and button names renumber, focus moves to the line that took its place, and 'Kitchen: line 2 removed. 7 lines left.' is announced",
+            [l["text"] for l in k["lines"]] == [BOND_ROOMS[0][2][0]] + BOND_ROOMS[0][2][2:] + ["Rangehood light cover"] and [l["label"] for l in k["lines"]] == ["Line %d" % i for i in range(1, 8)]
+            and [l["rm"] for l in k["lines"]] == ["Remove Kitchen line %d" % i for i in range(1, 8)] and st["focus"] == "kitchen:t:2"
+            and st["status"] == "Kitchen: line 2 removed. 7 lines left." and k["note"] == "7 of 20 lines", (st["focus"], st["status"]))
+    for _ in range(3):
+        page.click("#b-sec-laundry li:first-child [data-f=rm]")
+    st, sh = page.evaluate(B_STATE_JS), page.evaluate(B_SHEET_JS)
+    R.check(W, "every line in a room can be removed: '0 of 20 lines', focus goes to that room's Add button, and the room is left off the printed checklist",
+            not bond_room(st, "laundry")["lines"] and bond_room(st, "laundry")["note"] == "0 of 20 lines" and st["focus"] == "b-add-laundry"
+            and "Laundry" not in [x["title"] for x in sh[0]["secs"]] and len(sh[0]["secs"]) == 7 and st["status"] == "Laundry: line 1 removed. 0 lines left.", (st["focus"], st["status"]))
+    page.fill("#b-addr", "1 Keep Street")
+    page.click("#b-reset")
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "Start again puts back every room's example lines with nothing ticked, leaves the address alone, and says so",
+            [[l["text"] for l in r["lines"]] for r in st["rooms"]] == [c for _, _, c in BOND_ROOMS] and not any(l["done"] for r in st["rooms"] for l in r["lines"])
+            and st["addr"] == "1 Keep Street" and st["status"] == "Every room is back to its example lines, with nothing ticked.", st["status"])
+
+    # --- reordering, inside one room
+    page.click("#b-sec-bath li:nth-child(3) [data-f=up]")
+    st = page.evaluate(B_STATE_JS)
+    b = BOND_ROOMS[1][2]
+    order = [b[0], b[2], b[1]] + b[3:]
+    R.check(W, "Up on bathroom line 3 swaps it with line 2, keeps focus on its Up button and says where it went",
+            [l["text"] for l in bond_room(st, "bath")["lines"]] == order and st["focus"] == "bath:up:2" and st["status"] == "Bathrooms and toilets: line 3 moved up. It is now line 2.", (st["focus"], st["status"]))
+    R.check(W, "the printed checklist follows the new order", [x for x in page.evaluate(B_SHEET_JS)[0]["secs"] if x["title"] == "Bathrooms and toilets"][0]["rows"] == order)
+    page.click("#b-sec-bath li:nth-child(1) [data-f=down]")
+    st = page.evaluate(B_STATE_JS)
+    order2 = [order[1], order[0]] + order[2:]
+    R.check(W, "Down on line 1 moves it to line 2 and keeps focus on its Down button", [l["text"] for l in bond_room(st, "bath")["lines"]] == order2 and st["focus"] == "bath:down:2"
+            and st["status"] == "Bathrooms and toilets: line 1 moved down. It is now line 2.", (st["focus"], st["status"]))
+    page.click("#b-sec-bath li:nth-child(1) [data-f=up]", force=True)
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "Up on a room's first line changes nothing and says so", [l["text"] for l in bond_room(st, "bath")["lines"]] == order2 and st["status"] == "Bathrooms and toilets: line 1 is already the first line.", st["status"])
+    page.click("#b-sec-bath li:nth-child(6) [data-f=down]", force=True)
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "Down on a room's last line changes nothing and says so", [l["text"] for l in bond_room(st, "bath")["lines"]] == order2 and st["status"] == "Bathrooms and toilets: line 6 is already the last line.", st["status"])
+    R.check(W, "a line never moves into another room", [l["text"] for l in bond_room(st, "kitchen")["lines"]] == BOND_ROOMS[0][2] and [l["text"] for l in bond_room(st, "living")["lines"]] == BOND_ROOMS[2][2])
+
+    # --- the limits: 20 lines a room, 80 characters, one line of text
+    for _ in range(17):
+        page.click("#b-add-laundry")
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "a room grows to 20 lines and counts '20 of 20 lines'", len(bond_room(st, "laundry")["lines"]) == 20 and bond_room(st, "laundry")["note"] == "20 of 20 lines")
+    page.click("#b-add-laundry")
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "a 21st line is refused with the reason in words, and other rooms can still grow",
+            len(bond_room(st, "laundry")["lines"]) == 20 and st["status"] == "Laundry holds up to 20 lines. Remove one to add another.", st["status"])
+    page.click("#b-add-floors")
+    R.check(W, "... (Floors still takes a new line)", len(bond_room(page.evaluate(B_STATE_JS), "floors")["lines"]) == 4)
+    page.locator("#b-sec-kitchen li:nth-child(1) textarea").fill("")
+    page.keyboard.type("x" * 100)
+    typed = page.input_value("#b-sec-kitchen li:nth-child(1) textarea")
+    page.evaluate("() => { const e = document.querySelector('#b-sec-kitchen li:nth-child(2) textarea'); e.value = 'y'.repeat(100); e.dispatchEvent(new Event('input', {bubbles: true})); }")
+    kr = page.evaluate(B_SHEET_JS)[0]["secs"][0]["rows"]
+    R.check(W, "typing stops at 80 characters, and a longer line put in by other means still prints as 80", len(typed) == 80 and len(kr[0]) == 80 and len(kr[1]) == 80, (len(typed), len(kr[0]), len(kr[1])))
+    page.locator("#b-sec-kitchen li:nth-child(3) textarea").fill("a\nb\r\nc")
+    R.check(W, "pasted line breaks become spaces", page.input_value("#b-sec-kitchen li:nth-child(3) textarea") == "a b c" and page.evaluate(B_SHEET_JS)[0]["secs"][0]["rows"][2] == "a b c")
+    before = [l["text"] for l in bond_room(page.evaluate(B_STATE_JS), "kitchen")["lines"]]
+    page.locator("#b-sec-kitchen li:nth-child(4) textarea").focus()
+    page.keyboard.press("Enter")
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "Enter inside a line adds no line break and moves to the next line of the same room", st["focus"] == "kitchen:t:5" and [l["text"] for l in bond_room(st, "kitchen")["lines"]] == before, st["focus"])
+    page.locator("#b-sec-kitchen li:nth-child(7) textarea").focus()
+    page.keyboard.press("Enter")
+    st = page.evaluate(B_STATE_JS)
+    R.check(W, "Enter in a room's last line stays there (it never jumps into the next room)", st["focus"] == "kitchen:t:7" and "\n" not in bond_room(st, "kitchen")["lines"][6]["text"], st["focus"])
+
+    # --- blank lines, typed HTML, printing
+    page.click("#b-reset")
+    page.locator("#b-sec-floors li:nth-child(2) textarea").fill("")
+    fl = [x for x in page.evaluate(B_SHEET_JS)[0]["secs"] if x["title"] == "Floors"][0]
+    R.check(W, "a blank line prints as an empty row with its tick box", fl["rows"] == [BOND_ROOMS[4][2][0], "", BOND_ROOMS[4][2][2]], fl["rows"])
+    page.evaluate("() => { window.__xss = 0; }")
+    page.locator("#b-sec-kitchen li:nth-child(1) textarea").fill("<b>bold</b><img src=x onerror='window.__xss=3'>")
+    page.fill("#b-addr", "<script>window.__xss=2</script><img src=x onerror='window.__xss=4'>")
+    got = page.evaluate("() => ({xss: window.__xss, imgs: document.querySelectorAll('#sheet img, #b-secs img, #sheet b, #sheet script').length, text: document.getElementById('sheet').textContent})")
+    R.check(W, "typed HTML is shown as plain text on the checklist, never run", got["xss"] == 0 and got["imgs"] == 0 and "<b>bold</b>" in got["text"] and "window.__xss=2" in got["text"], got["xss"])
+    page.evaluate("() => { const e = document.querySelector('#b-sec-windows li:nth-child(1) textarea'); e.value = 'changed without an input event'; document.querySelector('#b-sec-windows li:nth-child(2) [data-f=c]').checked = true; }")
+    page.evaluate("() => window.dispatchEvent(new Event('beforeprint'))")
+    win = [x for x in page.evaluate(B_SHEET_JS)[0]["secs"] if x["title"] == "Windows and tracks"][0]
+    R.check(W, "just before the browser prints, the checklist is rebuilt from the boxes (a change, or a tick, that sent no event still prints)",
+            win["rows"][0] == "changed without an input event" and win["on"][1] is True, win)
+    page.evaluate("() => { document.querySelector('#b-sec-windows li:nth-child(3) textarea').value = 'changed again'; }")
+    page.click("#b-print")
+    R.check(W, "the Print or save as PDF button rebuilds the checklist, then calls the browser's print once",
+            page.evaluate("window.__printed") == 1 and [x for x in page.evaluate(B_SHEET_JS)[0]["secs"] if x["title"] == "Windows and tracks"][0]["rows"][2] == "changed again")
+    s.close()
+
+    # --- a phone: a long line wraps in its box and all of it can be read
+    s = open_clean(env, "bond-clean-checklist", width=375, height=800, clock=clock)
+    page = s.page
+    long_line = "Oven inside, racks, trays, door glass, seals and the drawer underneath it all"[:80]
+    short_h = page.evaluate("document.querySelector('#b-sec-laundry li:nth-child(3) textarea').offsetHeight")   # 'Floor and drain'
+    page.locator("#b-sec-kitchen li:nth-child(1) textarea").fill(long_line)
+    h1 = page.evaluate("() => { const e = document.querySelector('#b-sec-kitchen li:nth-child(1) textarea'); return [e.offsetHeight, e.scrollHeight, e.clientHeight]; }")
+    R.check(W, "at 375 px a long line wraps and its box grows to show all of it; a short line stays one row tall (%d px)" % short_h,
+            h1[0] > short_h + 20 and h1[1] <= h1[2] + 1 and 44 <= short_h <= 60, (h1, short_h))
+    tick = page.evaluate("() => { const r = document.querySelector('#b-sec-kitchen li:nth-child(1) .tick').getBoundingClientRect(); return [r.width, r.height]; }")
+    R.check(W, "at 375 px each tick box sits in a 44 x 44 px tap target", tick[0] >= 44 and tick[1] >= 44, tick)
+    no_page_errors(R, W, "bond-clean-checklist at 375 px", s)
+    s.close()
+    s = open_clean(env, "bond-clean-checklist", width=1280, height=900, clock=clock)
+    page = s.page
+    page.locator("#b-sec-kitchen li:nth-child(1) textarea").fill(long_line)
+    page.set_viewport_size({"width": 375, "height": 800})
+    try:
+        page.wait_for_function("() => Array.from(document.querySelectorAll('#b-secs textarea')).every(e => e.scrollHeight <= e.clientHeight + 1)", timeout=3000)
+        narrowed = True
+    except Exception:   # noqa: BLE001
+        narrowed = False
+    R.check(W, "a wide window dragged narrow re-fits every line, so all the text of every line still shows", narrowed)
+    s.close()
+
+
+def print_bond(env, R):
+    W = "print"
+    text = env.read("free/bond-clean-checklist.html")
+    R.check(W, "bond: the stylesheet sets the page to A4", re.search(r"@page\s*\{[^}]*size:\s*A4", text) is not None)
+    R.check(W, "bond: a printed line is never split across two pages, and a room's title never ends a page",
+            re.search(r"\.s-row\{[^}]*break-inside:avoid", text) is not None and re.search(r"\.s-sec-title\{[^}]*break-after:avoid", text) is not None)
+    a4 = lambda boxes: all(abs(w - 595.3) < 2 and abs(h - 841.9) < 2 for w, h in boxes)
+    for scheme in ("light", "dark"):
+        s = open_clean(env, "bond-clean-checklist", scheme=scheme)
+        page = s.page
+        page.fill("#b-addr", "12 Example Street, Suburb")
+        page.fill("#b-date", "2026-11-16")
+        page.fill("#b-who", "Sam")
+        page.click("#b-sec-kitchen li:nth-child(1) [data-f=c]")
+        screen = page.evaluate("() => ({sheet: getComputedStyle(document.getElementById('sheet')).display, header: getComputedStyle(document.querySelector('header')).display})")
+        R.check(W, "bond %s: on screen the printable checklist is hidden and the header shows" % scheme, screen["sheet"] == "none" and screen["header"] != "none", screen)
+        if env.browser_name == "chromium" and scheme == "light":
+            pdf = page.pdf(prefer_css_page_size=True)
+            n0, boxes = pdf_pages(pdf)
+            R.check(W, "bond: with the example lines the PDF is 1 to 3 A4 pages (595 x 842 points)", 1 <= n0 <= 3 and a4(boxes), (n0, boxes[:1]))
+            page.evaluate(B_SET_JS, {rid: realistic_lines(20) for rid, _, _ in BOND_ROOMS})
+            pdf = page.pdf(prefer_css_page_size=True)
+            n1, boxes = pdf_pages(pdf)
+            R.check(W, "bond: every room at its most (8 rooms of 20 lines of 80 characters) runs onto more A4 pages rather than being cut off (%d pages)" % n1, n1 > n0 and n1 <= 14 and a4(boxes), (n1, boxes[:1]))
+            page.click("#b-reset")
+            page.click("#b-sec-kitchen li:nth-child(1) [data-f=c]")
+        page.emulate_media(media="print")
+        info = page.evaluate("""() => { const shown = sel => { const e = document.querySelector(sel); return !!e && e.getClientRects().length > 0; };
+          const sheet = document.getElementById('sheet');
+          const bad = []; sheet.querySelectorAll('*').forEach(e => { const cs = getComputedStyle(e);
+            if (!['rgb(17, 17, 17)', 'rgb(68, 68, 68)', 'rgb(85, 85, 85)'].includes(cs.color) || cs.backgroundColor !== 'rgba(0, 0, 0, 0)' || cs.backgroundImage !== 'none') bad.push([e.className || e.tagName, cs.color, cs.backgroundColor]); });
+          const on = Array.from(sheet.querySelectorAll('.s-box.on')).map(b => { const a = getComputedStyle(b, '::after'); return [a.content, a.borderRightWidth, a.borderBottomWidth, a.backgroundColor]; });
+          return {header: shown('header'), footer: shown('footer'), hero: shown('.hero'), tool: shown('#tool'), faq: shown('#faq'), cta: shown('.cta-final'), skip: shown('.skip'), sheet: shown('#sheet'),
+            sections: Array.from(document.querySelectorAll('main > section')).filter(e => e.getClientRects().length > 0).length,
+            bg: getComputedStyle(document.body).backgroundColor, fg: getComputedStyle(sheet).color, text: sheet.textContent.replace(/\\s+/g, ' ').trim(), wide: sheet.scrollWidth <= sheet.clientWidth + 1,
+            rows: Array.from(sheet.querySelectorAll('.s-row')).map(r => getComputedStyle(r).breakInside),
+            boxes: Array.from(sheet.querySelectorAll('.s-box')).map(b => { const cs = getComputedStyle(b); return [cs.borderTopWidth !== '0px', b.getBoundingClientRect().width > 10]; }),
+            on: on, bad: bad.slice(0, 3)}; }""")
+        R.check(W, "bond %s: in print the site header and footer, the intro, the tool, the FAQ and the CTA are all hidden" % scheme,
+                not any(info[k] for k in ("header", "footer", "hero", "tool", "faq", "cta", "skip")) and info["sections"] == 0, info)
+        R.check(W, "bond %s: in print only the checklist shows, on white, in dark text: title, address, date, cleaner, every room and line, notes, Checked by and the footer line" % scheme,
+                info["sheet"] and info["bg"] in ("rgb(255, 255, 255)", "rgba(0, 0, 0, 0)") and info["fg"] == "rgb(17, 17, 17)"
+                and all(x in info["text"] for x in ("End of lease clean", "12 Example Street, Suburb", "Monday 16 November 2026", "Sam", "Checked by", BOND_NOTES, BOND_FOOT)
+                        + tuple(n for _, n, _ in BOND_ROOMS) + tuple(l for _, _, ls in BOND_ROOMS for l in ls))
+                and "Get started" not in info["text"] and "Privacy" not in info["text"], info["text"][:240])
+        R.check(W, "bond %s: every printed line keeps itself together (break-inside: avoid) and the sheet fits the paper's width" % scheme,
+                info["rows"] and all(x == "avoid" for x in info["rows"]) and info["wide"], (set(info["rows"]), info["wide"]))
+        R.check(W, "bond %s: every tick box has a drawn border, the one ticked line shows a tick drawn with borders (not a background), and nothing has a background" % scheme,
+                info["bad"] == [] and all(b[0] and b[1] for b in info["boxes"]) and len(info["boxes"]) == sum(len(c) for _, _, c in BOND_ROOMS)
+                and len(info["on"]) == 1 and info["on"][0][1] != "0px" and info["on"][0][2] != "0px" and info["on"][0][3] == "rgba(0, 0, 0, 0)", (info["bad"], info["on"], len(info["boxes"])))
+        page.emulate_media(media="null")
+        s.close()
+    if env.browser_name == "chromium":
+        s = open_clean(env, "bond-clean-checklist")
+        page = s.page
+        page.evaluate("(w) => { const e = document.getElementById('b-addr'); e.value = w; e.dispatchEvent(new Event('input', {bubbles: true})); }", "Q" * 80)
+        page.evaluate(B_SET_JS, {"kitchen": ["W" * 80] * 3})
+        page.emulate_media(media="print")
+        fits = page.evaluate("() => { const s = document.getElementById('sheet'); return s.scrollWidth <= s.clientWidth + 1 && Array.from(s.querySelectorAll('.s-text, .s-fill')).every(e => e.scrollWidth <= e.clientWidth + 1); }")
+        R.check(W, "bond: an 80-letter word in a line and an 80-letter address wrap inside the sheet (no sideways overflow)", fits)
+        s.close()
+
 # ---------------------------------------------------------------------------------------------
 # things to do on each page: type something, so there is a result (or a mistake) to look at
 # ---------------------------------------------------------------------------------------------
@@ -1783,6 +2201,12 @@ def show_result(page, slug):
         page.fill("#q-valid", "2026-11-07")
         page.fill("#q-notes", MARK + " notes " + "w" * 70)
         page.evaluate(Q_SET_JS, {"lines": [(MARK + " Mowing", "2", "35.50"), ("w" * 70, "1", "120"), ("Hedges", "1", "99.95")], "gst": True})
+    elif slug == "bond-clean-checklist":
+        page.fill("#b-addr", MARK + " 12 Example Street, " + "w" * 40)
+        page.fill("#b-date", "2026-11-16")
+        page.fill("#b-who", "w" * 40)
+        page.evaluate(B_SET_JS, {"kitchen": [MARK + " " + "w" * 70, "x" * 80, "Oven inside, racks and trays"], "final": ["Keys handed back", ""]})
+        page.evaluate("() => document.querySelectorAll('#b-secs [data-f=c]').forEach((c, i) => { if (i % 2 === 0) c.click(); })")
     elif slug == "truck-checklist":
         page.select_option("#t-count", "3")
         page.fill("#t-v-1", MARK + " Truck 1 (Sam)")
@@ -1808,6 +2232,8 @@ def show_mistake(page, slug):
         page.fill("#h-costs", "abc")
     elif slug == "quote-template":
         page.evaluate(Q_SET_JS, {"lines": [("a", "x", "1,000,000"), ("b", "-1", "abc")], "gst": True})
+    elif slug == "bond-clean-checklist":
+        page.evaluate("() => { const add = document.getElementById('b-add-laundry'); for (let i = 0; i < 25; i++) add.click(); }")   # 20 lines, then the 'holds up to 20' message
     elif slug == "truck-checklist":
         page.evaluate("() => { const add = document.getElementById('t-add'); for (let i = 0; i < 30; i++) add.click(); }")   # 25 lines, then the 'holds up to 25' message
     for d in page.query_selector_all("details"):
@@ -1850,6 +2276,9 @@ def group_net(env, R, pages):
         if slug == "truck-checklist":
             page.click("#t-print")
             page.click("#t-reset")
+        if slug == "bond-clean-checklist":
+            page.click("#b-print")
+            page.click("#b-reset")
         dump = page.evaluate(STORAGE_JS)
         after = s.requests[before:]
         R.check(W, "%s: typing, adding lines, opening the FAQ and printing makes no request at all (%d after load)" % (label, len(after)), not after and not s.blocked, (after[:2], s.blocked[:2]))
@@ -2057,19 +2486,21 @@ FOCUS_STEP_JS = """() => { const e = document.activeElement; if (!e || e === doc
   return {tag: e.tagName.toLowerCase(), id: e.id, text: (e.textContent || '').trim().slice(0, 30), href: e.getAttribute('href') || '', outline: cs.outlineStyle, width: parseFloat(cs.outlineWidth)}; }"""
 LIVE_REGIONS = {
     "gst-calculator": ["add-out", "rem-out"], "cents-per-km-calculator": ["km-out"], "bas-due-dates": ["bas-live"],
-    "hourly-rate-calculator": ["h-out"], "quote-template": ["q-out", "q-status"], "truck-checklist": ["t-status"],
+    "hourly-rate-calculator": ["h-out"], "quote-template": ["q-out", "q-status"], "truck-checklist": ["t-status"], "bond-clean-checklist": ["b-status"],
 }
 KEY_CONTROLS = {
     "": [], "gst-calculator": ["add-amount", "rem-amount"], "cents-per-km-calculator": ["km-year", "km-input"], "bas-due-dates": [],
     "hourly-rate-calculator": ["h-income", "h-weeks", "h-hours", "h-costs", "h-gst"],
     "quote-template": ["q-trade", "q-from", "q-to", "q-no", "q-date", "q-valid", "q-reset", "q-gst", "q-notes", "q-print"],
     "truck-checklist": ["t-count", "t-week", "t-v-1", "t-v-2", "t-add", "t-reset", "t-print"],
+    "bond-clean-checklist": ["b-addr", "b-date", "b-who", "b-add-kitchen", "b-add-bath", "b-add-living", "b-add-laundry", "b-add-floors", "b-add-windows",
+                             "b-add-outside", "b-add-final", "b-reset", "b-print"],
 }
 
 
 def keyboard_checks(R, W, page, slug, label):
     order = []
-    for _ in range(110):
+    for _ in range(400):
         page.keyboard.press("Tab")
         f = page.evaluate(FOCUS_STEP_JS)
         if f is None:
@@ -2169,7 +2600,7 @@ def group_cta(env, R, pages):
         page = s.goto(slug)
         links = page.evaluate("Array.from(document.querySelectorAll('a[href*=\"app.keptsoftware.com.au\"]')).map(a => a.getAttribute('href'))")
         tag = "&utm_source=facebook&utm_medium=paid_social&utm_campaign=lawn_time&kl=" + PAGE_PATH[slug].replace("/", "%2F")
-        want = [APP_FREE + tag, APP_FREE + tag, APP_DEMO + tag]
+        want = [app_free(slug) + tag, app_free(slug) + tag, APP_DEMO + tag]
         R.check(W, "%s: attribution.js adds the saved campaign tags after the existing parameters on all three app links (none added by hand)" % label, sorted(links) == sorted(want), links)
         page.evaluate("window.__fbq = []")
         page.click(".cta-final a.btn:not(.btn-ghost)", no_wait_after=True)
@@ -2181,7 +2612,7 @@ def group_cta(env, R, pages):
         s = env.session()
         page = s.goto(slug)
         links = page.evaluate("Array.from(document.querySelectorAll('a[href*=\"app.keptsoftware.com.au\"]')).map(a => a.getAttribute('href'))")
-        R.check(W, "%s: a visitor with no campaign saved sees the links exactly as written" % label, sorted(links) == sorted([APP_FREE, APP_FREE, APP_DEMO]), links)
+        R.check(W, "%s: a visitor with no campaign saved sees the links exactly as written" % label, sorted(links) == sorted([app_free(slug), app_free(slug), APP_DEMO]), links)
         s.close()
 
 
@@ -2303,7 +2734,8 @@ MUTATIONS = [
     M("all: two pages share a title", "bas-due-dates", "<title>BAS Due Dates 2026-27: Quarterly and Monthly | Kept</title>", "<title>GST Calculator Australia: Add or Remove 10% GST | Kept</title>", ["static"], pages=["bas-due-dates", "gst-calculator"]),
     M("all: the index no longer lists the BAS tool", "", 'href="/free/bas-due-dates"', 'href="/free/bas-dates"', ["static"]),
     M("all: the index no longer lists the truck checklist", "", 'href="/free/truck-checklist"', 'href="/free/truck-list"', ["static"]),
-    M("all: the index still says five tools", "", "Six small tools:", "Five small tools:", ["static"]),
+    M("all: the index still says six tools", "", "Seven small tools:", "Six small tools:", ["static"]),
+    M("all: the index no longer lists the bond clean checklist", "", 'href="/free/bond-clean-checklist"', 'href="/free/bond-checklist"', ["static"]),
     # --- truck checklist: the editor and its limits
     M("truck: no limit on the number of lines", "truck-checklist", "if (list.children.length >= MAX_LINES) {", "if (false) {", ["truck"]),
     M("truck: the limit is 26 lines, not 25", "truck-checklist", "var MAX_LINES = 25;", "var MAX_LINES = 26;", ["static", "truck"]),
@@ -2380,6 +2812,58 @@ MUTATIONS = [
     M("truck: sideways scroll on a phone", "truck-checklist", "</style>", ".tool{min-width:560px}\n</style>", ["layout"]),
     M("truck: the line buttons are too small to tap", "truck-checklist", "</style>", ".tl .chip{min-height:24px;padding:2px 8px}\n</style>", ["layout"]),
     M("truck: the line count is too pale to read", "truck-checklist", ".tl-count{margin:12px 0 0;font-size:.9rem;color:var(--ink-soft)}", ".tl-count{margin:12px 0 0;font-size:.9rem;color:#c5ccc8}", ["a11y"]),
+    # --- bond clean checklist: the wording
+    M("bond: the 'not a guarantee' sentence is gone", "bond-clean-checklist", "This is a working checklist, not a guarantee that a bond is returned. ", "", ["static"]),
+    M("bond: the 'not a guarantee' sentence is said twice", "bond-clean-checklist", "<p>Other states and territories", "<p>This is a working checklist, not a guarantee that a bond is returned.</p>\n    <p>Other states and territories", ["static"]),
+    M("bond: the entry condition report sentence is gone", "bond-clean-checklist", "The standard that counts is the property's entry condition report and what the agent or owner asks for. ", "", ["static"]),
+    M("bond: 'general information, not legal advice' is gone", "bond-clean-checklist", "General information, not legal advice. ", "", ["static"]),
+    M("bond: a bond-back promise", "bond-clean-checklist", "<p>Other states and territories", "<p>Follow the list and get your bond back.</p>\n    <p>Other states and territories", ["static"]),
+    M("bond: says what agents require", "bond-clean-checklist", "and ask the agent or owner what they want done.", "and do what agents require.", ["static"]),
+    M("bond: a price on the page", "bond-clean-checklist", "<strong>Before you price it.</strong>", "<strong>Before you price it (from $250).</strong>", ["static"]),
+    M("bond: the Form 14a link goes to a third-party site", "bond-clean-checklist", '<a href="https://www.rta.qld.gov.au/forms-resources/forms/forms-for-general-tenancies/exit-condition-report-general-tenancies-form-14a">',
+      '<a href="https://www.example.com/form-14a">', ["static"]),
+    M("bond: another state's form is named", "bond-clean-checklist", "check your state's tenancy authority.", "check your state's tenancy authority, such as NSW Fair Trading's Form 2.", ["static"]),
+    M("bond: the checked date does not match the sources file", "bond-clean-checklist", "Checked against the RTA pages on ", "Checked against the RTA pages on 1 ", ["static"]),
+    M("bond: Kept named outside the call to action", "bond-clean-checklist", "<p class=\"lede\">For cleaners doing a bond clean.", "<p class=\"lede\">For cleaners doing a bond clean, from Kept.", ["static"]),
+    M("bond: the call to action claims before and after photos", "bond-clean-checklist", "cleaning jobs. Free plan, no time limit.", "cleaning jobs, with before and after photos kept with the job. Free plan, no time limit.", ["static"]),
+    M("bond: the header button opens the lawn care sign-up", "bond-clean-checklist", '<a class="btn btn-sm" href="https://app.keptsoftware.com.au/?plan=free&industry=cleaning">', '<a class="btn btn-sm" href="https://app.keptsoftware.com.au/?industry=lawn_care">', ["static", "cta"]),
+    M("bond: shared with the small square icon", "bond-clean-checklist", '<meta property="og:image" content="https://www.keptsoftware.com.au/images/share-kept.png">', '<meta property="og:image" content="https://www.keptsoftware.com.au/icons/icon-512.png">', ["static"]),
+    M("bond: an example line makes a claim", "bond-clean-checklist", "'Oven inside, racks and trays',", "'Oven cleaned to agent standard, guaranteed',", ["static", "bond"]),
+    M("bond: 'monthly' on the page", "bond-clean-checklist", "Ceiling fans and light fittings first, floors last.", "Ceiling fans and light fittings first, floors last, as you would monthly.", ["static"]),
+    # --- bond clean checklist: the editor
+    M("bond: no limit on the lines in a room", "bond-clean-checklist", "if (ol.children.length >= MAX_LINES) {", "if (false) {", ["bond"]),
+    M("bond: the limit is 21 lines, not 20", "bond-clean-checklist", "var MAX_LINES = 20;", "var MAX_LINES = 21;", ["static", "bond"]),
+    M("bond: a line can be typed past 80 characters", "bond-clean-checklist", "inp.maxLength = MAX_LEN;", "", ["bond"]),
+    M("bond: a pasted line past 80 characters still prints in full", "bond-clean-checklist", "row.appendChild(h('span', 's-text', tidy(box(li).value, MAX_LEN)));", "row.appendChild(h('span', 's-text', tidy(box(li).value, 999)));", ["bond"]),
+    M("bond: the address is not cut to 80", "bond-clean-checklist", "field('Property', tidy(addrIn.value, MAX_ADDR))", "field('Property', tidy(addrIn.value, 999))", ["bond"]),
+    M("bond: a tick on screen does not print", "bond-clean-checklist", "tick(li).checked ? 's-box on' : 's-box'", "'s-box'", ["bond", "print"]),
+    M("bond: pasted line breaks stay in the line", "bond-clean-checklist", "if (/[\\r\\n]/.test(el.value)) el.value = el.value.replace(/[\\r\\n]+/g, ' ').slice(0, MAX_LEN);", "", ["bond"]),
+    M("bond: Enter puts a line break in a line", "bond-clean-checklist", "    e.preventDefault();\n    var sec = el.closest('.bsec')", "    var sec = el.closest('.bsec')", ["bond"]),
+    M("bond: removing a line does not renumber the rest", "bond-clean-checklist", "list(sec).removeChild(li);\n      renumber(sec);", "list(sec).removeChild(li);", ["bond"]),
+    M("bond: Up sends the line to the end of the room", "bond-clean-checklist", "list(sec).insertBefore(li, all[i - 1]);", "list(sec).appendChild(li);", ["bond"]),
+    M("bond: moving a line loses the keyboard focus", "bond-clean-checklist", "      b.focus();\n", "", ["bond"], count=None),
+    M("bond: Down on the last line says nothing", "bond-clean-checklist", "if (i === all.length - 1) { say(name + ': line ' + (i + 1) + ' is already the last line.'); return; }", "if (i === all.length - 1) { return; }", ["bond"]),
+    M("bond: an empty room still prints its title", "bond-clean-checklist", "      if (!lines.length) return;\n", "", ["bond"]),
+    M("bond: Start again keeps the ticks", "bond-clean-checklist", "while (ol.firstChild) ol.removeChild(ol.firstChild);\n      r[2].forEach", "r[2].forEach", ["bond"]),
+    M("bond: typed text is put in as HTML", "bond-clean-checklist", "if (text !== undefined) n.textContent = text;", "if (text !== undefined) n.innerHTML = text;", ["bond"]),
+    M("bond: the date is written month first", "bond-clean-checklist", "return DAYS[t.getUTCDay()] + ' ' + d + ' ' + MONTHS[mo - 1] + ' ' + y;", "return DAYS[t.getUTCDay()] + ' ' + MONTHS[mo - 1] + ' ' + d + ' ' + y;", ["bond"]),
+    M("bond: the Print button does not rebuild or print", "bond-clean-checklist", "  $('b-print').addEventListener('click', function () {\n    renderSheet();\n    window.print();", "  $('b-print').addEventListener('click', function () {", ["bond"]),
+    M("bond: the checklist is not rebuilt just before printing", "bond-clean-checklist", "  window.addEventListener('beforeprint', renderSheet);\n", "", ["bond"]),
+    M("bond: a long line is cut off in its box", "bond-clean-checklist", "el.style.height = (el.scrollHeight + el.offsetHeight - el.clientHeight) + 'px';", "el.style.height = '48px';", ["bond"]),
+    M("bond: the tick boxes have no accessible name", "bond-clean-checklist", "tick(li).setAttribute('aria-label', name + ', line ' + k + ' done');", "", ["bond", "a11y"]),
+    M("bond: the status line is not announced", "bond-clean-checklist", '<p class="hint" id="b-status" aria-live="polite" aria-atomic="true"></p>', '<p class="hint" id="b-status"></p>', ["a11y"]),
+    M("bond: the script stores what is typed", "bond-clean-checklist", "  function say(text) { statusEl.textContent = text; }", "  function say(text) { statusEl.textContent = text; try { localStorage.setItem('bond', addrIn.value); } catch (e) {} }", ["static", "net"]),
+    # --- bond clean checklist: printing and layout
+    M("bond: printing still shows the site header", "bond-clean-checklist", ".skip,header,footer,main>section{display:none!important}", ".skip,footer,main>section{display:none!important}", ["print"]),
+    M("bond: printing still shows the CTA and the FAQ", "bond-clean-checklist", ".skip,header,footer,main>section{display:none!important}", ".skip,header,footer{display:none!important}", ["print"]),
+    M("bond: the page size is Letter, not A4", "bond-clean-checklist", "@page{size:A4;margin:12mm}", "@page{size:letter;margin:12mm}", ["print"]),
+    M("bond: a printed line can be split across two pages", "bond-clean-checklist", "border-bottom:.5pt solid #bbb;break-inside:avoid;page-break-inside:avoid}", "border-bottom:.5pt solid #bbb}", ["print"]),
+    M("bond: the tick is drawn as a background (may not print)", "bond-clean-checklist", "border:solid #111;border-width:0 1.3pt 1.3pt 0;transform:rotate(45deg)}", "background:#111}", ["print"]),
+    M("bond: the tick boxes have no border", "bond-clean-checklist", "border:1.1pt solid #111;border-radius:.8mm;position:relative}", "border:0;border-radius:.8mm;position:relative}", ["print"]),
+    M("bond: the footer line is missing", "bond-clean-checklist", "page.appendChild(h('p', 's-foot', 'Bond clean checklist from keptsoftware.com.au'));", "", ["bond"]),
+    M("bond: sideways scroll on a phone", "bond-clean-checklist", "</style>", ".tool{min-width:560px}\n</style>", ["layout"]),
+    M("bond: the tick boxes are too small to tap", "bond-clean-checklist", ".tl .tick{display:flex;align-items:center;justify-content:center;width:44px;height:44px;", ".tl .tick{display:flex;align-items:center;justify-content:center;width:22px;height:22px;", ["bond"]),
+    M("bond: the room counts are too pale to read", "bond-clean-checklist", ".tl-count{margin:10px 0 0;font-size:.9rem;color:var(--ink-soft)}", ".tl-count{margin:10px 0 0;font-size:.9rem;color:#c5ccc8}", ["a11y"]),
 ]
 
 

@@ -1,0 +1,276 @@
+{
+  "about": "Every fact stated on the guide (guides/start-a-lawn-mowing-business-queensland.html) and the Queensland form facts on the bond clean checklist (free/bond-clean-checklist.html). 'claim' is the page's own wording, word for word; 'quote' is the official page's own wording, read on 'read'. tools/test-guides.py checks each claim is on its page next to a link to 'url'. The ATO's own pages could not be read by an automated browser on the day (they answer 403 to it), so the tax facts are from business.gov.au and the ABR; FACTS.md ids are given where the same fact is there.",
+  "checked": "2026-11-15",
+  "claims": [
+    {
+      "id": "G-ABN-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "It's free to register for an ABN through the Australian Business Register.",
+      "url": "https://business.gov.au/registrations/register-for-an-australian-business-number-abn",
+      "source": "business.gov.au: Register for an Australian Business Number",
+      "read": "2026-11-15",
+      "quote": "It’s free to register for an ABN through the Australian Government’s Australian Business Register (ABR)."
+    },
+    {
+      "id": "G-ABN-2",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "you're entitled to an ABN if you're carrying on or starting an enterprise in Australia, and that you're not entitled to one for work you do as an employee",
+      "url": "https://www.abr.gov.au/business-super-funds-charities/applying-abn/abn-entitlement",
+      "source": "Australian Business Register: ABN entitlement",
+      "read": "2026-11-15",
+      "quote": "You're entitled to an ABN if you're: ... carrying on or starting an enterprise in Australia ... You're not entitled to an ABN for work that you carry out as an employee",
+      "source_date": "Last modified 29 Feb 2024"
+    },
+    {
+      "id": "G-BN-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "you must register a business name if you run a business in Australia and are not trading under your own name",
+      "url": "https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name",
+      "source": "ASIC: Register a business name",
+      "read": "2026-11-15",
+      "quote": "You must register a business name if you run a business in Australia and are not trading under your own name."
+    },
+    {
+      "id": "G-BN-2",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "A sole trader using their first name and surname, and nothing else, does not need to: John Smith would not register 'John Smith', but would need to register 'John Smith Gardening'.",
+      "url": "https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name",
+      "source": "ASIC: Register a business name",
+      "read": "2026-11-15",
+      "quote": "operating as an individual sole trader under your first name and surname ... If you are operating under your own name, you must use your first name and surname and nothing else. ... For example, John Smith would not need to register 'John Smith' but would need to register the business name 'John Smith Gardening"
+    },
+    {
+      "id": "G-BN-3",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "ASIC's fee to register a business name is $47 for 1 year or $108 for 3 years.",
+      "url": "https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name",
+      "source": "ASIC: Register a business name",
+      "read": "2026-11-15",
+      "quote": "application to register a business name for 1 year: $47 ... application to register a business name for 3 years: $108"
+    },
+    {
+      "id": "G-GST-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "GST is a tax of 10% on most goods, services and other items sold or consumed in Australia.",
+      "url": "https://business.gov.au/registrations/register-for-taxes/register-for-goods-and-services-tax-gst",
+      "source": "business.gov.au: Register for goods and services tax (GST)",
+      "read": "2026-11-15",
+      "quote": "Goods and services tax (GST) is a tax of 10% on most goods, services and other items sold or consumed in Australia.",
+      "facts_md": "F-GST-3"
+    },
+    {
+      "id": "G-GST-2",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "You must register for GST if your business has a GST turnover of $75,000 or more.",
+      "url": "https://business.gov.au/registrations/register-for-taxes/register-for-goods-and-services-tax-gst",
+      "source": "business.gov.au: Register for goods and services tax (GST)",
+      "read": "2026-11-15",
+      "quote": "You must register for GST if: ... your business has a GST turnover of $75,000 or more",
+      "facts_md": "F-GST-1"
+    },
+    {
+      "id": "G-GST-3",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "If you've started a new business, you should register if you expect your GST turnover to reach $75,000 in the first year.",
+      "url": "https://business.gov.au/registrations/register-for-taxes/register-for-goods-and-services-tax-gst",
+      "source": "business.gov.au: Register for goods and services tax (GST)",
+      "read": "2026-11-15",
+      "quote": "If you’ve started a new business, you should register if you expect your GST turnover to reach $75,000 in the first year."
+    },
+    {
+      "id": "G-GST-4",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "You have to register for GST within 21 days of becoming aware that your GST turnover will go over the threshold.",
+      "url": "https://business.gov.au/registrations/register-for-taxes/register-for-goods-and-services-tax-gst",
+      "source": "business.gov.au: Register for goods and services tax (GST)",
+      "read": "2026-11-15",
+      "quote": "You have to register for GST within 21 days of becoming aware that your GST turnover will go over the threshold.",
+      "facts_md": "F-GST-1"
+    },
+    {
+      "id": "G-GST-5",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "GST turnover is your business income, not your profit. Below the threshold, registering is optional.",
+      "url": "https://business.gov.au/registrations/register-for-taxes/register-for-goods-and-services-tax-gst",
+      "source": "business.gov.au: Register for goods and services tax (GST)",
+      "read": "2026-11-15",
+      "quote": "GST turnover is your business income (excluding certain sales), not your profit. ... If your GST turnover is below the $75,000 threshold, you may choose to register. ... Otherwise, registration for GST is optional.",
+      "facts_md": "F-GST-1"
+    },
+    {
+      "id": "G-TAX-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "most people who have an ABN are required to lodge an annual income tax return, and that you are responsible for your own income tax, superannuation and GST (if applicable)",
+      "url": "https://www.abr.gov.au/business-super-funds-charities/applying-abn/abn-important-facts",
+      "source": "Australian Business Register: ABN important facts",
+      "read": "2026-11-15",
+      "quote": "Most people who have an ABN are required to lodge an annual income tax return. ... You are also responsible for your own income tax, superannuation and GST(if applicable)."
+    },
+    {
+      "id": "G-REC-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "you need to keep most business records for 5 years, from when you got the records or completed the transactions they relate to, whichever is later",
+      "url": "https://business.gov.au/finance/payments-and-invoicing/record-keeping",
+      "source": "business.gov.au: Record keeping",
+      "read": "2026-11-15",
+      "quote": "You need to keep most business records for 5 years. This period starts from when you either got the records or completed the transactions or actions they relate to, whichever is later.",
+      "facts_md": "F-REC-1"
+    },
+    {
+      "id": "G-INS-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "Public liability insurance covers injury to other people or damage to their property while you are on the job.",
+      "url": "https://www.business.qld.gov.au/running-business/risk/insurance",
+      "source": "Business Queensland: Business insurance",
+      "read": "2026-11-15",
+      "quote": "Product and public liability insurance covers your potential liabilities to third parties for personal injury or damage to property. ... public liability relates to injury or property damage whilst you’re on the job."
+    },
+    {
+      "id": "G-INS-2",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "suggests talking to a business insurance broker or business adviser to find what insurance you need",
+      "url": "https://www.business.qld.gov.au/running-business/risk/insurance",
+      "source": "Business Queensland: Business insurance",
+      "read": "2026-11-15",
+      "quote": "Talk to a business insurance broker or business adviser to find what specific insurance you need."
+    },
+    {
+      "id": "G-WC-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "if you employ workers in Queensland, you must have workers' compensation insurance",
+      "url": "https://www.workcoverqld.com.au/insurance-and-premium",
+      "source": "WorkCover Queensland: Insurance and premium",
+      "read": "2026-11-15",
+      "quote": "If you employ workers in Queensland, you must have workers’ compensation insurance."
+    },
+    {
+      "id": "G-QBCC-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "in Queensland, individuals and companies must hold a QBCC licence to carry out building work valued over $3,300",
+      "url": "https://www.qbcc.qld.gov.au/licences/start-your-career/when-you-need-licence",
+      "source": "QBCC: When you need a licence",
+      "read": "2026-11-15",
+      "quote": "In Queensland, individuals (sole traders, partners, trustees), and companies must hold a QBCC licence to carry out (contract for) building work that is: ... valued over $3,300",
+      "source_date": "Last reviewed: 11 Aug 2021"
+    },
+    {
+      "id": "G-QBCC-2",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "covers work such as carports, decking, fences, gazebos, pergolas, retaining walls, and paving or concrete not intended to carry vehicles",
+      "url": "https://www.qbcc.qld.gov.au/licences/apply-licence/available-licences/other-trade/structural-landscaping-trade",
+      "source": "QBCC: Structural landscaping (trade)",
+      "read": "2026-11-15",
+      "quote": "Prepare, fabricate and erect carports, decking, fences, gazebos, pergolas, retaining walls of a height that do not require an engineering certification under a local law, and ornamental structures. ... Prepare site and lay paving or concrete, not intended to carry vehicular traffic, for landscaping."
+    },
+    {
+      "id": "G-HERB-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "Under Queensland's Agricultural Chemicals Distribution Control Act 1966, if you use ground equipment to spray herbicide on land that you or a close relative does not own or occupy, you may need a commercial operators licence.",
+      "url": "https://www.business.qld.gov.au/industries/farms-fishing-forestry/agriculture/sustainable/chemical/operators-licence/about",
+      "source": "Business Queensland: About the commercial operators licence",
+      "read": "2026-11-15",
+      "quote": "Under the Agricultural Chemicals Distribution Control Act 1966, if you intend to use ground equipment (any machine or apparatus other than an aircraft) to distribute herbicides on land that you or a close relative does not own or occupy, you may need a commercial operators licence."
+    },
+    {
+      "id": "G-HERB-2",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "Whether you need one depends on the type of equipment and on where in Queensland the work is done.",
+      "url": "https://www.business.qld.gov.au/industries/farms-fishing-forestry/agriculture/sustainable/chemical/operators-licence/about",
+      "source": "Business Queensland: About the commercial operators licence",
+      "read": "2026-11-15",
+      "quote": "Factors that can determine whether you need a licence include: ... the type of ground equipment that you are using ... whether you are carrying out the ground distribution in a declared hazardous area, a regulated area or non-regulated area of the state."
+    },
+    {
+      "id": "G-HERB-4",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "Equipment that is hand-powered is one of the exemptions outside hazardous areas.",
+      "url": "https://www.business.qld.gov.au/industries/farms-fishing-forestry/agriculture/sustainable/chemical/ground-distribution-herbicide/who",
+      "source": "Business Queensland: Licensing arrangements for ground distribution of herbicides",
+      "read": "2026-11-15",
+      "quote": "Some equipment is exempted from this definition in locations outside hazardous areas. These exemptions are: ... equipment that is hand-powered ... However, you do require a licence if you are distributing with this equipment in areas within hazardous areas."
+    },
+    {
+      "id": "G-HERB-3",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "The business that directs licensed operators needs a ground distribution contractor's licence",
+      "url": "https://www.business.qld.gov.au/industries/farms-fishing-forestry/agriculture/sustainable/chemical/ground-distribution-herbicide/who",
+      "source": "Business Queensland: Licensing arrangements for ground distribution of herbicides",
+      "read": "2026-11-15",
+      "quote": "organisations and individual contractors in the business of ground distribution who direct or authorise licensed commercial operators to use ground equipment are called ground distribution contractors ... They must hold a ground distribution contractor's licence."
+    },
+    {
+      "id": "G-PEST-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "a pest management activity using a pesticide or a fumigant must only be undertaken by a person who holds a current pest management licence",
+      "url": "https://www.health.qld.gov.au/system-governance/licences/medicines-poisons/pest-management/technicians",
+      "source": "Queensland Health: Pest management technicians",
+      "read": "2026-11-15",
+      "quote": "A pest management activity (which includes a pest control activity and a fumigation activity) using a pesticide or a fumigant must only be undertaken by a person who holds a current pest management licence issued under the MPA."
+    },
+    {
+      "id": "G-NOISE-1",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "a regulated device must not be operated in a way that makes an audible noise on a business day or Saturday before 7.00am or after 7.00pm, or on any other day before 8.00am or after 7.00pm",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+      "source": "Environmental Protection Act 1994 (Qld), section 440S Regulated devices",
+      "read": "2026-11-15",
+      "quote": "(2)A person must not operate a regulated device in a way that makes an audible noise— ... (a)on a business day or Saturday, before 7.00a.m. or after 7.00p.m; or ... (b)on any other day, before 8.00a.m. or after 7.00p.m."
+    },
+    {
+      "id": "G-NOISE-2",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "claim": "Regulated devices include grass-cutters such as lawnmowers, ride-on mowers, edge cutters and string trimmers, and leaf-blowers.",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+      "source": "Environmental Protection Act 1994 (Qld), section 440S Regulated devices",
+      "read": "2026-11-15",
+      "quote": "(d)a grass-cutter; ... (f)a leaf-blower; ... brush-cutter, edge cutter, lawnmower, ride-on mower, string trimmer"
+    },
+    {
+      "id": "B-RTA-1",
+      "page": "free/bond-clean-checklist.html",
+      "claim": "In Queensland, the Residential Tenancies Authority's Exit condition report (Form 14a) records the condition of the rental premises at the end of the tenancy.",
+      "url": "https://www.rta.qld.gov.au/forms-resources/forms/forms-for-general-tenancies/exit-condition-report-general-tenancies-form-14a",
+      "source": "RTA: Exit condition report - general tenancies (Form 14a)",
+      "read": "2026-11-15",
+      "quote": "The Exit condition report (Form 14a) records the condition of the rental premises (e.g. house, townhouse, unit, houseboat) at the end of the general tenancy.",
+      "source_date": "Form version v13 1May25"
+    },
+    {
+      "id": "B-RTA-2",
+      "page": "free/bond-clean-checklist.html",
+      "claim": "The RTA says the Entry condition report (Form 1a) is compared to it at the end of the tenancy.",
+      "url": "https://www.rta.qld.gov.au/forms-resources/forms/forms-for-general-tenancies/exit-condition-report-general-tenancies-form-14a",
+      "source": "RTA: Exit condition report - general tenancies (Form 14a)",
+      "read": "2026-11-15",
+      "quote": "Note: The Entry condition report (Form 1a) is compared to this Exit condition report (Form 14a) at the end of the tenancy.",
+      "source_date": "Form version v13 1May25"
+    },
+    {
+      "id": "B-RTA-3",
+      "page": "free/bond-clean-checklist.html",
+      "claim": "The RTA's cleaning page says fair wear and tear does not include dirt, grime or grease, and suggests going room by room so nothing is missed.",
+      "url": "https://www.rta.qld.gov.au/ending-a-tenancy/vacating-a-property/cleaning",
+      "source": "RTA: Cleaning (Ending a tenancy, Vacating a property)",
+      "read": "2026-11-15",
+      "quote": "The property manager/owner needs to allow for fair wear and tear, however, this does not include dirt/grime/grease or damage caused by the tenant during the tenancy. ... When cleaning, we recommend you go room by room so you don’t miss anything."
+    }
+  ],
+  "check_with": [
+    {
+      "id": "L-ABLIS",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "url": "https://ablis.business.gov.au/",
+      "source": "Australian Business Licence and Information Service (business.gov.au)",
+      "read": "2026-11-15",
+      "used_for": "Licences for your mix of services, including whether mowing on its own needs one"
+    },
+    {
+      "id": "L-COUNCILS",
+      "page": "guides/start-a-lawn-mowing-business-queensland.html",
+      "url": "https://www.dlgwv.qld.gov.au/local-government/for-the-community/local-government-directory",
+      "source": "Queensland Local Government Directory",
+      "read": "2026-11-15",
+      "used_for": "Green waste: where to take it and what it costs; any other noise questions"
+    }
+  ]
+}

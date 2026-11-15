@@ -31,7 +31,12 @@ Storage modes: each business chooses how its data is stored (Settings > Account 
 
 ## Free tools
 
-- [Free tools](https://www.keptsoftware.com.au/free): a GST calculator, a cents-per-kilometre calculator, BAS due dates, an hourly rate calculator, a printable quote template and a printable weekly truck checklist. They run in the browser: what you type is not sent or saved.
+- [Free tools](https://www.keptsoftware.com.au/free): a GST calculator, a cents-per-kilometre calculator, BAS due dates, an hourly rate calculator, a printable quote template, a printable weekly truck checklist and a printable end of lease (bond) cleaning checklist. They run in the browser: what you type is not sent or saved.
+- [Bond clean checklist](https://www.keptsoftware.com.au/free/bond-clean-checklist): a free, editable end of lease cleaning checklist for cleaning businesses, room by room, printable on A4.
+
+## Guides
+
+- [How to start a lawn mowing business in Queensland](https://www.keptsoftware.com.au/guides/start-a-lawn-mowing-business-queensland): registering (ABN, business name), GST basics, insurance, Queensland licences for spraying, pest control and structural landscaping, mowing noise hours, gear, pricing and paperwork. Every fact is linked to the official page it came from.
 
 ## For customers of a business that uses Kept
 
