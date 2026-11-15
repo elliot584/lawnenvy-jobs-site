@@ -23,5 +23,16 @@
     { "source": "/go/clean", "destination": "/clean?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=cleaning&utm_term=typed", "permanent": false },
     { "source": "/go/handyman", "destination": "/handyman?utm_source=flyer&utm_medium=print&utm_campaign=dealer_counter&utm_content=handyman&utm_term=typed", "permanent": false },
     { "source": "/truck", "destination": "/free/truck-checklist?utm_source=social&utm_medium=video&utm_campaign=truck_checklist", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/(images|videos|icons|fonts)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
   ]
 }
