@@ -46,3 +46,5 @@ Storage modes: each business chooses how its data is stored (Settings > Account 
 ## Contact
 
 - Support: support@keptsoftware.com.au
+- Facebook: https://www.facebook.com/KeptSoftware
+- Instagram: https://www.instagram.com/kept_business_management
