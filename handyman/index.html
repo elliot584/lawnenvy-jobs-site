@@ -22,14 +22,16 @@
   <script src="/nav.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Handyman Business Software — Quotes, Jobs &amp; Invoicing | Kept</title>
-<meta name="description" content="Job management software built for handyman and multi-trade businesses — job-linked documents, subcontractor work orders, materials tracking and AU-native GST. Free plan, no card required.">
+<title>Handyman Business Software (AU): Quotes &amp; Invoices | Kept</title>
+<meta name="description" content="Handyman business software for Australia: quotes, jobs and invoices, work orders for subs, materials on every job. Free plan, no card.">
 <link rel="icon" href="/icons/favicon-kept.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<meta property="og:title" content="Handyman Business Software | Kept">
+<meta property="og:title" content="Handyman Business Software (AU): Quotes &amp; Invoices | Kept">
 <meta property="og:description" content="One job today, a different trade tomorrow — one app for all of it, with job-linked documents and subcontractor work orders built in.">
-<meta property="og:image" content="/icons/icon-512.png">
+<meta property="og:image" content="https://www.keptsoftware.com.au/icons/icon-512.png">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://www.keptsoftware.com.au/handyman">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://www.keptsoftware.com.au/handyman">
 <script type="application/ld+json">
 {
@@ -38,25 +40,113 @@
     {
       "@type": "SoftwareApplication",
       "name": "Kept",
-      "description": "Job management software for handyman and multi-trade businesses — job-linked documents, subcontractor work orders, materials tracking and AU-native GST.",
+      "description": "Handyman business software for Australia: quotes, jobs and invoices, work orders for subs, materials on every job. Free plan, no card.",
       "url": "https://www.keptsoftware.com.au/handyman",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "provider": { "@type": "Organization", "name": "Kept", "url": "https://www.keptsoftware.com.au/" },
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.keptsoftware.com.au/#org",
+        "name": "Kept",
+        "url": "https://www.keptsoftware.com.au/",
+        "logo": "https://www.keptsoftware.com.au/icons/icon-512.png",
+        "email": "support@keptsoftware.com.au",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Brisbane",
+          "addressRegion": "QLD",
+          "addressCountry": "AU"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        }
+      },
       "offers": [
-        { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Solo", "price": "35", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Crew", "price": "69", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Team", "price": "119", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Operation", "price": "229", "priceCurrency": "AUD" }
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "AUD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Solo",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "35"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Crew",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "69"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Team",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "119"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Operation",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "minPrice": "229"
+          },
+          "description": "11+ people, from $229 a month, priced individually, with multi-task projects."
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Can I send a subcontractor a work order without giving them full access?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — a no-login PDF work order can be texted or emailed straight to a sub, without handing them access to your books or client list." } },
-        { "@type": "Question", "name": "Does it handle jobs that run over several days?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — break a bigger job into dated task cards spread across days, then bill it all as one invoice or in stages as it progresses." } },
-        { "@type": "Question", "name": "Can I track what materials a job actually used?", "acceptedAnswer": { "@type": "Answer", "text": "Log what a job used — timber, fittings, whatever your trade runs on — against quantity, so job costing means more than just hours on the tools." } }
+        {
+          "@type": "Question",
+          "name": "Can I send a subcontractor a work order without giving them full access?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — a no-login PDF work order can be texted or emailed straight to a sub, without handing them access to your books or client list."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it handle jobs that run over several days?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — break a bigger job into dated task cards spread across days, then bill it all as one invoice or in stages as it progresses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I track what materials a job actually used?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Log what a job used — timber, fittings, whatever your trade runs on — against quantity, so job costing means more than just hours on the tools."
+          }
+        }
       ]
     }
   ]
@@ -239,8 +329,8 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Built for handyman &amp; multi-trade work</span>
-      <h1>One job today, a different trade tomorrow — <em>one app for all of it.</em></h1>
-      <p class="lede">Job-linked documents, subcontractor work orders that don't hand over your books, and materials tracked against every job — all in one app, with AU-native GST built in.</p>
+      <h1>Handyman software: one job today, a different trade tomorrow — <em>one app for all of it.</em></h1>
+      <p class="lede">Job-linked documents, subcontractor work orders that don't hand over your books, and materials tracked against every job — all in one app, with Australian GST built in.</p>
       <div class="hero-ctas">
         <a class="btn btn-accent" href="https://app.keptsoftware.com.au/?plan=free&industry=handyman">Get started free →</a>
         <a class="btn btn-line" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
@@ -249,7 +339,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <ul class="hero-proof">
         <li>Free plan: no card, no time limit</li>
         <li>Live demo: no account needed</li>
-        <li>AU-native GST built in</li>
+        <li>Australian GST built in</li>
       </ul>
     </div>
     <figure class="hero-shots">
@@ -287,7 +377,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <p>Priced by how many people are using it, not per seat on top of a base fee.</p>
     </div>
     <div class="price-grid">
-      <div class="price-card featured"><span class="price-badge">Most popular for solo</span><h3>Free</h3><div class="price-tag">$0<span>/mo forever</span></div><ul><li>1 person</li><li>Up to 15 clients</li><li>Up to 15 jobs/quotes a month</li></ul><a class="btn btn-block btn-ghost" href="https://app.keptsoftware.com.au/?plan=free&industry=handyman">Get started free →</a></div>
+      <div class="price-card featured"><h3>Free</h3><div class="price-tag">$0<span>/mo forever</span></div><ul><li>1 person</li><li>Up to 15 clients</li><li>Up to 15 jobs/quotes a month</li></ul><a class="btn btn-block btn-ghost" href="https://app.keptsoftware.com.au/?plan=free&industry=handyman">Get started free →</a></div>
       <div class="price-card"><h3>Solo</h3><div class="price-tag">$35<span>/mo</span></div><ul><li>1 person</li><li>No caps on clients or jobs</li><li>Weather blockout</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=solo&industry=handyman">Get started free →</a></div>
       <div class="price-card"><h3>Crew</h3><div class="price-tag">$69<span>/mo</span></div><ul><li>2–4 people</li><li>Staff &amp; payroll</li><li>Client &amp; lead CRM</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=crew&industry=handyman">Get started free →</a></div>
       <div class="price-card"><h3>Team</h3><div class="price-tag">$119<span>/mo</span></div><ul><li>5–10 people</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=team&industry=handyman">Get started free →</a></div>
@@ -349,6 +439,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   <div class="wrap">
     Kept — made in Brisbane by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
     <div style="margin-top:10px;font-size:.86rem">Not a handyman business? <a href="/" style="color:var(--green-700);font-weight:700">See every trade Kept covers →</a></div>
+    <div style="margin-top:8px;font-size:.82rem">Compare Kept with <a href="/vs-fergus" style="color:var(--green-700);font-weight:700">Fergus</a> · <a href="/vs-jobber" style="color:var(--green-700);font-weight:700">Jobber</a> · <a href="/vs-servicem8" style="color:var(--green-700);font-weight:700">ServiceM8</a> · <a href="/free" style="color:var(--green-700);font-weight:700">Free tools</a></div>
     <div style="margin-top:8px;font-size:.82rem"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>
     <div style="margin-top:8px;font-size:.82rem">Support: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a></div>
   </div>

@@ -84,6 +84,7 @@ PAGES = {
     },
 }
 OTHER_HREFS = {"/", "/#features", "/#compare", "/#pricing", "/#faq", "/privacy", "/terms",
+               "/lawn-care", "/clean", "/wash", "/handyman",   # the four trade pages, linked from each comparison page's footer since 15 November 2026
                "mailto:support@keptsoftware.com.au", "https://www.lawnenvyaustralia.com"}
 
 MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
@@ -430,7 +431,7 @@ def check_head(ctx, R):
         canon = re.findall(r'<link rel="canonical" href="([^"]*)">', text)
         R.check("head", "%s: canonical link is %s%s" % (f, SITE_BASE, cfg["slug"]), canon == [SITE_BASE + cfg["slug"]], canon)
         for prop, expect in (("og:title", "Kept vs %s | Kept" % cfg["name"]), ("og:description", None),
-                             ("og:image", "/icons/icon-512.png"), ("og:type", "website")):
+                             ("og:image", SITE_BASE + "icons/icon-512.png"), ("og:type", "website")):   # the whole address since 15 November 2026: a shared link needs it
             vals = re.findall(r'<meta property="%s" content="([^"]*)">' % re.escape(prop), text)
             ok = len(vals) == 1 and (htmllib.unescape(vals[0]) == expect if expect else 40 <= len(vals[0]) <= 220)
             R.check("head", "%s: one %s%s" % (f, prop, " = %r" % expect if expect else ""), ok, vals)

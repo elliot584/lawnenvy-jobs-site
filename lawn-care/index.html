@@ -22,14 +22,16 @@
   <script src="/nav.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lawn Care Business Software — Quotes, Jobs &amp; Invoicing | Kept</title>
-<meta name="description" content="Job management software built for lawn care and garden maintenance businesses — recurring mow rounds, route optimisation, a turf/reno soil calculator and AU-native GST. Free plan, no card required.">
+<title>Lawn Mowing &amp; Lawn Care Business Software (AU) | Kept</title>
+<meta name="description" content="Lawn mowing and lawn care business software for Australia: recurring rounds, rain-day moves, quotes and invoices, GST built in. Free plan, no card.">
 <link rel="icon" href="/icons/favicon-kept.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<meta property="og:title" content="Lawn Care Business Software | Kept">
+<meta property="og:title" content="Lawn Mowing &amp; Lawn Care Business Software (AU) | Kept">
 <meta property="og:description" content="Recurring mow rounds, route optimisation, a turf/reno soil calculator and AU-native GST — built for lawn care, not adapted for it.">
-<meta property="og:image" content="/icons/icon-512.png">
+<meta property="og:image" content="https://www.keptsoftware.com.au/icons/icon-512.png">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://www.keptsoftware.com.au/lawn-care">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://www.keptsoftware.com.au/lawn-care">
 <script type="application/ld+json">
 {
@@ -38,26 +40,121 @@
     {
       "@type": "SoftwareApplication",
       "name": "Kept",
-      "description": "Job management software for lawn care and garden maintenance businesses — recurring mow rounds, route optimisation, a turf/reno soil calculator and AU-native GST.",
+      "description": "Lawn mowing and lawn care business software for Australia: recurring rounds, rain-day moves, quotes and invoices, GST built in. Free plan, no card.",
       "url": "https://www.keptsoftware.com.au/lawn-care",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "provider": { "@type": "Organization", "name": "Kept", "url": "https://www.keptsoftware.com.au/" },
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.keptsoftware.com.au/#org",
+        "name": "Kept",
+        "url": "https://www.keptsoftware.com.au/",
+        "logo": "https://www.keptsoftware.com.au/icons/icon-512.png",
+        "email": "support@keptsoftware.com.au",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Brisbane",
+          "addressRegion": "QLD",
+          "addressCountry": "AU"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        }
+      },
       "offers": [
-        { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Solo", "price": "35", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Crew", "price": "69", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Team", "price": "119", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Operation", "price": "229", "priceCurrency": "AUD" }
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "AUD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Solo",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "35"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Crew",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "69"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Team",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "119"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Operation",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "minPrice": "229"
+          },
+          "description": "11+ people, from $229 a month, priced individually, with multi-task projects."
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Does it handle recurring mow rounds?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Set a job to repeat weekly, fortnightly or every 4 weeks and it keeps adding visits until you cancel the series. A reschedule or a rain-day move only affects that one visit, not the whole round." } },
-        { "@type": "Question", "name": "What does the soil calculator actually do?", "acceptedAnswer": { "@type": "Answer", "text": "As you build a turf renovation or garden reno quote, it works out the m³ of soil needed live from the area and depth you enter, so you're not doing that math in a separate spreadsheet or guessing." } },
-        { "@type": "Question", "name": "Can it optimise my run order for the day?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, on every plan. Tap Directions on a day and its stops open in Google Maps in the best driving order, starting and ending at your business address, not just the order jobs were booked in." } },
-        { "@type": "Question", "name": "I have a full round. Will the Free plan fit?", "acceptedAnswer": { "@type": "Answer", "text": "Free covers up to 15 clients and 15 jobs and quotes in a month, which suits a small or part-time run. A full round needs Solo at $35 a month, with no caps." } }
+        {
+          "@type": "Question",
+          "name": "Does it handle recurring mow rounds?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Set a job to repeat weekly, fortnightly or every 4 weeks and it keeps adding visits until you cancel the series. A reschedule or a rain-day move only affects that one visit, not the whole round."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the soil calculator actually do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As you build a turf renovation or garden reno quote, it works out the m³ of soil needed live from the area and depth you enter, so you're not doing that math in a separate spreadsheet or guessing on the day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it optimise my run order for the day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, on every plan. Tap Directions on a day and its stops open in Google Maps in the best driving order, starting and ending at your business address, not just the order jobs were booked in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I have a full round. Will the Free plan fit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free covers up to 15 clients and 15 jobs and quotes in a month, which suits a small or part-time run. A full round needs Solo at $35 a month, with no caps."
+          }
+        }
       ]
     }
   ]
@@ -241,7 +338,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
     <div class="hero-copy">
       <span class="eyebrow">Built for lawn care &amp; garden maintenance</span>
       <h1>Software built for lawn care, <em>not adapted for it.</em></h1>
-      <p class="lede">Recurring mow rounds, the best driving order for a day's stops, a soil calculator for reno quotes, and rain-day rescheduling that doesn't mean re-typing the week — all in one app, with AU-native GST built in.</p>
+      <p class="lede">Recurring lawn mowing rounds, the best driving order for a day's stops, a soil calculator for reno quotes, and rain-day rescheduling that doesn't mean re-typing the week — all in one app, with Australian GST built in.</p>
       <div class="hero-ctas">
         <a class="btn btn-accent" href="https://app.keptsoftware.com.au/?plan=free&industry=lawn_care">Get started free →</a>
         <a class="btn btn-line" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
@@ -250,7 +347,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <ul class="hero-proof">
         <li>Free plan: no card, no time limit</li>
         <li>Live demo: no account needed</li>
-        <li>AU-native GST built in</li>
+        <li>Australian GST built in</li>
       </ul>
     </div>
     <figure class="hero-shots">
@@ -292,7 +389,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <div class="price-card"><h3>Free</h3><div class="price-tag">$0<span>/mo forever</span></div><ul><li>1 person</li><li>Up to 15 clients</li><li>Up to 15 jobs/quotes a month</li></ul><a class="btn btn-block btn-ghost" href="https://app.keptsoftware.com.au/?plan=free&industry=lawn_care">Get started free →</a></div>
       <div class="price-card"><h3>Solo</h3><div class="price-tag">$35<span>/mo</span></div><ul><li>1 person</li><li>No caps on clients or jobs</li><li>Weather blockout</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=solo&industry=lawn_care">Get started free →</a></div>
       <div class="price-card"><h3>Crew</h3><div class="price-tag">$69<span>/mo</span></div><ul><li>2–4 people</li><li>Staff &amp; payroll</li><li>Client &amp; lead CRM</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=crew&industry=lawn_care">Get started free →</a></div>
-      <div class="price-card featured"><span class="price-badge">Most popular</span><h3>Team</h3><div class="price-tag">$119<span>/mo</span></div><ul><li>5–10 people</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=team&industry=lawn_care">Get started free →</a></div>
+      <div class="price-card featured"><h3>Team</h3><div class="price-tag">$119<span>/mo</span></div><ul><li>5–10 people</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=team&industry=lawn_care">Get started free →</a></div>
       <div class="price-card"><h3>Operation</h3><div class="price-tag">From $229<span>/mo</span></div><ul><li>11+ people</li><li>Multi-task projects</li><li>Priced individually for your team size</li></ul><a class="btn btn-block btn-ghost" href="mailto:support@keptsoftware.com.au?subject=Kept%20-%20Operation%20plan">Contact us</a></div>
     </div>
     <p class="note">Full pricing detail: <a href="/#pricing" style="color:var(--green-700);font-weight:700">see the main pricing page</a>.</p>
@@ -355,6 +452,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   <div class="wrap">
     Kept — made in Brisbane by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
     <div style="margin-top:10px;font-size:.86rem">Not lawn care? <a href="/" style="color:var(--green-700);font-weight:700">See every trade Kept covers →</a></div>
+    <div style="margin-top:8px;font-size:.82rem">Compare Kept with <a href="/vs-yardbook" style="color:var(--green-700);font-weight:700">Yardbook</a> · <a href="/vs-sortscape" style="color:var(--green-700);font-weight:700">SortScape</a> · <a href="/vs-jobber" style="color:var(--green-700);font-weight:700">Jobber</a> · <a href="/vs-servicem8" style="color:var(--green-700);font-weight:700">ServiceM8</a> · <a href="/free" style="color:var(--green-700);font-weight:700">Free tools</a></div>
     <div style="margin-top:8px;font-size:.82rem"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>
     <div style="margin-top:8px;font-size:.82rem">Support: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a></div>
   </div>

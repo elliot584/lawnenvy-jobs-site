@@ -22,14 +22,16 @@
   <script src="/nav.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kept — software for service & trade businesses</title>
-<meta name="description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built for lawn care, cleaning, pressure washing and handyman businesses.">
+<title>Job, Quote &amp; Invoice Software for Australian Trades | Kept</title>
+<meta name="description" content="Quotes, jobs, scheduling, invoicing and GST in one app, built for Australian lawn care, cleaning, pressure washing and handyman businesses. Free plan.">
 <link rel="icon" href="icons/favicon-kept.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta property="og:title" content="Kept — software for service & trade businesses">
+<meta property="og:title" content="Job, Quote &amp; Invoice Software for Australian Trades | Kept">
 <meta property="og:description" content="Quotes, jobs, scheduling, invoicing and tax — all in one app, built for lawn care, cleaning, pressure washing and handyman businesses.">
-<meta property="og:image" content="icons/icon-512.png">
+<meta property="og:image" content="https://www.keptsoftware.com.au/icons/icon-512.png">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://www.keptsoftware.com.au/">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://www.keptsoftware.com.au/">
 <link rel="preload" as="image" href="videos/kept-hero-loop-poster.jpg">
 <link rel="preload" href="/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -40,17 +42,88 @@
     {
       "@type": "SoftwareApplication",
       "name": "Kept",
-      "description": "Quotes, jobs, scheduling, invoicing and tax — all in one app, built for lawn care, cleaning, pressure washing and handyman businesses.",
+      "description": "Quotes, jobs, scheduling, invoicing and GST in one app, built for Australian lawn care, cleaning, pressure washing and handyman businesses. Free plan.",
       "url": "https://www.keptsoftware.com.au/",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "provider": { "@type": "Organization", "name": "Kept", "url": "https://www.keptsoftware.com.au/" },
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.keptsoftware.com.au/#org",
+        "name": "Kept",
+        "url": "https://www.keptsoftware.com.au/",
+        "logo": "https://www.keptsoftware.com.au/icons/icon-512.png",
+        "email": "support@keptsoftware.com.au",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Brisbane",
+          "addressRegion": "QLD",
+          "addressCountry": "AU"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        }
+      },
       "offers": [
-        { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "AUD", "description": "Up to 15 clients, up to 15 jobs/quotes a month, no card required." },
-        { "@type": "Offer", "name": "Solo", "price": "35", "priceCurrency": "AUD", "description": "1 person, no caps on clients or jobs." },
-        { "@type": "Offer", "name": "Crew", "price": "69", "priceCurrency": "AUD", "description": "2–4 people." },
-        { "@type": "Offer", "name": "Team", "price": "119", "priceCurrency": "AUD", "description": "5–10 people." },
-        { "@type": "Offer", "name": "Operation", "price": "229", "priceCurrency": "AUD", "description": "11+ people, with multi-task projects." }
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "AUD",
+          "description": "Up to 15 clients, up to 15 jobs/quotes a month, no card required."
+        },
+        {
+          "@type": "Offer",
+          "name": "Solo",
+          "priceCurrency": "AUD",
+          "description": "1 person, no caps on clients or jobs.",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "35"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Crew",
+          "priceCurrency": "AUD",
+          "description": "2–4 people.",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "69"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Team",
+          "priceCurrency": "AUD",
+          "description": "5–10 people.",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "119"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Operation",
+          "priceCurrency": "AUD",
+          "description": "11+ people, from $229 a month, priced individually, with multi-task projects.",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "minPrice": "229"
+          }
+        }
       ]
     },
     {
@@ -59,22 +132,34 @@
         {
           "@type": "Question",
           "name": "What trades does this actually cover?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Lawn care, garden maintenance and turf renovation, residential and commercial cleaning, pressure washing and exterior cleaning, plus over 20 other service trades already built in." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lawn care, garden maintenance and turf renovation, residential and commercial cleaning, pressure washing and exterior cleaning, plus 24 other service trades already built in. Don't see yours — use the \"request your trade\" section above and we'll build it out."
+          }
         },
         {
           "@type": "Question",
           "name": "Do I need to migrate my existing clients?",
-          "acceptedAnswer": { "@type": "Answer", "text": "You can import your customer list from a CSV export — QuickBooks, Xero, Jobber, a spreadsheet, most formats work — in a couple of clicks, or just add clients as new jobs come in." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can import your customer list from a CSV export — QuickBooks, Xero, Jobber, a spreadsheet, most formats work — in a couple of clicks, or just add clients as new jobs come in."
+          }
         },
         {
           "@type": "Question",
           "name": "Is my data private from other businesses using the app?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes — every business's data is fully isolated. Nobody else using the software can see your jobs, clients or numbers." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — every business's data is fully isolated. Nobody else using the software can see your jobs, clients or numbers."
+          }
         },
         {
           "@type": "Question",
           "name": "What will it cost?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nothing to start — every business begins on a free plan, no card required. From there it's $35/mo for 1 person, priced by team size, up to $229/mo at 11 people — bigger teams are priced individually." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nothing to start — every business begins on a free plan, no card required. From there it's $35/mo for 1 person, priced by team size, up to $229/mo at 11 people — bigger teams are priced individually. See the full pricing."
+          }
         }
       ]
     }
@@ -488,32 +573,32 @@ details.more .note{margin-top:16px}
       <h2 class="title">Pick your trade and see what's built for it.</h2>
     </div>
     <div class="trade-cards">
-      <a class="trade-card" href="lawn-care/">
+      <a class="trade-card" href="/lawn-care">
         <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M22 12h-6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg></span>
         <h3>Lawn care &amp; garden</h3>
         <p>Recurring mow rounds, a soil calculator for reno quotes and rain-day rescheduling.</p>
         <span class="tc-go">See lawn care →</span>
       </a>
-      <a class="trade-card" href="wash/">
+      <a class="trade-card" href="/wash">
         <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span>
         <h3>Pressure washing</h3>
         <p>House and surface washes quoted by the square metre, gutters by the linear metre.</p>
         <span class="tc-go">See pressure washing →</span>
       </a>
-      <a class="trade-card" href="clean/">
+      <a class="trade-card" href="/clean">
         <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
         <h3>Cleaning</h3>
         <p>Room and surface-based quotes for regular and bond cleans, with staff and photos kept against each job.</p>
         <span class="tc-go">See cleaning →</span>
       </a>
-      <a class="trade-card" href="handyman/">
+      <a class="trade-card" href="/handyman">
         <span class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m14.7 6.3 3 3L19 8a3 3 0 0 0-4-4l-1.3 1.3ZM3 21l4-1 10-10-3-3L4 17l-1 4Z"/></svg></span>
         <h3>Handyman</h3>
         <p>Job-linked documents, subcontractor work orders and materials tracked against every job.</p>
         <span class="tc-go">See handyman →</span>
       </a>
     </div>
-    <p class="trades-more">Something else? Kept covers 25+ service trades. <a href="#request-trade">Tell us yours →</a></p>
+    <p class="trades-more">Something else? Kept covers 28 service trades. <a href="#request-trade">Tell us yours →</a></p>
   </div>
 </section>
 
@@ -785,7 +870,6 @@ details.more .note{margin-top:16px}
         <a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=crew">Start with Crew →</a>
       </div>
       <div class="price-card featured">
-        <span class="price-badge">Most popular</span>
         <h3>Team</h3>
         <div class="price-tag">$119<span>/mo</span></div>
         <ul>
@@ -854,7 +938,7 @@ details.more .note{margin-top:16px}
   <div class="wrap" style="max-width:620px;text-align:center">
     <div class="kicker">Not seeing your trade?</div>
     <h2 class="title">Tell us what you do — we'll build the tools for it.</h2>
-    <p style="margin-top:12px;color:var(--ink-soft)">Kept already covers 25+ service trades under the hood, from lawn care to cleaning to pressure washing. If yours isn't one of them yet, let us know what you need and we'll build it out.</p>
+    <p style="margin-top:12px;color:var(--ink-soft)">Kept already covers 28 service trades under the hood, from lawn care to cleaning to pressure washing. If yours isn't one of them yet, let us know what you need and we'll build it out.</p>
     <a class="btn" style="margin-top:22px" href="#get-in-touch">Request your trade →</a>
   </div>
 </section>
@@ -877,7 +961,7 @@ details.more .note{margin-top:16px}
     </div>
     <details>
       <summary>What trades does this actually cover?</summary>
-      <p>Lawn care, garden maintenance and turf renovation, residential and commercial cleaning, pressure washing and exterior cleaning, plus over 20 other service trades already built in. Don't see yours — use the "request your trade" section above and we'll build it out.</p>
+      <p>Lawn care, garden maintenance and turf renovation, residential and commercial cleaning, pressure washing and exterior cleaning, plus 24 other service trades already built in. Don't see yours — use the "request your trade" section above and we'll build it out.</p>
     </details>
     <details>
       <summary>Do I need to migrate my existing clients?</summary>

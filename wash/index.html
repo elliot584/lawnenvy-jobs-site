@@ -22,14 +22,16 @@
   <script src="/nav.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pressure Washing Business Software — Quotes &amp; Job Management | Kept</title>
-<meta name="description" content="Job management software built for pressure washing and exterior cleaning businesses — house/surface wash and gutter calculators, weather blockout and AU-native GST. Free plan, no card required.">
+<title>Pressure Washing Business Software (AU): Quotes, Jobs | Kept</title>
+<meta name="description" content="Pressure washing business software for Australia: house wash quotes by the square metre, gutters by the metre, rain-day moves. Free plan, no card.">
 <link rel="icon" href="/icons/favicon-kept.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<meta property="og:title" content="Pressure Washing Business Software | Kept">
+<meta property="og:title" content="Pressure Washing Business Software (AU): Quotes, Jobs | Kept">
 <meta property="og:description" content="Quote a house wash by the square metre, not by guesswork — house/surface wash and gutter calculators built in.">
-<meta property="og:image" content="/icons/icon-512.png">
+<meta property="og:image" content="https://www.keptsoftware.com.au/icons/icon-512.png">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://www.keptsoftware.com.au/wash">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://www.keptsoftware.com.au/wash">
 <script type="application/ld+json">
 {
@@ -38,27 +40,129 @@
     {
       "@type": "SoftwareApplication",
       "name": "Kept",
-      "description": "Job management software for pressure washing and exterior cleaning businesses — house/surface wash and gutter calculators, weather blockout and AU-native GST.",
+      "description": "Pressure washing business software for Australia: house wash quotes by the square metre, gutters by the metre, rain-day moves. Free plan, no card.",
       "url": "https://www.keptsoftware.com.au/wash",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "provider": { "@type": "Organization", "name": "Kept", "url": "https://www.keptsoftware.com.au/" },
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://www.keptsoftware.com.au/#org",
+        "name": "Kept",
+        "url": "https://www.keptsoftware.com.au/",
+        "logo": "https://www.keptsoftware.com.au/icons/icon-512.png",
+        "email": "support@keptsoftware.com.au",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Brisbane",
+          "addressRegion": "QLD",
+          "addressCountry": "AU"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        }
+      },
       "offers": [
-        { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Solo", "price": "35", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Crew", "price": "69", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Team", "price": "119", "priceCurrency": "AUD" },
-        { "@type": "Offer", "name": "Operation", "price": "229", "priceCurrency": "AUD" }
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "AUD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Solo",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "35"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Crew",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "69"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Team",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "price": "119"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Operation",
+          "priceCurrency": "AUD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "AUD",
+            "billingDuration": "P1M",
+            "unitText": "month",
+            "minPrice": "229"
+          },
+          "description": "11+ people, from $229 a month, priced individually, with multi-task projects."
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "How does the house wash calculator work?", "acceptedAnswer": { "@type": "Answer", "text": "Square-metre pricing for house and surface washing, and linear-metre pricing for gutters, both built into the quote — no separate spreadsheet for working out the area." } },
-        { "@type": "Question", "name": "Why does weather blockout matter for pressure washing?", "acceptedAnswer": { "@type": "Answer", "text": "A rain day usually means the job's off entirely, not just uncomfortable — the dashboard flags likely-rain days ahead of time and suggests the next clear one, one tap to move the day's jobs." } },
-        { "@type": "Question", "name": "Can I quote multiple properties in one run?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — route optimisation (on every plan) opens a day's stops in Google Maps in the best driving order, useful when a day is a string of house washes across one suburb." } },
-        { "@type": "Question", "name": "How do I get the square metres?", "acceptedAnswer": { "@type": "Answer", "text": "You measure on site and type the area in. Kept does the pricing from there, by the square metre for surfaces and by the linear metre for gutters." } },
-        { "@type": "Question", "name": "What does my customer hear when rain moves the job?", "acceptedAnswer": { "@type": "Answer", "text": "Nothing from Kept. One tap moves the day's jobs to the next clear day in your schedule. Telling the customer is still yours to do." } }
+        {
+          "@type": "Question",
+          "name": "How does the house wash calculator work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Square-metre pricing for house and surface washing, and linear-metre pricing for gutters, both built into the quote — no separate spreadsheet for working out the area."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does weather blockout matter for pressure washing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A rain day usually means the job's off entirely, not just uncomfortable — the dashboard flags likely-rain days ahead of time and suggests the next clear one, one tap to move the day's jobs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I quote multiple properties in one run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — route optimisation (on every plan) opens a day's stops in Google Maps in the best driving order, useful when a day is a string of house washes across one suburb."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get the square metres?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You measure on site and type the area in. Kept does the pricing from there, by the square metre for surfaces and by the linear metre for gutters."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does my customer hear when rain moves the job?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nothing from Kept. One tap moves the day's jobs to the next clear day in your schedule. Telling the customer is still yours to do."
+          }
+        }
       ]
     }
   ]
@@ -242,7 +346,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
     <div class="hero-copy">
       <span class="eyebrow">Built for pressure washing &amp; exterior cleaning</span>
       <h1>Quote a house wash <em>by the square metre, not by guesswork.</em></h1>
-      <p class="lede">Square-metre house and surface wash pricing, linear-metre gutter pricing, and a weather blockout that actually matters when rain kills the whole job — all in one app, with AU-native GST built in.</p>
+      <p class="lede">Square-metre house and surface wash pricing, linear-metre gutter pricing, and a weather blockout that actually matters when rain kills the whole job — all in one app, with Australian GST built in.</p>
       <div class="hero-ctas">
         <a class="btn btn-accent" href="https://app.keptsoftware.com.au/?plan=free&industry=pressure_washing">Get started free →</a>
         <a class="btn btn-line" href="https://app.keptsoftware.com.au/?demo=1">Try the live demo</a>
@@ -251,7 +355,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
       <ul class="hero-proof">
         <li>Free plan: no card, no time limit</li>
         <li>Live demo: no account needed</li>
-        <li>AU-native GST built in</li>
+        <li>Australian GST built in</li>
       </ul>
     </div>
     <figure class="hero-shots">
@@ -288,7 +392,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
     </div>
     <div class="price-grid">
       <div class="price-card"><h3>Free</h3><div class="price-tag">$0<span>/mo forever</span></div><ul><li>1 person</li><li>Up to 15 clients</li><li>Up to 15 jobs/quotes a month</li></ul><a class="btn btn-block btn-ghost" href="https://app.keptsoftware.com.au/?plan=free&industry=pressure_washing">Get started free →</a></div>
-      <div class="price-card featured"><span class="price-badge">Most popular for solo</span><h3>Solo</h3><div class="price-tag">$35<span>/mo</span></div><ul><li>1 person</li><li>No caps on clients or jobs</li><li>Weather blockout</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=solo&industry=pressure_washing">Get started free →</a></div>
+      <div class="price-card featured"><h3>Solo</h3><div class="price-tag">$35<span>/mo</span></div><ul><li>1 person</li><li>No caps on clients or jobs</li><li>Weather blockout</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=solo&industry=pressure_washing">Get started free →</a></div>
       <div class="price-card"><h3>Crew</h3><div class="price-tag">$69<span>/mo</span></div><ul><li>2–4 people</li><li>Staff &amp; payroll</li><li>Client &amp; lead CRM</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=crew&industry=pressure_washing">Get started free →</a></div>
       <div class="price-card"><h3>Team</h3><div class="price-tag">$119<span>/mo</span></div><ul><li>5–10 people</li></ul><a class="btn btn-block" href="https://app.keptsoftware.com.au/?plan=team&industry=pressure_washing">Get started free →</a></div>
       <div class="price-card"><h3>Operation</h3><div class="price-tag">From $229<span>/mo</span></div><ul><li>11+ people</li><li>Multi-task projects</li><li>Priced individually for your team size</li></ul><a class="btn btn-block btn-ghost" href="mailto:support@keptsoftware.com.au?subject=Kept%20-%20Operation%20plan">Contact us</a></div>
@@ -357,6 +461,7 @@ footer{padding:36px 0;font-size:.85rem;color:var(--ink-soft);text-align:center;b
   <div class="wrap">
     Kept — made in Brisbane by <a href="https://www.lawnenvyaustralia.com" style="color:var(--green-700);font-weight:700">a working lawn care operator</a>, for service &amp; trade businesses.
     <div style="margin-top:10px;font-size:.86rem">Not pressure washing? <a href="/" style="color:var(--green-700);font-weight:700">See every trade Kept covers →</a></div>
+    <div style="margin-top:8px;font-size:.82rem">Compare Kept with <a href="/vs-jobber" style="color:var(--green-700);font-weight:700">Jobber</a> · <a href="/vs-servicem8" style="color:var(--green-700);font-weight:700">ServiceM8</a> · <a href="/free" style="color:var(--green-700);font-weight:700">Free tools</a></div>
     <div style="margin-top:8px;font-size:.82rem"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></div>
     <div style="margin-top:8px;font-size:.82rem">Support: <a href="mailto:support@keptsoftware.com.au" style="color:var(--green-700);font-weight:700">support@keptsoftware.com.au</a></div>
   </div>
