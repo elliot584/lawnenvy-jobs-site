@@ -1004,6 +1004,11 @@ def page_url(rel):
     return "/" + "/".join(parts)
 
 
+# The set-up form (setup.html, 20 Nov 2026) has no pixel on purpose (it takes people's details and their customer list; tools/test-pixel.py keeps it so), but it does send the
+# campaign tags with the request, so it is the one page that may load attribution.js without the pixel.
+SCRIPT_WITHOUT_PIXEL = {"setup.html"}
+
+
 @case(12, "pages: the script is on every page that carries the pixel, and nothing Google is in the HTML")
 def case_pages(env, R):
     pixel, wrong = [], []
@@ -1014,7 +1019,7 @@ def case_pages(env, R):
             right_place = re.search(r"<!-- End Meta Pixel Code -->\s*" + re.escape(TAG), text) is not None
             if text.count(TAG) != 1 or not right_place:
                 wrong.append(str(rel))
-        elif "attribution.js" in text:
+        elif "attribution.js" in text and str(rel) not in SCRIPT_WITHOUT_PIXEL:
             wrong.append(str(rel) + " (has the script but not the pixel)")
     R.check(12, "%d pages carry the pixel; each has the script tag exactly once, right after the pixel block" % len(pixel),
             len(pixel) >= 15 and not wrong, wrong)
