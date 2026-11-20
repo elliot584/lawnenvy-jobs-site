@@ -13,6 +13,9 @@ For every .html page that mentions the pixel (outside tools/):
   - exactly one <noscript> image whose address is https://www.facebook.com/tr?id=<PIXEL_ID>&ev=PageView&noscript=1;
   - exactly one fbq('track', 'PageView');
   - no other pixel-looking number (13 to 17 digits) in an init or a tr?id= address.
+
+And the pages in NO_PIXEL carry no pixel at all, on purpose: setup.html (the done-for-you set-up form, 20 Nov 2026) takes people's details and their customer list, and
+the pixel's automatic events could see its field names.
 """
 import copy, os, pathlib, re, shutil, subprocess, sys, tempfile
 
@@ -23,6 +26,7 @@ INIT = re.compile(r"fbq\(\s*['\"]init['\"]\s*,\s*['\"](\d+)['\"]\s*\)")
 TR = re.compile(r"facebook\.com/tr\?id=(\d+)&ev=PageView&noscript=1")
 TRACK = re.compile(r"fbq\(\s*['\"]track['\"]\s*,\s*['\"]PageView['\"]\s*\)")
 ANY_ID = re.compile(r"(?:init['\"]\s*,\s*['\"]|tr\?id=)(\d{13,17})")
+NO_PIXEL = ["setup.html"]
 
 
 def pages(root):
@@ -35,6 +39,12 @@ def pages(root):
 
 def check(root):
     problems, n = [], 0
+    for rel in NO_PIXEL:
+        page = root / rel
+        if not page.exists():
+            problems.append("%s: missing (it is in NO_PIXEL)" % rel)
+        elif re.search(r"fbq\(|facebook\.com/tr|connect\.facebook\.net", page.read_text(encoding="utf-8")):
+            problems.append("%s: carries the Meta Pixel, and must not (it takes people's details and their customer list)" % rel)
     for rel, text in pages(root):
         if "fbq(" not in text and "facebook.com/tr" not in text:
             continue
@@ -69,6 +79,7 @@ def main():
         "two inits": lambda t: t.replace("fbq('init', '%s');" % PIXEL_ID, "fbq('init', '%s'); fbq('init', '%s');" % (PIXEL_ID, PIXEL_ID), 1),
         "PageView call removed": lambda t: TRACK.sub("", t, count=1),
         "init one digit out": lambda t: t.replace("fbq('init', '%s')" % PIXEL_ID, "fbq('init', '%s')" % (PIXEL_ID[:-1] + "4"), 1),
+        "pixel added to the set-up form": None,
     }
     missed = []
     for name, fn in breaks.items():
@@ -78,8 +89,11 @@ def main():
                 dest = tmp / rel
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 dest.write_text(text, encoding="utf-8")
-            victim = tmp / "index.html"
+            victim = tmp / ("index.html" if fn else "setup.html")
             before = victim.read_text(encoding="utf-8")
+            if fn is None:   # copy index.html's pixel block into the set-up form
+                block = re.search(r"  <!-- Meta Pixel Code -->.*?<!-- End Meta Pixel Code -->\n", (tmp / "index.html").read_text(encoding="utf-8"), re.S).group(0)
+                fn = lambda t, block=block: t.replace("<head>\n", "<head>\n" + block, 1)
             after = fn(before)
             if after == before:
                 print("%-38s CANNOT BREAK (the text it expects is not in index.html: update this test)" % name)

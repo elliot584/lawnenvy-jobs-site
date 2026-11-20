@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <!-- No Meta Pixel on this page, on purpose: it takes people's details and their customer list, and the pixel's automatic events could see the form's field names.
+       tools/test-pixel.py and tools/test-setup-form.py fail if one is added. attribution.js is first-party and loads nothing from anyone else unless a page sets KEPT_GOOGLE. -->
+  <script src="/attribution.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Done-for-you set-up | Kept</title>
+<meta name="description" content="Send your business details, prices and customer list in one form, and Kept helps get your account set up. For Australian lawn care, cleaning, pressure washing and handyman businesses.">
+<link rel="icon" href="icons/favicon-kept.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta property="og:title" content="Done-for-you set-up | Kept">
+<meta property="og:description" content="Send your details, prices and customer list in one form, and Kept helps get your account set up.">
+<meta property="og:image" content="https://www.keptsoftware.com.au/images/share-kept.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.keptsoftware.com.au/setup">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.keptsoftware.com.au/setup">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Schibsted Grotesk (SIL Open Font License, see /fonts/OFL.txt), served from this site: no request to Google */
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/schibsted-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --green-900:#0D120F;--green-700:#0B5F34;--green-600:#0B7A43;--green-500:#5FB58A;--lime:#4CC68C;
+  --paper:#F5F7F6;--ink:#0E1411;--ink-soft:#55605B;--white:#ffffff;--line:#E7EAE8;--field:#F5F7F6;--err:#A2503A;
+  --radius:14px;--shadow:0 10px 30px rgba(14,20,17,.12);
+}
+@media (prefers-color-scheme: dark){
+  :root{--paper:#0D120F;--ink:#EEF3EF;--ink-soft:#A4AFA9;--white:#1C2520;--line:#2F3A34;--field:#141B17;--err:#F0A08A;--shadow:0 10px 30px rgba(0,0,0,.4);--green-600:#4CC68C;--green-700:#7FD9AE}
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:var(--green-700)}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.brand{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;display:flex;align-items:baseline;gap:6px;font-weight:300;font-size:1.25rem;letter-spacing:3px;text-transform:lowercase;color:var(--ink);text-decoration:none}
+.brand .dot{width:17px;height:17px;display:inline-block;transform:translateY(-4px);flex:none;object-fit:contain}
+.navlink{font-size:.9rem;font-weight:600;color:var(--ink-soft);text-decoration:none}
+.navlink:hover{color:var(--green-600)}
+.hero{padding:44px 0 18px}
+.eyebrow{display:inline-block;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-600);margin-bottom:10px}
+h1{font-size:clamp(1.7rem,4.2vw,2.4rem);line-height:1.15;font-weight:600;letter-spacing:-.01em;margin-bottom:12px;text-wrap:balance}
+.lede{color:var(--ink-soft);font-size:1.05rem;max-width:60ch}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0 6px}
+.steps li{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.9rem;color:var(--ink-soft)}
+.steps b{display:block;color:var(--ink);font-size:.95rem;margin-bottom:2px}
+@media(max-width:640px){.steps{grid-template-columns:1fr}}
+main{padding-bottom:64px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 4px 14px rgba(14,20,17,.05);margin-top:18px}
+@media(max-width:520px){.card{padding:18px 16px}}
+.card h2{font-size:1.15rem;font-weight:600;margin-bottom:4px}
+.card .intro{color:var(--ink-soft);font-size:.9rem;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.grid .full{grid-column:1 / -1}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label,.legend{font-size:.85rem;font-weight:600;color:var(--ink);display:block;margin-bottom:4px}
+.opt{font-weight:400;color:var(--ink-soft)}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:16px;background:var(--field);color:var(--ink);min-height:44px}
+textarea{resize:vertical;min-height:90px}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--green-600);outline-offset:2px}
+input[aria-invalid=true],select[aria-invalid=true],textarea[aria-invalid=true]{border-color:var(--err);box-shadow:0 0 0 1px var(--err)}
+.hint{font-size:.8rem;color:var(--ink-soft);margin-top:4px}
+.ferr{font-size:.82rem;color:var(--err);font-weight:600;margin-top:4px}
+.ferr:empty{display:none}
+fieldset{border:0;min-width:0}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--field);font-size:.92rem;font-weight:500;cursor:pointer;margin:0}
+.choice input{width:18px;height:18px;accent-color:var(--green-600)}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:700px){.plans{grid-template-columns:1fr 1fr}}
+.plan{display:block;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--field);cursor:pointer;margin:0}
+.plan input{accent-color:var(--green-600);width:18px;height:18px;vertical-align:-3px;margin-right:6px}
+.plan b{font-size:.98rem}
+.plan span{display:block;font-size:.82rem;font-weight:400;color:var(--ink-soft);margin-top:2px}
+.svc{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;display:grid;grid-template-columns:2fr 2fr 1fr 1fr auto;gap:10px;align-items:end}
+@media(max-width:700px){.svc{grid-template-columns:1fr 1fr}.svc .svc-name,.svc .svc-desc{grid-column:1 / -1}}
+.svc label{font-size:.78rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:1rem;min-height:44px;padding:12px 24px;border-radius:999px;background:var(--green-600);color:#fff;text-decoration:none}
+.btn:hover{background:var(--green-700)}
+.btn[disabled]{opacity:.6;cursor:default}
+.btn-ghost{background:transparent;color:var(--green-700);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{background:var(--field)}
+.btn-sm{font-size:.88rem;padding:8px 16px}
+@media (prefers-color-scheme: dark){.btn:not(.btn-ghost){color:#06150D}}
+.logo-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo-preview{width:72px;height:72px;border-radius:12px;border:1px solid var(--line);background:var(--field);object-fit:contain}
+.logo-preview[hidden]{display:none}
+.file-ok{font-size:.85rem;color:var(--green-700);font-weight:600;margin-top:6px}
+.file-ok:empty{display:none}
+.tick{display:flex;gap:10px;align-items:flex-start;margin:0 0 12px;font-weight:400;font-size:.92rem;color:var(--ink);cursor:pointer}
+.tick input{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--green-600)}
+.handling{background:var(--field);border-left:3px solid var(--lime);border-radius:8px;padding:14px 16px;font-size:.88rem;color:var(--ink-soft);margin-bottom:16px}
+.handling p+p{margin-top:8px}
+.handling b{color:var(--ink)}
+.nobank{font-weight:600;font-size:.92rem;margin:4px 0 14px}
+.form-status{font-size:.92rem;margin-top:12px;min-height:1.3em;font-weight:600}
+.form-status.err{color:var(--err)}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.done{text-align:left}
+.done h2{font-size:1.4rem;margin-bottom:8px}
+.done p{color:var(--ink-soft);margin-bottom:10px}
+footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;border-top:1px solid var(--line);margin-top:30px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/">kept<img class="dot" src="icons/kept-mark.svg" alt=""></a>
+    <a class="navlink" href="https://app.keptsoftware.com.au/">Start free yourself</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Done-for-you set-up</span>
+    <h1>Send us your details and we'll help set Kept up for you.</h1>
+    <p class="lede">Your business details, prices and customer list, in one form. Elliot checks it and gets back to you, usually within one working day, to get your account set up. There's no charge for the set-up.</p>
+    <ol class="steps">
+      <li><b>1. Fill this in</b>About 5 minutes. Have your prices and a customer list handy if you have one.</li>
+      <li><b>2. We check it</b>Elliot reads it and tidies your customer list so it's ready to load.</li>
+      <li><b>3. You're in</b>You sign up with your own password, and Elliot helps you load your details, prices and customers.</li>
+    </ol>
+  </section>
+
+  <div id="paused" class="card" hidden>
+    <h2>Done-for-you set-up is paused at the moment</h2>
+    <p class="intro">You can start free in the app now and set it up yourself, or email <a href="mailto:support@keptsoftware.com.au">support@keptsoftware.com.au</a> and we'll help.</p>
+    <a class="btn" href="https://app.keptsoftware.com.au/">Start free</a>
+  </div>
+
+  <form id="setupForm" novalidate>
+    <section class="card" aria-labelledby="hYou">
+      <h2 id="hYou">About you</h2>
+      <p class="intro">Who we're setting up the account for.</p>
+      <div class="grid">
+        <div class="full"><label for="suName">Your name</label><input type="text" id="suName" autocomplete="name" maxlength="100" required aria-describedby="suNameErr"><div class="ferr" id="suNameErr"></div></div>
+        <div><label for="suEmail">Email you'll log in with</label><input type="email" id="suEmail" autocomplete="email" maxlength="254" required aria-describedby="suEmailErr"><div class="ferr" id="suEmailErr"></div></div>
+        <div><label for="suEmail2">Type the email again</label><input type="email" id="suEmail2" autocomplete="off" maxlength="254" required aria-describedby="suEmail2Err"><div class="ferr" id="suEmail2Err"></div></div>
+        <div><label for="suMobile">Mobile</label><input type="tel" id="suMobile" autocomplete="tel" maxlength="20" inputmode="tel" required aria-describedby="suMobileHint suMobileErr"><div class="hint" id="suMobileHint">So Elliot can call you about the set-up.</div><div class="ferr" id="suMobileErr"></div></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="hBiz">
+      <h2 id="hBiz">Your business</h2>
+      <p class="intro">This goes on your quotes and invoices. You can change any of it later in the app.</p>
+      <div class="grid">
+        <div class="full"><label for="suBizName">Business name</label><input type="text" id="suBizName" autocomplete="organization" maxlength="120" required aria-describedby="suBizNameErr"><div class="ferr" id="suBizNameErr"></div></div>
+        <div><label for="suTrade">Trade</label>
+          <select id="suTrade" required aria-describedby="suTradeErr">
+            <option value="">Choose your trade</option>
+            <option value="lawn_care">Lawn care</option>
+            <option value="pressure_washing">Pressure / house washing</option>
+            <option value="cleaning">Cleaning</option>
+            <option value="handyman">Handyman</option>
+          </select><div class="ferr" id="suTradeErr"></div></div>
+        <div><label for="suAbn">ABN <span class="opt">(optional)</span></label><input type="text" id="suAbn" inputmode="numeric" maxlength="14" autocomplete="off" aria-describedby="suAbnErr"><div class="ferr" id="suAbnErr"></div></div>
+        <fieldset class="full" id="suGst" aria-describedby="suGstErr">
+          <legend class="legend">Registered for GST?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="gst" value="yes">Yes</label>
+            <label class="choice"><input type="radio" name="gst" value="no">No</label>
+            <label class="choice"><input type="radio" name="gst" value="unsure">Not sure</label>
+          </div>
+          <div class="ferr" id="suGstErr"></div>
+        </fieldset>
+        <div><label for="suBizEmail">Email for quotes and invoices <span class="opt">(optional)</span></label><input type="email" id="suBizEmail" maxlength="254" aria-describedby="suBizEmailHint suBizEmailErr"><div class="hint" id="suBizEmailHint">Leave it blank to use your login email.</div><div class="ferr" id="suBizEmailErr"></div></div>
+        <div><label for="suBizPhone">Business phone <span class="opt">(optional)</span></label><input type="tel" id="suBizPhone" maxlength="20" inputmode="tel" aria-describedby="suBizPhoneHint suBizPhoneErr"><div class="hint" id="suBizPhoneHint">Leave it blank to use your mobile.</div><div class="ferr" id="suBizPhoneErr"></div></div>
+        <div class="full"><label for="suAddress">Business address <span class="opt">(optional)</span></label><input type="text" id="suAddress" autocomplete="street-address" maxlength="200" aria-describedby="suAddressErr"><div class="ferr" id="suAddressErr"></div></div>
+        <div><label for="suPostcode">Base postcode <span class="opt">(optional)</span></label><input type="text" id="suPostcode" inputmode="numeric" maxlength="4" autocomplete="postal-code" aria-describedby="suPostcodeErr"><div class="ferr" id="suPostcodeErr"></div></div>
+        <div><label for="suRadius">How far you travel <span class="opt">(optional)</span></label>
+          <select id="suRadius" aria-describedby="suRadiusErr"><option value="">Choose</option><option value="5">Up to 5 km</option><option value="10">Up to 10 km</option><option value="25">Up to 25 km</option><option value="50">Up to 50 km</option><option value="100">Up to 100 km</option></select><div class="ferr" id="suRadiusErr"></div></div>
+        <div class="full"><label for="suWebsite">Website <span class="opt">(optional)</span></label><input type="text" id="suWebsite" inputmode="url" maxlength="200" aria-describedby="suWebsiteErr"><div class="ferr" id="suWebsiteErr"></div></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="hSvc">
+      <h2 id="hSvc">Your services and prices</h2>
+      <p class="intro">What you charge, so your quotes are quick from day one. Choosing your trade fills in a few common ones: change them, remove them or add your own (up to 30).</p>
+      <div id="svcList"></div>
+      <div class="ferr" id="svcErr" role="alert"></div>
+      <button type="button" class="btn btn-ghost btn-sm" id="svcAdd">Add a service</button>
+      <div class="grid" style="margin-top:18px">
+        <div><label for="suTerms">When invoices are due</label>
+          <select id="suTerms" required aria-describedby="suTermsErr"><option value="0">On the day</option><option value="7" selected>Within 7 days</option><option value="14">Within 14 days</option><option value="30">Within 30 days</option></select><div class="ferr" id="suTermsErr"></div></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="hFiles">
+      <h2 id="hFiles">Your logo and customer list</h2>
+      <p class="intro">Both are optional.</p>
+      <label for="suLogo">Logo <span class="opt">(PNG, JPEG or WebP, up to 5 MB)</span></label>
+      <div class="logo-row">
+        <img class="logo-preview" id="suLogoPreview" alt="Your logo, as it will look" hidden>
+        <input type="file" id="suLogo" accept="image/png,image/jpeg,image/webp" aria-describedby="suLogoHint suLogoErr">
+        <button type="button" class="btn btn-ghost btn-sm" id="suLogoClear" hidden>Remove the logo</button>
+      </div>
+      <div class="hint" id="suLogoHint">It is made 200 pixels across on your device before it is sent, the size Kept puts on your quotes and invoices.</div>
+      <div class="ferr" id="suLogoErr"></div>
+
+      <label for="suCsv" style="margin-top:20px">Customer list <span class="opt">(a CSV file, up to 1 MB and 2,000 customers)</span></label>
+      <input type="file" id="suCsv" accept=".csv,text/csv" aria-describedby="suCsvHint suCsvOk suCsvErr">
+      <div class="hint" id="suCsvHint">From Excel or Numbers: File &gt; Save As / Export &gt; CSV. From Xero: Contacts &gt; Export. A name column is all it needs; phone, email and address columns are picked up too.</div>
+      <div class="file-ok" id="suCsvOk" role="status"></div>
+      <div class="ferr" id="suCsvErr"></div>
+      <label class="tick" style="margin-top:12px"><input type="checkbox" id="suCsvHelp"><span>I can't make a CSV file. Email me and we'll sort it out.</span></label>
+    </section>
+
+    <section class="card" aria-labelledby="hNow">
+      <h2 id="hNow">How do you run things now?</h2>
+      <p class="intro">Optional. It helps Elliot know what to look out for. It is not loaded into your account.</p>
+      <fieldset>
+        <legend class="legend">What do you use now?</legend>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="run" value="paper">Paper or a diary</label>
+          <label class="choice"><input type="checkbox" name="run" value="spreadsheet">A spreadsheet</label>
+          <label class="choice"><input type="checkbox" name="run" value="otherApp" id="suRunOther">Another app</label>
+          <label class="choice"><input type="checkbox" name="run" value="xero">Xero</label>
+          <label class="choice"><input type="checkbox" name="run" value="myob">MYOB</label>
+          <label class="choice"><input type="checkbox" name="run" value="quickbooks">QuickBooks</label>
+        </div>
+      </fieldset>
+      <div id="suOtherAppBox" hidden style="margin-top:12px"><label for="suOtherApp">Which app?</label><input type="text" id="suOtherApp" maxlength="80" aria-describedby="suOtherAppErr"><div class="ferr" id="suOtherAppErr"></div></div>
+      <fieldset style="margin-top:16px" id="suStaff">
+        <legend class="legend">How many people work with you?</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="staff" value="0">Just me</label>
+          <label class="choice"><input type="radio" name="staff" value="1-3">1 to 3</label>
+          <label class="choice"><input type="radio" name="staff" value="4-9">4 to 9</label>
+          <label class="choice"><input type="radio" name="staff" value="10+">10 or more</label>
+        </div>
+      </fieldset>
+      <div style="margin-top:16px"><label for="suNotes">Anything else we should know?</label><textarea id="suNotes" maxlength="2000" aria-describedby="suNotesErr"></textarea><div class="ferr" id="suNotesErr"></div></div>
+    </section>
+
+    <section class="card" aria-labelledby="hPlan">
+      <h2 id="hPlan">Plan</h2>
+      <p class="intro">Free holds 15 customers. If your list is longer, Solo has no limit. You can change plans any time.</p>
+      <fieldset id="suPlan" aria-describedby="suPlanErr">
+        <legend class="legend">Which plan?</legend>
+        <div class="plans">
+          <label class="plan"><input type="radio" name="plan" value="free"><b>Free</b><span>$0 a month, 1 person, up to 15 customers</span></label>
+          <label class="plan"><input type="radio" name="plan" value="solo"><b>Solo</b><span>$35 a month, 1 person</span></label>
+          <label class="plan"><input type="radio" name="plan" value="crew"><b>Crew</b><span>$69 a month, 2 to 4 people</span></label>
+          <label class="plan"><input type="radio" name="plan" value="team"><b>Team</b><span>$119 a month, 5 to 10 people</span></label>
+        </div>
+        <div class="ferr" id="suPlanErr"></div>
+      </fieldset>
+    </section>
+
+    <section class="card" aria-labelledby="hSend">
+      <h2 id="hSend">Before you send</h2>
+      <div class="handling" id="suHandling">
+        <p><b>What happens to what you send.</b> Only Elliot at Kept sees it, to set up your account. It's stored in Sydney, Australia. To get your customers into Kept, Elliot sends your list back to you as a tidy file you can import.</p>
+        <p>Once your account is set up, everything you sent here, including your customer list and logo, is deleted from our set-up records. If we don't go ahead, it's deleted too. Either way, nothing is kept longer than 30 days after you send it. We never contact your customers and never use their details for anything else.</p>
+      </div>
+      <label class="tick"><input type="checkbox" id="suConsentAuth" aria-describedby="suConsentErr"><span>I'm authorised to set up Kept for this business, and the details here are correct.</span></label>
+      <label class="tick"><input type="checkbox" id="suConsentList" aria-describedby="suConsentErr"><span>If I send a customer list, it's my business's own records. I'm allowed to give it to Kept so Kept can help load it into my account, and I've told my customers (for example in my own privacy notice) that I use software providers to run my business.</span></label>
+      <label class="tick"><input type="checkbox" id="suConsentPrivacy" aria-describedby="suConsentErr"><span>I've read how Kept handles this form (above) and the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+      <div class="ferr" id="suConsentErr"></div>
+      <div class="hp-field" aria-hidden="true">
+        <label for="suHp">Website</label>
+        <input type="text" id="suHp" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="nobank" id="suNoBank">Don't put bank details or passwords in this form. You'll add bank details in the app yourself.</p>
+      <button type="submit" class="btn" id="suSubmit">Send my details</button>
+      <div class="form-status" id="suStatus" role="status" aria-live="polite"></div>
+    </section>
+  </form>
+
+  <section class="card done" id="suDone" hidden tabindex="-1" aria-labelledby="hDone">
+    <h2 id="hDone">Thanks, that's sent.</h2>
+    <p>Elliot will check your details and get back to you, usually within one working day, to get your account set up. Nothing is set up until then.</p>
+    <p>If you think of something you left out, email <a href="mailto:support@keptsoftware.com.au">support@keptsoftware.com.au</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Kept, made in Brisbane. <a href="/">www.keptsoftware.com.au</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  // Rollback switch: false shows "paused" and the way to start free, and hides the form. The server has its own (SETUP_REQUESTS_ENABLED in the app's api/leads.js).
+  var SETUP_FORM_OPEN = true;
+  var ENDPOINT = 'https://app.keptsoftware.com.au/api/leads';
+  var OPENED = Date.now();
+  // The same limits the server checks (api/_setuprequest.js in the app repo); tools/test-setup-form.py keeps them equal.
+  var LIMITS = { logoFileBytes: 5242880, logo: 204800, csvBytes: 1048576, csvRows: 2000, services: 30 };
+  // A few common services for each trade, from the app's starter price list (DEFAULT_CATALOG in app.js, the dashes written as commas). tools/test-setup-form.py compares them.
+  var STARTERS = {
+    lawn_care: [],
+    pressure_washing: [
+      { name: 'House wash, single storey', description: 'Soft wash, up to 200m² of external walls', rateType: 'flat', rate: 250 },
+      { name: 'Driveway/path wash', description: 'Standard concrete driveway + front path', rateType: 'flat', rate: 180 },
+      { name: 'Gutter clean', description: 'Per storey, includes downpipe check', rateType: 'flat', rate: 150 }
+    ],
+    cleaning: [
+      { name: 'Regular clean (2 bed/1 bath)', description: 'Weekly/fortnightly, incl. kitchen & bathroom', rateType: 'flat', rate: 120 },
+      { name: 'Regular clean (3 bed/2 bath)', description: 'Weekly/fortnightly, incl. kitchen & bathroom', rateType: 'flat', rate: 150 },
+      { name: 'Bond/end-of-lease clean', description: 'Full property, oven & carpet steam extra if needed', rateType: 'flat', rate: 480 }
+    ],
+    handyman: [
+      { name: 'General handyman, per hour', description: 'Minimum 1 hour, most small jobs', rateType: 'hourly', rate: 75 },
+      { name: 'Flat-pack furniture assembly', description: 'Standard item, e.g. wardrobe', rateType: 'flat', rate: 95 },
+      { name: 'Shelf/TV wall mounting', description: 'Supply of brackets not incl.', rateType: 'flat', rate: 110 }
+    ]
+  };
+  var EMAIL_RE = /^[A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $('setupForm');
+  if (!SETUP_FORM_OPEN) { form.hidden = true; $('paused').hidden = false; return; }
+
+  var logoData = '', csvText = '', svcSeq = 0, svcTouched = false, consentAt = {};
+
+  // ---- the checks, the same as the server's
+  function abnOk(raw) {
+    var d = String(raw || '').replace(/\s+/g, '');
+    if (!/^\d{11}$/.test(d)) return false;
+    var w = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19], sum = 0;
+    for (var i = 0; i < 11; i++) sum += (Number(d[i]) - (i === 0 ? 1 : 0)) * w[i];
+    return sum % 89 === 0;
+  }
+  function mobileOk(s) {
+    if (!s || s.length > 20 || !/^[0-9 +]+$/.test(s)) return false;
+    var d = s.replace(/\D/g, '');
+    return /^04\d{8}$/.test(d) || /^614\d{8}$/.test(d);
+  }
+  function phoneOk(s) { return s.length <= 20 && /^[0-9 ()+-]+$/.test(s) && s.replace(/\D/g, '').length >= 8; }
+  function priceOk(s) { return /^\d{1,6}(\.\d{1,2})?$/.test(s) && Number(s) <= 100000; }
+  // Data rows in CSV text, counted the way the app's reader splits records (a line break inside quotes does not end one; a blank one is not a row; the first is the header).
+  function countCsvRows(t) {
+    var s = String(t || '').replace(/^﻿/, ''), records = 0, inQ = false, content = false;
+    for (var i = 0; i < s.length; i++) {
+      var ch = s[i];
+      if (ch === '"') { inQ = !inQ; content = true; }
+      else if ((ch === '\n' || ch === '\r') && !inQ) { if (ch === '\r' && s[i + 1] === '\n') i++; if (content) records++; content = false; }
+      else if (ch !== ',' && ch !== ' ' && ch !== '\t') content = true;
+    }
+    if (content) records++;
+    return Math.max(0, records - 1);
+  }
+
+  // ---- showing a problem next to its field
+  function setErr(el, errId, msg) {
+    var box = $(errId);
+    if (box) box.textContent = msg || '';
+    if (el && el.setAttribute) { if (msg) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid'); }
+  }
+  function clearErrs() {
+    form.querySelectorAll('.ferr').forEach(function (e) { e.textContent = ''; });
+    form.querySelectorAll('[aria-invalid]').forEach(function (e) { e.removeAttribute('aria-invalid'); });
+    $('suStatus').textContent = ''; $('suStatus').className = 'form-status';
+  }
+  var FIELD = { ownerName: ['suName', 'suNameErr'], loginEmail: ['suEmail', 'suEmailErr'], loginEmail2: ['suEmail2', 'suEmail2Err'], mobile: ['suMobile', 'suMobileErr'], businessName: ['suBizName', 'suBizNameErr'],
+    industry: ['suTrade', 'suTradeErr'], abn: ['suAbn', 'suAbnErr'], gst: ['suGst', 'suGstErr'], businessEmail: ['suBizEmail', 'suBizEmailErr'], businessPhone: ['suBizPhone', 'suBizPhoneErr'],
+    businessAddress: ['suAddress', 'suAddressErr'], servicePostcode: ['suPostcode', 'suPostcodeErr'], serviceRadiusKm: ['suRadius', 'suRadiusErr'], businessWebsite: ['suWebsite', 'suWebsiteErr'],
+    services: ['svcList', 'svcErr'], paymentTermsDays: ['suTerms', 'suTermsErr'], logo: ['suLogo', 'suLogoErr'], csv: ['suCsv', 'suCsvErr'], otherAppName: ['suOtherApp', 'suOtherAppErr'],
+    notes: ['suNotes', 'suNotesErr'], plan: ['suPlan', 'suPlanErr'], consent_authorised: ['suConsentAuth', 'suConsentErr'], consent_customerList: ['suConsentList', 'suConsentErr'], consent_privacy: ['suConsentPrivacy', 'suConsentErr'] };
+  function focusOf(key) {
+    var f = FIELD[key]; if (!f) return null;
+    var el = $(f[0]);
+    if (el && (el.tagName === 'FIELDSET' || el.id === 'svcList')) return el.querySelector('input,select') || el;
+    return el;
+  }
+
+  // ---- services
+  function svcRow(s) {
+    var n = ++svcSeq, div = document.createElement('div');
+    div.className = 'svc'; div.setAttribute('data-svc', String(n));
+    div.innerHTML = '<div class="svc-name"><label for="svcName' + n + '">Service</label><input type="text" id="svcName' + n + '" maxlength="80"></div>'
+      + '<div class="svc-desc"><label for="svcDesc' + n + '">Description <span class="opt">(optional)</span></label><input type="text" id="svcDesc' + n + '" maxlength="200"></div>'
+      + '<div><label for="svcType' + n + '">Price type</label><select id="svcType' + n + '"><option value="flat">Flat</option><option value="hourly">Per hour</option><option value="qty">Each</option></select></div>'
+      + '<div><label for="svcRate' + n + '">Price ($)</label><input type="text" inputmode="decimal" id="svcRate' + n + '" maxlength="9"></div>'
+      + '<div><button type="button" class="btn btn-ghost btn-sm" data-remove="' + n + '">Remove<span class="sr"> service ' + n + '</span></button></div>';
+    $('svcList').appendChild(div);
+    $('svcName' + n).value = s ? s.name : '';
+    $('svcDesc' + n).value = s ? s.description : '';
+    $('svcType' + n).value = s ? s.rateType : 'flat';
+    $('svcRate' + n).value = s ? String(s.rate) : '';
+    return div;
+  }
+  function svcRows() { return Array.prototype.slice.call($('svcList').querySelectorAll('.svc')); }
+  function svcAddState() { $('svcAdd').disabled = svcRows().length >= LIMITS.services; }
+  $('svcAdd').addEventListener('click', function () { if (svcRows().length >= LIMITS.services) return; svcTouched = true; var r = svcRow(null); r.querySelector('input').focus(); svcAddState(); });
+  $('svcList').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-remove]'); if (!b) return;
+    svcTouched = true; var row = b.closest('.svc'); row.parentNode.removeChild(row); svcAddState(); $('svcAdd').focus();
+  });
+  $('svcList').addEventListener('input', function () { svcTouched = true; });
+  $('suTrade').addEventListener('change', function () {
+    if (svcTouched) return;   // once they have changed the list it is theirs: a new trade never replaces it
+    $('svcList').innerHTML = '';
+    (STARTERS[$('suTrade').value] || []).forEach(svcRow);
+    svcAddState();
+  });
+
+  // ---- the logo: made 200 px across as a PNG on this device, exactly as the app does (resizeImageFileToDataURL(file, 200))
+  function resizeToPng(file, maxDim) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image(), reader = new FileReader();
+      reader.onload = function (ev) {
+        img.onload = function () {
+          var scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+          var canvas = document.createElement('canvas');
+          canvas.width = Math.round(img.width * scale); canvas.height = Math.round(img.height * scale);
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/png'));
+        };
+        img.onerror = reject;
+        img.src = ev.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+  function clearLogo() { logoData = ''; $('suLogo').value = ''; $('suLogoPreview').hidden = true; $('suLogoPreview').removeAttribute('src'); $('suLogoClear').hidden = true; }
+  $('suLogo').addEventListener('change', function () {
+    var f = $('suLogo').files[0]; setErr($('suLogo'), 'suLogoErr', '');
+    if (!f) { clearLogo(); return; }
+    if (['image/png', 'image/jpeg', 'image/webp'].indexOf(f.type) < 0) { clearLogo(); setErr($('suLogo'), 'suLogoErr', 'Choose a PNG, JPEG or WebP picture.'); return; }
+    if (f.size > LIMITS.logoFileBytes) { clearLogo(); setErr($('suLogo'), 'suLogoErr', 'That picture is over 5 MB. Choose a smaller one.'); return; }
+    resizeToPng(f, 200).then(function (url) {
+      if (url.length > LIMITS.logo) { clearLogo(); setErr($('suLogo'), 'suLogoErr', 'That picture is too detailed to send. Try a simpler version of your logo.'); return; }
+      logoData = url; $('suLogoPreview').src = url; $('suLogoPreview').hidden = false; $('suLogoClear').hidden = false;
+    }, function () { clearLogo(); setErr($('suLogo'), 'suLogoErr', 'That picture could not be read. Choose another.'); });
+  });
+  $('suLogoClear').addEventListener('click', function () { clearLogo(); $('suLogo').focus(); });
+
+  // ---- the customer list: read as text here, checked for size and rows, sent as it is
+  $('suCsv').addEventListener('change', function () {
+    var f = $('suCsv').files[0]; csvText = ''; $('suCsvOk').textContent = ''; setErr($('suCsv'), 'suCsvErr', '');
+    if (!f) return;
+    if (!/\.csv$/i.test(f.name)) { $('suCsv').value = ''; setErr($('suCsv'), 'suCsvErr', 'Choose a .csv file. A spreadsheet can save one: File > Save As > CSV.'); return; }
+    if (f.size > LIMITS.csvBytes) { $('suCsv').value = ''; setErr($('suCsv'), 'suCsvErr', 'That file is over 1 MB. Send part of it, or tick "I can\'t make a CSV file" below.'); return; }
+    var reader = new FileReader();
+    reader.onload = function () {
+      var t = String(reader.result || ''), rows = countCsvRows(t);
+      if (rows > LIMITS.csvRows) { $('suCsv').value = ''; setErr($('suCsv'), 'suCsvErr', 'That file has ' + rows.toLocaleString('en-AU') + ' rows; the most is 2,000. Send part of it, or tick "I can\'t make a CSV file" below.'); return; }
+      if (!rows) { $('suCsv').value = ''; setErr($('suCsv'), 'suCsvErr', 'That file has no rows under its headings.'); return; }
+      csvText = t; $('suCsvOk').textContent = rows.toLocaleString('en-AU') + (rows === 1 ? ' row' : ' rows') + ' ready to send.';
+    };
+    reader.onerror = function () { setErr($('suCsv'), 'suCsvErr', 'That file could not be read. Choose it again.'); };
+    reader.readAsText(f);
+  });
+
+  $('suRunOther').addEventListener('change', function () { $('suOtherAppBox').hidden = !$('suRunOther').checked; });
+  // The time each consent box was ticked (sent with the form; the server keeps it).
+  [['suConsentAuth', 'authorised'], ['suConsentList', 'customerList'], ['suConsentPrivacy', 'privacy']].forEach(function (p) {
+    $(p[0]).addEventListener('change', function () { consentAt[p[1]] = $(p[0]).checked ? new Date().toISOString() : null; });
+  });
+
+  function radio(name) { var r = form.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  function collect() {
+    var v = function (id) { return $(id).value.trim(); };
+    var run = {}; form.querySelectorAll('input[name="run"]').forEach(function (c) { if (c.checked) run[c.value] = true; });
+    return {
+      kind: 'setup', v: 1, website: $('suHp').value, elapsedMs: Date.now() - OPENED,
+      ownerName: v('suName'), loginEmail: v('suEmail'), loginEmail2: v('suEmail2'), mobile: v('suMobile'),
+      businessName: v('suBizName'), industry: $('suTrade').value, abn: v('suAbn'), gst: radio('gst'),
+      businessEmail: v('suBizEmail'), businessPhone: v('suBizPhone'), businessAddress: v('suAddress'), servicePostcode: v('suPostcode'),
+      serviceRadiusKm: $('suRadius').value ? Number($('suRadius').value) : '', businessWebsite: v('suWebsite'),
+      services: svcRows().map(function (r) { var i = r.getAttribute('data-svc'); return { name: $('svcName' + i).value.trim(), description: $('svcDesc' + i).value.trim(), rateType: $('svcType' + i).value, rate: $('svcRate' + i).value.trim().replace(/^\$/, '') }; }),
+      paymentTermsDays: Number($('suTerms').value), logoData: logoData, csvText: csvText, csvHelp: $('suCsvHelp').checked,
+      runNow: run, otherAppName: run.otherApp ? v('suOtherApp') : '', staff: radio('staff'), notes: v('suNotes'), plan: radio('plan'),
+      consent: { authorised: $('suConsentAuth').checked ? (consentAt.authorised || true) : false, customerList: $('suConsentList').checked ? (consentAt.customerList || true) : false, privacy: $('suConsentPrivacy').checked ? (consentAt.privacy || true) : false }
+    };
+  }
+  // The first problem, as [field key, words], or null. The server checks all of this again.
+  function check(d) {
+    if (!d.ownerName) return ['ownerName', 'Please fill in your name.'];
+    if (!d.loginEmail) return ['loginEmail', 'Please fill in the email you will log in with.'];
+    if (!EMAIL_RE.test(d.loginEmail)) return ['loginEmail', 'That email address does not look right.'];
+    if (d.loginEmail2.toLowerCase() !== d.loginEmail.toLowerCase()) return ['loginEmail2', 'The two email addresses are not the same.'];
+    if (!d.mobile) return ['mobile', 'Please fill in your mobile number.'];
+    if (!mobileOk(d.mobile)) return ['mobile', 'That mobile number does not look right. Use an Australian mobile, like 0412 345 678.'];
+    if (!d.businessName) return ['businessName', 'Please fill in your business name.'];
+    if (!d.industry) return ['industry', 'Please choose your trade.'];
+    if (d.abn && !abnOk(d.abn)) return ['abn', 'That ABN does not check out. It has 11 digits; leave it blank if you are not sure.'];
+    if (!d.gst) return ['gst', 'Please say whether you are registered for GST.'];
+    if (d.businessEmail && !EMAIL_RE.test(d.businessEmail)) return ['businessEmail', 'The business email does not look right.'];
+    if (d.businessPhone && !phoneOk(d.businessPhone)) return ['businessPhone', 'The business phone does not look right.'];
+    if (d.servicePostcode && !/^\d{4}$/.test(d.servicePostcode)) return ['servicePostcode', 'The postcode has 4 digits.'];
+    for (var i = 0; i < d.services.length; i++) {
+      var s = d.services[i], where = 'Service ' + (i + 1) + ': ';
+      if (!s.name) return ['services', where + 'please give it a name, or remove the row.'];
+      if (!priceOk(s.rate)) return ['services', where + 'the price should be a number from 0 to 100,000, with at most 2 decimal places.'];
+    }
+    if (!d.plan) return ['plan', 'Please choose a plan.'];
+    if (!d.consent.authorised) return ['consent_authorised', 'Please tick each of the three boxes above.'];
+    if (!d.consent.customerList) return ['consent_customerList', 'Please tick each of the three boxes above.'];
+    if (!d.consent.privacy) return ['consent_privacy', 'Please tick each of the three boxes above.'];
+    return null;
+  }
+  function showProblem(key, words) {
+    var f = FIELD[key], el = focusOf(key);
+    setErr(f ? $(f[0]) : null, f ? f[1] : 'suStatus', words);
+    if (key === 'services') { var bad = /^Service (\d+)/.exec(words), rows = svcRows(); if (bad && rows[bad[1] - 1]) el = rows[bad[1] - 1].querySelector('input'); }
+    $('suStatus').className = 'form-status err';
+    $('suStatus').textContent = 'Please check the form: ' + words;
+    if (el && el.focus) el.focus();
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearErrs();
+    var d = collect(), problem = check(d);
+    if (problem) { showProblem(problem[0], problem[1]); return; }
+    try { var attr = window.KeptAttribution && window.KeptAttribution.get(); if (attr) d.attribution = attr; } catch (_) {}
+    var btn = $('suSubmit'); btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+      .then(function (resp) { return resp.json().catch(function () { return { ok: false }; }).then(function (r) { return { status: resp.status, r: r }; }); })
+      .then(function (x) {
+        if (x.status === 200 && x.r && x.r.ok) {
+          form.hidden = true; $('suDone').hidden = false; $('suDone').focus();
+          window.scrollTo(0, 0);
+          return;
+        }
+        if (x.r && x.r.field && FIELD[x.r.field]) showProblem(x.r.field, x.r.error || 'Please check this.');
+        else { $('suStatus').className = 'form-status err'; $('suStatus').textContent = (x.r && x.r.error) || 'Could not send. Try again shortly.'; }
+      })
+      .catch(function () { $('suStatus').className = 'form-status err'; $('suStatus').textContent = 'Could not send. Check your connection and try again.'; })
+      .then(function () { btn.disabled = false; btn.textContent = 'Send my details'; });
+  });
+  svcAddState();
+})();
+</script>
+
+</body>
+</html>

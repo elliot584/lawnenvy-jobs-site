@@ -12,6 +12,7 @@ Storage modes: each business chooses how its data is stored (Settings > Account 
 - [Pricing](https://www.keptsoftware.com.au/#pricing): the five tiers in detail.
 - [FAQ](https://www.keptsoftware.com.au/#faq): trades covered, data privacy, client migration, cost.
 - [App](https://app.keptsoftware.com.au/): the product itself - sign-up starts here.
+- [Done-for-you set-up](https://www.keptsoftware.com.au/setup): a form to send your business details, prices and customer list so Kept can help set your account up. No charge for the set-up.
 
 ## By trade
 
