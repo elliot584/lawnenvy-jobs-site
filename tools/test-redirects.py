@@ -21,7 +21,11 @@ SITE = pathlib.Path(__file__).resolve().parent.parent
 TAGS = {"utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid"}
 OLD = [("/clean/privacy", "/privacy"), ("/clean/terms", "/terms"), ("/wash/privacy", "/privacy"), ("/wash/terms", "/terms")]
 # Short links the marketing kit prints on posts: source -> the exact destination. Change them here and in the kit together.
-REQUIRED = {"/truck": "/free/truck-checklist?utm_source=social&utm_medium=video&utm_campaign=truck_checklist"}
+REQUIRED = {"/truck": "/free/truck-checklist?utm_source=social&utm_medium=video&utm_campaign=truck_checklist",
+            # 24 Nov 2026: sent by hand in Facebook messages to businesses (/dm, /dm/setup) and printed on the car window stickers (/car)
+            "/dm": "/?utm_source=facebook&utm_medium=message&utm_campaign=outreach",
+            "/dm/setup": "/setup?utm_source=facebook&utm_medium=message&utm_campaign=outreach&utm_content=setup",
+            "/car": "/?utm_source=vehicle&utm_medium=print&utm_campaign=window_sticker"}
 
 
 def clean(v):
