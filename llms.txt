@@ -1,6 +1,6 @@
 # Kept
 
-> Kept is quote, job and invoice software for Australian service and trade businesses: quotes, jobs, scheduling, invoicing, payments and basic tax, in one app. It is built in depth for lawn care, cleaning, pressure washing and handyman work, with 24 other trades selectable. Australian GST/BAS and mileage tools are built in. Kept is made in Brisbane by a working lawn care operator.
+> Kept is quote, job and invoice software for Australian service and trade businesses: quotes, jobs, scheduling, invoicing, payments and basic tax, in one app. It is built in depth for lawn care, cleaning, pressure washing and handyman work, with 24 other trades selectable. Australian GST, BAS estimate and mileage tools are built in (Kept does not lodge BAS), and sent invoices can be pushed to Xero. Kept is made in Brisbane by a working lawn care operator.
 
 Every business starts on a permanent Free plan (1 person, no card required, capped at 15 clients and 15 jobs/quotes a month). Paid plans are billed monthly and priced by team size, not per seat: Solo $35/mo (1 person), Crew $69/mo (2-4 people), Team $119/mo (5-10 people), Operation from $229/mo (11+ people, priced individually, adds multi-task projects). All prices in AUD, with no GST charged. Recurring jobs repeat weekly, fortnightly or every 4 weeks. Route optimisation, the best driving order for a day's stops opened in Google Maps, is on every plan.
 
