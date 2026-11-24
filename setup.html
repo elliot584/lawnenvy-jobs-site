@@ -160,6 +160,7 @@ footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;b
             <option value="pressure_washing">Pressure / house washing</option>
             <option value="cleaning">Cleaning</option>
             <option value="handyman">Handyman</option>
+            <option value="property_maintenance">Property maintenance</option>
           </select><div class="ferr" id="suTradeErr"></div></div>
         <div><label for="suAbn">ABN <span class="opt">(optional)</span></label><input type="text" id="suAbn" inputmode="numeric" maxlength="14" autocomplete="off" aria-describedby="suAbnErr"><div class="ferr" id="suAbnErr"></div></div>
         <fieldset class="full" id="suGst" aria-describedby="suGstErr">
@@ -314,6 +315,15 @@ footer{padding:30px 0;font-size:.82rem;color:var(--ink-soft);text-align:center;b
       { name: 'General handyman, per hour', description: 'Minimum 1 hour, most small jobs', rateType: 'hourly', rate: 75 },
       { name: 'Flat-pack furniture assembly', description: 'Standard item, e.g. wardrobe', rateType: 'flat', rate: 95 },
       { name: 'Shelf/TV wall mounting', description: 'Supply of brackets not incl.', rateType: 'flat', rate: 110 }
+    ],
+    property_maintenance: [
+      { name: 'Mow and edge, standard block', description: 'Up to about 600 m², clippings blown off paths', rateType: 'flat', rate: 65 },
+      { name: 'Hedge trimming, per hour', description: 'Green waste removal charged separately', rateType: 'hourly', rate: 75 },
+      { name: 'Garden tidy-up, per hour', description: 'Weeding, pruning and blowing down, 2 hour minimum', rateType: 'hourly', rate: 65 },
+      { name: 'Driveway and path wash', description: 'Standard concrete driveway and front path', rateType: 'flat', rate: 180 },
+      { name: 'Gutter clean, single storey', description: 'Includes a downpipe check', rateType: 'flat', rate: 150 },
+      { name: 'Handyman, per hour', description: '1 hour minimum, small repairs and odd jobs', rateType: 'hourly', rate: 75 },
+      { name: 'Trailer load to the tip', description: 'Green waste or general rubbish, tip fees included', rateType: 'flat', rate: 180 }
     ]
   };
   var EMAIL_RE = /^[A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;

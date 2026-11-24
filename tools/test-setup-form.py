@@ -147,16 +147,24 @@ def run(root):
             R.check(tick in html, "a consent tick's words changed: %s" % tick[:60])
         for must in ("It's stored in Sydney, Australia.", "nothing is kept longer than 30 days after you send it", "We never contact your customers and never use their details for anything else."):
             R.check(must in html, "the handling text lost: %s" % must)
+        got = re.findall(r'<option value="([a-z_]+)"', re.search(r'<select id="suTrade"[^>]*>(.*?)</select>', html, re.S).group(1))
+        trades = got
         if index_app is not None:
             m = re.search(r'<select id="lockIndustry">(.*?)</select>', index_app, re.S)
             want = re.findall(r'<option value="([a-z_]+)"', re.sub(r"<!--.*?-->", "", m.group(1), flags=re.S))
-            got = re.findall(r'<option value="([a-z_]+)"', re.search(r'<select id="suTrade"[^>]*>(.*?)</select>', html, re.S).group(1))
             R.check(got == want, "the trade list %s is not the app's sign-up list %s" % (got, want))
+            trades = want
         else:
             print("note: no app repo at %s, the trade list was not compared" % APP_REPO)
+        starters = re.search(r"var STARTERS = \{(.*?)\n  \};", html, re.S).group(1)
+        keys = re.findall(r"^    ([a-z_]+): \[", starters, re.M)
+        R.check(keys == trades, "the starter lists %s are not one per trade, in the trade list's order %s" % (keys, trades))
         if app_js is not None:
             cat = app_js[app_js.index("const DEFAULT_CATALOG={"):]
-            for trade in ("lawn_care", "pressure_washing", "cleaning", "handyman"):
+            for trade in trades:
+                if not re.search(r"\n  %s:\[" % trade, cat) or not re.search(r"\n    %s: \[" % trade, html):
+                    R.check(False, "the trade %s has no starter list in the app's DEFAULT_CATALOG or on the page" % trade)
+                    continue
                 block = re.search(r"\n  %s:\[(.*?)\]" % trade, cat, re.S).group(1)
                 rows = [(a.replace(" \u2014 ", ", "), b.replace(" \u2014 ", ", "), c, float(d)) for a, b, c, d in re.findall(r"\{name:'([^']*)',description:'([^']*)',rateType:'(\w+)',rate:([\d.]+)\}", block)]
                 mine = re.search(r"\n    %s: \[(.*?)\](?:,|\n)" % trade, html, re.S).group(1)
@@ -215,6 +223,10 @@ def browser_checks(R, browser, base, html, accepted):
             page.select_option("#suTrade", "handyman")
             names = page.eval_on_selector_all("#svcList .svc input[id^=svcName]", "els => els.map(e => e.value)")
             R.check(names[:1] == ["General handyman, per hour"] and len(names) == 3, "a new trade replaces untouched starters: %s" % names)
+            page.select_option("#suTrade", "property_maintenance")
+            names = page.eval_on_selector_all("#svcList .svc input[id^=svcName]", "els => els.map(e => e.value)")
+            R.check(names[:1] == ["Mow and edge, standard block"] and names[-1:] == ["Trailer load to the tip"] and len(names) == 7, "property maintenance fills its seven services: %s" % names)
+            page.select_option("#suTrade", "handyman")
             page.fill("#svcList .svc input[id^=svcRate]", "80")
             page.select_option("#suTrade", "lawn_care")
             R.check(page.eval_on_selector_all("#svcList .svc", "els => els.length") == 3, "a trade change must never overwrite services the person changed")
@@ -369,6 +381,9 @@ BREAKS = [
     ("fields shrink to 15 px", "font-family:inherit;font-size:16px;background:var(--field)", "font-family:inherit;font-size:15px;background:var(--field)"),
     ("a trade the app does not offer", '<option value="handyman">Handyman</option>', '<option value="handyman">Handyman</option>\n            <option value="electrician">Electrician</option>'),
     ("a starter price drifts from the app", "rateType: 'flat', rate: 480 }", "rateType: 'flat', rate: 450 }"),
+    ("the newest trade is left out", '            <option value="property_maintenance">Property maintenance</option>\n', ""),
+    ("a property maintenance starter drifts", "description: 'Includes a downpipe check', rateType: 'flat', rate: 150 }", "description: 'Includes a downpipe check', rateType: 'flat', rate: 140 }"),
+    ("a trade loses its starter list", "    property_maintenance: [\n", "    propertyMaintenance: [\n"),
     ("the logo is sent at full size", "resizeToPng(f, 200).then(", "resizeToPng(f, 2000).then("),
     ("an SVG logo is taken", "if (['image/png', 'image/jpeg', 'image/webp'].indexOf(f.type) < 0)", "if (false)"),
     ("the 1 MB check is gone", "if (f.size > LIMITS.csvBytes) {", "if (false) {"),
