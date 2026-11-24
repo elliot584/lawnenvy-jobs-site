@@ -308,7 +308,7 @@ def browser_checks(R, browser, base, html, accepted):
             R.check(not re.search(r"(?i)bank|bsb|password|tfn", json.dumps(sorted(body))), "the body has a bank or password key")
             done = page.evaluate("() => ({ form: document.getElementById('setupForm').hidden, done: !document.getElementById('suDone').hidden, focus: document.activeElement.id, text: document.getElementById('suDone').innerText })")
             R.check(done["form"] and done["done"] and done["focus"] == "suDone", "the thank-you replaces the form and takes the focus: %s" % done)
-            R.check("Elliot will check your details and get back to you, usually within one working day" in done["text"], "the thank-you words")
+            R.check("The Kept team will check your details and get back to you, usually within one working day" in done["text"], "the thank-you words")
             R.check(page.outside == [], "the page asked another site for something: %s" % page.outside)
             R.check(page.errors == [], "errors on the page: %s" % page.errors)
             page.context.close()
